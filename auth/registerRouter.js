@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 
-const Customers = require('../customers/customerModel.js');
+const Customers = require('../customers/customersModel.js');
 const Token = require('./authHelpers.js');
 const { validateCustomer } = require('../customers/customersHelpers.js');
 

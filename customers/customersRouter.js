@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const Customers = require('./customersModel.js');
+const restricted = require('../auth/restriction.js');
 
 router.get('/', restricted, (req, res) => {
 	Customers.find()
