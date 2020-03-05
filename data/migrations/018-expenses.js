@@ -1,15 +1,22 @@
 exports.up = function(knex) {
-	return knex.schema.createTable('rates', rates => {
-		rates.increments('ratesid');
+	return knex.schema.createTable('expenses', expenses => {
+		expenses.increments('eid');
 
-		rates.string('code', 128).notNullable();
-		rates.string('inventoryratecode', 128).notNullable();
-		rates.string('productname', 128).notNullable();
-		rates.string('description', 128).notNullable();
-		rates.decimal('rate').notNullable();
+		tbl.integer('courtdatesid')
+			.unsigned()
+			.notNullable()
+			.references('invoiceno')
+			.inTable('invoices')
+			.onUpdate('CASCADE')
+			.onDelete('RESTRICT');
+
+		expenses.string('vendor').notNullable();
+		expenses.date('date').notNullable();
+		expenses.decimal('amount').notNullable();
+		expenses.string('description').notNullable();
 	});
 };
 
 exports.down = function(knex) {
-	return knex.schema.dropTableIfExists('rates');
+	return knex.schema.dropTableIfExists('expenses');
 };

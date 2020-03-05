@@ -1,15 +1,11 @@
 exports.up = function(knex) {
-	return knex.schema.createTable('rates', rates => {
-		rates.increments('ratesid');
+	return knex.schema.createTable('stylenames', stylenames => {
+		stylenames.increments('sid');
 
-		rates.string('code', 128).notNullable();
-		rates.string('inventoryratecode', 128).notNullable();
-		rates.string('productname', 128).notNullable();
-		rates.string('description', 128).notNullable();
-		rates.decimal('rate').notNullable();
+		stylenames.string('stylename').notNullable();
 	});
 };
 
 exports.down = function(knex) {
-	return knex.schema.dropTableIfExists('rates');
+	return knex.schema.dropTableIfExists('stylenames');
 };
