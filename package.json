@@ -26,4 +26,3 @@
     "supertest": "^4.0.2"
   }
 }
-git subtree push --prefix backend heroku master
