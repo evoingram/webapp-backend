@@ -17,3 +17,10 @@ All endpoints have NOT been tested via Postman.
 | `POST`         | `/api/login`     | Logs user in and returns a token     |
 | `POST`         | `/api/register`  | creates a user                       |
 
+### Endpoints For Users
+
+| Request Method | Endpoint                      | Description                          |
+| :------------- | :---------------------------- | :----------------------------------- |
+| `GET`          | `/api/customers`              | returns list of users                |
+| `GET`          | `/api/customers/:customersid` | creates a user                       |
+| `DELETE`       | `/api/customers/:customersid` | deletes a user                       |
