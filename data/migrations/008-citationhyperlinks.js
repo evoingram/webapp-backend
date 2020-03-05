@@ -3,7 +3,6 @@ exports.up = function(knex) {
 		citationhyperlinks.increments('chid');
 
 		citationhyperlinks.string('findcitation').notNullable();
-		citationhyperlinks.string('replacehyperlink').notNullable();
 		citationhyperlinks.string('longcitation').notNullable();
 		citationhyperlinks.string('chcategory').notNullable();
 		citationhyperlinks.string('webaddress').notNullable();
