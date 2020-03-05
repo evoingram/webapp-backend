@@ -1,6 +1,6 @@
 exports.up = function(knex) {
 	return knex.schema.createTable('customers', customers => {
-		customers.increments();
+		customers.increments('customersid');
 
 		customers
 			.string('username', 128)
