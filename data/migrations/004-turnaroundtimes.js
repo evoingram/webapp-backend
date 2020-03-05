@@ -2,7 +2,7 @@ exports.up = function(knex) {
 	return knex.schema.createTable('turnaroundtimes', turnaroundtimes => {
 		turnaroundtimes.increments('ttid');
 
-		turnaroundtimes.integer('turnaroundtime', 128).notNullable();
+		turnaroundtimes.integer('turnaroundtime').notNullable();
 	});
 };
 
