@@ -22,5 +22,5 @@ All endpoints have NOT been tested via Postman.
 | Request Method | Endpoint                      | Description                          |
 | :------------- | :---------------------------- | :----------------------------------- |
 | `GET`          | `/api/customers`              | returns list of users                |
-| `GET`          | `/api/customers/:customersid` | creates a user                       |
+| `GET`          | `/api/customers/:customersid` | returns a user                       |
 | `DELETE`       | `/api/customers/:customersid` | deletes a user                       |
