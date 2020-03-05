@@ -4,7 +4,7 @@ const helmet = require('helmet');
 
 const logger = require('../middleware/logger');
 
-const customersRouter = require('../users/customersRouter');
+const customersRouter = require('../customers/customersRouter');
 
 const server = express();
 

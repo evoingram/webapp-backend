@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const Customers = require('./customerModel.js');
+const Customers = require('./customersModel.js');
 
 router.get('/', (req, res) => {
 	Customers.find()
