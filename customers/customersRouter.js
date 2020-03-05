@@ -2,7 +2,7 @@ const router = require('express').Router();
 
 const Customers = require('./customersModel.js');
 
-router.get('/', (req, res) => {
+router.get('/', restricted, (req, res) => {
 	Customers.find()
 		.then(customers => {
 			res.status(200).json(customers);
@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
 		.catch(err => res.send(err));
 });
 
-router.get('/:customersid', (req, res) => {
+router.get('/:customersid', restricted, (req, res) => {
 	const customersid = req.params.customersid;
 	if (!customersid) {
 		res.status(404).json({ message: 'The customer with the specified customersid does not exist.' });
@@ -25,7 +25,7 @@ router.get('/:customersid', (req, res) => {
 	}
 });
 
-router.delete('/:customersid', (req, res) => {
+router.delete('/:customersid', restricted, (req, res) => {
 	const customersid = req.params.customersid;
 	if (!customersid) {
 		res.status(404).json({ message: 'The customer with the specified ID does not exist.' });
