@@ -1,6 +1,6 @@
 # Transcript Web App
 
-This is the back end, work in progress, for my database online port.
+This is the back end, work in progress, for my database online port.  Copyright 2020 Erica Ingram.
 
 # [DB Schema](https://dbdesigner.page.link/gbEtfTr1XjgwDa2C7)
 
