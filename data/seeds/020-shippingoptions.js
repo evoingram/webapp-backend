@@ -43,7 +43,7 @@ exports.seed = function(knex) {
 					courtdatesid: 2,
 					mcid: 2,
 					ptid: 1,
-					customersid: 21,
+					customersid: 2,
 					amount: 7.5,
 					shippingcost: 7.5,
 					width: 12,

@@ -48,7 +48,7 @@ exports.seed = function(knex) {
 					cdappid: 1
 				},
 				{
-					appid: 7,
+					appid: 8,
 					customersid: 3,
 					courtdatesid: 5,
 					cdappid: 2
