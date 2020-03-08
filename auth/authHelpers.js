@@ -9,7 +9,7 @@ function getJwt(email) {
 		email
 	};
 
-	const secret = process.env.JWT_SECRET || 'Let me tell you a myth about secrets.';
+	const secret = process.env.JWT_SECRET;
 
 	const options = {
 		expiresIn: '1d'
