@@ -20,7 +20,6 @@ router.post('/', validateCustomer, (req, res) => {
 				res.status(201).json({
 					customersid: saved.customersid,
 					email: saved.email,
-					name: saved.name,
 					token: token
 				});
 			})
