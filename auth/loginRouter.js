@@ -21,11 +21,11 @@ router.post('/', (req, res) => {
 					token
 				});
 			} else {
-				res.status(401).json({ message: 'invalid credentials' });
+				res.status(401).json({ message: 'invalid credentials from restriction' });
 			}
 		})
 		.catch(error => {
-			res.status(500).json(error);
+			res.status(500).json('user not found.  Error:  ' + error);
 		});
 });
 
