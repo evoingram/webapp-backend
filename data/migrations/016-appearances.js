@@ -6,8 +6,8 @@ exports.up = function(knex) {
 			.integer('customersid')
 			.unsigned()
 			.notNullable()
-			.references('invoiceno')
-			.inTable('invoices')
+			.references('customersid')
+			.inTable('customers')
 			.onUpdate('CASCADE')
 			.onDelete('RESTRICT');
 
@@ -15,8 +15,8 @@ exports.up = function(knex) {
 			.integer('courtdatesid')
 			.unsigned()
 			.notNullable()
-			.references('invoiceno')
-			.inTable('invoices')
+			.references('courtdatesid')
+			.inTable('courtdates')
 			.onUpdate('CASCADE')
 			.onDelete('RESTRICT');
 

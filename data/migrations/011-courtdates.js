@@ -39,11 +39,13 @@ exports.up = function(knex) {
 			.onDelete('RESTRICT');
 
 		courtdates
-			.integer('invoiceno')
+			.integer('iid')
 			.unsigned()
 			.notNullable()
-			.references('invoiceno')
-			.inTable('invoices');
+			.references('iid')
+			.inTable('invoices')
+			.onUpdate('CASCADE')
+			.onDelete('RESTRICT');
 
 		courtdates.date('hearingdate').notNullable();
 		courtdates.time('hearingstarttime');
