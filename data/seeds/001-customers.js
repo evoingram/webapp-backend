@@ -6,7 +6,7 @@ exports.seed = function(knex) {
 			// Inserts seed entries
 			return knex('customers').insert([
 				{
-					id: 1,
+					customersid: 1,
 					username: 'admin',
 					password: 'password',
 					email: 'inquiries@aquoco.co',
@@ -25,7 +25,7 @@ exports.seed = function(knex) {
 					factoring: true
 				},
 				{
-					id: 2,
+					customersid: 2,
 					username: 'evoingram',
 					password: 'password',
 					email: 'evoingram@aquoco.onmicrosoft.com',
@@ -44,7 +44,7 @@ exports.seed = function(knex) {
 					factoring: true
 				},
 				{
-					id: 3,
+					customersid: 3,
 					username: 'customer',
 					password: 'password',
 					email: 'customer@aquoco.onmicrosoft.com',
@@ -63,7 +63,7 @@ exports.seed = function(knex) {
 					factoring: false
 				},
 				{
-					id: 4,
+					customersid: 4,
 					username: 'evoingram2',
 					password: 'password',
 					email: 'evoingram2@aquoco.onmicrosoft.com',
@@ -82,7 +82,7 @@ exports.seed = function(knex) {
 					factoring: true
 				},
 				{
-					id: 5,
+					customersid: 5,
 					username: 'customer3',
 					password: 'password',
 					email: 'customer3@aquoco.onmicrosoft.com',
