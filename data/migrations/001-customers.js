@@ -3,12 +3,12 @@ exports.up = function(knex) {
 		customers.increments('customersid');
 
 		customers
-			.string('username', 128)
+			.string('username', 256)
 			.notNullable()
 			.unique();
 
 		customers
-			.string('email', 128)
+			.string('email', 256)
 			.notNullable()
 			.unique();
 

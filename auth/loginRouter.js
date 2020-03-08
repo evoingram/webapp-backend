@@ -21,7 +21,14 @@ router.post('/', (req, res) => {
 					token
 				});
 			} else {
-				res.status(401).json({ message: 'invalid credentials from restriction' });
+				res.status(401).json({
+					message: 'invalid credentials from loginRouter',
+					customersid: customer.customersid,
+					company: customer.company,
+					email: customer.email,
+					password: customer.password,
+					token
+				});
 			}
 		})
 		.catch(error => {
