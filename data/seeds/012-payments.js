@@ -8,31 +8,31 @@ exports.seed = function(knex) {
 				{
 					pid: 1,
 					iid: 1,
-					remitdate: Date({ year: 2020, month: 07, date: 01 }),
+					remitdate: '2020-07-01 00:00:00',
 					amount: 50.0
 				},
 				{
 					pid: 2,
 					iid: 2,
-					remitdate: Date({ year: 2020, month: 08, date: 01 }),
+					remitdate: '2020-08-01 00:00:00',
 					amount: 75.6
 				},
 				{
 					pid: 3,
 					iid: 3,
-					remitdate: Date({ year: 2020, month: 09, date: 01 }),
+					remitdate: '2020-09-01 00:00:00',
 					amount: 125.35
 				},
 				{
 					pid: 4,
 					iid: 4,
-					remitdate: Date({ year: 2020, month: 10, date: 01 }),
+					remitdate: '2020-10-01 00:00:00',
 					amount: 545.9
 				},
 				{
 					pid: 5,
 					iid: 5,
-					remitdate: Date({ year: 2020, month: 11, date: 01 }),
+					remitdate: '2020-11-01 00:00:00',
 					amount: 2498.6
 				}
 			]);
