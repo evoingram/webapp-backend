@@ -30,4 +30,3 @@ router.post('/', (req, res) => {
 });
 
 module.exports = router;
-postgres://gemunvnsgzdzqo:149dd77d0e7b4ee3b4375b6389b2a691de7e66b253f91865c05e2a02df931801@ec2-18-213-176-229.compute-1.amazonaws.com:5432/dqa6umjfok98l
