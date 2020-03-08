@@ -2,7 +2,8 @@ exports.up = function(knex) {
 	return knex.schema.createTable('shippingoptions', shippingoptions => {
 		shippingoptions.increments('soid');
 
-		tbl.integer('courtdatesid')
+		shippingoptions
+			.integer('courtdatesid')
 			.unsigned()
 			.notNullable()
 			.references('courtdatesid')
@@ -10,7 +11,8 @@ exports.up = function(knex) {
 			.onUpdate('CASCADE')
 			.onDelete('RESTRICT');
 
-		tbl.integer('mcid')
+		shippingoptions
+			.integer('mcid')
 			.unsigned()
 			.notNullable()
 			.references('mcid')
@@ -18,7 +20,8 @@ exports.up = function(knex) {
 			.onUpdate('CASCADE')
 			.onDelete('RESTRICT');
 
-		tbl.integer('ptid')
+		shippingoptions
+			.integer('ptid')
 			.unsigned()
 			.notNullable()
 			.references('ptid')
@@ -26,7 +29,8 @@ exports.up = function(knex) {
 			.onUpdate('CASCADE')
 			.onDelete('RESTRICT');
 
-		tbl.integer('customersid')
+		shippingoptions
+			.integer('customersid')
 			.unsigned()
 			.notNullable()
 			.references('customersid')

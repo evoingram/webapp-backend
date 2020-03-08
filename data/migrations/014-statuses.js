@@ -2,7 +2,8 @@ exports.up = function(knex) {
 	return knex.schema.createTable('statuses', statuses => {
 		statuses.increments('sid');
 
-		tbl.integer('courtdatesid')
+		statuses
+			.integer('courtdatesid')
 			.unsigned()
 			.notNullable()
 			.references('courtdatesid')
