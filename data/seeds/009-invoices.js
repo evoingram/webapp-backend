@@ -1,5 +1,8 @@
 exports.seed = function(knex) {
 	// Deletes ALL existing entries
+	// knex migrate:latest
+	// knex seed:run
+	// knex seed:up 01.js
 	return knex('invoices')
 		.del()
 		.then(function() {
