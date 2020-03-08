@@ -1,10 +1,10 @@
 exports.seed = function(knex) {
 	// Deletes ALL existing entries
-	return knex('table_name')
+	return knex('usc')
 		.del()
 		.then(function() {
 			// Inserts seed entries
-			return knex('table_name').insert([
+			return knex('usc').insert([
 				{
 					uscid: 1,
 					findcitation: '50 U.S.C. 2601',
