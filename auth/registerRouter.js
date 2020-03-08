@@ -24,7 +24,14 @@ router.post('/', validateCustomer, (req, res) => {
 				});
 			})
 			.catch(error => {
-				res.status(500).json(error);
+				res.status(500).json({
+					message: 'invalid credentials from registerRouter',
+					customersid: customer.customersid,
+					company: customer.company,
+					email: customer.email,
+					password: customer.password,
+					error: error
+				});
 			});
 	} else {
 		res.status(400).json({
