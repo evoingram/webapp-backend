@@ -8,8 +8,8 @@ exports.seed = function(knex) {
 				{
 					agsid: 1,
 					courtdatesid: '1',
-					ag1: '',
-					ag2: '',
+					ag1: 'Test 1a',
+					ag2: 'Test 1b',
 					ag3: '',
 					ag4: '',
 					ag5: '',
@@ -52,10 +52,10 @@ exports.seed = function(knex) {
 					ag66: ''
 				},
 				{
-					agsid: 1,
+					agsid: 2,
 					courtdatesid: '2',
-					ag1: '',
-					ag2: '',
+					ag1: 'Test 2a',
+					ag2: 'Test 2b',
 					ag3: '',
 					ag4: '',
 					ag5: '',
@@ -98,10 +98,10 @@ exports.seed = function(knex) {
 					ag66: ''
 				},
 				{
-					agsid: 1,
+					agsid: 3,
 					courtdatesid: '3',
-					ag1: '',
-					ag2: '',
+					ag1: 'Test 3a',
+					ag2: 'Test 3b',
 					ag3: '',
 					ag4: '',
 					ag5: '',
@@ -144,10 +144,10 @@ exports.seed = function(knex) {
 					ag66: ''
 				},
 				{
-					agsid: 1,
+					agsid: 4,
 					courtdatesid: '4',
-					ag1: '',
-					ag2: '',
+					ag1: 'Mr. Belvedere',
+					ag2: 'Mr. Duck',
 					ag3: '',
 					ag4: '',
 					ag5: '',
@@ -190,10 +190,10 @@ exports.seed = function(knex) {
 					ag66: ''
 				},
 				{
-					agsid: 1,
+					agsid: 5,
 					courtdatesid: '5',
-					ag1: '',
-					ag2: '',
+					ag1: 'Mr. Smith',
+					ag2: 'Ms. Doe',
 					ag3: '',
 					ag4: '',
 					ag5: '',
@@ -236,10 +236,10 @@ exports.seed = function(knex) {
 					ag66: ''
 				},
 				{
-					agsid: 1,
+					agsid: 6,
 					courtdatesid: '6',
-					ag1: '',
-					ag2: '',
+					ag1: 'Mr. Jones',
+					ag2: 'Ms. Jones',
 					ag3: '',
 					ag4: '',
 					ag5: '',
