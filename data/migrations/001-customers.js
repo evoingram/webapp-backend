@@ -35,3 +35,5 @@ exports.up = function(knex) {
 exports.down = function(knex) {
 	return knex.schema.dropTableIfExists('customers');
 };
+
+postgres://ktiszgxbfnxagz:c59295f2e001bdc3e63cf83c72ac08f8bdff7086d1be32965f87730e20f1067e@ec2-184-72-235-159.compute-1.amazonaws.com:5432/d6gqnc1s8u40m9
