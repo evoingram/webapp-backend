@@ -6,10 +6,11 @@ const Customers = require('../customers/customersModel');
 const Token = require('./authHelpers.js');
 
 router.post('/', (req, res) => {
-	Customers.findBy({ email: req.body.email })
+	let { email, password } = req.body;
+	Customers.findBy({ email: email })
 		.first()
 		.then(customer => {
-			if (customer && bcrypt.compareSync(req.body.password, customer.password)) {
+			if (customer && bcrypt.compareSync(password, customer.password)) {
 				const token = Token.getJwt(customer.email);
 
 				res.status(200).json({
