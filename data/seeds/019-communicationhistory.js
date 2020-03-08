@@ -25,14 +25,14 @@ exports.seed = function(knex) {
 					datecreated: '2020-07-15 00:00:00'
 				},
 				{
-					chid: 3,
+					chid: 4,
 					courtdatesid: 4,
 					customersid: 4,
 					filepath: '/sample/path/4',
 					datecreated: '2020-08-15 00:00:00'
 				},
 				{
-					chid: 3,
+					chid: 5,
 					courtdatesid: 5,
 					customersid: 5,
 					filepath: '/sample/path/5',
