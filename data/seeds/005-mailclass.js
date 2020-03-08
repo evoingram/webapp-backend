@@ -1,10 +1,10 @@
 exports.seed = function(knex) {
 	// Deletes ALL existing entries
-	return knex('table_name')
+	return knex('mailclass')
 		.del()
 		.then(function() {
 			// Inserts seed entries
-			return knex('table_name').insert([
+			return knex('mailclass').insert([
 				{
 					mcid: 1,
 					mailclass: 'FIRST',
