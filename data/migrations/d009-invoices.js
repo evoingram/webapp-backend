@@ -1,6 +1,12 @@
 exports.up = function(knex) {
 	return knex.schema.createTable('invoices', invoices => {
 		invoices.increments('iid');
+
+		invoices
+			.integer('invoiceno')
+			.unsigned()
+			.notNullable();
+
 		invoices
 			.integer('customersid')
 			.unsigned()
@@ -27,11 +33,6 @@ exports.up = function(knex) {
 			.inTable('rates')
 			.onUpdate('CASCADE')
 			.onDelete('RESTRICT');
-
-		invoices
-			.integer('invoiceno')
-			.unsigned()
-			.notNullable();
 
 		invoices.decimal('discount');
 
