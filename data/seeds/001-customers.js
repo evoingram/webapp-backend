@@ -8,7 +8,7 @@ exports.seed = function(knex) {
 				{
 					customersid: 1,
 					username: 'admin',
-					password: 'password',
+					password: 'eyJwYXNzd29yZCI6InBhc3N3b3JkIn0',
 					email: 'inquiries@aquoco.co',
 					company: 'A Quo Co.',
 					mrms: 'Ms',
@@ -27,7 +27,7 @@ exports.seed = function(knex) {
 				{
 					customersid: 2,
 					username: 'evoingram',
-					password: 'password',
+					password: 'eyJwYXNzd29yZCI6InBhc3N3b3JkIn0',
 					email: 'evoingram@aquoco.onmicrosoft.com',
 					company: 'A Quo Co.',
 					mrms: 'Ms',
@@ -46,7 +46,7 @@ exports.seed = function(knex) {
 				{
 					customersid: 3,
 					username: 'customer',
-					password: 'password',
+					password: 'eyJwYXNzd29yZCI6InBhc3N3b3JkIn0',
 					email: 'customer@aquoco.onmicrosoft.com',
 					company: 'Customer Co.',
 					mrms: 'Ms',
@@ -65,7 +65,7 @@ exports.seed = function(knex) {
 				{
 					customersid: 4,
 					username: 'evoingram2',
-					password: 'password',
+					password: 'eyJwYXNzd29yZCI6InBhc3N3b3JkIn0',
 					email: 'evoingram2@aquoco.onmicrosoft.com',
 					company: 'A Quo Co.',
 					mrms: 'Ms',
@@ -84,7 +84,7 @@ exports.seed = function(knex) {
 				{
 					customersid: 5,
 					username: 'customer3',
-					password: 'password',
+					password: 'eyJwYXNzd29yZCI6InBhc3N3b3JkIn0',
 					email: 'customer3@aquoco.onmicrosoft.com',
 					company: 'Customer Co.',
 					mrms: 'Ms',
