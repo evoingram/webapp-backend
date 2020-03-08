@@ -5,7 +5,7 @@ const Customers = require('../customers/customersModel.js');
 const Token = require('./authHelpers.js');
 const { validateCustomer } = require('../customers/customersHelpers.js');
 
-router.post('/', validateCustomer, (req, res) => {
+router.post('/', (req, res) => {
 	let customer = req.body;
 
 	const validateResult = validateCustomer(customer);
