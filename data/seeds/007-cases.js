@@ -17,18 +17,18 @@ exports.seed = function(knex) {
 					notes: ''
 				},
 				{
-					casesid: 1,
+					casesid: 2,
 					party1: 'Mickey Mouse',
 					party1name: 'Petitioner',
 					party2: 'Donald Duck',
 					party2name: 'Respondent',
-					casenumber1: 6 - 66 - 666665,
+					casenumber1: '6-66-666665',
 					casenumber2: '777-77-7777',
 					jurisdiction: 'USBC District of Hawaii',
 					notes: ''
 				},
 				{
-					casesid: 1,
+					casesid: 3,
 					party1: 'Ricky Martin',
 					party1name: 'Plaintiff',
 					party2: 'Michael Buble',
@@ -39,7 +39,7 @@ exports.seed = function(knex) {
 					notes: ''
 				},
 				{
-					casesid: 1,
+					casesid: 4,
 					party1: 'Cordanas Felsong',
 					party1name: 'Petitioner',
 					party2: 'Maiev Shadowsong',
@@ -50,7 +50,7 @@ exports.seed = function(knex) {
 					notes: ''
 				},
 				{
-					casesid: 1,
+					casesid: 5,
 					party1: 'Thrall',
 					party1name: 'Employee',
 					party2: 'City of Orgrimmar',
@@ -61,7 +61,7 @@ exports.seed = function(knex) {
 					notes: ''
 				},
 				{
-					casesid: 1,
+					casesid: 6,
 					party1: 'Illidan Stormrage',
 					party1name: 'Plaintiff',
 					party2: 'Malfurian Stormrage',
