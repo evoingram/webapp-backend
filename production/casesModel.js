@@ -17,8 +17,8 @@ function findBy(filter) {
 	return db('cases').where(filter);
 }
 
-async function add(case) {
-	const [casesid] = await db('cases').insert(case, 'casesid');
+async function add(onecase) {
+	const [casesid] = await db('cases').insert(onecase, 'casesid');
 	return findById(casesid);
 }
 
@@ -29,10 +29,10 @@ function findById(casesid) {
 		.first();
 }
 
-function update(casesid, case) {
+function update(casesid, onecase) {
 	return db('cases')
 		.where('casesid', Number(casesid))
-		.update(case);
+		.update(onecase);
 }
 
 function remove(casesid) {

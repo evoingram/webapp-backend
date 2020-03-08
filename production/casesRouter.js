@@ -17,8 +17,8 @@ router.get('/:casesid', restricted, (req, res) => {
 		res.status(404).json({ message: 'The case with the specified casesid does not exist.' });
 	} else {
 		Cases.findById(casesid)
-			.then(case => {
-				res.status(201).json(case);
+			.then(onecase => {
+				res.status(201).json(onecase);
 			})
 			.catch(err => {
 				res.status(500).json({ message: 'The case information could not be retrieved.' });
@@ -32,8 +32,8 @@ router.delete('/:casesid', restricted, (req, res) => {
 		res.status(404).json({ message: 'The case with the specified ID does not exist.' });
 	}
 	Cases.remove(casesid)
-		.then(case => {
-			res.json(case);
+		.then(onecase => {
+			res.json(onecase);
 		})
 		.catch(err => {
 			res.status(500).json({ message: 'The case could not be removed' });
