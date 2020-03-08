@@ -3,9 +3,9 @@ const bcrypt = require('bcryptjs');
 
 const Customers = require('../customers/customersModel.js');
 const Token = require('./authHelpers.js');
-const { validateCustomer } = require('../customers/customersHelpers.js');
+const { validateCustomer } = require('../customers/customersHelpers.js').default;
 
-router.post('/', validateCustomer, (req, res) => {
+router.post('/', (req, res) => {
 	let customer = req.body;
 
 	const validateResult = validateCustomer(customer);
@@ -15,6 +15,7 @@ router.post('/', validateCustomer, (req, res) => {
 		customer.password = hash;
 
 		const token = Token.getJwt(customer.email);
+
 		Customers.add(customer)
 			.then(saved => {
 				res.status(201).json({
