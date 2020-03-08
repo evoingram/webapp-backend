@@ -6,7 +6,7 @@ exports.up = function(knex) {
 			.integer('courtdatesid')
 			.unsigned()
 			.notNullable()
-			.references('courtdates')
+			.references('courtdatesid')
 			.inTable('courtdates')
 			.onUpdate('CASCADE')
 			.onDelete('RESTRICT');
