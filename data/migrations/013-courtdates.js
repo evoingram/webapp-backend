@@ -2,7 +2,8 @@ exports.up = function(knex) {
 	return knex.schema.createTable('courtdates', courtdates => {
 		courtdates.increments('courtdatesid');
 
-		tbl.integer('casesid')
+		courtdates
+			.integer('casesid')
 			.unsigned()
 			.notNullable()
 			.references('casesid')
@@ -10,7 +11,8 @@ exports.up = function(knex) {
 			.onUpdate('CASCADE')
 			.onDelete('RESTRICT');
 
-		tbl.integer('ratesid')
+		courtdates
+			.integer('ratesid')
 			.unsigned()
 			.notNullable()
 			.references('ratesid')
@@ -18,7 +20,8 @@ exports.up = function(knex) {
 			.onUpdate('CASCADE')
 			.onDelete('RESTRICT');
 
-		tbl.integer('ttid')
+		courtdates
+			.integer('ttid')
 			.unsigned()
 			.notNullable()
 			.references('ttid')
@@ -26,7 +29,8 @@ exports.up = function(knex) {
 			.onUpdate('CASCADE')
 			.onDelete('RESTRICT');
 
-		tbl.integer('btid')
+		courtdates
+			.integer('btid')
 			.unsigned()
 			.notNullable()
 			.references('btid')
@@ -34,7 +38,8 @@ exports.up = function(knex) {
 			.onUpdate('CASCADE')
 			.onDelete('RESTRICT');
 
-		tbl.integer('invoiceno')
+		courtdates
+			.integer('invoiceno')
 			.unsigned()
 			.notNullable()
 			.references('invoiceno')

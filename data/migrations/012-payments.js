@@ -2,7 +2,8 @@ exports.up = function(knex) {
 	return knex.schema.createTable('payments', payments => {
 		payments.increments('pid');
 
-		tbl.integer('invoiceno')
+		payments
+			.integer('invoiceno')
 			.unsigned()
 			.notNullable()
 			.references('invoiceno')

@@ -2,7 +2,8 @@ exports.up = function(knex) {
 	return knex.schema.createTable('communicationhistory', communicationhistory => {
 		communicationhistory.increments('chid');
 
-		tbl.integer('courtdatesid')
+		communicationhistory
+			.integer('courtdatesid')
 			.unsigned()
 			.notNullable()
 			.references('invoiceno')
@@ -10,7 +11,8 @@ exports.up = function(knex) {
 			.onUpdate('CASCADE')
 			.onDelete('RESTRICT');
 
-		tbl.integer('customersid')
+		communicationhistory
+			.integer('customersid')
 			.unsigned()
 			.notNullable()
 			.references('customersid')

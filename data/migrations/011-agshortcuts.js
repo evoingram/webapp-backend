@@ -2,7 +2,8 @@ exports.up = function(knex) {
 	return knex.schema.createTable('agshortcuts', agshortcuts => {
 		agshortcuts.increments('agsid');
 
-		tbl.integer('courtdatesid')
+		agshortcuts
+			.integer('courtdatesid')
 			.unsigned()
 			.notNullable()
 			.references('courtdatesid')

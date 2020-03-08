@@ -1,7 +1,8 @@
 exports.up = function(knex) {
 	return knex.schema.createTable('invoices', invoices => {
 		invoices.increments('iid');
-		tbl.integer('customersid')
+		invoices
+			.integer('customersid')
 			.unsigned()
 			.notNullable()
 			.references('customersid')
@@ -9,7 +10,8 @@ exports.up = function(knex) {
 			.onUpdate('CASCADE')
 			.onDelete('RESTRICT');
 
-		tbl.integer('btid')
+		invoices
+			.integer('btid')
 			.unsigned()
 			.notNullable()
 			.references('btid')
@@ -17,7 +19,8 @@ exports.up = function(knex) {
 			.onUpdate('CASCADE')
 			.onDelete('RESTRICT');
 
-		tbl.integer('ratesid')
+		invoices
+			.integer('ratesid')
 			.unsigned()
 			.notNullable()
 			.references('ratesid')
