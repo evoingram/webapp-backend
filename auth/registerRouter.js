@@ -15,14 +15,11 @@ router.post('/', validateCustomer, (req, res) => {
 		customer.password = hash;
 
 		const token = Token.getJwt(customer.email);
-		console.log('token hashed!! Next, registering.');
 		Customers.add(customer)
 			.then(saved => {
-				Customers.addAsHelper({ customersid: saved.customersid, rolesid: 2 });
 				res.status(201).json({
 					customersid: saved.customersid,
 					email: saved.email,
-					name: saved.name,
 					token: token
 				});
 			})
