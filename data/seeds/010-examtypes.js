@@ -31,42 +31,42 @@ exports.seed = function(knex) {
 					ecode: 'ee5'
 				},
 				{
-					eid: 5,
+					eid: 6,
 					examination: 'further recross-examination',
 					ecode: 'ee6'
 				},
 				{
-					eid: 1,
+					eid: 7,
 					examination: 'direct examination continued',
 					ecode: 'e1c'
 				},
 				{
-					eid: 2,
+					eid: 8,
 					examination: 'cross-examination continued',
 					ecode: 'e2c'
 				},
 				{
-					eid: 3,
+					eid: 9,
 					examination: 'redirect examination continued',
 					ecode: 'e3c'
 				},
 				{
-					eid: 4,
+					eid: 10,
 					examination: 'recross-examination continued',
 					ecode: 'e4c'
 				},
 				{
-					eid: 5,
+					eid: 11,
 					examination: 'further redirect examination continued',
 					ecode: 'e5c'
 				},
 				{
-					eid: 5,
+					eid: 12,
 					examination: 'further recross-examination continued',
 					ecode: 'e6c'
 				},
 				{
-					eid: 5,
+					eid: 13,
 					examination: 'voir dire examination',
 					ecode: 'vdex'
 				}
