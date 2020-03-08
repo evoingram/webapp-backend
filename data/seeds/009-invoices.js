@@ -32,7 +32,7 @@ exports.seed = function(knex) {
 					invoiceno: 594001,
 					discount: 0.1,
 					reference: 2,
-					invoicedate: Date{ year: 2020, month: 03, date: 05 }),
+					invoicedate: Date({ year: 2020, month: 03, date: 05 }),
 					duedate: Date({ year: 2020, month: 03, date: 06 }),
 					itemcode: 'CNB30',
 					description: '30 calendar-day turnaround',
