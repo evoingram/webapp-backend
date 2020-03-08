@@ -2,14 +2,16 @@ exports.up = function(knex) {
 	return knex.schema.createTable('appearances', appearances => {
 		appearances.increments('appid');
 
+
 		appearances
 			.integer('customersid')
 			.unsigned()
 			.notNullable()
-			.references('invoiceno')
-			.inTable('invoices')
+			.references('customersid')
+			.inTable('customers')
 			.onUpdate('CASCADE')
 			.onDelete('RESTRICT');
+
 		appearances
 			.integer('courtdatesid')
 			.unsigned()
@@ -18,6 +20,7 @@ exports.up = function(knex) {
 			.inTable('courtdates')
 			.onUpdate('CASCADE')
 			.onDelete('RESTRICT');
+		
 		appearances.integer('cdappid').notNullable();
 	});
 };
