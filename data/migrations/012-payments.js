@@ -3,10 +3,10 @@ exports.up = function(knex) {
 		payments.increments('pid');
 
 		payments
-			.integer('invoiceno')
+			.integer('iid')
 			.unsigned()
 			.notNullable()
-			.references('invoiceno')
+			.references('iid')
 			.inTable('invoices')
 			.onUpdate('CASCADE')
 			.onDelete('RESTRICT');
