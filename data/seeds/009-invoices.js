@@ -3,6 +3,7 @@ exports.seed = function(knex) {
 	// knex migrate:latest
 	// knex seed:run
 	// knex seed:up 01.js
+	// dates at 009, 012, 013, 017, 018, 019
 	return knex('invoices')
 		.del()
 		.then(function() {
@@ -16,8 +17,8 @@ exports.seed = function(knex) {
 					invoiceno: 594000,
 					discount: 0.1,
 					reference: 1,
-					invoicedate: '2020-03-05',
-					duedate: '2020-03-06',
+					invoicedate: Date.UTC('03-05-2020'),
+					duedate: Date.UTC('03-06-2020'),
 					itemcode: 'CNB45',
 					description: '45 calendar-day turnaround',
 					accountcode: 400,
@@ -31,8 +32,8 @@ exports.seed = function(knex) {
 					invoiceno: 594001,
 					discount: 0.1,
 					reference: 2,
-					invoicedate: '2020-03-05',
-					duedate: '2020-03-06',
+					invoicedate: Date.UTC('03-05-2020'),
+					duedate: Date.UTC('03-06-2020'),
 					itemcode: 'CNB30',
 					description: '30 calendar-day turnaround',
 					accountcode: 400,
@@ -46,8 +47,8 @@ exports.seed = function(knex) {
 					invoiceno: 594002,
 					discount: 0.1,
 					reference: 3,
-					invoicedate: '2020-03-05',
-					duedate: '2020-03-06',
+					invoicedate: Date.UTC('03-05-2020'),
+					duedate: Date.UTC('03-06-2020'),
 					itemcode: 'CNB14',
 					description: '14 calendar-day turnaround',
 					accountcode: 400,
@@ -61,8 +62,8 @@ exports.seed = function(knex) {
 					invoiceno: 594003,
 					discount: 0.1,
 					reference: 4,
-					invoicedate: '2020-03-05',
-					duedate: '2020-03-06',
+					invoicedate: Date.UTC('03-05-2020'),
+					duedate: Date.UTC('03-06-2020'),
 					itemcode: 'CNB7',
 					description: '7 calendar-day turnaround',
 					accountcode: 400,
@@ -76,8 +77,8 @@ exports.seed = function(knex) {
 					invoiceno: 594004,
 					discount: 0.1,
 					reference: 5,
-					invoicedate: '2020-03-05',
-					duedate: '2020-03-06',
+					invoicedate: Date.UTC('03-05-2020'),
+					duedate: Date.UTC('03-06-2020'),
 					itemcode: 'CNB03',
 					description: '3 calendar-day turnaround',
 					accountcode: 400,

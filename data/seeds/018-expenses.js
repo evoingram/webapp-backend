@@ -9,7 +9,7 @@ exports.seed = function(knex) {
 					eid: 1,
 					courtdatesid: 1,
 					vendor: 'Office Depot',
-					date: '2019-07-29',
+					date: Date.UTC('07-29-2019'),
 					amount: 0.75,
 					description: 'binding'
 				},
@@ -17,7 +17,7 @@ exports.seed = function(knex) {
 					eid: 2,
 					courtdatesid: 2,
 					vendor: 'USPS',
-					date: '2019-06-29',
+					date: Date.UTC('06-29-2019'),
 					amount: 4.95,
 					description: 'postage'
 				},
@@ -25,7 +25,7 @@ exports.seed = function(knex) {
 					eid: 3,
 					courtdatesid: 3,
 					vendor: 'OfficeSupplies.com',
-					date: '2019-08-29',
+					date: Date.UTC('08-29-2019'),
 					amount: 0.5,
 					description: 'paper'
 				},
@@ -33,7 +33,7 @@ exports.seed = function(knex) {
 					eid: 4,
 					courtdatesid: 4,
 					vendor: 'Amazon',
-					date: '2019-09-29',
+					date: Date.UTC('09-29-2019'),
 					amount: 1.0,
 					description: 'pen'
 				},
@@ -41,7 +41,7 @@ exports.seed = function(knex) {
 					eid: 5,
 					courtdatesid: 5,
 					vendor: 'GotPrint',
-					date: '2019-10-29',
+					date: Date.UTC('10-29-2019'),
 					amount: 0.25,
 					description: 'covers'
 				}
