@@ -10,16 +10,14 @@ exports.up = function(knex) {
 			.inTable('invoices')
 			.onUpdate('CASCADE')
 			.onDelete('RESTRICT');
-
 		appearances
 			.integer('courtdatesid')
 			.unsigned()
 			.notNullable()
-			.references('invoiceno')
-			.inTable('invoices')
+			.references('courtdatesid')
+			.inTable('courtdates')
 			.onUpdate('CASCADE')
 			.onDelete('RESTRICT');
-
 		appearances.integer('cdappid').notNullable();
 	});
 };
