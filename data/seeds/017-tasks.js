@@ -12,11 +12,11 @@ exports.seed = function(knex) {
 					priority: 'Priority 1',
 					status: 'Not Started',
 					description: ' Case Info Here Maybe',
-					startdate: '2019-05-31',
-					duedate: '2019-06-29',
-					prioritypoints: '60',
+					startdate: Date.UTC('05-29-2019'),
+					duedate: Date.UTC('06-29-2019'),
+					prioritypoints: 60,
 					category: 'production',
-					timelength: '2',
+					timelength: 2,
 					completed: false
 				},
 				{
@@ -26,11 +26,11 @@ exports.seed = function(knex) {
 					priority: 'Priority 1',
 					status: 'Not Started',
 					description: ' Case Info Here Maybe',
-					startdate: '2019-06-29',
-					duedate: '2019-07-29',
-					prioritypoints: '60',
+					startdate: Date.UTC('06-29-2019'),
+					duedate: Date.UTC('07-29-2019'),
+					prioritypoints: 60,
 					category: 'production',
-					timelength: '2',
+					timelength: 2,
 					completed: false
 				},
 				{
@@ -40,11 +40,11 @@ exports.seed = function(knex) {
 					priority: 'Priority 1',
 					status: 'Not Started',
 					description: ' Case Info Here Maybe',
-					startdate: '2019-07-29',
-					duedate: '2019-08-29',
-					prioritypoints: '60',
+					startdate: Date.UTC('07-29-2019'),
+					duedate: Date.UTC('08-29-2019'),
+					prioritypoints: 60,
 					category: 'production',
-					timelength: '2',
+					timelength: 2,
 					completed: false
 				},
 				{
@@ -54,11 +54,11 @@ exports.seed = function(knex) {
 					priority: 'Priority 1',
 					status: 'Not Started',
 					description: ' Case Info Here Maybe',
-					startdate: '2019-08-29',
-					duedate: '2019-09-29',
-					prioritypoints: '60',
+					startdate: Date.UTC('08-29-2019'),
+					duedate: Date.UTC('09-29-2019'),
+					prioritypoints: 60,
 					category: 'production',
-					timelength: '2',
+					timelength: 2,
 					completed: false
 				},
 				{
@@ -68,11 +68,11 @@ exports.seed = function(knex) {
 					priority: 'Priority 1',
 					status: 'Not Started',
 					description: ' Case Info Here Maybe',
-					startdate: '2019-09-29',
-					duedate: '2019-10-29',
-					prioritypoints: '60',
+					startdate: Date.UTC('09-29-2019'),
+					duedate: Date.UTC('10-29-2019'),
+					prioritypoints: 60,
 					category: 'production',
-					timelength: '2',
+					timelength: 2,
 					completed: false
 				}
 			]);
