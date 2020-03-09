@@ -28,3 +28,7 @@ All endpoints have been tested via Postman.
 ### TO DO
 
 - [ ] add body examples (in postman docs currently)
+- [ ] multiple-table endpoints
+    - [ ] cases/courtdates/customers
+    - [ ] cases/courtdates
+    - [ ] cases/courtdates/invoices/customers
