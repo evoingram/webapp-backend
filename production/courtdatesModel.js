@@ -44,10 +44,8 @@ function remove(courtdatesid) {
 /*
 
 
-
-*/
-
-/*
+SELECT [CourtDates].[ID]
+FROM CourtDates;
 
 
 
@@ -56,58 +54,49 @@ function remove(courtdatesid) {
 /*
 
 
+SELECT [CourtDates].[CasesID]
+FROM CourtDates;
 
 */
 
 /*
 
 
+SELECT DISTINCTROW *
+FROM CourtDates;
 
 */
 
 /*
 
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
+SELECT [Cases].[Party1], [Cases].[Party2], [Cases].[CaseNumber1], [Cases].[CaseNumber2], [Cases].[Jurisdiction], [Cases].[HearingTitle], [Cases].[Judge], [Cases].[JudgeTitle], [Cases].[CourtDatesID], [CourtDates].[HearingDate], [CourtDates].[HearingStartTime], [CourtDates].[HearingEndTime], [CourtDates].[App1], [CourtDates].[App2], [CourtDates].[App3], [CourtDates].[App4], [CourtDates].[App5], [CourtDates].[App6], [CourtDates].[OrderingID], [CourtDates].[AudioLength], [CourtDates].[TurnaroundTimesCD], [CourtDates].[InvoicesID], [CourtDates].[DateFactored], [CourtDates].[DatePaid], [CourtDates].[ShipDate], [CourtDates].[ShippingID], [CourtDates].[TrackingNumber]
+FROM CourtDates INNER JOIN Cases ON [CourtDates].[ID] =[Cases].[CourtDatesID];
 
 
 */
 
 /*
 
+SELECT CourtDatesBTQuery.CourtDates_ID, CourtDatesBTQuery.BrandingThemes_BrandingTheme, CourtDatesRatesQuery.CourtDatesID AS CourtDatesRatesQuery_CourtDatesID, InvoicesQuery4.CourtDatesID AS InvoicesQuery4_CourtDatesID, InvoicesQuery4.Reference, InvoicesQuery4.HearingDate, InvoicesQuery4.HearingStartTime, InvoicesQuery4.HearingEndTime, InvoicesQuery4.CasesID, InvoicesQuery4.OrderingID, InvoicesQuery4.AudioLength, InvoicesQuery4.Location, InvoicesQuery4.TurnaroundTimesCD, InvoicesQuery4.Expr1010, InvoicesQuery4.Cases_ID, InvoicesQuery4.Party1, InvoicesQuery4.Party2, InvoicesQuery4.CaseNumber1, InvoicesQuery4.CaseNumber2, InvoicesQuery4.Jurisdiction, InvoicesQuery4.CustomersID, InvoicesQuery4.Company, InvoicesQuery4.FirstName, InvoicesQuery4.LastName, InvoicesQuery4.Address, InvoicesQuery4.City, InvoicesQuery4.State, InvoicesQuery4.ZIP, InvoicesQuery4.EmailAddress, InvoicesQuery4.InvoiceNo, InvoicesQuery4.Quantity, InvoicesQuery4.DueDate, InvoicesQuery4.InvoiceDate, InvoicesQuery4.AccountCode, InvoicesQuery4.TaxType, CourtDatesRatesQuery.Code, CourtDatesRatesQuery.[List Price]
+FROM CourtDatesRatesQuery INNER JOIN (CourtDatesBTQuery INNER JOIN InvoicesQuery4 ON CourtDatesBTQuery.[CourtDatesID] = InvoicesQuery4.[CourtDatesID]) ON CourtDatesRatesQuery.[CourtDatesID] = InvoicesQuery4.[CourtDatesID];
 
 
 */
 
 /*
 
+SELECT CourtDatesBTQuery.CourtDatesID, CourtDatesBTQuery.BrandingThemes_BrandingTheme, CourtDatesRatesQuery.CourtDatesID AS CourtDatesRatesQuery_CourtDatesID, InvoicesQuery4.CourtDatesID AS InvoicesQuery4_CourtDatesID, InvoicesQuery4.Reference, InvoicesQuery4.HearingDate, InvoicesQuery4.HearingStartTime, InvoicesQuery4.HearingEndTime, InvoicesQuery4.CasesID, InvoicesQuery4.OrderingID, InvoicesQuery4.AudioLength, InvoicesQuery4.Location, InvoicesQuery4.TurnaroundTimesCD, InvoicesQuery4.Expr1010, InvoicesQuery4.Cases_ID, InvoicesQuery4.Party1, InvoicesQuery4.Party2, InvoicesQuery4.CaseNumber1, InvoicesQuery4.CaseNumber2, InvoicesQuery4.Jurisdiction, InvoicesQuery4.CustomersID, InvoicesQuery4.Company, InvoicesQuery4.FirstName, InvoicesQuery4.LastName, InvoicesQuery4.Address, InvoicesQuery4.City, InvoicesQuery4.State, InvoicesQuery4.ZIP, InvoicesQuery4.EmailAddress, InvoicesQuery4.InvoiceNo, InvoicesQuery4.Quantity, InvoicesQuery4.DueDate, InvoicesQuery4.InvoiceDate, InvoicesQuery4.AccountCode, InvoicesQuery4.TaxType, CourtDatesRatesQuery.Code, CourtDatesRatesQuery.[Rate]
+FROM CourtDatesRatesQuery INNER JOIN (CourtDatesBTQuery INNER JOIN InvoicesQuery4 ON CourtDatesBTQuery.[CourtDatesID] = InvoicesQuery4.[CourtDatesID]) ON CourtDatesRatesQuery.[CourtDatesID] = InvoicesQuery4.[CourtDatesID];
 
 
 */
 
 /*
 
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
+SELECT CourtDates.ID, CourtDates.HearingDate, CourtDates.HearingStartTime, [CourtDates].HearingEndTime
+FROM CourtDates
+WHERE (CourtDates.[ID])=forms![MMProcess Jobs].JobNumberField
+ORDER BY [HearingDate], [HearingStartTime], [HearingEndTime];
 
 
 
@@ -115,6 +104,8 @@ function remove(courtdatesid) {
 
 /*
 
+SELECT CourtDates.ID AS CourtDatesID, CourtDates.InventoryRateCode, Rates.ID AS RatesID, Rates.Code, Rates.[List Price] AS Rate
+FROM CourtDates INNER JOIN Rates ON CourtDates.[InventoryRateCode]=Rates.[ID];
 
 
 */
@@ -122,23 +113,17 @@ function remove(courtdatesid) {
 /*
 
 
-
-*/
-
-/*
-
+SELECT CourtDates.InvoiceNo, "0" AS TotalExpenses
+FROM CourtDates LEFT JOIN Expenses ON CourtDates.[InvoiceNo] = Expenses.[InvoiceNo]
+WHERE (((Expenses.InvoiceNo) Is Null));
 
 
 */
 
 /*
 
-
-
-*/
-
-/*
-
+SELECT CourtDates.ID AS CourtDatesID, UnitPrice.ID, CourtDates.AudioLength, CourtDates.TurnaroundTimesCD, CourtDates.InvoiceNo, CourtDates.InvoiceDate, CourtDates.PaymentDueDate, CourtDates.ExpectedAdvanceDate, CourtDates.ExpectedRebateDate, CourtDates.EstimatedPageCount, CourtDates.FactoringCost, CourtDates.UnitPrice, UnitPrice.Rate, CourtDates.ActualQuantity, CourtDates.DueDate, CourtDates.FinalPrice AS FinalPrice, Rate*ActualQuantity AS Subtotal
+FROM CourtDates INNER JOIN UnitPrice ON CourtDates.[UnitPrice] = UnitPrice.[ID];
 
 
 */
@@ -146,23 +131,16 @@ function remove(courtdatesid) {
 /*
 
 
+SELECT *
+FROM CourtDates INNER JOIN OrderingAttorneyInfo ON CourtDates.ID=OrderingAttorneyInfo.CourtDatesID;
 
 */
 
 /*
 
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
+SELECT CourtDates.InvoiceDate, CourtDates.ID AS CourtDatesID, (DateAdd('d',28,InvoiceDate)) AS ["PaymentDueDate"]
+FROM CourtDates
+WHERE CourtDates.ID =Forms![NewMainMenu]![ProcessJobSubformNMM].Form![JobNumberField];
 
 
 */
@@ -170,11 +148,8 @@ function remove(courtdatesid) {
 /*
 
 
-
-*/
-
-/*
-
+SELECT CourtDates.InvoiceDate AS InvoiceDate, CourtDates.ID AS CourtDatesID, (DateAdd('d',1,InvoiceDate)) AS PaymentDueDate
+FROM CourtDates INNER JOIN UnitPrice ON CourtDates.[UnitPrice] = UnitPrice.[ID];
 
 
 */
@@ -182,17 +157,41 @@ function remove(courtdatesid) {
 /*
 
 
-
-*/
-
-/*
-
+SELECT CourtDates.InvoiceDate AS InvoiceDate, CourtDates.ID AS CourtDatesID, (DateAdd('d',1,InvoiceDate)) AS PaymentDueDate
+FROM CourtDates INNER JOIN UnitPrice ON CourtDates.[UnitPrice] = UnitPrice.[ID];
 
 
 */
 
 /*
 
+SELECT *
+FROM CourtDates INNER JOIN QMaxCourtDates ON [CourtDates].ID=[QMaxCourtDates].CourtDatesID;
+
+
+*/
+
+/*
+
+SELECT CourtDates.ID AS ["CourtDatesID"], CourtDates.HearingDate, CourtDates.CasesID, CourtDates.OrderingID, CourtDates.AudioLength, CourtDates.TurnaroundTimesCD, CourtDates.DueDate, CourtDates.InvoiceNo AS ["CourtDatesInvoiceNo"], CourtDates.InvoiceDate, CourtDates.PaymentDueDate, CourtDates.Subtotal, Payments.InvoiceNo AS ["PaymentsInvoiceNo"], Payments.Amount, Payments.RemitDate, Payments.ID AS ["PaymentsID"]
+FROM CourtDates INNER JOIN Payments ON CourtDates.[InvoiceNo] = Payments.[InvoiceNo];
+
+
+*/
+
+/*
+
+SELECT CourtDates.ID, CourtDates.InvoiceNo, CourtDates.UnitPrice, CourtDates.Quantity, CourtDates.Subtotal, CourtDates.AudioLength, CourtDates.TurnaroundTimesCD, CourtDates.DueDate, CourtDates.InvoiceDate, CourtDates.HearingStartTime, CourtDates.HearingEndTime, CourtDates.HearingDate, CourtDates.CasesID, CourtDates.OrderingID, CourtDates.FiledNotFiled, CourtDates.PaymentDueDate, CourtDates.ExpectedAdvanceDate, CourtDates.ExpectedRebateDate, CourtDates.EstimatedPageCount, Cases.Party1, Cases.Party2, Cases.Party1Name, Cases.Party2Name, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Cases.HearingTitle, Cases.Judge
+FROM CourtDates INNER JOIN CASES ON CourtDates.CasesID = Cases.ID
+WHERE CourtDates.ID=Forms![NewMainMenu]![ProcessJobSubformNMM].[Form]![JobNumberField];
+
+
+*/
+
+/*
+
+SELECT Max(CourtDates.ID) AS CourtDatesID
+FROM CourtDates;
 
 
 */
@@ -200,28 +199,16 @@ function remove(courtdatesid) {
 /*
 
 
-
-*/
-
-/*
-
+SELECT CourtDates.InvoiceNo, QTotalExpensesbyInvoiceNumber.InvoiceNo
+FROM CourtDates INNER JOIN QTotalExpensesbyInvoiceNumber ON CourtDates.InvoiceNo <> QTotalExpensesbyInvoiceNumber.InvoiceNo;
 
 
 */
 
 /*
 
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
+SELECT DISTINCT InvoiceNo, InvoiceDate
+FROM CourtDates;
 
 
 
@@ -230,23 +217,17 @@ function remove(courtdatesid) {
 /*
 
 
+SELECT [CourtDatesWTOMatchingExp].InvoiceNo, CDbl(Nz(Sum([CourtDatesWTOMatchingExp].[TotalExpenses]),0)) AS TotalExpenses
+FROM CourtDatesWTOMatchingExp
+GROUP BY [CourtDatesWTOMatchingExp].InvoiceNo;
 
 */
 
 /*
 
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
+SELECT [CourtDates].InvoiceNo, CDbl(Nz(Sum([CourtDates].[ActualQuantity]),0)) AS PageCount
+FROM CourtDates
+GROUP BY [CourtDates].InvoiceNo;
 
 
 */
@@ -254,22 +235,15 @@ function remove(courtdatesid) {
 /*
 
 
+SELECT 
+FROM CourtDates AS CourtDates_1, Statuses AS Statuses_1, Cases INNER JOIN (CourtDates INNER JOIN Statuses ON (Statuses.CourtDatesID = CourtDates.ID) AND (Statuses.ID = CourtDates.StatusesID) AND (CourtDates.StatusesID = Statuses.ID) AND (CourtDates.ID = Statuses.CourtDatesID)) ON (Statuses.ID = Cases.ID) AND (Cases.ID = CourtDates.CasesID);
 
 */
 
 /*
 
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
+SELECT MAX(ID) AS CourtDatesID, CourtDates.InvoiceNo
+FROM CourtDates;
 
 
 
@@ -277,6 +251,9 @@ function remove(courtdatesid) {
 
 /*
 
+SELECT CourtDates.ID AS CourtDatesID, UnitPrice.ID, CourtDates.AudioLength, CourtDates.TurnaroundTimesCD, CourtDates.InvoiceNo, CourtDates.InvoiceDate AS InvoiceDate, CourtDates.PaymentDueDate, CourtDates.ExpectedAdvanceDate, CourtDates.ExpectedRebateDate, CourtDates.EstimatedPageCount, CourtDates.FactoringCost, CourtDates.UnitPrice, UnitPrice.Rate, CourtDates.Quantity AS Quantity, CourtDates.DueDate, CourtDates.Subtotal AS subSubtotal, Rate*Quantity AS Subtotal
+FROM CourtDates INNER JOIN UnitPrice ON CourtDates.[UnitPrice] = UnitPrice.[ID]
+WHERE CourtDates.FinalPrice = 0;
 
 
 */
@@ -284,29 +261,23 @@ function remove(courtdatesid) {
 /*
 
 
+SELECT CourtDates.HearingDate, CourtDates.HearingStartTime, CourtDates.HearingEndTime, CourtDates.ID, CourtDates.Quantity, CourtDates.CasesID, CourtDates.App1, CourtDates.App2, CourtDates.App3, CourtDates.App4, CourtDates.App5, CourtDates.App6, CourtDates.OrderingID AS OrderingID, CourtDates.AudioLength, CourtDates.TurnaroundTImesCD, CourtDates.PaymentDueDate, CourtDates.UnitPrice, CourtDates.ExpectedRebateDate, CourtDates.ExpectedAdvanceDate AS ExpectedAdvanceDate, CourtDates.Location, CourtDates.InvoiceNo, CourtDates.FactoringCost, CourtDates.InvoiceDate, CourtDates.Subtotal, (CourtDates.Subtotal*.8) AS ExpectedAdvanceAmount, CourtDates.FinalPrice, CourtDates.PaymentSum, CourtDates.EstimatedPageCount, CourtDates.DueDate, CourtDates.ActualQuantity, CourtDates.DueDate, CourtDates.InvoiceDate, CourtDates.FiledNotFiled, CourtDates.EstimatedPageCount, CourtDates.PPID, CourtDates.PPStatus, GetInvoiceNoFromCDID.InvoiceNo, CourtDates.InventoryRateCode AS InventoryRateCode
+FROM CourtDates INNER JOIN GetInvoiceNoFromCDID ON CourtDates.InvoiceNo=GetInvoiceNoFromCDID.InvoiceNo;
 
 */
 
 /*
 
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
+SELECT TRInv.HearingDate AS TRInv_HearingDate, TRInv.HearingStartTime AS TRInv_HearingStartTime, TRInv.HearingEndTime AS TRInv_HearingEndTime, TRInv.ID, TRInv.Quantity AS TRInv_Quantity, TRInv.CasesID AS TRInv_CasesID, TRInv.App1 AS TRInv_App1, TRInv.App2 AS TRInv_App2, TRInv.App3 AS TRInv_App3, TRInv.App4 AS TRInv_App4, TRInv.App5 AS TRInv_App5, TRInv.App6 AS TRInv_App6, TRInv.OrderingID AS TRInv_OrderingID, TRInv.AudioLength AS TRInv_AudioLength, TRInv.TurnaroundTImesCD AS TRInv_TurnaroundTImesCD, TRInv.PaymentDueDate AS TRInv_PaymentDueDate, TRInv.UnitPrice AS TRInv_UnitPrice, TRInv.ExpectedRebateDate AS TRInv_ExpectedRebateDate, TRInv.ExpectedAdvanceDate AS TRInv_ExpectedAdvanceDate, TRInv.Location AS TRInv_Location, TRInv.CourtDates.InvoiceNo, TRInv.FactoringCost AS TRInv_FactoringCost, TRInv.Expr1022, TRInv.Subtotal AS TRInv_Subtotal, TRInv.ExpectedAdvanceAmount, TRInv.FinalPrice AS TRInv_FinalPrice, TRInv.PaymentSum, TRInv.Expr1027, TRInv.Expr1028, TRInv.ActualQuantity AS TRInv_ActualQuantity, TRInv.DueDate AS TRInv_DueDate, TRInv.InvoiceDate AS TRInv_InvoiceDate, TRInv.FiledNotFiled AS TRInv_FiledNotFiled, TRInv.EstimatedPageCount AS TRInv_EstimatedPageCount, TRInv.PPID AS TRInv_PPID, TRInv.PPStatus AS TRInv_PPStatus, TRInv.GetInvoiceNoFromCDID.InvoiceNo, TRInv.InventoryRateCode AS TRInv_InventoryRateCode, TRInvoiceCasesQ.Cases.ID, TRInvoiceCasesQ.Party1, TRInvoiceCasesQ.Party1Name, TRInvoiceCasesQ.Party2, TRInvoiceCasesQ.Party2Name, TRInvoiceCasesQ.CaseNumber1, TRInvoiceCasesQ.CaseNumber2, TRInvoiceCasesQ.Jurisdiction, TRInvoiceCasesQ.HearingTitle, TRInvoiceCasesQ.Judge, TRInvoiceCasesQ.JudgeTitle, TRInvoiceCasesQ.Cases.Notes, TRInvoiceCasesQ.GetInvoiceNoFromCDID.ID, TRInvoiceCasesQ.HearingDate AS TRInvoiceCasesQ_HearingDate, TRInvoiceCasesQ.HearingStartTime AS TRInvoiceCasesQ_HearingStartTime, TRInvoiceCasesQ.HearingEndTime AS TRInvoiceCasesQ_HearingEndTime, TRInvoiceCasesQ.CasesID AS TRInvoiceCasesQ_CasesID, TRInvoiceCasesQ.App1 AS TRInvoiceCasesQ_App1, TRInvoiceCasesQ.App2 AS TRInvoiceCasesQ_App2, TRInvoiceCasesQ.App3 AS TRInvoiceCasesQ_App3, TRInvoiceCasesQ.App4 AS TRInvoiceCasesQ_App4, TRInvoiceCasesQ.App5 AS TRInvoiceCasesQ_App5, TRInvoiceCasesQ.App6 AS TRInvoiceCasesQ_App6, TRInvoiceCasesQ.OrderingID AS TRInvoiceCasesQ_OrderingID, TRInvoiceCasesQ.StatusesID, TRInvoiceCasesQ.AudioLength AS TRInvoiceCasesQ_AudioLength, TRInvoiceCasesQ.Location AS TRInvoiceCasesQ_Location, TRInvoiceCasesQ.TurnaroundTimesCD AS TRInvoiceCasesQ_TurnaroundTimesCD, TRInvoiceCasesQ.InvoiceNo, TRInvoiceCasesQ.DueDate AS TRInvoiceCasesQ_DueDate, TRInvoiceCasesQ.ShipDate, TRInvoiceCasesQ.TrackingNumber, TRInvoiceCasesQ.PaymentType, TRInvoiceCasesQ.GetInvoiceNoFromCDID.CourtDates.Notes, TRInvoiceCasesQ.ShippingOptionsID, TRInvoiceCasesQ.SPKRID, TRInvoiceCasesQ.AGShortcuts, TRInvoiceCasesQ.FiledNotFiled AS TRInvoiceCasesQ_FiledNotFiled, TRInvoiceCasesQ.Factored, TRInvoiceCasesQ.InvoiceDate AS TRInvoiceCasesQ_InvoiceDate, TRInvoiceCasesQ.PaymentDueDate AS TRInvoiceCasesQ_PaymentDueDate, TRInvoiceCasesQ.FactoringInterestID, TRInvoiceCasesQ.ExpectedRebateDate AS TRInvoiceCasesQ_ExpectedRebateDate, TRInvoiceCasesQ.EstimatedPageCount AS TRInvoiceCasesQ_EstimatedPageCount, TRInvoiceCasesQ.FactoringCost AS TRInvoiceCasesQ_FactoringCost, TRInvoiceCasesQ.UnitPrice AS TRInvoiceCasesQ_UnitPrice, TRInvoiceCasesQ.Quantity AS TRInvoiceCasesQ_Quantity, TRInvoiceCasesQ.ActualQuantity AS TRInvoiceCasesQ_ActualQuantity, TRInvoiceCasesQ.Subtotal AS TRInvoiceCasesQ_Subtotal, TRInvoiceCasesQ.ExpectedAdvanceDate AS TRInvoiceCasesQ_ExpectedAdvanceDate, TRInvoiceCasesQ.FinalPrice AS TRInvoiceCasesQ_FinalPrice, TRInvoiceCasesQ.GetInvoiceNoFromCDID.CourtDates.PaymentSum, TRInvoiceCasesQ.InventoryRateCode AS TRInvoiceCasesQ_InventoryRateCode, TRInvoiceCasesQ.AccountCode, TRInvoiceCasesQ.TaxType, TRInvoiceCasesQ.BrandingTheme, TRInvoiceCasesQ.PPID AS TRInvoiceCasesQ_PPID, TRInvoiceCasesQ.PPStatus AS TRInvoiceCasesQ_PPStatus, TRInvoiceCasesQ.CourtDatesID AS TRInvoiceCasesQ_CourtDatesID, TRInvoiceCasesQ.OAIInvoiceNo, TRInvoiceCasesQ.OAISubtotal, TRInvoiceCasesQ.OAIQuantity, TRInvoiceCasesQ.OAIUnitPrice, TRInvoiceCasesQ.OrderingAttorneyInfo.PaymentSum, TRInvoiceCasesQ.CustomersID, TRInvoiceCasesQ.Company, TRInvoiceCasesQ.MrMs, TRInvoiceCasesQ.LastName, TRInvoiceCasesQ.FirstName, TRInvoiceCasesQ.EmailAddress, TRInvoiceCasesQ.BusinessPhone, TRInvoiceCasesQ.FaxNumber, TRInvoiceCasesQ.Address, TRInvoiceCasesQ.City, TRInvoiceCasesQ.State, TRInvoiceCasesQ.ZIP, TRInvoiceCasesQ.OrderingAttorneyInfo.Notes, TRInvoiceCasesQ.FactoringApproved, TRInvoiceCasesQ.OAICasesID, CourtDatesRatesQuery.CourtDatesID AS CourtDatesRatesQuery_CourtDatesID, CourtDatesRatesQuery.InventoryRateCode AS CourtDatesRatesQuery_InventoryRateCode, CourtDatesRatesQuery.[List Price], CourtDatesRatesQuery.RatesID, CourtDatesRatesQuery.Code
+FROM CourtDatesRatesQuery INNER JOIN (TRInvoiceCasesQ INNER JOIN TRInv ON TRInvoiceCasesQ.[CustomersID] = TRInv.[OrderingID]) ON CourtDatesRatesQuery.[CourtDatesID] = TRInv.[CourtDates.ID];
 
 
 */
 
 /*
 
+SELECT CourtDates.ID AS CourtDatesID, UnitPrice.ID, CourtDates.HearingDate, CourtDates.HearingStartTime, CourtDates.HearingEndTime, CourtDates.CasesID, CourtDates.OrderingID, CourtDates.StatusesID, CourtDates.AudioLength, CourtDates.TurnaroundTimesCD, CourtDates.InvoiceNo, CourtDates.InvoiceDate, CourtDates.PaymentDueDate, CourtDates.EstimatedPageCount, CourtDates.Quantity, CourtDates.DueDate, CourtDates.UnitPrice, UnitPrice.Rate, UnitPrice.Rate*CourtDates.Quantity AS Subtotal, (DateAdd('d',30,DueDate)) AS ExpectedRebateDate, (DateAdd('d',2,[DueDate])) AS ExpectedAdvanceDate, Subtotal*.8 AS EstimatedAdvanceAmount
+FROM CourtDates INNER JOIN UnitPrice ON CourtDates.[UnitPrice] = UnitPrice.[ID];
 
 
 */
@@ -314,28 +285,18 @@ function remove(courtdatesid) {
 /*
 
 
+INSERT INTO XeroInvoiceCSV ( ContactName, EmailAddress, POAddressLine1, POCity, PORegion, POPostalCode, InvoiceNumber, Reference, InvoiceDate, DueDate, InventoryItemCode, Description, Quantity, UnitAmount, AccountCode, TaxType, BrandingTheme )
+SELECT CourtDatesBTRIQ4QXero.Company AS ContactName, CourtDatesBTRIQ4QXero.EmailAddress, CourtDatesBTRIQ4QXero.Address AS POAddressLine1, CourtDatesBTRIQ4QXero.City AS POCity, CourtDatesBTRIQ4QXero.State AS PORegion, CourtDatesBTRIQ4QXero.ZIP AS POPostalCode, CourtDatesBTRIQ4QXero.InvoiceNo AS InvoiceNumber, CourtDatesID AS Reference, CourtDatesBTRIQ4QXero.InvoiceDate AS Invoicedate, CourtDatesBTRIQ4QXero.DueDate, CourtDatesBTRIQ4QXero.Code AS InventoryItemCode, ([Party1] & " v. " & [Party2] & Chr(13) & "Case Numbers:  " & [CaseNumber1] & "   |   " & [CaseNumber2] & Chr(13) & "Hearing Date:  " & [HearingDate] & Chr(13) & "Approx. " & [AudioLength] & " Minutes") AS Description, CourtDatesBTRIQ4QXero.Quantity, CourtDatesBTRIQ4QXero.[Rate] AS UnitAmount, 400 AS AccountCode, CourtDatesBTRIQ4QXero.TaxType, CourtDatesBTRIQ4QXero.BrandingThemes_BrandingTheme AS BrandingTheme
+FROM CourtDatesBTRIQ4QXero
+WHERE [Reference]=Forms![NewMainMenu]![ProcessJobSubformNMM].Form![JobNumberField];
 
 */
 
 /*
 
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
+SELECT CourtDates.ID AS CourtDates_ID, CourtDates.CasesID, CourtDates.StatusesID, CourtDates.AudioLength, CourtDates.DueDate, CourtDates.PaymentType, Cases.ID AS Cases_ID, Cases.Party1, Cases.Party2, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Statuses.ID AS Statuses_ID, Statuses.CourtDatesID, Statuses.ContactsEntered, Statuses.JobEntered, Statuses.CoverPage, Statuses.AutoCorrect, Statuses.Schedule, Statuses.Invoice, Statuses.Transcribe, Statuses.AddRDtoCover, Statuses.FindReplaceRD, Statuses.HyperlinkTranscripts, Statuses.SpellingsEmail, Statuses.AudioProof, Statuses.InvoiceCompleted, Statuses.NoticeofService, Statuses.PackageEnclosedLetter, Statuses.CDLabel, Statuses.GenerateZIPs, Statuses.TranscriptsReady, Statuses.InvoicetoFactorEmail, Statuses.FileTranscript, Statuses.BurnCD, Statuses.ShippingXMLs, Statuses.GenerateShippingEM, Statuses.AddTrackingNumber
+FROM (Cases INNER JOIN CourtDates ON Cases.[ID] = CourtDates.[CasesID]) INNER JOIN Statuses ON (CourtDates.[ID] = Statuses.[CourtDatesID]) AND (CourtDates.[StatusesID] = Statuses.[ID])
+WHERE (((Statuses.ContactsEntered)=Yes) AND ((Statuses.JobEntered)=Yes) AND ((Statuses.CoverPage)=Yes) AND ((Statuses.AutoCorrect)=Yes) AND ((Statuses.Schedule)=Yes) AND ((Statuses.Invoice)=Yes) AND ((Statuses.Transcribe)=Yes) AND ((Statuses.AddRDtoCover)=Yes) AND ((Statuses.FindReplaceRD)=Yes) AND ((Statuses.HyperlinkTranscripts)=Yes) AND ((Statuses.SpellingsEmail)=Yes) AND ((Statuses.AudioProof)=No)) OR (((Statuses.InvoiceCompleted)=No)) OR (((Statuses.NoticeofService)=No)) OR (((Statuses.PackageEnclosedLetter)=No)) OR (((Statuses.CDLabel)=No)) OR (((Statuses.GenerateZIPs)=No)) OR (((Statuses.TranscriptsReady)=No)) OR (((Statuses.InvoicetoFactorEmail)=No)) OR (((Statuses.FileTranscript)=No)) OR (((Statuses.BurnCD)=No)) OR (((Statuses.ShippingXMLs)=No)) OR (((Statuses.GenerateShippingEM)=No)) OR (((Statuses.AddTrackingNumber)=No));
 
 
 
@@ -343,6 +304,8 @@ function remove(courtdatesid) {
 
 /*
 
+SELECT CourtDates.ID AS CourtDates_ID, CourtDates.OrderingID, Customers.Company, Customers.FirstName, Customers.LastName, Customers.EmailAddress, Customers.Address, Customers.City, Customers.State, Customers.ZIP, ShippingOptions.ID AS ShippingOptions_ID, ShippingOptions.CourtDatesID, ShippingOptions.CourtDatesIDLK, ShippingOptions.MailClass, ShippingOptions.PackageType, ShippingOptions.Width, ShippingOptions.Length, ShippingOptions.Depth, ShippingOptions.PriorityMailExpress1030, ShippingOptions.HolidayDelivery, ShippingOptions.SundayDelivery, ShippingOptions.SaturdayDelivery, ShippingOptions.SignatureRequired, ShippingOptions.Stealth, ShippingOptions.ReplyPostage, ShippingOptions.InsuredMail, ShippingOptions.COD, ShippingOptions.RestrictedDelivery, ShippingOptions.AdultSignatureRestricted, ShippingOptions.AdultSignatureRequired, ShippingOptions.ReturnReceipt, ShippingOptions.CertifiedMail, ShippingOptions.SignatureConfirmation, ShippingOptions.USPSTracking, ShippingOptions.ReferenceID, ShippingOptions.ToName, ShippingOptions.ToAddress1, ShippingOptions.ToAddress2, ShippingOptions.ToCity, ShippingOptions.ToState, ShippingOptions.ToPostalCode, ShippingOptions.ToCountry, ShippingOptions.Value, ShippingOptions.Description, ShippingOptions.ToEMail, ShippingOptions.ToPhone, ShippingOptions.WeightOz, ShippingOptions.ActualWeight, ShippingOptions.ActualWeightText, ShippingOptions.Amount
+FROM (Customers INNER JOIN CourtDates ON Customers.[ID] = CourtDates.[OrderingID]) INNER JOIN ShippingOptions ON CourtDates.[ID] = ShippingOptions.[CourtDatesIDLK];
 
 
 */
@@ -350,10 +313,28 @@ function remove(courtdatesid) {
 /*
 
 
+SELECT CourtDates.ID AS CourtDates_ID, CourtDates.CasesID, CourtDates.OrderingID, CourtDates.ShippingID, Customers.ID AS Customers_ID, Customers.Company, Customers.FirstName, Customers.LastName, Customers.Address, Customers.City, Customers.State, Customers.ZIP, Customers.BusinessPhone, Customers.EmailAddress, ShippingOptions.ID AS ShippingOptions_ID, ShippingOptions.CourtDatesID, ShippingOptions.MailClass, ShippingOptions.PackageType, ShippingOptions.Width, ShippingOptions.Length, ShippingOptions.Depth, ShippingOptions.PriorityMailExpress1030, ShippingOptions.HolidayDelivery, ShippingOptions.SundayDelivery, ShippingOptions.SaturdayDelivery, ShippingOptions.SignatureRequired, ShippingOptions.Stealth, ShippingOptions.ReplyPostage, ShippingOptions.InsuredMail, ShippingOptions.COD, ShippingOptions.RestrictedDelivery, ShippingOptions.AdultSignatureRestricted, ShippingOptions.AdultSignatureRequired, ShippingOptions.ReturnReceipt, ShippingOptions.CertifiedMail, ShippingOptions.SignatureConfirmation, ShippingOptions.USPSTracking, ShippingOptions.ReferenceID, ShippingOptions.ToName, ShippingOptions.ToAddress1, ShippingOptions.ToAddress2, ShippingOptions.ToCity, ShippingOptions.ToState, ShippingOptions.ToPostalCode, ShippingOptions.ToCountry, ShippingOptions.Value, ShippingOptions.Description, ShippingOptions.ToEMail, ShippingOptions.ToPhone, ShippingOptions.WeightOz, ShippingOptions.ActualWeight, ShippingOptions.ActualWeightText, ShippingOptions.Amount
+FROM (Customers INNER JOIN CourtDates ON Customers.[ID] = CourtDates.[OrderingID]) INNER JOIN ShippingOptions ON CourtDates.[ID] = ShippingOptions.[CourtDatesID]
+WHERE ShippingOptions.[CourtDatesID]=Forms![NewMainMenu]![ProcessJobSubformNMM].Form![JobNumberField];
+
 
 */
 
 /*
+
+
+SELECT CourtDates.ID AS CourtDatesID, CourtDates.BrandingTheme AS CourtDates_BrandingTheme, BrandingThemes.ID AS BrandingThemes_ID, BrandingThemes.BrandingTheme AS BrandingThemes_BrandingTheme
+FROM BrandingThemes INNER JOIN CourtDates ON BrandingThemes.[ID] = CourtDates.[BrandingTheme];
+
+
+
+*/
+
+/*
+
+SELECT CourtDatesBTRQuery2.BrandingThemes_BrandingTheme, InvoicesQuery4.CourtDatesID AS InvoicesQuery4_CourtDatesID, InvoicesQuery4.Reference, InvoicesQuery4.HearingDate, InvoicesQuery4.HearingStartTime, InvoicesQuery4.HearingEndTime, InvoicesQuery4.CasesID, InvoicesQuery4.OrderingID, InvoicesQuery4.AudioLength, InvoicesQuery4.Location, InvoicesQuery4.TurnaroundTimesCD, InvoicesQuery4.Expr1010, InvoicesQuery4.Cases_ID, InvoicesQuery4.Party1, InvoicesQuery4.Party2, InvoicesQuery4.CaseNumber1, InvoicesQuery4.CaseNumber2, InvoicesQuery4.Jurisdiction, InvoicesQuery4.CustomersID, InvoicesQuery4.Company, InvoicesQuery4.FirstName, InvoicesQuery4.LastName, InvoicesQuery4.Address, InvoicesQuery4.City, InvoicesQuery4.State, InvoicesQuery4.ZIP, InvoicesQuery4.EmailAddress, InvoicesQuery4.InvoiceNo, InvoicesQuery4.Quantity, InvoicesQuery4.InventoryItemCode, InvoicesQuery4.DueDate, InvoicesQuery4.InvoiceDate, InvoicesQuery4.AccountCode, InvoicesQuery4.TaxType, InvoicesQuery4.BrandingTheme, CourtDatesBTRQuery2.CourtDatesID, CourtDatesBTRQuery2.Code, CourtDatesBTRQuery2.[Rate]
+FROM InvoicesQuery4 INNER JOIN CourtDatesBTRQuery2 ON InvoicesQuery4.CourtDatesID=CourtDatesBTRQuery2.[CourtDatesID];
+
 
 
 
@@ -362,34 +343,24 @@ function remove(courtdatesid) {
 /*
 
 
-
-*/
-
-/*
-
+SELECT CourtDates.ID, CourtDates.AudioLength, CourtDates.TurnaroundTimesCD, CourtDates.DatePaid, CourtDates.DueDate, Cases.Jurisdiction, UncompletedStatusesQ.CourtDatesID
+FROM (Cases INNER JOIN CourtDates ON Cases.[ID] = CourtDates.[CasesID]) INNER JOIN UncompletedStatusesQ ON CourtDates.[ID] = UncompletedStatusesQ.[CourtDatesID];
 
 
 */
 
 /*
 
+SELECT OrderingAttorneyInfo.ID AS OrderingAttorneyInfo_ID, OrderingAttorneyInfo.Company, OrderingAttorneyInfo.MrMs, OrderingAttorneyInfo.LastName, OrderingAttorneyInfo.FirstName, OrderingAttorneyInfo.EmailAddress, OrderingAttorneyInfo.BusinessPhone, OrderingAttorneyInfo.Address, OrderingAttorneyInfo.City, OrderingAttorneyInfo.State, OrderingAttorneyInfo.ZIP, Cases.Party1, Cases.Party2, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Cases.HearingTitle, Cases.Judge, CourtDates.HearingDate, CourtDates.ID AS CourtDates_ID, CourtDates.CasesID, CourtDates.OrderingID, CourtDates.AudioLength, CourtDates.InvoicesID, Rates.ID AS Rates_ID, Rates.Code, Rates.ProductName, Rates.[List Price], Orders.[Order ID], Orders.OrderDate, Orders.DateShip, Orders.DateFactored, Orders.PaymentType, Orders.DatePaid, Orders.CourtDatesID, Orders.InvoiceNumber, Orders.Quantity, Orders.InventoryItemCode, Orders.Reference, Orders.DueDate, Orders.InvoiceDate, Orders.AccountCode, Orders.TaxType, Orders.BrandingTheme
+FROM ((Cases INNER JOIN OrderingAttorneyInfo ON Cases.[ID] = OrderingAttorneyInfo.[CasesID]) INNER JOIN CourtDates ON Cases.[ID] = CourtDates.[CasesID]) INNER JOIN (Rates INNER JOIN Orders ON Rates.[ID] = Orders.[InventoryItemCode]) ON CourtDates.[ID] = Orders.[CourtDatesID];
 
 
 */
 
 /*
 
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
+SELECT OrderingAttorneyInfo.ID AS OrderingAttorneyInfo_ID, OrderingAttorneyInfo.Company, OrderingAttorneyInfo.MrMs, OrderingAttorneyInfo.LastName, OrderingAttorneyInfo.FirstName, OrderingAttorneyInfo.EmailAddress, OrderingAttorneyInfo.BusinessPhone, OrderingAttorneyInfo.Address, OrderingAttorneyInfo.City, OrderingAttorneyInfo.State, OrderingAttorneyInfo.ZIP, Cases.Party1, Cases.Party2, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Cases.HearingTitle, Cases.Judge, CourtDates.HearingDate, CourtDates.ID AS CourtDates_ID, CourtDates.CasesID, CourtDates.OrderingID, CourtDates.AudioLength, CourtDates.InvoicesID, Rates.ID AS Rates_ID, Rates.Code, Rates.ProductName, Rates.[List Price], Orders.[Order ID], Orders.OrderDate, Orders.DateShip, Orders.DateFactored, Orders.PaymentType, Orders.DatePaid, Orders.CourtDatesID, Orders.InvoiceNumber, Orders.Quantity, Orders.InventoryItemCode, Orders.Reference, Orders.DueDate, Orders.InvoiceDate, Orders.AccountCode, Orders.TaxType, Orders.BrandingTheme AS BrandingTheme
+FROM ((Cases INNER JOIN OrderingAttorneyInfo ON Cases.[ID] = OrderingAttorneyInfo.[CasesID]) INNER JOIN CourtDates ON Cases.[ID] = CourtDates.[CasesID]) INNER JOIN (Rates INNER JOIN Orders ON Rates.[ID] = Orders.[InventoryItemCode]) ON CourtDates.[ID] = Orders.[CourtDatesID];
 
 
 
@@ -397,11 +368,220 @@ function remove(courtdatesid) {
 
 /*
 
+SELECT Rates.ID, Rates.Code, Rates.[List Price], CourtDates.InventoryItemCode, CourtDates.ID
+FROM Rates INNER JOIN CourtDates ON Rates.[ID] = CourtDates.[InventoryItemCode];
 
 
 */
 
 /*
+
+SELECT CourtDates.ID AS CourtDates_ID, CourtDates.CasesID, CourtDates.StatusesID, CourtDates.AudioLength, CourtDates.DueDate, CourtDates.PaymentType, Cases.ID AS Cases_ID, Cases.Party1, Cases.Party2, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Statuses.ID AS Statuses_ID, Statuses.CourtDatesID, Statuses.ContactsEntered, Statuses.JobEntered, Statuses.CoverPage, Statuses.AutoCorrect, Statuses.Schedule, Statuses.Invoice, Statuses.Transcribe, Statuses.AddRDtoCover, Statuses.FindReplaceRD, Statuses.HyperlinkTranscripts, Statuses.SpellingsEmail, Statuses.AudioProof, Statuses.InvoiceCompleted, Statuses.NoticeofService, Statuses.PackageEnclosedLetter, Statuses.CDLabel, Statuses.GenerateZIPs, Statuses.TranscriptsReady, Statuses.InvoicetoFactorEmail, Statuses.FileTranscript, Statuses.BurnCD, Statuses.ShippingXMLs, Statuses.GenerateShippingEM, Statuses.AddTrackingNumber
+FROM (Cases INNER JOIN CourtDates ON Cases.[ID] = CourtDates.[CasesID]) INNER JOIN Statuses ON (CourtDates.[ID] = Statuses.[CourtDatesID]) AND (CourtDates.[StatusesID] = Statuses.[ID])
+WHERE ((Statuses.ContactsEntered)=No) Or ((Statuses.JobEntered)=No) Or ((Statuses.CoverPage)=No) Or ((Statuses.AutoCorrect)=No) Or ((Statuses.Schedule)=No) Or ((Statuses.Invoice)=No);
+
+
+*/
+
+/*
+
+SELECT CourtDates.ID AS CourtDates_ID, CourtDates.CasesID, CourtDates.StatusesID, CourtDates.AudioLength, CourtDates.DueDate, CourtDates.PaymentType, Cases.ID AS Cases_ID, Cases.Party1, Cases.Party2, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Statuses.ID AS Statuses_ID, Statuses.CourtDatesID, Statuses.ContactsEntered, Statuses.JobEntered, Statuses.CoverPage, Statuses.AutoCorrect, Statuses.Schedule, Statuses.Invoice, Statuses.Transcribe, Statuses.AddRDtoCover, Statuses.FindReplaceRD, Statuses.HyperlinkTranscripts, Statuses.SpellingsEmail, Statuses.AudioProof, Statuses.InvoiceCompleted, Statuses.NoticeofService, Statuses.PackageEnclosedLetter, Statuses.CDLabel, Statuses.GenerateZIPs, Statuses.TranscriptsReady, Statuses.InvoicetoFactorEmail, Statuses.FileTranscript, Statuses.BurnCD, Statuses.ShippingXMLs, Statuses.GenerateShippingEM, Statuses.AddTrackingNumber
+FROM (Cases INNER JOIN CourtDates ON Cases.[ID] = CourtDates.[CasesID]) INNER JOIN Statuses ON (CourtDates.[StatusesID] = Statuses.[ID]) AND (CourtDates.[ID] = Statuses.[CourtDatesID])
+WHERE (((Statuses.ContactsEntered)=Yes) AND ((Statuses.JobEntered)=Yes) AND ((Statuses.CoverPage)=Yes) AND ((Statuses.AutoCorrect)=Yes) AND ((Statuses.Schedule)=Yes) AND ((Statuses.Invoice)=Yes) AND ((Statuses.Transcribe)=No)) OR (((Statuses.AddRDtoCover)=No)) OR (((Statuses.FindReplaceRD)=No)) OR (((Statuses.HyperlinkTranscripts)=No)) OR (((Statuses.SpellingsEmail)=No));
+
+
+*/
+
+/*
+
+
+SELECT CourtDates.ID AS CourtDates_ID, CourtDates.CasesID, CourtDates.StatusesID, CourtDates.AudioLength, CourtDates.DueDate, CourtDates.PaymentType, Cases.ID AS Cases_ID, Cases.Party1, Cases.Party2, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Statuses.ID AS Statuses_ID, Statuses.CourtDatesID, Statuses.ContactsEntered, Statuses.JobEntered, Statuses.CoverPage, Statuses.AutoCorrect, Statuses.Schedule, Statuses.Invoice, Statuses.Transcribe, Statuses.AddRDtoCover, Statuses.FindReplaceRD, Statuses.HyperlinkTranscripts, Statuses.SpellingsEmail, Statuses.AudioProof, Statuses.InvoiceCompleted, Statuses.NoticeofService, Statuses.PackageEnclosedLetter, Statuses.CDLabel, Statuses.GenerateZIPs, Statuses.TranscriptsReady, Statuses.InvoicetoFactorEmail, Statuses.FileTranscript, Statuses.BurnCD, Statuses.ShippingXMLs, Statuses.GenerateShippingEM, Statuses.AddTrackingNumber
+FROM (Cases INNER JOIN CourtDates ON Cases.[ID] = CourtDates.[CasesID]) INNER JOIN Statuses ON CourtDates.[ID] = Statuses.[CourtDatesID]
+WHERE (((Statuses.ContactsEntered)=Yes) AND ((Statuses.JobEntered)=Yes) AND ((Statuses.CoverPage)=Yes) AND ((Statuses.AutoCorrect)=Yes) AND ((Statuses.Schedule)=Yes) AND ((Statuses.Invoice)=Yes) AND ((Statuses.Transcribe)=Yes) AND ((Statuses.AudioProof)=No) AND ((Statuses.InvoiceCompleted)=No));
+
+
+*/
+
+/*
+
+
+SELECT CourtDates.ID AS CourtDates_ID, CourtDates.CasesID, CourtDates.StatusesID, CourtDates.AudioLength, CourtDates.DueDate, CourtDates.PaymentType, Cases.ID AS Cases_ID, Cases.Party1, Cases.Party2, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Statuses.ID AS Statuses_ID, Statuses.CourtDatesID, Statuses.ContactsEntered, Statuses.JobEntered, Statuses.CoverPage, Statuses.AutoCorrect, Statuses.Schedule, Statuses.Invoice, Statuses.Transcribe, Statuses.AddRDtoCover, Statuses.FindReplaceRD, Statuses.HyperlinkTranscripts, Statuses.SpellingsEmail, Statuses.AudioProof, Statuses.InvoiceCompleted, Statuses.NoticeofService, Statuses.PackageEnclosedLetter, Statuses.CDLabel, Statuses.GenerateZIPs, Statuses.TranscriptsReady, Statuses.InvoicetoFactorEmail, Statuses.FileTranscript, Statuses.BurnCD, Statuses.ShippingXMLs, Statuses.GenerateShippingEM, Statuses.AddTrackingNumber
+FROM (Cases INNER JOIN CourtDates ON Cases.[ID] = CourtDates.[CasesID]) INNER JOIN Statuses ON CourtDates.[ID] = Statuses.[CourtDatesID]
+WHERE (((Statuses.ContactsEntered)=Yes) AND ((Statuses.JobEntered)=Yes) AND ((Statuses.CoverPage)=Yes) AND ((Statuses.AutoCorrect)=Yes) AND ((Statuses.Schedule)=Yes) AND ((Statuses.Invoice)=Yes) AND ((Statuses.Transcribe)=Yes) AND ((Statuses.AudioProof)=No) AND ((Statuses.InvoiceCompleted)=No));
+
+
+*/
+
+/*
+
+
+SELECT CourtDates.ID AS CourtDates_ID, CourtDates.CasesID, CourtDates.StatusesID, CourtDates.AudioLength, CourtDates.DueDate, CourtDates.PaymentType, Cases.ID AS Cases_ID, Cases.Party1, Cases.Party2, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Statuses.ID AS Statuses_ID, Statuses.CourtDatesID, Statuses.ContactsEntered, Statuses.JobEntered, Statuses.CoverPage, Statuses.AutoCorrect, Statuses.Schedule, Statuses.Invoice, Statuses.Transcribe, Statuses.AddRDtoCover, Statuses.FindReplaceRD, Statuses.HyperlinkTranscripts, Statuses.SpellingsEmail, Statuses.AudioProof, Statuses.InvoiceCompleted, Statuses.NoticeofService, Statuses.PackageEnclosedLetter, Statuses.CDLabel, Statuses.GenerateZIPs, Statuses.TranscriptsReady, Statuses.InvoicetoFactorEmail, Statuses.FileTranscript, Statuses.BurnCD, Statuses.ShippingXMLs, Statuses.GenerateShippingEM, Statuses.AddTrackingNumber
+FROM (Cases INNER JOIN CourtDates ON Cases.[ID] = CourtDates.[CasesID]) INNER JOIN Statuses ON (CourtDates.[StatusesID] = Statuses.[ID]) AND (CourtDates.[ID] = Statuses.[CourtDatesID])
+WHERE (((Statuses.ContactsEntered)=Yes) AND ((Statuses.JobEntered)=Yes) AND ((Statuses.CoverPage)=Yes) AND ((Statuses.AutoCorrect)=Yes) AND ((Statuses.Schedule)=Yes) AND ((Statuses.Invoice)=Yes) AND ((Statuses.Transcribe)=Yes) AND ((Statuses.AddRDtoCover)=Yes) AND ((Statuses.FindReplaceRD)=Yes) AND ((Statuses.HyperlinkTranscripts)=Yes) AND ((Statuses.SpellingsEmail)=Yes) AND ((Statuses.AudioProof)=Yes) AND ((Statuses.InvoiceCompleted)=No) OR ((Statuses.AddTrackingNumber)=No));
+
+*/
+
+/*
+
+SELECT DSum([CourtDates].[Subtotal],"PaymentQueryInvoiceInfo") AS FinalPrice, Payments.ID AS PaymentsID, Payments.InvoiceNo AS pInvoiceNo, Payments.Amount, Payments.RemitDate, CourtDates.ID AS CourtDatesID, CourtDates.HearingDate, CourtDates.HearingStartTime, CourtDates.HearingEndTime, CourtDates.CasesID, CourtDates.OrderingID, CourtDates.AudioLength, CourtDates.TurnaroundTimesCD, CourtDates.DueDate, CourtDates.InvoiceNo AS cInvoiceNo, CourtDates.InvoiceDate, CourtDates.PaymentDueDate, CourtDates.Subtotal, CourtDates.UnitPrice
+FROM Payments INNER JOIN CourtDates ON Payments.InvoiceNo = CourtDates.InvoiceNo
+WHERE (((CourtDates.ID)=[Forms]![NewMainMenu]![ProcessJobSubformNMM].[Form]![JobNumberField]));
+
+
+*/
+
+/*
+
+SELECT Payments.ID AS ["PaymentsID"], Payments.InvoiceNo AS ["PaymentsInvoiceNo"], Payments.Amount AS ["Amount"], Payments.RemitDate AS ["RemitDate"], CourtDates.ID AS ["CourtDatesID"], CourtDates.HearingDate AS ["HearingDate"], CourtDates.HearingStartTime AS ["HearingStartTime"], CourtDates.HearingEndTime AS ["HearingEndTime"], CourtDates.CasesID AS ["CasesID"], CourtDates.OrderingID AS ["OrderingID"], CourtDates.AudioLength AS ["AudioLength"], CourtDates.TurnaroundTimesCD AS ["TurnaroundTimesCD"], CourtDates.InvoiceNo AS ["InvoiceNo"], CourtDates.InvoiceDate AS ["InvoiceDate"], CourtDates.PaymentDueDate AS ["PaymentDueDate"], CourtDates.UnitPrice AS ["UnitPrice"], CourtDates.Quantity AS ["Quantity"], CourtDates.Subtotal AS ["Subtotal"]
+FROM Payments INNER JOIN CourtDates ON Payments.InvoiceNo=CourtDates.InvoiceNo;
+
+
+*/
+
+/*
+
+
+SELECT Payments.InvoiceNo AS pInvoiceNo, CourtDates.ID AS CourtDatesID, CourtDates.UnitPrice, CourtDates.ActualQuantity, CourtDates.AudioLength, CourtDates.InvoiceDate, DSum([CourtDates].[Subtotal],"PaymentQueryInvoiceInfo3") AS FinalPrice, Payments.ID AS PaymentsID, Payments.Amount, Payments.RemitDate, CourtDates.HearingDate, CourtDates.HearingStartTime, CourtDates.HearingEndTime, CourtDates.CasesID, CourtDates.OrderingID, CourtDates.TurnaroundTimesCD, CourtDates.DueDate, CourtDates.InvoiceNo AS cInvoiceNo, CourtDates.PaymentDueDate, CourtDates.Subtotal
+FROM Payments INNER JOIN CourtDates ON Payments.InvoiceNo = CourtDates.InvoiceNo
+WHERE (((Payments.InvoiceNo)=[Forms]![NewMainMenu]![ProcessJobSubformNMM].[Form]![InvoiceNo]));
+
+*/
+
+/*
+
+SELECT InvoicesQuery4.EmailAddress AS [Recipient Email], InvoicesQuery4.FirstName AS [Recipient First Name], InvoicesQuery4.LastName AS [Recipient Last Name], InvoicesQuery4.InvoiceNo AS [Invoice Number], (DateAdd("d", 1, Date())) AS [Due Date], InvoicesQuery4.CourtDatesID AS Reference, CourtDatesRatesQuery.Code AS [Item Name], "|   " & InvoicesQuery4.Party1 & "  v. " & InvoicesQuery4.Party2 & "   |"   & Chr(13) & "|   " & InvoicesQuery4.CaseNumber1 & "   " & InvoicesQuery4.CaseNumber2 & "   |   Hearing Date:  " & InvoicesQuery4.HearingDate & "   |" & Chr(13) & "|   Approx. " & InvoicesQuery4.AudioLength & " minutes   |   " & InvoicesQuery4.TurnaroundTimesCD & " calendar-day turnaround   |" & Chr(13) & "   |" AS Description, InvoicesQuery4.Quantity AS [Item Amount], "" AS [Shipping Cost], "" AS [Discount Amount], "USD" AS [Currency Code], "Once both audio and a deposit has been received, the turnaround time will begin.  We will complete the transcript.  After transcript completion and final payment, the transcript will be filed if applicable as well as e-mailed to you in Word and PDF versions.  We will upload it to our online repository for your 24/7 access.  Two copies are included in our rate.  If we are filing this with the Court of Appeals, one is mailed to the court and the other to you.  Otherwise, you will receive both copies.  Our transcripts also include a weatherproof color-labeled CD of your audio and transcript.  If you don't want the hard copies mailed or just want the CD, that's fine, too; just let us know.  If this is filed with the Court of Appeals, you will receive a notification upon filing directly from the court.  If I have any spellings questions or things like that (hopefully not), I will let you know." AS [Note to Customer], "This is an invoice for deposit.  The deposit amount has been calculated as 100 percent of the estimated cost of the transcript.  The balance remaining will be due/refunded upon completion of the transcript after a final page count has been determined.  Please check out our full terms of service at http://www.aquoco.co/ServiceA.html.  Thank you for your business." AS [Terms and Conditions], InvoicesQuery4.CourtDatesID AS [Memo to Self]
+FROM InvoicesQuery4 INNER JOIN CourtDatesRatesQuery ON CourtDatesRatesQuery.CourtDatesID=InvoicesQuery4.CourtDatesID
+WHERE (InvoicesQuery4.CourtDatesID=Forms![NewMainMenu]![ProcessJobSubformNMM].Form![JobNumberField]);
+
+
+*/
+
+/*
+
+SELECT InvoicesQuery4.EmailAddress AS [Recipient Email], InvoicesQuery4.FirstName AS [Recipient First Name], InvoicesQuery4.LastName AS [Recipient Last Name], InvoicesQuery4.InvoiceNo AS [Invoice Number], (DateAdd("d", 1, Date())) AS [Due Date], InvoicesQuery4.CourtDatesID AS Reference, CourtDatesRatesQuery.Code AS [Item Name], "|   " & InvoicesQuery4.Party1 & "  v. " & InvoicesQuery4.Party2 & "   |"   & Chr(13) & "|   " & InvoicesQuery4.CaseNumber1 & "   " & InvoicesQuery4.CaseNumber2 & "   |   Hearing Date:  " & InvoicesQuery4.HearingDate & "   |" & Chr(13) & "|   Approx. " & InvoicesQuery4.AudioLength & " minutes   |   " & InvoicesQuery4.TurnaroundTimesCD & " calendar-day turnaround   |" & Chr(13) & "   |" AS Description, InvoicesQuery4.Quantity AS [Item Amount], "" AS [Shipping Cost], "" AS [Discount Amount], "USD" AS [Currency Code], "This is an order confirmation and estimated price quote for the work you requested.  The details of your request and due date is listed on this quote for your convenience.  In terms of next steps, once audio has been received, the turnaround time will begin.  We will complete the transcript.  After transcript completion, the transcript will be filed if applicable as well as e-mailed to you in Word and PDF versions.  We will upload the transcript to our online repository for your 24/7 access.    You will receive an invoice at the time of completion.  Two copies are included in our rate.  If we are filing this with the Court of Appeals, one is mailed to the court and the other to you.  Otherwise, you will receive both copies.  Our transcripts also include a weatherproof color-labeled CD of your audio and transcript.  If you don't want the hard copies mailed or just want the CD, that's fine, too; just let us know.  Otherwise, we will just mail out as described previously.  If this is filed with the Court of Appeals, you will receive a notification upon filing directly from the court." AS [Note to Customer], "Please pay within 28 days.  5% interest if payment received after 28 calendar days of invoice date, additional 1% interest added every 7th calendar day after day 28 up to a maximum of 12%.  Please submit payment to A Quo Co., c/o American Funding Solutions, PO Box 572, Blue Springs, MO 64013.  Please check out our full terms of service at http://www.aquoco.co/ServiceA.html.  Thank you for your business." AS [Terms and Conditions], InvoicesQuery4.CourtDatesID AS [Memo to Self]
+FROM InvoicesQuery4 INNER JOIN CourtDatesRatesQuery ON CourtDatesRatesQuery.CourtDatesID=InvoicesQuery4.CourtDatesID
+WHERE (InvoicesQuery4.CourtDatesID=Forms![NewMainMenu]![ProcessJobSubformNMM].Form![JobNumberField]);
+
+
+*/
+
+/*
+
+SELECT CourtDates.ID AS CourtDatesID, CourtDates.CasesID AS CasesID, Cases.Jurisdiction, Doctors.LX, Doctors.L1, Doctors.L2, Doctors.L3, Doctors.L4, Doctors.L5, Doctors.L6, Doctors.L7, Doctors.L8, Doctors.L9, Doctors.L10, Doctors.L11, Doctors.L12, Doctors.L13, Doctors.L14, Doctors.L15, Doctors.L16, Doctors.L17, Doctors.L18, Doctors.L19, Doctors.L20, Doctors.L21, Doctors.L22, Doctors.L23, Doctors.L24, Doctors.L25, Doctors.L26, Doctors.L27, Doctors.L28, Doctors.L29, Doctors.L30, Doctors.L31, Doctors.L32, Doctors.L33, Doctors.L34, Doctors.L35, Doctors.L36, Doctors.L37, Doctors.L38, Doctors.L39, Doctors.L40, Doctors.L41, Doctors.L42, Doctors.L43, Doctors.L44, Doctors.L45, Doctors.L46, Doctors.L47, Doctors.L48, Doctors.L49, Doctors.L50, Doctors.L51, Doctors.L52, Doctors.L53, Doctors.L54, Doctors.L55, Doctors.L56, Doctors.L57, Doctors.L58, Doctors.L59, Doctors.L60, Doctors.L61, Doctors.L62, Doctors.L63, Doctors.L64, Doctors.L65, Doctors.L66, Doctors.L67, Doctors.L68, Doctors.L69, Doctors.L70
+FROM (Cases INNER JOIN Doctors ON (Cases.[Jurisdiction] = Doctors.[Jurisdiction]) AND (Cases.[ID] = Doctors.[CasesID])) INNER JOIN CourtDates ON Cases.[ID] = CourtDates.[CasesID]
+WHERE (((CourtDates.ID)=(Forms![NewMainMenu]![ProcessJobSubformNMM].Form![JobNumberField])));
+
+
+*/
+
+/*
+
+SELECT *
+FROM Cases INNER JOIN CourtDates ON Cases.ID = CourtDates.CasesID
+WHERE (((CourtDates.ID)=Forms!NewMainMenu!ProcessJobSubformNMM.Form!JobNumberField) And ((CourtDates.CasesID) Like Cases.ID));
+
+
+
+*/
+
+/*
+
+SELECT Cases.Notes, CourtDates.ID, CourtDates.CasesID, Cases.ID
+FROM Cases INNER JOIN CourtDates ON CourtDates.[CasesID] = Cases.[ID]
+WHERE ((CourtDates.ID Like Forms![MMProcess Jobs]!JobNumberField));
+
+
+
+*/
+
+/*
+
+
+SELECT CourtDates.CasesID, Cases.Party1, Cases.Party1Name, Cases.Party2, Cases.Party2Name, Cases.[CaseNumber1], Cases.[CaseNumber2], Cases.Jurisdiction, Cases.[HearingTitle], Cases.Judge, Cases.[JudgeTitle]
+FROM Cases INNER JOIN CourtDates ON Cases.ID=CourtDates.CasesID
+WHERE (((Cases.ID=CourtDates.CasesID) AND (CourtDates.ID) like Forms("[MMProcess Jobs]").Controls("ProcessJobSubform").Form.Controls("SCJSSBFM").Form.Controls("JobNumberField").Value));
+
+
+*/
+
+/*
+
+
+SELECT Statuses.ContactsEntered, Statuses.JobEntered, Statuses.Stage1PpwkGenerated, Statuses.[Transcribe], Statuses.Stage3PpwkGenerated, Statuses.AudioProof, Statuses.InvoiceCompleted, Statuses.Stage4PpwkGenerated, Statuses.Stage5PpwkGenerated, Statuses.BurnCD, Statuses.Mail, Statuses.GenerateShippingEM, Statuses.AddTrackingNumber, Statuses.[CourtDatesID]
+FROM Statuses INNER JOIN CourtDates ON (Statuses.[CourtDatesID])=(CourtDates.ID)
+WHERE ((Statuses.CourtDatesID)=(CourtDates.ID));
+
+
+*/
+
+/*
+
+
+SELECT Statuses.ContactsEntered, Statuses.JobEntered, Statuses.Stage1PpwkGenerated, Statuses.[Transcribe], Statuses.Stage3PpwkGenerated, Statuses.AudioProof, Statuses.InvoiceCompleted, Statuses.Stage4PpwkGenerated, Statuses.Stage5PpwkGenerated, Statuses.BurnCD, Statuses.Mail, Statuses.GenerateShippingEM, Statuses.AddTrackingNumber, Statuses.[CourtDatesID]
+FROM Statuses INNER JOIN CourtDates ON (Statuses.[CourtDatesID])=(CourtDates.ID)
+WHERE ((Statuses.CourtDatesID)=(CourtDates.ID));
+
+
+*/
+
+/*
+
+SELECT CourtDates.ID, Cases.Party1, Cases.Party2, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, CourtDates.AudioLength, CourtDates.DueDate, CourtDates.PaymentType, TaskMgmt.Hierarchy
+FROM TaskMgmt INNER JOIN (Cases INNER JOIN CourtDates ON Cases.ID = CourtDates.CasesID) ON TaskMgmt.ID = Cases.ID
+WHERE TaskMgmt.[CourtDatesID]=CourtDates.ID;
+
+
+*/
+
+/*
+
+SELECT Cases.Party1, Cases.Party1Name, Cases.Party2, Cases.Party2Name, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Cases.HearingTitle, Cases.Judge, Cases.JudgeTitle, CourtDates.HearingDate, CourtDates.HearingStartTime, CourtDates.HearingEndTime, CourtDates.ID, CourtDates.CasesID, CourtDates.App1, CourtDates.App2, CourtDates.App3, CourtDates.App4, CourtDates.App5, CourtDates.App6, CourtDates.OrderingID
+FROM Cases INNER JOIN CourtDates ON Cases.[ID] = CourtDates.[CasesID];
+
+
+
+*/
+
+/*
+
+
+SELECT Cases.Party1, Cases.Party1Name, Cases.Party2, Cases.Party2Name, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Cases.HearingTitle, Cases.Judge, Cases.JudgeTitle, CourtDates.HearingDate, CourtDates.HearingStartTime, CourtDates.HearingEndTime, CourtDates.ID, CourtDates.Quantity, CourtDates.CasesID, CourtDates.App1, CourtDates.App2, CourtDates.App3, CourtDates.App4, CourtDates.App5, CourtDates.App6, CourtDates.OrderingID, CourtDates.AudioLength, CourtDates.TurnaroundTImesCD, CourtDates.PaymentDueDate, CourtDates.UnitPrice, CourtDates.ExpectedRebateDate, CourtDates.ExpectedAdvanceDate, CourtDates.Location, CourtDates.InvoiceNo, CourtDates.FactoringCost, CourtDates.InvoiceDate, CourtDates.Subtotal, CourtDates.FinalPrice, CourtDates.PaymentSum, CourtDates.EstimatedPageCount, CourtDates.DueDate, CourtDates.ActualQuantity, CourtDates.DueDate, CourtDates.InvoiceDate, CourtDates.FiledNotFiled, CourtDates.EstimatedPageCount, CourtDates.Location
+FROM Cases INNER JOIN CourtDates ON Cases.[ID] = CourtDates.[CasesID]
+WHERE (((CourtDates.ID)=(Forms![NewMainMenu]![ProcessJobSubformNMM].Form![JobNumberField])));
+
+*/
+
+/*
+
+
+SELECT Cases.Party1, Cases.Party1Name, Cases.Party2, Cases.Party2Name, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Cases.HearingTitle, Cases.Judge, Cases.JudgeTitle, Cases.CourtDatesID, CourtDates.HearingDate, CourtDates.HearingStartTime, CourtDates.HearingEndTime, CourtDates.CasesID, CourtDates.App1, CourtDates.App2, CourtDates.App3, CourtDates.App4, CourtDates.App5, CourtDates.App6, CourtDates.OrderingID
+FROM Cases INNER JOIN CourtDates ON Cases.[ID] = CourtDates.[CasesID]
+WHERE CourtDates.ID=([OrderingInfoForm]![HDTOrderingInfo]![Column(0)]);
+
+
+*/
+
+/*
+
+SELECT Cases.Party1, Cases.Party1Name, Cases.Party2, Cases.Party2Name, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Cases.HearingTitle, Cases.Judge, Cases.JudgeTitle, CourtDates.HearingDate, CourtDates.HearingStartTime, CourtDates.HearingEndTime, CourtDates.ID, CourtDates.Quantity, CourtDates.CasesID, CourtDates.App1, CourtDates.App2, CourtDates.App3, CourtDates.App4, CourtDates.App5, CourtDates.App6, CourtDates.OrderingID, CourtDates.AudioLength, CourtDates.TurnaroundTImesCD, CourtDates.PaymentDueDate, CourtDates.UnitPrice, CourtDates.ExpectedRebateDate, CourtDates.ExpectedAdvanceDate, CourtDates.Location, CourtDates.InvoiceNo, CourtDates.FactoringCost, CourtDates.InvoiceDate, CourtDates.Subtotal, CourtDates.FinalPrice, CourtDates.PaymentSum, CourtDates.EstimatedPageCount, CourtDates.DueDate
+FROM Cases INNER JOIN CourtDates ON Cases.[ID] = CourtDates.[CasesID];
+
+
+*/
+
+/*
+
+SELECT Cases.Party1, Cases.Party1Name, Cases.Party2, Cases.Party2Name, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Cases.HearingTitle, Cases.Judge, Cases.JudgeTitle, Cases.CourtDatesID
+FROM Cases INNER JOIN CourtDates ON (Cases.ID = CourtDates.CasesID) AND (Cases.CourtDatesID = CourtDates.ID);
+
+
+*/
+
+/*
+
+SELECT CourtDates.ID, CourtDates.HearingDate, CourtDates.HearingStartTime, CourtDates.HearingEndTime, Cases.Party1, Cases.Party2, Cases.Jurisdiction, Cases.HearingTitle, CourtDates.Location, CourtDates.CasesID
+FROM Cases INNER JOIN CourtDates ON CourtDates.[CasesID]=Cases.[ID]
+WHERE CourtDates.ID=(Forms![NewMainMenu]![ProcessJobSubformNMM].Form![JobNumberField]);
 
 
 
