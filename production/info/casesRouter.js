@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const Cases = require('./casesModel.js');
-const restricted = require('../auth/restriction.js');
+const restricted = require('../../auth/restriction.js');
 
 router.get('/', restricted, (req, res) => {
 	Cases.find()
