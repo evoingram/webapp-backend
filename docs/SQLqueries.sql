@@ -17,20 +17,11 @@ SELECT DISTINCTROW *
 FROM QInfobyInvoiceNumber AS [INV-SBFM-InvoiceEstmPriceQuote]
 WHERE ([__InvoiceNo] = InvoiceNo);
 
-PARAMETERS __OrderingID Value;
-SELECT DISTINCTROW *
-FROM OrderingAttorneyInfo AS [INV-SBFM-InvoiceEstmPriceQuote]
-WHERE ([__OrderingID] = ID);
 
 PARAMETERS __InvoiceNo Value;
 SELECT DISTINCTROW *
 FROM QInfobyInvoiceNumber AS [INV-SBFM-ViewInvoice]
 WHERE ([__InvoiceNo] = InvoiceNo);
-
-PARAMETERS __OrderingID Value;
-SELECT DISTINCTROW *
-FROM OrderingAttorneyInfo AS [INV-SBFM-ViewInvoice]
-WHERE ([__OrderingID] = ID);
 
 SELECT Employees.ID, Employees.[Last Name]
 FROM Employees;
@@ -51,10 +42,6 @@ ORDER BY [Code], [ProductName], [List Price];
 SELECT DISTINCTROW *
 FROM BrandingThemes;
 
-PARAMETERS __OIFID Value;
-SELECT DISTINCTROW *
-FROM OrderingAttorneyInfo AS PJOrderingInfoForm
-WHERE ([__OIFID] = CourtDatesID);
 
 PARAMETERS __Forms!NewMainMenu!ProcessJobSubformNMM.Form!JobNumberField Value;
 SELECT DISTINCTROW *
