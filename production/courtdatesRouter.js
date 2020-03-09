@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const Courtdates = require('./stage1Model.js');
+const Courtdates = require('./courtdatesModel.js');
 const restricted = require('../auth/restriction.js');
 
 router.get('/', restricted, (req, res) => {
