@@ -1,7 +1,7 @@
 module.exports = {
 	validateCustomer
 };
-
+// validates customer-submitted information
 function validateCustomer(customer) {
 	let errors = [];
 
