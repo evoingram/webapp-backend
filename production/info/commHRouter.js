@@ -1,8 +1,9 @@
 const router = require('express').Router();
 
-const Courtdates = require('./courtdatesModel.js');
+const Courtdates = require('./appearancesModel.js/index.js');
 const restricted = require('../auth/restriction.js');
 
+// GET:  Describe what it does
 router.get('/', restricted, (req, res) => {
 	Courtdates.find()
 		.then(courtdates => {
@@ -11,6 +12,7 @@ router.get('/', restricted, (req, res) => {
 		.catch(err => res.send(err));
 });
 
+// GET:  Describe what it does
 router.get('/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -26,6 +28,37 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 	}
 });
 
+// POST:  create status
+router.post('/', restricted, (req, res) => {
+	const newStatus = req.body.status;
+
+	Statuses.add(newStatus)
+		.then(status => {
+			res.status(201).json(status);
+		})
+		.catch(err => {
+			res.status(500).json({ message: 'Failed to create new status' });
+		});
+});
+
+// PUT:  Describe what it does
+router.put('/:statusesid', restricted, (req, res) => {
+	const statusesid = req.params.statusesid;
+	const updatedStatus = { status: req.body.status };
+
+	Statuses.update(statusesid, updatedStatus)
+		.then(status => {
+			if (status) {
+				res.json(status);
+			} else {
+				res.status(404).json({ message: 'Could not find status with given id' });
+			}
+		})
+		.catch(err => {
+			res.status(500).json({ message: 'Failed to update status' });
+		});
+});
+// DELETE:  Describe what it does
 router.delete('/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
