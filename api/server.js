@@ -1,13 +1,22 @@
+// see below for notes on migrations, seeds, & commands you can run in heroku console
+
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 
 const logger = require('../middleware/logger');
 
+// standard auth routers
 const customersRouter = require('../customers/customersRouter');
 const loginRouter = require('../auth/loginRouter.js');
 const registerRouter = require('../auth/registerRouter.js');
+
+// courtdates table router
+// fields: courtdatesid ratesid ttid btid iid hearingdate hearingstarttime hearingendtime audiolength location shipdate duedate trackingno paymenttype filed factoringcost estimatedquantity actualquantity subtotal estimatedadvancerate estimatedrebatedate finalprice ppid ppstatus hearingtitle judgename judgetitle
 const courtdatesRouter = require('../production/stage1Router.js');
+
+// cases table router
+// fields: casesid party1 party1name party2 party2name casenumber1 casenumber2 		jurisdiction notes
 const casesRouter = require('../production/casesRouter.js');
 
 const server = express();
@@ -17,12 +26,20 @@ server.use(cors());
 server.use(express.json());
 server.use(logger);
 
+// standard auth routers
 server.use('/api/login', loginRouter);
 server.use('/api/register', registerRouter);
 server.use('/api/customers', customersRouter);
+
+// courtdates table router
+// fields: courtdatesid ratesid ttid btid iid hearingdate hearingstarttime hearingendtime audiolength location shipdate duedate trackingno paymenttype filed factoringcost estimatedquantity actualquantity subtotal estimatedadvancerate estimatedrebatedate finalprice ppid ppstatus hearingtitle judgename judgetitle
 server.use('/api/courtdates', courtdatesRouter);
+
+// cases table router
+// fields: casesid party1 party1name party2 party2name casenumber1 casenumber2
 server.use('/api/cases', casesRouter);
 
+// unsecured/unlogged-in response
 server.get('/', (req, res) => {
 	res.send('<h1>🚀</h1>');
 });

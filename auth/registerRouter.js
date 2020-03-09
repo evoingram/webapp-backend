@@ -1,13 +1,18 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 
+// defines functions for customers table endpoints
 const Customers = require('../customers/customersModel.js');
+
 const Token = require('./authHelpers.js');
+
+// validates username/password
 const { validateCustomer } = require('../customers/customersHelpers.js');
 
 router.post('/', (req, res) => {
 	let customer = req.body;
 
+	// validates username/password
 	const validateResult = validateCustomer(customer);
 
 	if (validateResult.isSuccessful === true) {
@@ -15,6 +20,7 @@ router.post('/', (req, res) => {
 		customer.password = hash;
 
 		const token = Token.getJwt(customer.email);
+		// registers user
 		Customers.add(customer)
 			.then(saved => {
 				res.status(201).json({
@@ -26,10 +32,6 @@ router.post('/', (req, res) => {
 			.catch(error => {
 				res.status(500).json({
 					message: 'invalid credentials from registerRouter',
-					customersid: customer.customersid,
-					company: customer.company,
-					email: customer.email,
-					password: customer.password,
 					error: error
 				});
 			});
