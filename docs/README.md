@@ -1,6 +1,6 @@
 # Transcript Web App
 
-This is the back end, work in progress, for my database online port.  This is currently an empty database.  Copyright 2020 Erica Ingram.
+This is the back end, work in progress, for porting my database online, and currently contains fake data.  Copyright 2020 Erica Ingram.
 
 ## [DB Schema](https://dbdesigner.page.link/gbEtfTr1XjgwDa2C7)
 
@@ -14,16 +14,16 @@ All endpoints have been tested via Postman.
 
 | Request Method | Endpoint         | Description                          |
 | :------------- | :--------------- | :----------------------------------- |
-| `POST`         | `/login`     | Logs user in and returns a token     |
-| `POST`         | `/register`  | creates a user                       |
+| `POST`         | `/login`         | Logs user in and returns a token     |
+| `POST`         | `/register`      | creates a user                       |
 
 ### Endpoints For Users
 
 | Request Method | Endpoint                      | Description                          |
 | :------------- | :---------------------------- | :----------------------------------- |
-| `GET`          | `/customers`              | returns list of users                |
-| `GET`          | `/customers/:customersid` | returns a user                       |
-| `DELETE`       | `/customers/:customersid` | deletes a user                       |
+| `GET`          | `/customers`                  | returns list of users                |
+| `GET`          | `/customers/:customersid`     | returns a user                       |
+| `DELETE`       | `/customers/:customersid`     | deletes a user                       |
 
 ### TO DO
 
