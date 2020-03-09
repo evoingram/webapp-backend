@@ -1,8 +1,12 @@
 const router = require('express').Router();
 
+// defines functions for customers table endpoints
 const Customers = require('./customersModel.js');
+
+// locks endpoints behind login in below endpoints
 const restricted = require('../auth/restriction.js');
 
+// GET:  list of customers endpoint
 router.get('/', restricted, (req, res) => {
 	Customers.find()
 		.then(customers => {
@@ -11,6 +15,7 @@ router.get('/', restricted, (req, res) => {
 		.catch(err => res.send(err));
 });
 
+// GET:  single customer endpoint
 router.get('/:customersid', restricted, (req, res) => {
 	const customersid = req.params.customersid;
 	if (!customersid) {
@@ -21,11 +26,12 @@ router.get('/:customersid', restricted, (req, res) => {
 				res.status(201).json(customer);
 			})
 			.catch(err => {
-				res.status(500).json({ message: 'The customer information could not be retrieved.' });
+				res.status(500).json({ message: 'The customer information could not be retrieved.  Error:  ' + err });
 			});
 	}
 });
 
+// DELETE:  single customer endpoint
 router.delete('/:customersid', restricted, (req, res) => {
 	const customersid = req.params.customersid;
 	if (!customersid) {

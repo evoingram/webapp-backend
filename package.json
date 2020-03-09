@@ -1,8 +1,24 @@
 {
-  "name": "backend",
+  "name": "transcript-management-api",
   "version": "1.0.0",
   "main": "index.js",
-  "license": "MIT",
+  "license": "UNLICENSED",
+  "description": "api for A Quo Co. transcription management",
+  "homepage": "https://www.github.com/evoingram/webapp-backend#readme",
+  "author": {
+             "name": "Erica L. Ingram", 
+             "email": "evoingram@aquoco.onmicrosoft.com", 
+             "url": "https://www.aquoco.co"
+            },
+"repository": {
+              "type" : "git",
+              "url" : "https://github.com/evoingram/webapp-backend.git"
+              },
+  "bugs": {
+          "name": "Erica L. Ingram", 
+          "email": "evoingram@aquoco.onmicrosoft.com", 
+          "url": "https://www.aquoco.co"
+          },
   "scripts": {
     "server": "nodemon",
     "start": "node index.js",
