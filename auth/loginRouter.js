@@ -2,11 +2,12 @@ const router = require('express').Router();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
-const Customers = require('../customers/customersModel');
+const Customers = require('../customers/customersModel.js');
 const Token = require('./authHelpers.js');
 
 router.post('/', (req, res) => {
 	let { email, password } = req.body;
+
 	Customers.findBy({ email: email })
 		.first()
 		.then(customer => {

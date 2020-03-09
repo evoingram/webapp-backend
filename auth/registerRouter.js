@@ -8,7 +8,7 @@ const { validateCustomer } = require('../customers/customersHelpers.js');
 router.post('/', (req, res) => {
 	let customer = req.body;
 
-	const validateResult = validateCustomer(customer);
+	const validateResult = true; // validateCustomer(customer);
 
 	if (validateResult.isSuccessful === true) {
 		const hash = bcrypt.hashSync(customer.password, 10);
