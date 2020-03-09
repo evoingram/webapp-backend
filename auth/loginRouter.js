@@ -8,7 +8,7 @@ const Token = require('./authHelpers.js');
 router.post('/', (req, res) => {
 	let { email, password } = req.body;
 
-	Customers.findBy({ email: email })
+	Customers.findBy({ email })
 		.first()
 		.then(customer => {
 			if (customer && bcrypt.compareSync(password, customer.password)) {
