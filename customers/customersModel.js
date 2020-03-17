@@ -7,7 +7,11 @@ module.exports = {
 	findBy,
 	findById,
 	update,
-	remove
+	remove,
+	orderByCompany,
+	orderByLastName,
+	selectDistinct,
+	selectCustomerID
 };
 
 // returns list of customers, displays customersid, username, email
@@ -50,35 +54,44 @@ function remove(customersid) {
 }
 
 /*
-
 SELECT [Customers].[ID], [Customers].[Company], [Customers].[LastName], [Customers].[FirstName], [Customers].[Address], [Customers].[City]
 FROM Customers
 ORDER BY [LastName];
-
 */
+function orderByLastName() {
+	return db('customers')
+		.select('customersid', 'company', 'lastName', 'firstName', 'address', 'city')
+		.orderBy('lastName');
+}
 
 /*
-
 SELECT DISTINCTROW *
 FROM Customers;
-
 */
+function selectDistinct() {
+	return db('customers')
+		.select('*')
+		.distinct();
+}
 
 /*
-
 SELECT Customers.ID, Customers.Company, Customers.FirstName, Customers.LastName, Customers.JobTitle, Customers.EmailAddress, Customers.City, Customers.State
 FROM Customers
 ORDER BY Customers.[Company];
-
 */
+function orderByCompany() {
+	return db('customers')
+		.select('customersid', 'company', 'lastName', 'firstName', 'jobTitle', 'email', 'address', 'city', 'state')
+		.orderBy('company');
+}
 
 /*
-
 SELECT [Customers].[ID]
 FROM Customers;
-
-
 */
+function selectCustomerID() {
+	return db('customers').select('customersid');
+}
 
 /*
 
