@@ -11,6 +11,7 @@ module.exports = {
 	orderByCompany,
 	orderByLastName,
 	selectDistinct,
+	findAppearance,
 	selectCustomerID
 };
 
@@ -65,6 +66,7 @@ function orderByLastName() {
 }
 
 /*
+
 SELECT DISTINCTROW *
 FROM Customers;
 */
@@ -115,9 +117,11 @@ SELECT *
 FROM Customers INNER JOIN CourtDates ON Customers.ID = CourtDates.App4
 WHERE ((CourtDates.ID) Like Forms!NewMainMenu!ProcessJobSubformNMM.Form!JobNumberField);
 
+
 SELECT *
 FROM Customers INNER JOIN CourtDates ON Customers.ID = CourtDates.App5
 WHERE ((CourtDates.ID) Like Forms!NewMainMenu!ProcessJobSubformNMM.Form!JobNumberField);
+
 
 SELECT *
 FROM Customers INNER JOIN CourtDates ON Customers.ID = CourtDates.App6
@@ -125,6 +129,21 @@ WHERE ((CourtDates.ID) Like Forms!NewMainMenu!ProcessJobSubformNMM.Form!JobNumbe
 
 
 */
+function findAppearance(courtdatesid, appearanceid) {
+	// have courtdatesid
+	// get appearances from appearances table based on courtdatesid
+	// sort apps by appno (0=ordering,1=plaintiff, etc)
+	// look up provided customer by customersid from appearances
+
+	let desiredApp = db('appearances')
+		.select('*')
+		.where({ courtdatesid })
+		.andWhere('appno', appearanceid);
+
+	return db('customers')
+		.select('*')
+		.where('customersid', desiredApp.customersid);
+}
 
 /*
 
