@@ -11,6 +11,8 @@ module.exports = {
 	orderByCompany,
 	orderByLastName,
 	selectDistinct,
+	findAppearance,
+	findByAppNumberCasesID,
 	selectCustomerID
 };
 
@@ -65,6 +67,7 @@ function orderByLastName() {
 }
 
 /*
+
 SELECT DISTINCTROW *
 FROM Customers;
 */
@@ -115,9 +118,11 @@ SELECT *
 FROM Customers INNER JOIN CourtDates ON Customers.ID = CourtDates.App4
 WHERE ((CourtDates.ID) Like Forms!NewMainMenu!ProcessJobSubformNMM.Form!JobNumberField);
 
+
 SELECT *
 FROM Customers INNER JOIN CourtDates ON Customers.ID = CourtDates.App5
 WHERE ((CourtDates.ID) Like Forms!NewMainMenu!ProcessJobSubformNMM.Form!JobNumberField);
+
 
 SELECT *
 FROM Customers INNER JOIN CourtDates ON Customers.ID = CourtDates.App6
@@ -125,11 +130,94 @@ WHERE ((CourtDates.ID) Like Forms!NewMainMenu!ProcessJobSubformNMM.Form!JobNumbe
 
 
 */
+function findAppearance(courtdatesid, appearanceid) {
+	// have courtdatesid
+	// get appearances from appearances table based on courtdatesid
+	// sort apps by appno (0=ordering,1=plaintiff, etc)
+	// look up provided customer by customersid from appearances
+
+	let desiredApp = db('appearances')
+		.select('*')
+		.where({ courtdatesid })
+		.andWhere('appno', appearanceid);
+
+	return db('customers')
+		.select('*')
+		.where('customersid', desiredApp.customersid);
+}
 
 /*
 
-SELECT Customers.ID, Customers.FactoringApproved, Customers.MrMs, Customers.[Company], Customers.[LastName], Customers.[FirstName], Customers.[BusinessPhone], Customers.EmailAddress, Customers.Address, Customers.City, Customers.[State], Customers.[ZIP], Courtdates.HearingDate, Courtdates.HearingStartTime, Courtdates.HearingEndTime, Courtdates.CasesID, Courtdates.OrderingID, Courtdates.AudioLength, Courtdates.Location, Courtdates.TurnaroundTimesCD, CourtDates.Subtotal, CourtDates.Quantity, Courtdates.DueDate, Courtdates.InvoiceNo, CourtDates.ID AS CourtDatesID, Courtdates.FiledNotFiled, Courtdates.InvoiceDate, Courtdates.PaymentDueDate, Courtdates.Quantity, CourtDates.ActualQuantity, CourtDates.UnitPrice, Courtdates.ExpectedAdvanceDate, Courtdates.ExpectedRebateDate, Courtdates.EstimatedPageCount, Cases.Party1, Cases.Party2, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Cases.HearingTitle, Cases.Judge, Cases.JudgeTitle, CourtDates.ShipDate, CourtDates.FactoringCost, CourtDates.TrackingNumber, CourtDates.Factored, CourtDates.FinalPrice
+SELECT Customers.ID, Customers.FactoringApproved, Customers.MrMs, Customers.[Company], Customers.[LastName], Customers.[FirstName], Customers.[BusinessPhone], Customers.EmailAddress, Customers.Address, Customers.City, Customers.[State], Customers.[ZIP], 
+Courtdates.HearingDate, Courtdates.HearingStartTime, Courtdates.HearingEndTime, Courtdates.CasesID, Courtdates.OrderingID, Courtdates.AudioLength, Courtdates.Location, Courtdates.TurnaroundTimesCD, CourtDates.Subtotal, CourtDates.Quantity, Courtdates.DueDate, Courtdates.InvoiceNo, CourtDates.ID AS CourtDatesID, Courtdates.FiledNotFiled, Courtdates.InvoiceDate, Courtdates.PaymentDueDate, Courtdates.Quantity, CourtDates.ActualQuantity, CourtDates.UnitPrice, Courtdates.ExpectedAdvanceDate, Courtdates.ExpectedRebateDate, Courtdates.EstimatedPageCount, 
+Cases.Party1, Cases.Party2, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Cases.HearingTitle, Cases.Judge, Cases.JudgeTitle, CourtDates.ShipDate, CourtDates.FactoringCost, CourtDates.TrackingNumber, CourtDates.Factored, CourtDates.FinalPrice
 FROM Customers INNER JOIN (Cases INNER JOIN CourtDates ON Cases.[ID] = CourtDates.[CasesID]) ON Customers.[ID] = CourtDates.[OrderingID];
+*/
+
+function findByAppNumberCasesID(customersid, appearanceid) {
+	let desiredApp = db('appearances')
+		.select('*')
+		.where({ courtdatesid })
+		.andWhere('appno', appearanceid);
+
+	return db('customers')
+		.select(
+			'customers.customersid',
+			'customers.factoringapproved',
+			'customers.mrms',
+			'customers.company',
+			'customers.lastname',
+			'customers.firstname',
+			'customers.phone',
+			'customers.email',
+			'customers.address1',
+			'customers.address2',
+			'customers.city',
+			'customers.state',
+			'customers.zip',
+			'courtdates.hearingdate',
+			'courtdates.hearingstarttime',
+			'courtdates.hearingendtime',
+			'courtdates.casesid',
+			'courtdates.audiolength',
+			'courtdates.location',
+			'courtdates.ttid',
+			'courtdates.subtotal',
+			'courtdates.quantity',
+			'courtdates.duedate',
+			'courtdates.invoiceno',
+			'courtdates.filed',
+			'courtdates.invoicedate',
+			'courtdates.paymentduedate',
+			'courtdates.actualquantity',
+			'courtdates.unitprice',
+			'courtdates.expectedadvancedate',
+			'courtdates.expectedrebatedate',
+			'courtdates.estimatedquantity',
+			'courtdates.judgename',
+			'courtdates.judgetitle',
+			'courtdates.hearingtitle',
+			'courtdates.factoringcost',
+			'courtdates.shipdate',
+			'courtdates.trackingnumber',
+			'courtdates.factored',
+			'courtdates.finalprice',
+			'cases.party1',
+			'cases.party1name',
+			'cases.party2',
+			'cases.party2name',
+			'cases.casenumber1',
+			'cases.casenumber2',
+			'cases.jurisdiction',
+			'cases.notes'
+		)
+		.innerJoin('courtdates', 'customers.customersid', desiredApp.customersid)
+		.innerJoin('cases', 'cases.casesid', 'courtdates.casesid')
+		.where({ customersid });
+}
+
+/*
+
 
 SELECT CourtDates.InvoiceDate AS InvoiceDate, CourtDates.ID AS CourtDatesID, (DateAdd('d',1,InvoiceDate)) AS PaymentDueDate
 FROM CourtDates INNER JOIN UnitPrice ON CourtDates.[UnitPrice] = UnitPrice.[ID];
