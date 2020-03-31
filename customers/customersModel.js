@@ -213,11 +213,10 @@ function findByAppNumberCasesID(customersid, appearanceid) {
 		)
 		.innerJoin('courtdates', 'customers.customersid', desiredApp.customersid)
 		.innerJoin('cases', 'cases.casesid', 'courtdates.casesid')
-		.where({ customersid });
+		.where('customers.customersid', desiredApp.customersid);
 }
 
 /*
-
 
 SELECT CourtDates.InvoiceDate AS InvoiceDate, CourtDates.ID AS CourtDatesID, (DateAdd('d',1,InvoiceDate)) AS PaymentDueDate
 FROM CourtDates INNER JOIN UnitPrice ON CourtDates.[UnitPrice] = UnitPrice.[ID];
