@@ -3,7 +3,7 @@ Data Design, main endpoint /jobnumber
 returned object of one single job number
 */
 let object = {
-	'job Number': {
+	'2173': {
 		general: {
 			courtdatesid: '',
 			ttid: '',
@@ -17,11 +17,7 @@ let object = {
 			filed: '',
 			hearingtitle: '',
 			judgename: '',
-			judgetitle: '',
-			'': '',
-			'': '',
-			'': '',
-			'': ''
+			judgetitle: ''
 		},
 		financial: {
 			invoiceno: '',
@@ -236,6 +232,13 @@ let object = {
 		agShortcuts: {
 			ag1: '',
 			ag2: ''
-		}
+		},
+		status: {
+			stage1: {},
+			stage2: {},
+			stage3: {},
+			stage4: {}
+		},
+		tasks: {}
 	}
 };
