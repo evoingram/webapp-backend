@@ -45,6 +45,50 @@ function remove(courtdatesid) {
 function findByIdMain(courtdatesid) {
 	return db('courtdates')
 		.select(
+			'agshortcuts.agsid',
+			'agshortcuts.courtdatesid',
+			'agshortcuts.ag1',
+			'agshortcuts.ag2',
+			'agshortcuts.ag3',
+			'agshortcuts.ag4',
+			'agshortcuts.ag5',
+			'agshortcuts.ag6',
+			'agshortcuts.ag11',
+			'agshortcuts.ag12',
+			'agshortcuts.ag13',
+			'agshortcuts.ag14',
+			'agshortcuts.ag15',
+			'agshortcuts.ag16',
+			'agshortcuts.ag21',
+			'agshortcuts.ag22',
+			'agshortcuts.ag23',
+			'agshortcuts.ag24',
+			'agshortcuts.ag25',
+			'agshortcuts.ag26',
+			'agshortcuts.ag31',
+			'agshortcuts.ag32',
+			'agshortcuts.ag33',
+			'agshortcuts.ag34',
+			'agshortcuts.ag35',
+			'agshortcuts.ag36',
+			'agshortcuts.ag41',
+			'agshortcuts.ag42',
+			'agshortcuts.ag43',
+			'agshortcuts.ag44',
+			'agshortcuts.ag45',
+			'agshortcuts.ag46',
+			'agshortcuts.ag51',
+			'agshortcuts.ag52',
+			'agshortcuts.ag53',
+			'agshortcuts.ag54',
+			'agshortcuts.ag55',
+			'agshortcuts.ag56',
+			'agshortcuts.ag61',
+			'agshortcuts.ag62',
+			'agshortcuts.ag63',
+			'agshortcuts.ag64',
+			'agshortcuts.ag65',
+			'agshortcuts.ag66',
 			'courtdates.courtdatesid',
 			'courtdates.ttid',
 			'courtdates.hearingdate',
@@ -94,6 +138,7 @@ function findByIdMain(courtdatesid) {
 		.innerJoin('rates', 'rates.ratesid', 'courtdates.ratesid')
 		.innerJoin('brandingthemes', 'brandingthemes.btid', 'courtdates.btid')
 		.innerJoin('cases', 'cases.casesid', 'courtdatescasescustomers.casesid')
+		.innerJoin('agshortcuts', 'agshortcuts.courtdatesid', 'courtdates.courtdatesid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
 
