@@ -20,7 +20,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 				res.status(201).json({
 					test: { courtdate },
 					general: {
-						courtdatesid: courtdate[0].courtdatesid,
+						courtdatesid: courtdate.courtdatesid,
 						ttid: courtdate.courtdate.ttid,
 						turnaround: courtdate.turnaround,
 						hearingdate: courtdate.hearingdate,
