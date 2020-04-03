@@ -184,8 +184,8 @@ function findByIdMain(courtdatesid) {
 		.innerJoin('agshortcuts', 'agshortcuts.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('invoices', 'invoices.iid', 'courtdates.iid')
 		.innerJoin('customers', 'appearances.customersid', 'customers.customersid')
-		.join('expenses', 'expenses.courtdatesid', 'courtdates.courtdatesid')
-		.join('payments', 'payments.invoiceno', 'invoices.invoiceno')
+		.innerJoin('expenses', 'expenses.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('payments', 'payments.invoiceno', 'invoices.invoiceno')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
 
