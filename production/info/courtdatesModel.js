@@ -65,11 +65,8 @@ function findByIdMain(courtdatesid) {
 			'courtdates.estimatedadvancedate',
 			'courtdates.estimatedrebatedate',
 			'courtdates.ppid',
-			'courtdates.ppstatus',
-			'turnaroundtimes.ttid',
-			'turnaroundtimes.turnaround'
+			'courtdates.ppstatus'
 		)
-		.join('turnaroundtimes', 'turnaroundtimes.ttid', '=', 'courtdates.ttid')
 		.where({ courtdatesid });
 }
 
