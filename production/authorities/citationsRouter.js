@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const Courtdates = require('./uscModel.js/index.js');
+const Courtdates = require('./citationsModel.js');
 const restricted = require('../auth/restriction.js');
 
 // GET:  Describe what it does

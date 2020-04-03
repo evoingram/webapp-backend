@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const Courtdates = require('./Model.js');
+const Courtdates = require('./appearancesModel.js');
 const restricted = require('../auth/restriction.js');
 
 // GET:  Describe what it does
@@ -18,7 +18,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 	if (!courtdatesid) {
 		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
 	} else {
-		Courtdates.findById(courtdatesid)
+		Courtdates.findAppsById(courtdatesid)
 			.then(courtdate => {
 				res.status(201).json(courtdate);
 			})

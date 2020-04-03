@@ -10,6 +10,13 @@ const logger = require('../middleware/logger');
 const customersRouter = require('../customers/customersRouter');
 const loginRouter = require('../auth/loginRouter.js');
 const registerRouter = require('../auth/registerRouter.js');
+const AppearancesRouter = require('./appearancesRouter.js');
+const TasksRouter = require('../mgmt/tasksRouter.js');
+const CitationsRouter = require('../authorities/citationsRouter.js');
+const ShippingRouter = require('../shipping/shippingRouter.js');
+const ExpensesRouter = require('../../financials/expensesRouter.js');
+const PaymentsRouter = require('../../financials/paymentsRouter.js');
+const CommHistoryRouter = require('./commHRouter.js');
 
 // courtdates table router
 // fields: courtdatesid ratesid ttid btid iid hearingdate hearingstarttime hearingendtime audiolength location shipdate duedate trackingno paymenttype filed factoringcost estimatedquantity actualquantity subtotal estimatedadvancerate estimatedrebatedate finalprice ppid ppstatus hearingtitle judgename judgetitle
@@ -38,6 +45,14 @@ server.use('/api/courtdates', courtdatesRouter);
 // cases table router
 // fields: casesid party1 party1name party2 party2name casenumber1 casenumber2
 server.use('/api/cases', casesRouter);
+
+server.use('/api/appearances', AppearancesRouter);
+server.use('/api/tasks', TasksRouter);
+server.use('/api/citations', CitationsRouter);
+server.use('/api/shipping', ShippingRouter);
+server.use('/api/expenses', ExpensesRouter);
+server.use('/api/payments', PaymentsRouter);
+server.use('/api/commhistory', CommHistoryRouter);
 
 // unsecured/unlogged-in response
 server.get('/', (req, res) => {

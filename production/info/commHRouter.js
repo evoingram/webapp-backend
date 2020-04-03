@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const Courtdates = require('./appearancesModel.js/index.js');
+const Courtdates = require('./commHModel.js');
 const restricted = require('../auth/restriction.js');
 
 // GET:  Describe what it does
