@@ -36,7 +36,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 					test: { courtdate },
 					apptestA: { appearances },
 					apptestB: [appearances],
-					apptestC: appearances,
+					apptestC: { ...appearances },
 					general: {
 						courtdatesid: courtdate[0].courtdatesid,
 						turnaround: courtdate[0].turnaroundtime,
