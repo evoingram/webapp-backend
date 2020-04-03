@@ -10,7 +10,27 @@ router.get('/', restricted, (req, res) => {
 		})
 		.catch(err => res.send(err));
 });
-
+router.get('/:courtdatesid', restricted, (req, res) => {
+	const courtdatesid = req.params.courtdatesid;
+	if (!courtdatesid) {
+		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
+	} else {
+		Courtdates.findById(courtdatesid)
+			.then(courtdate => {
+				res.status(201).json({
+					courtdatesid: {
+						general: {
+							courtdatesid: courtdate.courtdatesid
+						}
+					}
+				});
+			})
+			.catch(err => {
+				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
+			});
+	}
+});
+/*
 router.get('/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -24,7 +44,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
 			});
 	}
-});
+});*/
 
 router.delete('/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;

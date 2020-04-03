@@ -2,8 +2,15 @@
 Data Design, main endpoint /jobnumber
 returned object of one single job number
 */
+
+// citationhyperlinks, usc -- need additional table
+
+// TABLES USED:
+
+//courtdates, turnaroundtimes, invoices, cases, rates, brandingthemes, expenses, payments, shipping,appearances, customers, citationhyperlinks, usc, communicationhistory, agshortcuts, mailclass, packagetype, courtdatescasescustomers, statuses, tasks
+
 let object = {
-	'job Number': {
+	'2173': {
 		general: {
 			courtdatesid: '',
 			ttid: '',
@@ -17,11 +24,7 @@ let object = {
 			filed: '',
 			hearingtitle: '',
 			judgename: '',
-			judgetitle: '',
-			'': '',
-			'': '',
-			'': '',
-			'': ''
+			judgetitle: ''
 		},
 		financial: {
 			invoiceno: '',
@@ -236,6 +239,13 @@ let object = {
 		agShortcuts: {
 			ag1: '',
 			ag2: ''
-		}
+		},
+		status: {
+			stage1: {},
+			stage2: {},
+			stage3: {},
+			stage4: {}
+		},
+		tasks: {}
 	}
 };
