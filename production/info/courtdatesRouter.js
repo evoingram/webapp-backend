@@ -15,7 +15,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 	if (!courtdatesid) {
 		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
 	} else {
-		Courtdates.findById(courtdatesid)
+		Courtdates.findByIdMain(courtdatesid)
 			.then(courtdate => {
 				res.status(201).json({
 					general: {
