@@ -25,6 +25,7 @@ async function add(courtdate) {
 function findAppsById(courtdatesid) {
 	return db('appearances')
 		.select(
+			'courtdates.courtdatesid',
 			'appearances.appid',
 			'appearances.cdappid',
 			'appearances.customersid',
