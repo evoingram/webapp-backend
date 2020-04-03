@@ -225,9 +225,9 @@ function findByIdMain(courtdatesid) {
 		.innerJoin('customers', 'appearances.customersid', 'customers.customersid')
 		.innerJoin('expenses', 'expenses.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('payments', 'payments.iid', 'invoices.iid')
-		.join('shippingoptions', 'shippingoptions.courtdates', 'courtdates.courtdatesid')
-		.join('mailclass', 'mailclass.mcid', 'shippingoptions.mcid')
-		.join('packagetype', 'packagetype.ptid', 'shippingoptions.ptid')
+		.innerJoin('shippingoptions', 'shippingoptions.courtdates', 'courtdates.courtdatesid')
+		.innerJoin('mailclass', 'mailclass.mcid', 'shippingoptions.mcid')
+		.innerJoin('packagetype', 'packagetype.ptid', 'shippingoptions.ptid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
 
