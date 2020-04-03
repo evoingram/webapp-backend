@@ -217,12 +217,11 @@ function findByIdMain(courtdatesid) {
 			'citationhyperlinks.longcitation',
 			'citationhyperlinks.chcategory',
 			'citationhyperlinks.webaddress',
-			'usc.uscid',
-			'usc.findcitation',
-			'usc.replacehyperlink',
-			'usc.longcitation',
-			'usc.chcategory',
-			'usc.webaddress',
+			'communicationhistory.chid',
+			'communicationhistory.courtdatesid',
+			'communicationhistory.customersid',
+			'communicationhistory.filepath',
+			'communicationhistory.datecreated',
 			'courtdatescasescustomers.cdccid',
 			'courtdatescasescustomers.courtdatesid',
 			'courtdatescasescustomers.casesid',
@@ -244,20 +243,69 @@ function findByIdMain(courtdatesid) {
 		.innerJoin('packagetype', 'packagetype.ptid', 'shippingoptions.ptid')
 		.innerJoin('citations', 'courtdates.courtdatesid', 'citations.courtdatesid')
 		.innerJoin('citationhyperlinks', 'citations.citlinksid', 'citationhyperlinks.chid')
-		.innerJoin('usc', 'citations.uscid', 'usc.uscid')
+		.innerJoin('communicationhistory', 'communicationhistory.courtdatesid', 'courtdates.courtdatesid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
-
+/*
+			'usc.uscid',
+			'usc.findcitation',
+			'usc.longcitation',
+			'usc.chcategory',
+			'usc.webaddress',
+		.innerJoin('usc', 'citations.uscid', 'usc.uscid')
+SELECT
+			courtdates.courtdatesid,
+			courtdates.ttid,
+			courtdates.hearingdate,
+			courtdates.hearingstarttime,
+			courtdates.hearingendtime,
+			courtdates.audiolength,
+			courtdates.location,
+			courtdates.duedate,
+			courtdates.filed,
+			citations.citationsid,
+			citations.uscid,
+			citations.citlinksid,
+			citations.courtdatesid,
+			citationhyperlinks.chid,
+			citationhyperlinks.findcitation,
+			citationhyperlinks.longcitation,
+			citationhyperlinks.chcategory,
+			citationhyperlinks.webaddress
+		from courtdates
+INNER JOIN citations ON courtdates.courtdatesid = citations.courtdatesid
+    INNER JOIN citationhyperlinks ON citations.citlinksid = citationhyperlinks.chid
+    WHERE courtdates.courtdatesid=1
+UNION
+SELECT
+			courtdates.courtdatesid,
+			courtdates.ttid,
+			courtdates.hearingdate,
+			courtdates.hearingstarttime,
+			courtdates.hearingendtime,
+			courtdates.audiolength,
+			courtdates.location,
+			courtdates.duedate,
+			courtdates.filed,
+			citations.citationsid,
+			citations.uscid,
+			citations.citlinksid,
+			citations.courtdatesid,
+			usc.uscid,
+			usc.findcitation,
+			usc.longcitation,
+			usc.chcategory,
+			usc.webaddress
+		from courtdates
+INNER JOIN citations ON courtdates.courtdatesid = citations.courtdatesid
+    INNER JOIN usc ON citations.uscid = usc.uscid
+    WHERE courtdates.courtdatesid=1;
+*/
 /*
 
 function findByIdMain(courtdatesid) {
 	return db('courtdates')
 		.select(
-			'communicationhistory.chid',
-			'communicationhistory.courtdatesid',
-			'communicationhistory.customersid',
-			'communicationhistory.filepath',
-			'communicationhistory.datecreated',
 			'statuses.sid',
 			'statuses.courtdatesid',
 			'statuses.contactsentered',
@@ -298,7 +346,6 @@ function findByIdMain(courtdatesid) {
 			'tasks.timelength',
 			'tasks.completed'
 		)
-		.join('communicationhistory', 'communicationhistory.courtdatesid', '=', 'courtdates.courtdatesid')
 		.join('statuses', 'statuses.courtdatesid', '=', 'courtdates.courtdatesid')
 		.join('tasks', 'tasks.courtdatesid', '=', 'courtdates.courtdatesid')
 		.where({ courtdatesid });
