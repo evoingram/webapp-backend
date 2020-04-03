@@ -17,7 +17,19 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findByIdMain(courtdatesid)
 			.then(courtdate => {
+				// server.use(expensesMW);
+				/*
 				let expensesArray = [];
+				courtdate.filter((item, index) => {
+					return {
+						eid: courtdate[index].eid,
+						vendor: courtdate[index].vendor,
+						date: courtdate[index].date,
+						amount: courtdate[index].amount,
+						description: courtdate[index].description
+					};
+				});
+
 				for (x = 0; x < courtdate.length; x++) {
 					let previousEID = courtdate[x].eid;
 					if (x > 0 && previousEID !== courtdate[x - 1].eid) {
@@ -30,6 +42,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 						});
 					}
 				}
+				*/
 				res.status(201).json({
 					test: { courtdate },
 					general: {
@@ -81,7 +94,15 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 							accountcode: courtdate[0].accountcode,
 							taxtype: courtdate[0].taxtype
 						},
-						expenses: expensesArray,
+						expenses: courtdate.filter((item, index) => {
+							return {
+								eid: courtdate[index].eid,
+								vendor: courtdate[index].vendor,
+								date: courtdate[index].date,
+								amount: courtdate[index].amount,
+								description: courtdate[index].description
+							};
+						}),
 						payments: {
 							payment1: {
 								pid: courtdate[0].pid,
@@ -314,5 +335,22 @@ router.delete('/:courtdatesid', restricted, (req, res) => {
 			res.status(500).json({ message: 'The courtdate could not be removed' });
 		});
 });
+
+function expensesMW(courtdate, req, res, next) {
+	let expensesArray = [];
+	for (x = 0; x < courtdate.length; x++) {
+		let previousEID = courtdate[x].eid;
+		if (x > 0 && previousEID !== courtdate[x - 1].eid) {
+			expensesArray.push({
+				eid: courtdate[x].eid,
+				vendor: courtdate[x].vendor,
+				date: courtdate[x].date,
+				amount: courtdate[x].amount,
+				description: courtdate[x].description
+			});
+		}
+	}
+	next();
+}
 
 module.exports = router;
