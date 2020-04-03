@@ -222,13 +222,13 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 						ag66: courtdate[0].ag66
 					},
 					status: {
-						stage1: {},
+						stage1: { statuses: courtdate[0].statuses },
 						stage2: {},
 						stage3: {},
 						stage4: {}
 					},
 					tasks: {
-						stage1: {},
+						stage1: { tasks: courtdate[0].tasks },
 						stage2: {},
 						stage3: {},
 						stage4: {}
