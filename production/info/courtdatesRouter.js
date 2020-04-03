@@ -17,17 +17,6 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findByIdMain(courtdatesid)
 			.then(courtdate => {
-				/*
-				let expensesArray = courtdate.filter((item, index) => {
-					return {
-						eid: courtdate[index].eid,
-						vendor: courtdate[index].vendor,
-						date: courtdate[index].date,
-						amount: courtdate[index].amount,
-						description: courtdate[index].description
-					};
-				});
-				*/
 				res.status(201).json({
 					test: { courtdate },
 					general: {
