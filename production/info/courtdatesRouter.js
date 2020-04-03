@@ -335,8 +335,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 			.catch(err => {
 				res.status(500).json({
 					message: 'The courtdate information could not be retrieved.',
-					error: err,
-					courtdateinfo: courtdate
+					error: err
 				});
 			});
 	}
