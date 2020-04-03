@@ -65,7 +65,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 															factoring: courtdate[0].factoring,
 															factoringcost: courtdate[0].factoringcost
 														},
-														invoices: { invoices },
+														invoices: invoices,
 														estimates: {
 															estimatedquantity: courtdate[0].estimatedquantity,
 															subtotal: courtdate[0].subtotal,
@@ -88,7 +88,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 															taxtype: courtdate[0].taxtype
 														},
 														expenses: expenses,
-														payments: { payments }
+														payments: payments
 													},
 													case: {
 														party1: courtdate[0].party1,
@@ -100,10 +100,10 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 														jurisdiction: courtdate[0].jurisdiction,
 														notes: courtdate[0].notes
 													},
-													shipping: { shipping },
-													appearances: { appearances },
-													citations: { citations },
-													commHistory: { commhistory },
+													shipping: shipping,
+													appearances: appearances,
+													citations: citations,
+													commHistory: commhistory,
 													speakerlist: [],
 													agShortcuts: {
 														ag1: courtdate[0].ag1,
@@ -185,7 +185,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 															addtrackingno: courtdate[0].addtrackingno
 														}
 													},
-													tasks: { tasks }
+													tasks: tasks
 												});
 											});
 										});
