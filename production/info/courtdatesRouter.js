@@ -28,14 +28,14 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 		Courtdates.findByIdMain(courtdatesid)
 			.then(courtdate => {
 				let appearances;
-				Appearances.findAppsById(courtdatesid).then(appearances, appearance => {
+				Appearances.findAppsById(courtdatesid).then(appearance => {
 					appearances = appearance;
 					console.log(appearances);
 				});
 				res.status(201).json({
 					test: { courtdate },
 					apptestA: { appearances },
-					apptestB: [...appearances],
+					apptestB: [appearances],
 					apptestC: appearances,
 					general: {
 						courtdatesid: courtdate[0].courtdatesid,
