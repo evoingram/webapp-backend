@@ -7,7 +7,8 @@ module.exports = {
 	findById,
 	update,
 	remove,
-	findByIdMain
+	findByIdMain,
+	findAppsById
 };
 
 function find() {
@@ -42,6 +43,34 @@ function remove(courtdatesid) {
 		.del();
 }
 
+function findAppsById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'appearances.appid',
+			'appearances.cdappid',
+			'appearances.customersid',
+			'appearances.courtdatesid',
+			'customers.customersid',
+			'customers.factoring',
+			'customers.company',
+			'customers.mrms',
+			'customers.lastname',
+			'customers.firstname',
+			'customers.email',
+			'customers.jobtitle',
+			'customers.businessphone',
+			'customers.address1',
+			'customers.address2',
+			'customers.city',
+			'customers.state',
+			'customers.zip',
+			'customers.notes'
+		)
+		.innerJoin('appearances', 'courtdates.courtdatesid', 'appearances.courtdatesid')
+		.innerJoin('customers', 'appearances.customersid', 'customers.customersid')
+		.where({ courtdatesid });
+}
 function findByIdMain(courtdatesid) {
 	return db('courtdates')
 		.select(
