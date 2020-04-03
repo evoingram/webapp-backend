@@ -23,12 +23,12 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 						courtdatesid: courtdate[0].courtdatesid,
 						ttid: courtdate[0].ttid,
 						turnaround: courtdate[0].pushturnaround,
-						hearingdate: courtdate[0].hearingdate.substring(0, 9),
+						hearingdate: courtdate[0].hearingdate,
 						starttime: courtdate[0].hearingstarttime,
 						endtime: courtdate[0].hearingendtime,
 						audiolength: courtdate[0].audiolength,
 						location: courtdate[0].location,
-						duedate: courtdate[0].duedate.substring(0, 9),
+						duedate: courtdate[0].duedate,
 						filed: courtdate[0].filed,
 						hearingtitle: courtdate[0].hearingtitle,
 						judgename: courtdate[0].judgename,
@@ -46,14 +46,14 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 						actualquantity: courtdate[0].actualquantity,
 						subtotal: courtdate[0].subtotal,
 						finalprice: courtdate[0].finalprice,
-						estimatedadvancedate: courtdate[0].estimatedadvancedate.substring(0, 9),
-						estimatedrebatedate: courtdate[0].estimatedrebatedate.substring(0, 9),
+						estimatedadvancedate: courtdate[0].estimatedadvancedate,
+						estimatedrebatedate: courtdate[0].estimatedrebatedate,
 						ppid: courtdate[0].ppid,
 						ppstatus: courtdate[0].ppstatus,
 						discount: courtdate[0].discount,
 						reference: courtdate[0].reference,
-						invoicedate: courtdate[0].invoicedate.substring(0, 9),
-						duedate: courtdate[0].duedate.substring(0, 9),
+						invoicedate: courtdate[0].invoicedate,
+						duedate: courtdate[0].duedate,
 						itemcode: courtdate[0].itemcode,
 						description: courtdate[0].description,
 						accountcode: courtdate[0].accountcode,
@@ -71,7 +71,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 							payment1: {
 								pid: courtdate[0].pid,
 								amount: courtdate[0].amount,
-								remitdate: courtdate[0].remitdate.substring(0, 9)
+								remitdate: courtdate[0].remitdate
 							}
 						}
 					},
@@ -87,7 +87,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 					},
 					shipping: {
 						package1: {
-							shipdate: courtdate[0].shipdate.substring(0, 9),
+							shipdate: courtdate[0].shipdate,
 							trackingno: courtdate[0].trackingno,
 							soid: courtdate[0].soid,
 							mcid: courtdate[0].mcid,
@@ -173,7 +173,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 						comm1: {
 							chid: courtdate[0].chid,
 							filepath: courtdate[0].filepath,
-							datecreated: courtdate[0].datecreated.substring(0, 9),
+							datecreated: courtdate[0].datecreated,
 							customersid: courtdate[0].customersid
 						}
 					},
