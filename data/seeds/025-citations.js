@@ -8,31 +8,31 @@ exports.seed = function(knex) {
 				{
 					citationsid: 1,
 					uscid: 1,
-					citlinksid: '',
+					citlinksid: null,
 					courtdatesid: 1
 				},
 				{
 					citationsid: 2,
-					uscid: '',
+					uscid: null,
 					citlinksid: 2,
 					courtdatesid: 1
 				},
 				{
 					citationsid: 3,
 					uscid: 1,
-					citlinksid: '',
+					citlinksid: null,
 					courtdatesid: 2
 				},
 				{
 					citationsid: 4,
-					uscid: '',
+					uscid: null,
 					citlinksid: 1,
 					courtdatesid: 3
 				},
 				{
 					citationsid: 5,
 					uscid: 1,
-					citlinksid: '',
+					citlinksid: null,
 					courtdatesid: 4
 				}
 			]);

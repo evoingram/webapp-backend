@@ -45,7 +45,9 @@ server.get('/', (req, res) => {
 });
 
 module.exports = server;
-
+// knex migrate:025-citations.js
+// knex migrate:up 025-citations.js
+// knex seed:run --specific=025-citations.js
 // knex migrate:latest
 // knex seed:run
 // knex seed:run --specific=000-name.js
