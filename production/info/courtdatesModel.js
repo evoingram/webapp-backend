@@ -129,6 +129,18 @@ function findByIdMain(courtdatesid) {
 			'rates.description',
 			'brandingthemes.brandingtheme',
 			'brandingthemes.btid',
+			'invoices.invoiceno',
+			'invoices.iid',
+			'invoices.btid',
+			'invoices.discount',
+			'invoices.reference',
+			'invoices.invoicedate',
+			'invoices.duedate',
+			'invoices.itemcode',
+			'invoices.description',
+			'invoices.accountcode',
+			'invoices.taxtype',
+			'invoices.ratesid',
 			'courtdatescasescustomers.cdccid',
 			'courtdatescasescustomers.courtdatesid',
 			'courtdatescasescustomers.casesid'
@@ -139,9 +151,155 @@ function findByIdMain(courtdatesid) {
 		.innerJoin('brandingthemes', 'brandingthemes.btid', 'courtdates.btid')
 		.innerJoin('cases', 'cases.casesid', 'courtdatescasescustomers.casesid')
 		.innerJoin('agshortcuts', 'agshortcuts.courtdatesid', 'courtdates.courtdatesid')
+		.join('invoices', 'invoices.invoiceno', 'courtdates.invoiceno')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
 
+/*
+
+function findByIdMain(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'expenses.eid',
+			'expenses.vendor',
+			'expenses.date',
+			'expenses.amount',
+			'expenses.description',
+			'expenses.courtdatesid',
+			'payments.pid',
+			'payments.amount',
+			'payments.remitdate',
+			'payments.invoiceno',
+			'shippingoptions.shipdate',
+			'shippingoptions.trackingno',
+			'shippingoptions.soid',
+			'shippingoptions.mcid',
+			'shippingoptions.mailclass',
+			'shippingoptions.ptid',
+			'shippingoptions.packagetype',
+			'shippingoptions.customerid',
+			'shippingoptions.amount',
+			'shippingoptions.shippingcost',
+			'shippingoptions.width',
+			'shippingoptions.length',
+			'shippingoptions.height',
+			'shippingoptions.prioritymailexpress1030',
+			'shippingoptions.holidaydelivery',
+			'shippingoptions.sundaydelivery',
+			'shippingoptions.saturdaydelivery',
+			'shippingoptions.signaturerequired',
+			'shippingoptions.stealth',
+			'shippingoptions.replypostage',
+			'shippingoptions.insuredmail',
+			'shippingoptions.cod',
+			'shippingoptions.restricteddelivery',
+			'shippingoptions.adultsigrestricted',
+			'shippingoptions.adultsigrequired',
+			'shippingoptions.returnreceipt',
+			'shippingoptions.certifiedmail',
+			'shippingoptions.sigconfirmation',
+			'shippingoptions.uspstracking',
+			'shippingoptions.reference',
+			'shippingoptions.value',
+			'shippingoptions.description',
+			'shippingoptions.weightoz',
+			'shippingoptions.output',
+			'packagetype.ptid',
+			'packagetype.description',
+			'mailclass.mcid',
+			'mailclass.mailclass',
+			'mailclass.description',
+			'appearances.appid',
+			'appearances.appno',
+			'appearances.customersid',
+			'appearances.courtdatesid',
+			'customers.customersid',
+			'customers.factoring',
+			'customers.company',
+			'customers.mrms',
+			'customers.lastname1',
+			'customers.firstname',
+			'customers.email',
+			'customers.jobtitle',
+			'customers.businessphone',
+			'customers.address1',
+			'customers.address2',
+			'customers.city',
+			'customers.state',
+			'customers.zip',
+			'customers.notes',
+			'citationhyperlinks.chid',
+			'citationhyperlinks.findcitation',
+			'citationhyperlinks.replacehyperlink',
+			'citationhyperlinks.longcitation',
+			'citationhyperlinks.chcategory',
+			'citationhyperlinks.webaddress',
+			'usc.uscid',
+			'usc.findcitation',
+			'usc.replacehyperlink',
+			'usc.longcitation',
+			'usc.chcategory',
+			'usc.webaddress',
+			'communicationhistory.chid',
+			'communicationhistory.courtdatesid',
+			'communicationhistory.customersid',
+			'communicationhistory.filepath',
+			'communicationhistory.datecreated',
+			'statuses.sid',
+			'statuses.courtdatesid',
+			'statuses.contactsentered',
+			'statuses.jobentered',
+			'statuses.coverpage',
+			'statuses.autocorrect',
+			'statuses.schedule',
+			'statuses.invoice',
+			'statuses.agshortcuts',
+			'statuses.transcribe',
+			'statuses.addrdtocover',
+			'statuses.findreplacerd',
+			'statuses.hyperlink',
+			'statuses.spellingsemail',
+			'statuses.audioproof',
+			'statuses.invoicecompleted',
+			'statuses.noticeofservice',
+			'statuses.peletter',
+			'statuses.cdlabel',
+			'statuses.generatezips',
+			'statuses.transcriptsready',
+			'statuses.invoicetofactoremail',
+			'statuses.filetranscript',
+			'statuses.burncd',
+			'statuses.shippingxmls',
+			'statuses.generatingshippingemail',
+			'statuses.addtrackingno',
+			'tasks.tid',
+			'tasks.courtdatesid',
+			'tasks.title',
+			'tasks.priority',
+			'tasks.status',
+			'tasks.description',
+			'tasks.startdate',
+			'tasks.duedate',
+			'tasks.prioritypoints',
+			'tasks.category',
+			'tasks.timelength',
+			'tasks.completed'
+		)
+		.join('invoices', 'invoices.invoiceno', '=', 'courtdates.invoiceno')
+		.join('expenses', 'expenses.courtdatesid', '=', 'courtdates.courtdatesid')
+		.join('payments', 'payments.invoiceno', '=', 'courtdates.invoiceno')
+		.join('shippingoptions', 'shippingoptions.courtdates', '=', 'courtdates.courtdatesid')
+		.join('appearances', 'appearances.courtdates', '=', 'courtdates.courtdatesid')
+		.join('customers', 'customers.customersid', '=', 'courtdatescasescustomers.customersid')
+		.join('communicationhistory', 'communicationhistory.courtdatesid', '=', 'courtdates.courtdatesid')
+		.join('mailclass', 'mailclass.mcid', '=', 'shippingoptions.mcid')
+		.join('packagetype', 'packagetype.ptid', '=', 'shippingoptions.ptid')
+		.join('statuses', 'statuses.courtdatesid', '=', 'courtdates.courtdatesid')
+		.join('tasks', 'tasks.courtdatesid', '=', 'courtdates.courtdatesid')
+		.where({ courtdatesid });
+
+}
+*/
 /*
 
 function findByIdMain(courtdatesid) {
