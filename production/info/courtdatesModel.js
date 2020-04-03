@@ -215,12 +215,12 @@ function findByIdMain(courtdatesid) {
 			'communicationhistory.datecreated',
 			'statuses.sid',
 			'statuses.courtdatesid',
-			'statuses.contactsentered',
 			'statuses.jobentered',
+			'statuses.appsentered',
 			'statuses.coverpage',
 			'statuses.autocorrect',
 			'statuses.schedule',
-			'statuses.invoice',
+			'statuses.prepinvoice',
 			'statuses.agshortcuts',
 			'statuses.transcribe',
 			'statuses.addrdtocover',
@@ -238,7 +238,7 @@ function findByIdMain(courtdatesid) {
 			'statuses.filetranscript',
 			'statuses.burncd',
 			'statuses.shippingxmls',
-			'statuses.generatingshippingemail',
+			'statuses.shippingemail',
 			'statuses.addtrackingno',
 			'tasks.tid',
 			'tasks.courtdatesid',
@@ -283,8 +283,8 @@ function findByIdMain(courtdatesid) {
 		.innerJoin('citations', 'courtdates.courtdatesid', 'citations.courtdatesid')
 		.innerJoin('citationhyperlinks', 'citations.citlinksid', 'citationhyperlinks.chid')
 		.innerJoin('communicationhistory', 'communicationhistory.courtdatesid', 'courtdates.courtdatesid')
-		.innerJoin('statuses', 'statuses.courtdatesid', 'courtdates.courtdatesid')
-		.innerJoin('tasks', 'tasks.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('statuses', 'courtdates.courtdatesid', 'statuses.courtdatesid')
+		.innerJoin('tasks', 'courtdates.courtdatesid', 'tasks.courtdatesid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
 /*
