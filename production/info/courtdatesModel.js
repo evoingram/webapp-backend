@@ -162,7 +162,8 @@ function findByIdMain(courtdatesid) {
 			'customers.notes',
 			'courtdatescasescustomers.cdccid',
 			'courtdatescasescustomers.courtdatesid',
-			'courtdatescasescustomers.casesid'
+			'courtdatescasescustomers.casesid',
+			'courtdatescasescustomers.orderingid'
 		)
 		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('turnaroundtimes', 'turnaroundtimes.ttid', 'courtdates.ttid')
@@ -172,7 +173,7 @@ function findByIdMain(courtdatesid) {
 		.innerJoin('agshortcuts', 'agshortcuts.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('invoices', 'invoices.iid', 'courtdates.iid')
 		.innerJoin('appearances', 'appearances.courtdatesid', 'courtdates.courtdatesid')
-		.innerJoin('customers', 'appearances.customersid', 'customers.customersid')
+		.innerJoin('customers', 'courtdatescasescustomers.orderingid', 'customers.customersid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
 
