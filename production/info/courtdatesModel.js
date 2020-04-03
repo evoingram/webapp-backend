@@ -66,22 +66,11 @@ function findByIdMain(courtdatesid) {
 			'courtdates.estimatedrebatedate',
 			'courtdates.ppid',
 			'courtdates.ppstatus',
-			'cases.casesid',
-			'cases.party1',
-			'cases.party1name',
-			'cases.party2',
-			'cases.party2name',
-			'cases.casenumber1',
-			'cases.casenumber2',
-			'cases.jurisdiction',
-			'cases.notes',
 			'courtdatescasescustomers.cdccid',
 			'courtdatescasescustomers.courtdatesid',
-			'courtdatescasescustomers.casesid',
-			'courtdatescasescustomers.orderingid'
+			'courtdatescasescustomers.casesid'
 		)
 		.join('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', '=', 'courtdates.courtdatesid')
-		.join('cases', 'cases.casesid', '=', 'courtdatescasescustomers.casesid')
 		.where({ courtdatesid });
 }
 
