@@ -1,10 +1,10 @@
-const db = require('../data/dbConfig');
+const db = require('../../data/dbConfig');
 
 module.exports = {
 	add,
 	find,
 	findBy,
-	findById,
+	findAppsById,
 	update,
 	remove
 };
@@ -22,11 +22,32 @@ async function add(courtdate) {
 	return findById(courtdatesid);
 }
 
-function findById(courtdatesid) {
-	return db('courtdates')
-		.select('courtdatesid', '*')
-		.where({ courtdatesid })
-		.first();
+function findAppsById(courtdatesid) {
+	return db('appearances')
+		.select(
+			'appearances.appid',
+			'appearances.cdappid',
+			'appearances.customersid',
+			'appearances.courtdatesid',
+			'customers.customersid',
+			'customers.factoring',
+			'customers.company',
+			'customers.mrms',
+			'customers.lastname',
+			'customers.firstname',
+			'customers.email',
+			'customers.jobtitle',
+			'customers.businessphone',
+			'customers.address1',
+			'customers.address2',
+			'customers.city',
+			'customers.state',
+			'customers.zip',
+			'customers.notes'
+		)
+		.innerJoin('courtdates', 'appearances.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('customers', 'appearances.customersid', 'customers.customersid')
+		.where({ courtdatesid });
 }
 
 function update(courtdatesid, courtdate) {

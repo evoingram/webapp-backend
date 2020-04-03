@@ -1,10 +1,10 @@
-const db = require('../data/dbConfig');
+const db = require('../../data/dbConfig');
 
 module.exports = {
 	add,
 	find,
 	findBy,
-	findById,
+	findByCHId,
 	update,
 	remove
 };
@@ -22,7 +22,7 @@ async function add(courtdate) {
 	return findById(courtdatesid);
 }
 
-function findById(courtdatesid) {
+function findByCHId(courtdatesid) {
 	return db('courtdates')
 		.select('courtdatesid', '*')
 		.where({ courtdatesid })
