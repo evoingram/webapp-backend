@@ -67,13 +67,8 @@ function findByIdMain(courtdatesid) {
 			'courtdates.ppid',
 			'courtdates.ppstatus',
 			'turnaroundtimes.ttid',
-			'turnaroundtimes.turnaround',
-			'courtdatescasescustomers.cdccid',
-			'courtdatescasescustomers.courtdatesid',
-			'courtdatescasescustomers.casesid',
-			'courtdatescasescustomers.customersid'
+			'turnaroundtimes.turnaround'
 		)
-		.join('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', '=', 'courtdates.courtdatesid')
 		.join('turnaroundtimes', 'turnaroundtimes.ttid', '=', 'courtdates.ttid')
 		.where({ courtdatesid });
 }
