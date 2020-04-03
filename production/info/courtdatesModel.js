@@ -166,6 +166,10 @@ function findByIdMain(courtdatesid) {
 			'expenses.amount',
 			'expenses.description',
 			'expenses.courtdatesid',
+			'payments.pid',
+			'payments.amount',
+			'payments.remitdate',
+			'payments.iid',
 			'courtdatescasescustomers.cdccid',
 			'courtdatescasescustomers.courtdatesid',
 			'courtdatescasescustomers.casesid',
@@ -181,6 +185,7 @@ function findByIdMain(courtdatesid) {
 		.innerJoin('invoices', 'invoices.iid', 'courtdates.iid')
 		.innerJoin('customers', 'appearances.customersid', 'customers.customersid')
 		.innerJoin('expenses', 'expenses.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('payments', 'payments.iid', 'invoices.iid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
 
