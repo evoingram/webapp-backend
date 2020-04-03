@@ -142,7 +142,7 @@ function findByIdMain(courtdatesid) {
 			'invoices.taxtype',
 			'invoices.ratesid',
 			'appearances.appid',
-			'appearances.appno',
+			'appearances.cdappid',
 			'appearances.customersid',
 			'appearances.courtdatesid',
 			'courtdatescasescustomers.cdccid',
