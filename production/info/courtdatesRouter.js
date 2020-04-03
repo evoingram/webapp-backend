@@ -11,7 +11,7 @@ const CommHistory = require('./commHModel.js');
 const restricted = require('../../auth/restriction.js');
 // also need:
 // 		expenses, payments, shipping
-// 		citations, tasks, commHistory, apps
+// 		citations, tasks, commHistory
 
 router.get('/', restricted, (req, res) => {
 	Courtdates.find()
@@ -30,9 +30,6 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 				Courtdates.findAppsById(courtdatesid).then(appearances => {
 					res.status(201).json({
 						test: { courtdate },
-						apptestA: { appearances },
-						apptestB: appearances,
-						apptestC: { ...appearances },
 						general: {
 							courtdatesid: courtdate[0].courtdatesid,
 							turnaround: courtdate[0].turnaroundtime,
@@ -145,43 +142,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 								output: courtdate[0].output
 							}
 						},
-						appearances: {
-							speakerlist: [],
-							ordering: {
-								customersid: courtdate[0].customersid,
-								factoring: courtdate[0].factoring,
-								company: courtdate[0].company,
-								mrms: courtdate[0].mrms,
-								lastname: courtdate[0].lastname,
-								firstname: courtdate[0].firstname,
-								email: courtdate[0].email,
-								jobtitle: courtdate[0].jobtitle,
-								businessphone: courtdate[0].businessphone,
-								address1: courtdate[0].address1,
-								address2: courtdate[0].address2,
-								city: courtdate[0].city,
-								state: courtdate[0].state,
-								zip: courtdate[0].zip,
-								notes: courtdate[0].notes
-							},
-							appearance1: {
-								customersid: courtdate[0].customersid,
-								factoring: courtdate[0].factoring,
-								company: courtdate[0].company,
-								mrms: courtdate[0].mrms,
-								lastname: courtdate[0].lastname,
-								firstname: courtdate[0].firstname,
-								email: courtdate[0].email,
-								jobtitle: courtdate[0].jobtitle,
-								businessphone: courtdate[0].businessphone,
-								address1: courtdate[0].address1,
-								address2: courtdate[0].address2,
-								city: courtdate[0].city,
-								state: courtdate[0].state,
-								zip: courtdate[0].zip,
-								notes: courtdate[0].notes
-							}
-						},
+						appearances: { appearances },
 						citations: {
 							citation1: {
 								findcitation: courtdate[0].findcitation,
@@ -199,6 +160,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 								customersid: courtdate[0].customersid
 							}
 						},
+						speakerlist: [],
 						agShortcuts: {
 							ag1: courtdate[0].ag1,
 							ag2: courtdate[0].ag2,
