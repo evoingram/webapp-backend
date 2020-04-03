@@ -98,7 +98,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 							amount: courtdate[0].amount,
 							shippingcost: courtdate[0].shippingcost,
 							width: courtdate[0].width,
-							lengthb: courtdate[0].lengthb,
+							lengthb: courtdate[0].length,
 							height: courtdate[0].height,
 							prioritymailexpress1030: courtdate[0].prioritymailexpress1030,
 							holidaydelivery: courtdate[0].holidaydelivery,
