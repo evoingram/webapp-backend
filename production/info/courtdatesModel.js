@@ -173,7 +173,7 @@ function findByIdMain(courtdatesid) {
 		.innerJoin('agshortcuts', 'agshortcuts.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('invoices', 'invoices.iid', 'courtdates.iid')
 		.innerJoin('appearances', 'appearances.courtdatesid', 'courtdates.courtdatesid')
-		.innerJoin('customers', 'customers.customersid', 'courtdatescasescustomers.orderingid')
+		.innerJoin('customers', 'customers.customersid', 'appearances.customersid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
 
