@@ -47,15 +47,6 @@ exports.up = function(knex) {
 			.onUpdate('CASCADE')
 			.onDelete('RESTRICT');
 
-		courtdates
-			.integer('invoiceno')
-			.unsigned()
-			.notNullable()
-			.references('invoiceno')
-			.inTable('invoices')
-			.onUpdate('CASCADE')
-			.onDelete('RESTRICT');
-
 		courtdates.date('hearingdate').notNullable();
 		courtdates.time('hearingstarttime');
 		courtdates.time('hearingendtime');
