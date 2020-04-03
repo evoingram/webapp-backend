@@ -57,14 +57,6 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 						description: courtdate.description,
 						accountcode: courtdate.accountcode,
 						taxtype: courtdate.taxtype,
-						expenses: {
-							expense1: {
-								eid: courtdate.eid,
-								vendor: courtdate.vendor,
-								date: courtdate.date,
-								amount: courtdate.amount,
-								description: courtdate.description
-							}
 						},
 						case: {
 							party1: courtdate.party1,
