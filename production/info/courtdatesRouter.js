@@ -17,6 +17,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findByIdMain(courtdatesid)
 			.then(courtdate => {
+				/*
 				let expensesArray = courtdate.filter((item, index) => {
 					return {
 						eid: courtdate[index].eid,
@@ -26,6 +27,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 						description: courtdate[index].description
 					};
 				});
+				*/
 				res.status(201).json({
 					test: { courtdate },
 					general: {
@@ -77,7 +79,13 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 							accountcode: courtdate[0].accountcode,
 							taxtype: courtdate[0].taxtype
 						},
-						expenses: expensesArray,
+						expenses: {
+							eid: courtdate[0].eid,
+							vendor: courtdate[0].vendor,
+							date: courtdate[0].date,
+							amount: courtdate[0].amount,
+							description: courtdate[0].description
+						},
 						payments: {
 							payment1: {
 								pid: courtdate[0].pid,
