@@ -32,22 +32,15 @@ async function add(courtdate) {
 }
 
 function findById(courtdatesid) {
-	return db('courtdates')
-		.select('courtdatesid', '*')
-		.where({ courtdatesid })
-		.first();
+	return db('courtdates').select('courtdatesid', '*').where({ courtdatesid }).first();
 }
 
 function update(courtdatesid, courtdate) {
-	return db('courtdates')
-		.where('courtdatesid', Number(courtdatesid))
-		.update(courtdate);
+	return db('courtdates').where('courtdatesid', Number(courtdatesid)).update(courtdate);
 }
 
 function remove(courtdatesid) {
-	return db('courtdates')
-		.where('courtdatesid', Number(courtdatesid))
-		.del();
+	return db('courtdates').where('courtdatesid', Number(courtdatesid)).del();
 }
 
 function findExpensesById(courtdatesid) {
@@ -69,12 +62,13 @@ function findPaymentsById(courtdatesid) {
 	return db('courtdates')
 		.select(
 			'courtdates.courtdatesid',
+			'courtdates.iid',
 			'payments.pid',
 			'payments.amount AS pamount',
 			'payments.remitdate',
 			'payments.iid'
 		)
-		.innerJoin('payments', 'payments.iid', 'invoices.iid')
+		.innerJoin('payments', 'payments.iid', 'courtdates.iid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
 
@@ -272,7 +266,7 @@ function findInvoicesById(courtdatesid) {
 			'payments.iid'
 		)
 		.innerJoin('invoices', 'invoices.iid', 'courtdates.iid')
-		.innerJoin('customers', 'appearances.customersid', 'customers.customersid')
+		.innerJoin('customers', 'invoices.customersid', 'customers.customersid')
 		.innerJoin('payments', 'payments.iid', 'invoices.iid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
