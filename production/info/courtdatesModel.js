@@ -160,6 +160,16 @@ function findByIdMain(courtdatesid) {
 			'customers.state',
 			'customers.zip',
 			'customers.notes',
+			'expenses.eid',
+			'expenses.vendor',
+			'expenses.date',
+			'expenses.amount',
+			'expenses.description',
+			'expenses.courtdatesid',
+			'payments.pid',
+			'payments.amount',
+			'payments.remitdate',
+			'payments.invoiceno',
 			'courtdatescasescustomers.cdccid',
 			'courtdatescasescustomers.courtdatesid',
 			'courtdatescasescustomers.casesid',
@@ -174,6 +184,8 @@ function findByIdMain(courtdatesid) {
 		.innerJoin('agshortcuts', 'agshortcuts.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('invoices', 'invoices.iid', 'courtdates.iid')
 		.innerJoin('customers', 'appearances.customersid', 'customers.customersid')
+		.join('expenses', 'expenses.courtdatesid', 'courtdates.courtdatesid')
+		.join('payments', 'payments.invoiceno', 'invoices.invoiceno')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
 
@@ -182,16 +194,6 @@ function findByIdMain(courtdatesid) {
 function findByIdMain(courtdatesid) {
 	return db('courtdates')
 		.select(
-			'expenses.eid',
-			'expenses.vendor',
-			'expenses.date',
-			'expenses.amount',
-			'expenses.description',
-			'expenses.courtdatesid',
-			'payments.pid',
-			'payments.amount',
-			'payments.remitdate',
-			'payments.invoiceno',
 			'shippingoptions.shipdate',
 			'shippingoptions.trackingno',
 			'shippingoptions.soid',
@@ -288,8 +290,6 @@ function findByIdMain(courtdatesid) {
 			'tasks.timelength',
 			'tasks.completed'
 		)
-		.join('expenses', 'expenses.courtdatesid', '=', 'courtdates.courtdatesid')
-		.join('payments', 'payments.invoiceno', '=', 'courtdates.invoiceno')
 		.join('shippingoptions', 'shippingoptions.courtdates', '=', 'courtdates.courtdatesid')
 		.join('communicationhistory', 'communicationhistory.courtdatesid', '=', 'courtdates.courtdatesid')
 		.join('mailclass', 'mailclass.mcid', '=', 'shippingoptions.mcid')
