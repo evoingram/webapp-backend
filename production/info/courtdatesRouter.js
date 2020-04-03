@@ -21,7 +21,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 					test: { courtdate },
 					general: {
 						courtdatesid: courtdate.courtdatesid,
-						ttid: courtdate.courtdate.ttid,
+						ttid: courtdate.ttid,
 						turnaround: courtdate.turnaround,
 						hearingdate: courtdate.hearingdate,
 						starttime: courtdate.hearingstarttime,
