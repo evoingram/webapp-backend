@@ -27,12 +27,12 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findByIdMain(courtdatesid)
 			.then(courtdate => {
-				Courtdates.findAppsById(courtdatesid).then(appearance => {
+				Courtdates.findAppsById(courtdatesid).then(appearances => {
 					res.status(201).json({
 						test: { courtdate },
-						apptestA: { appearance },
-						apptestB: appearance,
-						apptestC: { ...appearance },
+						apptestA: { appearances },
+						apptestB: appearances,
+						apptestC: { ...appearances },
 						general: {
 							courtdatesid: courtdate[0].courtdatesid,
 							turnaround: courtdate[0].turnaroundtime,
@@ -333,7 +333,11 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 				});
 			})
 			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.', err });
+				res.status(500).json({
+					message: 'The courtdate information could not be retrieved.',
+					error: err,
+					courtdateinfo: courtdate
+				});
 			});
 	}
 });
