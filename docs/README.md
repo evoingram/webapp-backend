@@ -24,12 +24,22 @@ All endpoints have been tested via Postman.
 | `GET`          | `/customers`                  | returns list of users                |
 | `GET`          | `/customers/:customersid`     | returns a user                       |
 | `DELETE`       | `/customers/:customersid`     | deletes a user                       |
+| `GET`          | `/courtdates/:courtdatesid`   | returns an order                     |
+
 
 ### TO DO
 
-- [ ] add body examples (in postman docs currently)
-- [ ] multiple-table endpoints
-    - [ ] cases/courtdates/customers
-    - [ ] cases/courtdates
-    - [ ] cases/courtdates/invoices/customers
-    - [ ] possibly different query per document generated
+- [ ] CRUD tasks
+- [ ] CRUD statuses
+- [ ] CRUD expenses
+- [ ] CRUD payments
+- [ ] CRUD commHistory
+- [ ] CRUD shipping
+- [ ] CRUD invoices
+- [ ] CRUD customers
+- [ ] GET jobs by customer
+- [ ] GET jobs by duedate?
+- [ ] GET invoices by amount/duedate/factoring
+- [ ] GET customers by factoring
+- [ ] GET cases by customer
+
