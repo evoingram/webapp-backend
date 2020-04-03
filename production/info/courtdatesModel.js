@@ -208,6 +208,18 @@ function findByIdMain(courtdatesid) {
 			'mailclass.mcid',
 			'mailclass.mailclass',
 			'mailclass.description',
+			'citationhyperlinks.chid',
+			'citationhyperlinks.findcitation',
+			'citationhyperlinks.replacehyperlink',
+			'citationhyperlinks.longcitation',
+			'citationhyperlinks.chcategory',
+			'citationhyperlinks.webaddress',
+			'usc.uscid',
+			'usc.findcitation',
+			'usc.replacehyperlink',
+			'usc.longcitation',
+			'usc.chcategory',
+			'usc.webaddress',
 			'courtdatescasescustomers.cdccid',
 			'courtdatescasescustomers.courtdatesid',
 			'courtdatescasescustomers.casesid',
@@ -227,6 +239,9 @@ function findByIdMain(courtdatesid) {
 		.innerJoin('shippingoptions', 'shippingoptions.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('mailclass', 'mailclass.mcid', 'shippingoptions.mcid')
 		.innerJoin('packagetype', 'packagetype.ptid', 'shippingoptions.ptid')
+		.innerJoin('citations', 'courtdates.courtdatesid', 'citations.courtdatesid')
+		.innerJoin('citationhyperlinks', 'citations.citlinksid', 'citationhyperlinks.chid')
+		.innerJoin('usc', 'citations.uscid', 'usc.uscid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
 
@@ -235,18 +250,6 @@ function findByIdMain(courtdatesid) {
 function findByIdMain(courtdatesid) {
 	return db('courtdates')
 		.select(
-			'citationhyperlinks.chid',
-			'citationhyperlinks.findcitation',
-			'citationhyperlinks.replacehyperlink',
-			'citationhyperlinks.longcitation',
-			'citationhyperlinks.chcategory',
-			'citationhyperlinks.webaddress',
-			'usc.uscid',
-			'usc.findcitation',
-			'usc.replacehyperlink',
-			'usc.longcitation',
-			'usc.chcategory',
-			'usc.webaddress',
 			'communicationhistory.chid',
 			'communicationhistory.courtdatesid',
 			'communicationhistory.customersid',
