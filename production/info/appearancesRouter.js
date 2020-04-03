@@ -1,78 +1,78 @@
 const router = require('express').Router();
 
-const Appearances = require('./cccModel.js');
+const Appearances = require('./appearancesModel.js');
 const restricted = require('../../auth/restriction.js');
 
-// GET:  Describe what it does
+// GET:  get all appearances for all jobs
 router.get('/', restricted, (req, res) => {
 	Appearances.find()
-		.then(courtdates => {
-			res.status(200).json(courtdates);
+		.then(appearances => {
+			res.status(200).json(appearances);
 		})
 		.catch(err => res.send(err));
 });
 
-// GET:  Describe what it does
-router.get('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: `The apps with the specified courtdatesid ${courtdatesid} does not exist.` });
+// GET:  get one appearance
+router.get('/:appid', restricted, (req, res) => {
+	const appid = req.params.appid;
+	if (!appid) {
+		res.status(404).json({ message: `The appearance with the specified appid ${appid} does not exist.` });
 	} else {
-		Appearances.findAppsById(courtdatesid)
+		Appearances.findAppsById(appid)
 			.then(appearances => {
 				res.status(201).json(appearances);
 			})
 			.catch(err => {
 				res.status(500).json({
-					message: `The apps information for this courtdate ${courtdatesid} could not be retrieved.`,
+					message: `The app information for this appearance ${appid} could not be retrieved.`,
 					error: err
 				});
 			});
 	}
 });
 
-// POST:  create status
+// POST:  create appearance
 router.post('/', restricted, (req, res) => {
-	const newStatus = req.body.status;
+	const newAppearance = req.body.appearance;
 
-	Appearances.add(newStatus)
-		.then(status => {
-			res.status(201).json(status);
+	Appearances.add(newAppearance)
+		.then(appearance => {
+			res.status(201).json(appearance);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to create new status' });
+			res.status(500).json({ message: 'Failed to create new appearance.', error: err });
 		});
 });
 
-// PUT:  Describe what it does
-router.put('/:statusesid', restricted, (req, res) => {
-	const statusesid = req.params.statusesid;
-	const updatedStatus = { status: req.body.status };
+// PUT:  update appearance
+router.put('/:appid', restricted, (req, res) => {
+	const appid = req.params.appid;
+	const updatedAppearance = { status: req.body.appearance };
 
-	Appearances.update(statusesid, updatedStatus)
-		.then(status => {
-			if (status) {
-				res.json(status);
+	Appearances.update(appid, updatedAppearance)
+		.then(appearance => {
+			if (appearance) {
+				res.json(appearance);
 			} else {
-				res.status(404).json({ message: 'Could not find status with given id' });
+				res.status(404).json({ message: `Could not find appearance with given id ${appid}.` });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to update status' });
+			res.status(500).json({ message: 'Failed to update appearance.', error: err });
 		});
 });
-// DELETE:  Describe what it does
-router.delete('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified ID does not exist.' });
+// DELETE:  delete appearance
+router.delete('/:appid', restricted, (req, res) => {
+	const appid = req.params.appid;
+	if (!appid) {
+		res.status(404).json({ message: `The appearance with the specified ID ${appid} does not exist.` });
 	}
-	Appearances.remove(courtdatesid)
-		.then(courtdate => {
-			res.json(courtdate);
+	Appearances.remove(appid)
+		.then(appearance => {
+			res.json(appearance);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'The courtdate could not be removed' });
+			res.status(500).json({ message: 'The appearance could not be removed.', error: err });
 		});
 });
 
