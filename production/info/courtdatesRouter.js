@@ -1,7 +1,17 @@
 const router = require('express').Router();
 
 const Courtdates = require('./courtdatesModel.js');
+const Appearances = require('./appearancesModel.js');
+const Tasks = require('../mgmt/tasksModel.js');
+const Citations = require('../authorities/citationsModel.js');
+const Shipping = require('../shipping/shippingModel.js');
+const Expenses = require('../../financials/expensesModel.js');
+const Payments = require('../../financials/paymentsModel.js');
+const CommHistory = require('./commHModel.js');
 const restricted = require('../../auth/restriction.js');
+// also need:
+// 		expenses, payments, shipping
+// 		citations, tasks, commHistory, apps
 
 router.get('/', restricted, (req, res) => {
 	Courtdates.find()
@@ -17,8 +27,13 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findByIdMain(courtdatesid)
 			.then(courtdate => {
+				let appearances = [];
+				Appearances.findAppsById(courtdatesid).then(appearance => {
+					appearances.push(appearance);
+				});
 				res.status(201).json({
 					test: { courtdate },
+					apptest: { appearances },
 					general: {
 						courtdatesid: courtdate[0].courtdatesid,
 						turnaround: courtdate[0].turnaroundtime,
