@@ -44,7 +44,29 @@ function remove(courtdatesid) {
 
 function findByIdMain(courtdatesid) {
 	return db('courtdates')
-		.select('courtdates.courtdatesid', '*')
+		.select(
+			'courtdates.courtdatesid',
+			'courtdates.ttid',
+			'courtdates.hearingdate',
+			'courtdates.hearingstarttime',
+			'courtdates.hearingendtime',
+			'courtdates.audiolength',
+			'courtdates.location',
+			'courtdates.duedate',
+			'courtdates.filed',
+			'courtdates.hearingtitle',
+			'courtdates.judgename',
+			'courtdates.judgetitle',
+			'courtdates.factoringcost',
+			'courtdates.estimatedquantity',
+			'courtdates.actualquantity',
+			'courtdates.subtotal',
+			'courtdates.finalprice',
+			'courtdates.estimatedadvancedate',
+			'courtdates.estimatedrebatedate',
+			'courtdates.ppid',
+			'courtdates.ppstatus'
+		)
 		.where('courtdates.courtdatesid', courtdatesid);
 }
 
