@@ -36,7 +36,6 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 										Courtdates.findCitationsById(courtdatesid).then(citations => {
 											Courtdates.findInvoicesById(courtdatesid).then(invoices => {
 												res.status(201).json({
-													test: { courtdate },
 													general: {
 														courtdatesid: courtdate[0].courtdatesid,
 														turnaround: courtdate[0].turnaroundtime,
