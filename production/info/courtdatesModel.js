@@ -67,7 +67,7 @@ function findByIdMain(courtdatesid) {
 			'courtdates.ppid',
 			'courtdates.ppstatus'
 		)
-		.where('courtdates.courtdatesid', courtdatesid);
+		.where({ courtdatesid });
 }
 
 /*
