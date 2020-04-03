@@ -17,56 +17,71 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findByIdMain(courtdatesid)
 			.then(courtdate => {
+				let expensesArray = [];
+				for (x = 0; x < courtdate.length; x++) {
+					let previousEID = courtdate[x].eid;
+					if (x > 0 && previousEID !== courtdate[x - 1].eid) {
+					}
+					expensesArray.push({
+						eid: courtdate[x].eid,
+						vendor: courtdate[x].vendor,
+						date: courtdate[x].date,
+						amount: courtdate[x].amount,
+						description: courtdate[x].description
+					});
+				}
 				res.status(201).json({
 					test: { courtdate },
 					general: {
 						courtdatesid: courtdate[0].courtdatesid,
-						ttid: courtdate[0].ttid,
-						turnaround: courtdate[0].pushturnaround,
-						hearingdate: courtdate[0].hearingdate,
-						starttime: courtdate[0].hearingstarttime,
-						endtime: courtdate[0].hearingendtime,
+						turnaround: courtdate[0].turnaroundtime,
 						audiolength: courtdate[0].audiolength,
-						location: courtdate[0].location,
 						duedate: courtdate[0].duedate,
 						filed: courtdate[0].filed,
-						hearingtitle: courtdate[0].hearingtitle,
-						judgename: courtdate[0].judgename,
-						judgetitle: courtdate[0].judgetitle
+						hearingdetails: {
+							location: courtdate[0].location,
+							hearingdate: courtdate[0].hearingdate,
+							starttime: courtdate[0].hearingstarttime,
+							endtime: courtdate[0].hearingendtime,
+							hearingtitle: courtdate[0].hearingtitle,
+							judgename: courtdate[0].judgename,
+							judgetitle: courtdate[0].judgetitle
+						}
 					},
 					financial: {
 						invoiceno: courtdate[0].invoiceno,
 						rate: courtdate[0].rate,
-						ratesid: courtdate[0].ratesid,
-						brandingtheme: courtdate[0].brandingtheme,
-						btid: courtdate[0].btid,
-						paymenttype: courtdate[0].paymenttype,
-						factoringcost: courtdate[0].factoringcost,
-						estimatedquantity: courtdate[0].estimatedquantity,
-						actualquantity: courtdate[0].actualquantity,
-						subtotal: courtdate[0].subtotal,
-						finalprice: courtdate[0].finalprice,
-						estimatedadvancedate: courtdate[0].estimatedadvancedate,
-						estimatedrebatedate: courtdate[0].estimatedrebatedate,
-						ppid: courtdate[0].ppid,
-						ppstatus: courtdate[0].ppstatus,
-						discount: courtdate[0].discount,
-						reference: courtdate[0].reference,
 						invoicedate: courtdate[0].invoicedate,
 						duedate: courtdate[0].duedate,
-						itemcode: courtdate[0].itemcode,
-						description: courtdate[0].description,
-						accountcode: courtdate[0].accountcode,
-						taxtype: courtdate[0].taxtype,
-						expenses: {
-							expense1: {
-								eid: courtdate[0].eid,
-								vendor: courtdate[0].vendor,
-								date: courtdate[0].date,
-								amount: courtdate[0].amount,
-								description: courtdate[0].description
-							}
+						discount: courtdate[0].discount,
+						reference: courtdate[0].reference,
+						paymenttype: courtdate[0].paymenttype,
+						factoring: {
+							factoring: courtdate[0].factoring,
+							factoringcost: courtdate[0].factoringcost
 						},
+						estimates: {
+							estimatedquantity: courtdate[0].estimatedquantity,
+							subtotal: courtdate[0].subtotal,
+							estimatedadvancedate: courtdate[0].estimatedadvancedate,
+							estimatedrebatedate: courtdate[0].estimatedrebatedate
+						},
+						finals: {
+							actualquantity: courtdate[0].actualquantity,
+							finalprice: courtdate[0].finalprice
+						},
+						paypal: {
+							ppid: courtdate[0].ppid,
+							ppstatus: courtdate[0].ppstatus
+						},
+						xero: {
+							brandingtheme: courtdate[0].brandingtheme,
+							itemcode: courtdate[0].itemcode,
+							description: courtdate[0].description,
+							accountcode: courtdate[0].accountcode,
+							taxtype: courtdate[0].taxtype
+						},
+						expenses: expensesArray,
 						payments: {
 							payment1: {
 								pid: courtdate[0].pid,
@@ -222,10 +237,40 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 						ag66: courtdate[0].ag66
 					},
 					status: {
-						stage1: { jobentered: courtdate[0].jobentered },
-						stage2: {},
-						stage3: {},
-						stage4: {}
+						sid: courtdate[0].sid,
+						stage1: {
+							jobentered: courtdate[0].jobentered,
+							field: courtdate[0].appsentered,
+							field: courtdate[0].coverpage,
+							field: courtdate[0].autocorrect,
+							field: courtdate[0].schedule,
+							field: courtdate[0].prepinvoice,
+							field: courtdate[0].agshortcuts
+						},
+						stage2: {
+							field: courtdate[0].transcribe
+						},
+						stage3: {
+							field: courtdate[0].addrdtocover,
+							field: courtdate[0].findreplacerd,
+							field: courtdate[0].hyperlink,
+							field: courtdate[0].spellingsemail,
+							field: courtdate[0].audioproof
+						},
+						stage4: {
+							field: courtdate[0].invoicecompleted,
+							field: courtdate[0].noticeofservice,
+							field: courtdate[0].peletter,
+							field: courtdate[0].cdlabel,
+							field: courtdate[0].generatezips,
+							field: courtdate[0].transcriptsready,
+							field: courtdate[0].invoicetofactoremail,
+							field: courtdate[0].filetranscript,
+							field: courtdate[0].burncd,
+							field: courtdate[0].shippingxmls,
+							field: courtdate[0].shippingemail,
+							field: courtdate[0].addtrackingno
+						}
 					},
 					tasks: {
 						stage1: { title: courtdate[0].title },

@@ -38,7 +38,7 @@ exports.up = function(knex) {
 
 		invoices.string('reference').notNullable();
 		invoices.date('invoicedate');
-		invoices.date('duedate');
+		invoices.date('iduedate');
 		invoices.string('itemcode').notNullable();
 		invoices.string('description').notNullable();
 
