@@ -10,13 +10,24 @@ router.get('/', restricted, (req, res) => {
 		})
 		.catch(err => res.send(err));
 });
-router.get('/:courtdatesid', (req, res) => {
+router.get('/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
 		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
 	} else {
 		Courtdates.findByIdMain(courtdatesid)
 			.then(courtdate => {
+				/*
+				let expensesArray = courtdate.filter((item, index) => {
+					return {
+						eid: courtdate[index].eid,
+						vendor: courtdate[index].vendor,
+						date: courtdate[index].date,
+						amount: courtdate[index].amount,
+						description: courtdate[index].description
+					};
+				});
+				*/
 				res.status(201).json({
 					test: { courtdate },
 					general: {
