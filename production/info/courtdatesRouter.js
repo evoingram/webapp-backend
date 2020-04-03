@@ -222,10 +222,40 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 						ag66: courtdate[0].ag66
 					},
 					status: {
-						stage1: { jobentered: courtdate[0].jobentered },
-						stage2: {},
-						stage3: {},
-						stage4: {}
+						sid: courtdate[0].sid,
+						stage1: {
+							jobentered: courtdate[0].jobentered,
+							field: courtdate[0].appsentered,
+							field: courtdate[0].coverpage,
+							field: courtdate[0].autocorrect,
+							field: courtdate[0].schedule,
+							field: courtdate[0].prepinvoice,
+							field: courtdate[0].agshortcuts
+						},
+						stage2: {
+							field: courtdate[0].transcribe
+						},
+						stage3: {
+							field: courtdate[0].addrdtocover,
+							field: courtdate[0].findreplacerd,
+							field: courtdate[0].hyperlink,
+							field: courtdate[0].spellingsemail,
+							field: courtdate[0].audioproof
+						},
+						stage4: {
+							field: courtdate[0].invoicecompleted,
+							field: courtdate[0].noticeofservice,
+							field: courtdate[0].peletter,
+							field: courtdate[0].cdlabel,
+							field: courtdate[0].generatezips,
+							field: courtdate[0].transcriptsready,
+							field: courtdate[0].invoicetofactoremail,
+							field: courtdate[0].filetranscript,
+							field: courtdate[0].burncd,
+							field: courtdate[0].shippingxmls,
+							field: courtdate[0].shippingemail,
+							field: courtdate[0].addtrackingno
+						}
 					},
 					tasks: {
 						stage1: { title: courtdate[0].title },
