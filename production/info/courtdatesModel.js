@@ -260,14 +260,14 @@ function findByIdMain(courtdatesid) {
 			'courtdatescasescustomers.casesid',
 			'courtdatescasescustomers.orderingid'
 		)
-		.select([
+		.select(
 			'expenses.eid',
 			'expenses.vendor',
 			'expenses.date',
 			'expenses.amount',
 			'expenses.description',
 			'expenses.courtdatesid'
-		])
+		)
 		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('appearances', 'appearances.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('turnaroundtimes', 'turnaroundtimes.ttid', 'courtdates.ttid')
