@@ -27,14 +27,13 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findByIdMain(courtdatesid)
 			.then(courtdate => {
-				let appearances = [
-					Appearances.findAppsById(courtdatesid).then(appearance => {
-						return appearance;
-					})
-				];
+				let appearances = [];
+				Appearances.findAppsById(courtdatesid).then(appearance => {
+					appearances = appearance;
+				});
 				res.status(201).json({
 					test: { courtdate },
-					apptest: { appearances },
+					apptest: appearances,
 					general: {
 						courtdatesid: courtdate[0].courtdatesid,
 						turnaround: courtdate[0].turnaroundtime,
