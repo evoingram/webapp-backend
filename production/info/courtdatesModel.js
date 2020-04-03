@@ -8,6 +8,13 @@ module.exports = {
 	update,
 	remove,
 	findByIdMain,
+	findPaymentsById,
+	findExpensesById,
+	getShippingById,
+	findCommHistoryById,
+	findTasksById,
+	findCitationsById,
+	findInvoicesById,
 	findAppsById
 };
 
@@ -43,6 +50,96 @@ function remove(courtdatesid) {
 		.del();
 }
 
+function findExpensesById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'expenses.eid',
+			'expenses.vendor',
+			'expenses.date',
+			'expenses.amount AS eamount',
+			'expenses.description',
+			'expenses.courtdatesid'
+		)
+		.innerJoin('expenses', 'expenses.courtdatesid', 'courtdates.courtdatesid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+
+function findPaymentsById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'payments.pid',
+			'payments.amount AS pamount',
+			'payments.remitdate',
+			'payments.iid'
+		)
+		.innerJoin('payments', 'payments.iid', 'invoices.iid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+
+function getShippingById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'customers.customersid',
+			'customers.factoring',
+			'customers.company',
+			'customers.mrms',
+			'customers.lastname',
+			'customers.firstname',
+			'customers.email',
+			'customers.jobtitle',
+			'customers.businessphone',
+			'customers.address1',
+			'customers.address2',
+			'customers.city',
+			'customers.state',
+			'customers.zip',
+			'customers.notes',
+			'shippingoptions.soid',
+			'shippingoptions.mcid',
+			'shippingoptions.ptid',
+			'shippingoptions.customersid',
+			'shippingoptions.amount',
+			'shippingoptions.shippingcost',
+			'shippingoptions.width',
+			'shippingoptions.length',
+			'shippingoptions.height',
+			'shippingoptions.prioritymailexpress1030',
+			'shippingoptions.holidaydelivery',
+			'shippingoptions.sundaydelivery',
+			'shippingoptions.saturdaydelivery',
+			'shippingoptions.signaturerequired',
+			'shippingoptions.stealth',
+			'shippingoptions.replypostage',
+			'shippingoptions.insuredmail',
+			'shippingoptions.cod',
+			'shippingoptions.restricteddelivery',
+			'shippingoptions.adultsigrestricted',
+			'shippingoptions.adultsigrequired',
+			'shippingoptions.returnreceipt',
+			'shippingoptions.certifiedmail',
+			'shippingoptions.sigconfirmation',
+			'shippingoptions.uspstracking',
+			'shippingoptions.reference',
+			'shippingoptions.value',
+			'shippingoptions.description',
+			'shippingoptions.weightoz',
+			'shippingoptions.output',
+			'packagetype.ptid',
+			'packagetype.packagetype',
+			'packagetype.description',
+			'mailclass.mcid',
+			'mailclass.mailclass',
+			'mailclass.description'
+		)
+		.innerJoin('shippingoptions', 'shippingoptions.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('customers', 'shippingoptions.customersid', 'customers.customersid')
+		.innerJoin('mailclass', 'mailclass.mcid', 'shippingoptions.mcid')
+		.innerJoin('packagetype', 'packagetype.ptid', 'shippingoptions.ptid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+
 function findAppsById(courtdatesid) {
 	return db('courtdates')
 		.select(
@@ -71,6 +168,115 @@ function findAppsById(courtdatesid) {
 		.innerJoin('customers', 'appearances.customersid', 'customers.customersid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
+
+function findCitationsById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'citations.citationsid',
+			'citations.uscid',
+			'citations.citlinksid',
+			'citations.courtdatesid',
+			'citationhyperlinks.chid',
+			'citationhyperlinks.findcitation',
+			'citationhyperlinks.longcitation',
+			'citationhyperlinks.chcategory',
+			'citationhyperlinks.webaddress'
+		)
+		.innerJoin('citations', 'courtdates.courtdatesid', 'citations.courtdatesid')
+		.innerJoin('citationhyperlinks', 'citations.citlinksid', 'citationhyperlinks.chid');
+}
+function findTasksById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'tasks.tid',
+			'tasks.courtdatesid',
+			'tasks.title',
+			'tasks.priority',
+			'tasks.status',
+			'tasks.description',
+			'tasks.startdate AS tstartdate',
+			'tasks.duedate AS tduedate',
+			'tasks.prioritypoints',
+			'tasks.category',
+			'tasks.timelength',
+			'tasks.completed'
+		)
+		.innerJoin('tasks', 'courtdates.courtdatesid', 'tasks.courtdatesid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+function findCommHistoryById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'customers.customersid',
+			'customers.factoring',
+			'customers.company',
+			'customers.mrms',
+			'customers.lastname',
+			'customers.firstname',
+			'customers.email',
+			'customers.jobtitle',
+			'customers.businessphone',
+			'customers.address1',
+			'customers.address2',
+			'customers.city',
+			'customers.state',
+			'customers.zip',
+			'customers.notes',
+			'communicationhistory.chid',
+			'communicationhistory.courtdatesid',
+			'communicationhistory.customersid',
+			'communicationhistory.filepath',
+			'communicationhistory.datecreated'
+		)
+		.innerJoin('communicationhistory', 'communicationhistory.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('customers', 'communicationhistory.customersid', 'customers.customersid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+function findInvoicesById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'invoices.invoiceno',
+			'invoices.iid',
+			'invoices.btid',
+			'invoices.discount',
+			'invoices.reference',
+			'invoices.invoicedate',
+			'invoices.duedate AS iduedate',
+			'invoices.itemcode',
+			'invoices.description',
+			'invoices.accountcode',
+			'invoices.taxtype',
+			'invoices.ratesid',
+			'customers.customersid',
+			'customers.factoring',
+			'customers.company',
+			'customers.mrms',
+			'customers.lastname',
+			'customers.firstname',
+			'customers.email',
+			'customers.jobtitle',
+			'customers.businessphone',
+			'customers.address1',
+			'customers.address2',
+			'customers.city',
+			'customers.state',
+			'customers.zip',
+			'customers.notes',
+			'payments.pid',
+			'payments.amount AS pamount',
+			'payments.remitdate',
+			'payments.iid'
+		)
+		.innerJoin('invoices', 'invoices.iid', 'courtdates.iid')
+		.innerJoin('customers', 'appearances.customersid', 'customers.customersid')
+		.innerJoin('payments', 'payments.iid', 'invoices.iid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+
 function findByIdMain(courtdatesid) {
 	return db('courtdates')
 		.select(
