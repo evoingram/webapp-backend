@@ -137,7 +137,7 @@ function findByIdMain(courtdatesid) {
 			'invoices.discount',
 			'invoices.reference',
 			'invoices.invoicedate',
-			'invoices.duedate',
+			'invoices.iduedate',
 			'invoices.itemcode',
 			'invoices.description',
 			'invoices.accountcode',
