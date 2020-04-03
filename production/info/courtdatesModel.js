@@ -75,11 +75,14 @@ function findByIdMain(courtdatesid) {
 			'cases.casenumber2',
 			'cases.jurisdiction',
 			'cases.notes',
+			'turnaroundtimes.ttid',
+			'turnaroundtimes.turnaroundtime',
 			'courtdatescasescustomers.cdccid',
 			'courtdatescasescustomers.courtdatesid',
 			'courtdatescasescustomers.casesid'
 		)
 		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('turnaroundtimes', 'turnaroundtimes.ttid', 'courtdates.ttid')
 		.innerJoin('cases', 'cases.casesid', 'courtdatescasescustomers.casesid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
