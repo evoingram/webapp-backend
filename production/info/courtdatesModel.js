@@ -261,6 +261,11 @@ function findByIdMain(courtdatesid) {
 			'citationhyperlinks.longcitation',
 			'citationhyperlinks.chcategory',
 			'citationhyperlinks.webaddress',
+			'usc.uscid',
+			'usc.findcitation',
+			'usc.longcitation',
+			'usc.chcategory',
+			'usc.webaddress',
 			'courtdatescasescustomers.cdccid',
 			'courtdatescasescustomers.courtdatesid',
 			'courtdatescasescustomers.casesid',
@@ -285,12 +290,8 @@ function findByIdMain(courtdatesid) {
 		.innerJoin('statuses', 'courtdates.courtdatesid', 'statuses.courtdatesid')
 		.innerJoin('tasks', 'courtdates.courtdatesid', 'tasks.courtdatesid')
 		.innerJoin('citationhyperlinks', 'citations.citlinksid', 'citationhyperlinks.chid')
-		.where('courtdates.courtdatesid', courtdatesid)
-		.union(
-			knex.raw(
-				`select courtdates.courtdatesid, citations.citationsid, citations.uscid, citations.citlinksid, citations.courtdatesid, usc.uscid, 'usc.findcitation, usc.longcitation, usc.chcategory, usc.webaddress from courtdates INNER JOIN citations ON courtdates.courtdatesid = citations.courtdatesid INNER JOIN usc ON citations.uscid = usc.uscid WHERE courtdates.courtdatesid=${courtdatesid};`
-			)
-		);
+		.innerJoin('usc', 'citations.uscid', 'usc.uscid')
+		.where('courtdates.courtdatesid', courtdatesid);
 }
 
 /*
