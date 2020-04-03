@@ -21,14 +21,14 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 				for (x = 0; x < courtdate.length; x++) {
 					let previousEID = courtdate[x].eid;
 					if (x > 0 && previousEID !== courtdate[x - 1].eid) {
+						expensesArray.push({
+							eid: courtdate[x].eid,
+							vendor: courtdate[x].vendor,
+							date: courtdate[x].date,
+							amount: courtdate[x].amount,
+							description: courtdate[x].description
+						});
 					}
-					expensesArray.push({
-						eid: courtdate[x].eid,
-						vendor: courtdate[x].vendor,
-						date: courtdate[x].date,
-						amount: courtdate[x].amount,
-						description: courtdate[x].description
-					});
 				}
 				res.status(201).json({
 					test: { courtdate },
