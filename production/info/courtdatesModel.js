@@ -75,12 +75,38 @@ function findByIdMain(courtdatesid) {
 			'cases.casenumber2',
 			'cases.jurisdiction',
 			'cases.notes',
+			'turnaroundtimes.ttid',
+			'turnaroundtimes.turnaround',
+			'invoices.invoiceno',
+			'invoices.iid',
+			'invoices.btid',
+			'invoices.discount',
+			'invoices.reference',
+			'invoices.invoicedate',
+			'invoices.duedate',
+			'invoices.itemcode',
+			'invoices.description',
+			'invoices.accountcode',
+			'invoices.taxtype',
+			'invoices.ratesid',
+			'rates.ratesid',
+			'rates.rate',
+			'rates.code',
+			'rates.inventoryratecode',
+			'rates.productname',
+			'rates.description',
+			'brandingthemes.brandingtheme',
+			'brandingthemes.btid',
 			'courtdatescasescustomers.cdccid',
 			'courtdatescasescustomers.courtdatesid',
 			'courtdatescasescustomers.casesid'
 		)
 		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('cases', 'cases.casesid', 'courtdatescasescustomers.casesid')
+		.innerJoin('turnaroundtimes', 'turnaroundtimes.ttid', 'courtdates.ttid')
+		.innerJoin('invoices', 'invoices.invoiceno', 'courtdates.invoiceno')
+		.innerJoin('rates', 'rates.ratesid', 'courtdates.ratesid')
+		.innerJoin('brandingthemes', 'brandingthemes.btid', 'courtdates.btid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
 
