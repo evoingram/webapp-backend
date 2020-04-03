@@ -141,6 +141,25 @@ function findByIdMain(courtdatesid) {
 			'invoices.accountcode',
 			'invoices.taxtype',
 			'invoices.ratesid',
+			'appearances.appid',
+			'appearances.appno',
+			'appearances.customersid',
+			'appearances.courtdatesid',
+			'customers.customersid',
+			'customers.factoring',
+			'customers.company',
+			'customers.mrms',
+			'customers.lastname1',
+			'customers.firstname',
+			'customers.email',
+			'customers.jobtitle',
+			'customers.businessphone',
+			'customers.address1',
+			'customers.address2',
+			'customers.city',
+			'customers.state',
+			'customers.zip',
+			'customers.notes',
 			'courtdatescasescustomers.cdccid',
 			'courtdatescasescustomers.courtdatesid',
 			'courtdatescasescustomers.casesid'
@@ -152,6 +171,8 @@ function findByIdMain(courtdatesid) {
 		.innerJoin('cases', 'cases.casesid', 'courtdatescasescustomers.casesid')
 		.innerJoin('agshortcuts', 'agshortcuts.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('invoices', 'invoices.iid', 'courtdates.iid')
+		.join('appearances', 'appearances.courtdatesid', 'courtdates.courtdatesid')
+		.join('customers', 'customers.customersid', 'courtdatescasescustomers.orderingid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
 
@@ -209,25 +230,6 @@ function findByIdMain(courtdatesid) {
 			'mailclass.mcid',
 			'mailclass.mailclass',
 			'mailclass.description',
-			'appearances.appid',
-			'appearances.appno',
-			'appearances.customersid',
-			'appearances.courtdatesid',
-			'customers.customersid',
-			'customers.factoring',
-			'customers.company',
-			'customers.mrms',
-			'customers.lastname1',
-			'customers.firstname',
-			'customers.email',
-			'customers.jobtitle',
-			'customers.businessphone',
-			'customers.address1',
-			'customers.address2',
-			'customers.city',
-			'customers.state',
-			'customers.zip',
-			'customers.notes',
 			'citationhyperlinks.chid',
 			'citationhyperlinks.findcitation',
 			'citationhyperlinks.replacehyperlink',
@@ -285,12 +287,9 @@ function findByIdMain(courtdatesid) {
 			'tasks.timelength',
 			'tasks.completed'
 		)
-		.join('invoices', 'invoices.invoiceno', '=', 'courtdates.invoiceno')
 		.join('expenses', 'expenses.courtdatesid', '=', 'courtdates.courtdatesid')
 		.join('payments', 'payments.invoiceno', '=', 'courtdates.invoiceno')
 		.join('shippingoptions', 'shippingoptions.courtdates', '=', 'courtdates.courtdatesid')
-		.join('appearances', 'appearances.courtdates', '=', 'courtdates.courtdatesid')
-		.join('customers', 'customers.customersid', '=', 'courtdatescasescustomers.customersid')
 		.join('communicationhistory', 'communicationhistory.courtdatesid', '=', 'courtdates.courtdatesid')
 		.join('mailclass', 'mailclass.mcid', '=', 'shippingoptions.mcid')
 		.join('packagetype', 'packagetype.ptid', '=', 'shippingoptions.ptid')
