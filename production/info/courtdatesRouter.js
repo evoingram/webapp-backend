@@ -39,7 +39,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 						invoiceno: courtdate[0].invoiceno,
 						rate: courtdate[0].rate,
 						invoicedate: courtdate[0].invoicedate,
-						duedate: courtdate[0].duedate,
+						duedate: courtdate[0].iduedate,
 						discount: courtdate[0].discount,
 						reference: courtdate[0].reference,
 						paymenttype: courtdate[0].paymenttype,
@@ -72,13 +72,13 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 							eid: courtdate[0].eid,
 							vendor: courtdate[0].vendor,
 							date: courtdate[0].date,
-							amount: courtdate[0].amount,
+							amount: courtdate[0].eamount,
 							description: courtdate[0].description
 						},
 						payments: {
 							payment1: {
 								pid: courtdate[0].pid,
-								amount: courtdate[0].amount,
+								amount: courtdate[0].pamount,
 								remitdate: courtdate[0].remitdate
 							}
 						}
