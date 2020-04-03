@@ -145,6 +145,21 @@ function findByIdMain(courtdatesid) {
 			'appearances.cdappid',
 			'appearances.customersid',
 			'appearances.courtdatesid',
+			'customers.customersid',
+			'customers.factoring',
+			'customers.company',
+			'customers.mrms',
+			'customers.lastname1',
+			'customers.firstname',
+			'customers.email',
+			'customers.jobtitle',
+			'customers.businessphone',
+			'customers.address1',
+			'customers.address2',
+			'customers.city',
+			'customers.state',
+			'customers.zip',
+			'customers.notes',
 			'courtdatescasescustomers.cdccid',
 			'courtdatescasescustomers.courtdatesid',
 			'courtdatescasescustomers.casesid'
@@ -157,6 +172,7 @@ function findByIdMain(courtdatesid) {
 		.innerJoin('agshortcuts', 'agshortcuts.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('invoices', 'invoices.iid', 'courtdates.iid')
 		.innerJoin('appearances', 'appearances.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('customers', 'customers.customersid', 'appearances.customersid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
 
