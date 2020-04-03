@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const Courtdates = require('./citationsModel.js');
-const restricted = require('../auth/restriction.js');
+const restricted = require('../../auth/restriction.js');
 
 // GET:  Describe what it does
 router.get('/', restricted, (req, res) => {
