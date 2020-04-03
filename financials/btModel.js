@@ -10,35 +10,28 @@ module.exports = {
 };
 
 function find() {
-	return db('courtdates').select('*');
+	return db('brandingthemes').select('*');
 }
 
 function findBy(filter) {
-	return db('courtdates').where(filter);
+	return db('brandingthemes').where(filter);
 }
 
 async function add(courtdate) {
-	const [courtdatesid] = await db('courtdates').insert(courtdate, 'courtdatesid');
-	return findById(courtdatesid);
+	const [btid] = await db('brandingthemes').insert(courtdate, 'btid');
+	return findById(btid);
 }
 
-function findById(courtdatesid) {
-	return db('courtdates')
-		.select('courtdatesid', '*')
-		.where({ courtdatesid })
-		.first();
+function findById(btid) {
+	return db('brandingthemes').select('btid', '*').where({ btid }).first();
 }
 
-function update(courtdatesid, courtdate) {
-	return db('courtdates')
-		.where('courtdatesid', Number(courtdatesid))
-		.update(courtdate);
+function update(btid, courtdate) {
+	return db('brandingthemes').where('btid', Number(btid)).update(courtdate);
 }
 
-function remove(courtdatesid) {
-	return db('courtdates')
-		.where('courtdatesid', Number(courtdatesid))
-		.del();
+function remove(btid) {
+	return db('brandingthemes').where('btid', Number(btid)).del();
 }
 
 /*

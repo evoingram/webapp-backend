@@ -29,8 +29,9 @@ All endpoints have been tested via Postman.
 
 ### TO DO
 
-- [ ] CRUD tasks
-- [ ] CRUD statuses
+- [X] CRUD brandingthemes
+- [X] CRUD tasks
+- [X] CRUD statuses
 - [ ] CRUD expenses
 - [ ] CRUD payments
 - [ ] CRUD commHistory
