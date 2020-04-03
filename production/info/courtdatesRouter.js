@@ -233,43 +233,87 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 						sid: courtdate[0].sid,
 						stage1: {
 							jobentered: courtdate[0].jobentered,
-							field: courtdate[0].appsentered,
-							field: courtdate[0].coverpage,
-							field: courtdate[0].autocorrect,
-							field: courtdate[0].schedule,
-							field: courtdate[0].prepinvoice,
-							field: courtdate[0].agshortcuts
+							appsentered: courtdate[0].appsentered,
+							coverpage: courtdate[0].coverpage,
+							autocorrect: courtdate[0].autocorrect,
+							schedule: courtdate[0].schedule,
+							prepinvoice: courtdate[0].prepinvoice,
+							agshortcuts: courtdate[0].agshortcuts
 						},
 						stage2: {
-							field: courtdate[0].transcribe
+							transcribe: courtdate[0].transcribe
 						},
 						stage3: {
-							field: courtdate[0].addrdtocover,
-							field: courtdate[0].findreplacerd,
-							field: courtdate[0].hyperlink,
-							field: courtdate[0].spellingsemail,
-							field: courtdate[0].audioproof
+							addrdtocover: courtdate[0].addrdtocover,
+							findreplacerd: courtdate[0].findreplacerd,
+							hyperlink: courtdate[0].hyperlink,
+							spellingsemail: courtdate[0].spellingsemail,
+							audioproof: courtdate[0].audioproof
 						},
 						stage4: {
-							field: courtdate[0].invoicecompleted,
-							field: courtdate[0].noticeofservice,
-							field: courtdate[0].peletter,
-							field: courtdate[0].cdlabel,
-							field: courtdate[0].generatezips,
-							field: courtdate[0].transcriptsready,
-							field: courtdate[0].invoicetofactoremail,
-							field: courtdate[0].filetranscript,
-							field: courtdate[0].burncd,
-							field: courtdate[0].shippingxmls,
-							field: courtdate[0].shippingemail,
-							field: courtdate[0].addtrackingno
+							invoicecompleted: courtdate[0].invoicecompleted,
+							noticeofservice: courtdate[0].noticeofservice,
+							peletter: courtdate[0].peletter,
+							cdlabel: courtdate[0].cdlabel,
+							generatezips: courtdate[0].generatezips,
+							transcriptsready: courtdate[0].transcriptsready,
+							invoicetofactoremail: courtdate[0].invoicetofactoremail,
+							filetranscript: courtdate[0].filetranscript,
+							burncd: courtdate[0].burncd,
+							shippingxmls: courtdate[0].shippingxmls,
+							shippingemail: courtdate[0].shippingemail,
+							addtrackingno: courtdate[0].addtrackingno
 						}
 					},
 					tasks: {
-						stage1: { title: courtdate[0].title },
-						stage2: {},
-						stage3: {},
-						stage4: {}
+						stage1: {
+							title: courtdate[0].title,
+							priority: courtdate[0].priority,
+							status: courtdate[0].status,
+							description: courtdate[0].description,
+							startdate: courtdate[0].tstartdate,
+							duedate: courtdate[0].tduedate,
+							prioritypoints: courtdate[0].prioritypoints,
+							category: courtdate[0].category,
+							timelength: courtdate[0].timelength,
+							completed: courtdate[0].completed
+						},
+						stage2: {
+							title: courtdate[0].title,
+							priority: courtdate[0].priority,
+							status: courtdate[0].status,
+							description: courtdate[0].description,
+							startdate: courtdate[0].tstartdate,
+							duedate: courtdate[0].tduedate,
+							prioritypoints: courtdate[0].prioritypoints,
+							category: courtdate[0].category,
+							timelength: courtdate[0].timelength,
+							completed: courtdate[0].completed
+						},
+						stage3: {
+							title: courtdate[0].title,
+							priority: courtdate[0].priority,
+							status: courtdate[0].status,
+							description: courtdate[0].description,
+							startdate: courtdate[0].tstartdate,
+							duedate: courtdate[0].tduedate,
+							prioritypoints: courtdate[0].prioritypoints,
+							category: courtdate[0].category,
+							timelength: courtdate[0].timelength,
+							completed: courtdate[0].completed
+						},
+						stage4: {
+							title: courtdate[0].title,
+							priority: courtdate[0].priority,
+							status: courtdate[0].status,
+							description: courtdate[0].description,
+							startdate: courtdate[0].tstartdate,
+							duedate: courtdate[0].tduedate,
+							prioritypoints: courtdate[0].prioritypoints,
+							category: courtdate[0].category,
+							timelength: courtdate[0].timelength,
+							completed: courtdate[0].completed
+						}
 					}
 				});
 			})
