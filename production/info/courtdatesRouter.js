@@ -356,6 +356,20 @@ router.get('/basic/:courtdatesid', restricted, (req, res) => {
 	}
 });
 
+router.get('/apps/:courtdatesid', restricted, (req, res) => {
+	const courtdatesid = req.params.courtdatesid;
+	if (!courtdatesid) {
+		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
+	} else {
+		Courtdates.findAppsById(courtdatesid)
+			.then(courtdate => {
+				res.status(201).json(courtdate);
+			})
+			.catch(err => {
+				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
+			});
+	}
+});
 router.delete('/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
