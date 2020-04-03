@@ -16,7 +16,7 @@ router.get('/', restricted, (req, res) => {
 router.get('/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
-		res.status(404).json({ message: 'The apps with the specified courtdatesid does not exist.' });
+		res.status(404).json({ message: `The apps with the specified courtdatesid ${courtdatesid} does not exist.` });
 	} else {
 		Appearances.findAppsById(courtdatesid)
 			.then(appearances => {
@@ -24,7 +24,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 			})
 			.catch(err => {
 				res.status(500).json({
-					message: 'The apps information for this courtdate could not be retrieved.',
+					message: `The apps information for this courtdate ${courtdatesid} could not be retrieved.`,
 					error: err
 				});
 			});

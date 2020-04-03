@@ -23,7 +23,7 @@ async function add(courtdate) {
 }
 
 function findAppsById(courtdatesid) {
-	return db('appearances')
+	return db('courtdates')
 		.select(
 			'courtdates.courtdatesid',
 			'appearances.appid',
@@ -46,7 +46,7 @@ function findAppsById(courtdatesid) {
 			'customers.zip',
 			'customers.notes'
 		)
-		.innerJoin('courtdates', 'appearances.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('appearances', 'courtdates.courtdatesid', 'appearances.courtdatesid')
 		.innerJoin('customers', 'appearances.customersid', 'customers.customersid')
 		.where({ courtdatesid });
 }
