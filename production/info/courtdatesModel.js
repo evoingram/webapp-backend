@@ -69,7 +69,7 @@ function findAppsById(courtdatesid) {
 		)
 		.innerJoin('appearances', 'courtdates.courtdatesid', 'appearances.courtdatesid')
 		.innerJoin('customers', 'appearances.customersid', 'customers.customersid')
-		.where({ courtdatesid });
+		.where('courtdates.courtdatesid', courtdatesid);
 }
 function findByIdMain(courtdatesid) {
 	return db('courtdates')
