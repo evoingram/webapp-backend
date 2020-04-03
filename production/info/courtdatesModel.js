@@ -522,9 +522,6 @@ function findByIdMain(courtdatesid) {
 		.join('tasks', 'tasks.courtdatesid', '=', 'courtdates.courtdatesid')
 		.where({ courtdatesid });
 
-	// citationhyperlinks, usc
-
-	//courtdates, turnaroundtimes, invoices, cases, rates, brandingthemes, expenses, payments, shipping,appearances, customers, citationhyperlinks, usc, communicationhistory, agshortcuts, mailclass, packagetype, courtdatescasescustomers, statuses, tasks
 }
 
 /*

@@ -44,9 +44,10 @@ ORDER BY Cases.[Party1], Cases.[Party2];
 
 */
 function findByParty(partyText, partyNo) {
+	let partyname = `party${partyNo}`;
 	return db('cases')
 		.select('*')
-		.where({ `party${partyNo}: '${partyText}'` });
+		.where({ partyname: `${partyText}` });
 }
 
 async function add(onecase) {

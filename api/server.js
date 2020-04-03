@@ -13,11 +13,11 @@ const registerRouter = require('../auth/registerRouter.js');
 
 // courtdates table router
 // fields: courtdatesid ratesid ttid btid iid hearingdate hearingstarttime hearingendtime audiolength location shipdate duedate trackingno paymenttype filed factoringcost estimatedquantity actualquantity subtotal estimatedadvancerate estimatedrebatedate finalprice ppid ppstatus hearingtitle judgename judgetitle
-const courtdatesRouter = require('../production/courtdatesRouter.js');
+const courtdatesRouter = require('../production/info/courtdatesRouter.js');
 
 // cases table router
 // fields: casesid party1 party1name party2 party2name casenumber1 casenumber2 		jurisdiction notes
-const casesRouter = require('../production/casesRouter.js');
+const casesRouter = require('../production/info/casesRouter.js');
 
 const server = express();
 
