@@ -41,239 +41,54 @@ function remove(courtdatesid) {
 		.where('courtdatesid', Number(courtdatesid))
 		.del();
 }
-let object = {
-	'2173': {
-		general: {
-			courtdatesid: '',
-			ttid: '',
-			turnaround: '',
-			hearingdate: '',
-			starttime: '',
-			endtime: '',
-			audiolength: '',
-			location: '',
-			duedate: '',
-			filed: '',
-			hearingtitle: '',
-			judgename: '',
-			judgetitle: ''
-		},
-		financial: {
-			invoiceno: '',
-			rate: '',
-			ratesid: '',
-			brandingtheme: '',
-			btid: '',
-			paymenttype: '',
-			factoringcost: '',
-			estimatedquantity: '',
-			actualquantity: '',
-			subtotal: '',
-			finalprice: '',
-			estimatedadvancedate: '',
-			estimatedrebatedate: '',
-			ppid: '',
-			ppstatus: '',
-			discount: '',
-			reference: '',
-			invoicedate: '',
-			duedate: '',
-			itemcode: '',
-			description: '',
-			accountcode: '',
-			taxtype: '',
-			expenses: {
-				expense1: {
-					eid: '',
-					vendor: '',
-					date: '',
-					amount: '',
-					description: ''
-				}
-			},
-			payments: {
-				payment1: {
-					pid: '',
-					amount: '',
-					remitdate: ''
-				}
-			},
-			'': ''
-		},
-		case: {
-			party1: 'Ricky Martin',
-			party1name: 'Petitioner',
-			party2: 'Michael Buble',
-			party2name: 'Respondent',
-			casenumber1: '13-5-04965-3 SEA',
-			casenumber2: '00000-0',
-			jurisdiction: 'King County Superior Court',
-			notes: 'notes'
-		},
-		shipping: {
-			package1: {
-				shipdate: '',
-				trackingno: '',
-				soid: '',
-				mcid: '',
-				mailclass: '',
-				ptid: '',
-				packagetype: '',
-				customerid: '',
-				amount: '',
-				shippingcost: '',
-				width: '',
-				length: '',
-				height: '',
-				prioritymailexpress1030: false,
-				holidaydelivery: false,
-				sundaydelivery: false,
-				saturdaydelivery: false,
-				signaturerequired: false,
-				stealth: false,
-				replypostage: false,
-				insuredmail: false,
-				cod: false,
-				restricteddelivery: false,
-				adultsigrestricted: false,
-				adultsigrequired: false,
-				returnreceipt: false,
-				certifiedmail: false,
-				sigconfirmation: false,
-				uspstracking: false,
-				reference: 1,
-				value: 100,
-				description: 'transcripts',
-				weightoz: 10,
-				output: ''
-			},
-			package2: {
-				shipdate: '',
-				trackingno: '',
-				soid: '',
-				mcid: '',
-				mailclass: '',
-				ptid: '',
-				packagetype: '',
-				customerid: '',
-				amount: '',
-				shippingcost: '',
-				width: '',
-				length: '',
-				height: '',
-				prioritymailexpress1030: false,
-				holidaydelivery: false,
-				sundaydelivery: false,
-				saturdaydelivery: false,
-				signaturerequired: false,
-				stealth: false,
-				replypostage: false,
-				insuredmail: false,
-				cod: false,
-				restricteddelivery: false,
-				adultsigrestricted: false,
-				adultsigrequired: false,
-				returnreceipt: false,
-				certifiedmail: false,
-				sigconfirmation: false,
-				uspstracking: false,
-				reference: 1,
-				value: 100,
-				description: 'transcripts',
-				weightoz: 10,
-				output: ''
-			}
-		},
-		appearances: {
-			speakerlist: [],
-			ordering: {
-				customersid: '',
-				factoring: '',
-				company: '',
-				mrms: '',
-				lastname: '',
-				firstname: '',
-				email: '',
-				jobtitle: '',
-				businessphone: '',
-				address1: '',
-				address2: '',
-				city: '',
-				state: '',
-				zip: '',
-				notes: ''
-			},
-			appearance1: {
-				customersid: '',
-				factoring: '',
-				company: '',
-				mrms: '',
-				lastname: '',
-				firstname: '',
-				email: '',
-				jobtitle: '',
-				businessphone: '',
-				address1: '',
-				address2: '',
-				city: '',
-				state: '',
-				zip: '',
-				notes: ''
-			},
-			appearance2: {
-				customersid: '',
-				factoring: '',
-				company: '',
-				mrms: '',
-				lastname: '',
-				firstname: '',
-				email: '',
-				jobtitle: '',
-				businessphone: '',
-				address1: '',
-				address2: '',
-				city: '',
-				state: '',
-				zip: '',
-				notes: ''
-			}
-		},
-		citations: {
-			citation1: {
-				findcitation: '',
-				replacehyperlink: '',
-				longcitation: '',
-				chcategory: '',
-				webaddress: ''
-			},
-			citation2: {
-				findcitation: '',
-				replacehyperlink: '',
-				longcitation: '',
-				chcategory: '',
-				webaddress: ''
-			}
-		},
-		commHistory: {
-			comm1: {
-				chid: '',
-				filepath: '',
-				datecreated: '',
-				customersid: ''
-			},
-			comm2: {
-				chid: '',
-				filepath: '',
-				datecreated: '',
-				customersid: ''
-			}
-		},
-		agShortcuts: {
-			ag1: '',
-			ag2: ''
-		}
-	}
-};
+
+function findByIdMain(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'courtdates.ttid',
+			'courtdates.hearingdate',
+			'courtdates.hearingstarttime',
+			'courtdates.hearingendtime',
+			'courtdates.audiolength',
+			'courtdates.location',
+			'courtdates.duedate',
+			'courtdates.filed',
+			'courtdates.hearingtitle',
+			'courtdates.judgename',
+			'courtdates.judgetitle',
+			'courtdates.factoringcost',
+			'courtdates.estimatedquantity',
+			'courtdates.actualquantity',
+			'courtdates.subtotal',
+			'courtdates.finalprice',
+			'courtdates.estimatedadvancedate',
+			'courtdates.estimatedrebatedate',
+			'courtdates.ppid',
+			'courtdates.ppstatus',
+			'cases.casesid',
+			'cases.party1',
+			'cases.party1name',
+			'cases.party2',
+			'cases.party2name',
+			'cases.casenumber1',
+			'cases.casenumber2',
+			'cases.jurisdiction',
+			'cases.notes',
+			'turnaroundtimes.ttid',
+			'turnaroundtimes.turnaround',
+			'courtdatescasescustomers.cdccid',
+			'courtdatescasescustomers.courtdatesid',
+			'courtdatescasescustomers.casesid',
+			'courtdatescasescustomers.customersid'
+		)
+		.join('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', '=', 'courtdates.courtdatesid')
+		.join('cases', 'cases.casesid', '=', 'courtdatescasescustomers.casesid')
+		.join('turnaroundtimes', 'turnaroundtimes.ttid', '=', 'courtdates.ttid')
+		.where({ courtdatesid });
+}
+
+/*
 
 function findByIdMain(courtdatesid) {
 	return db('courtdates')
@@ -523,6 +338,7 @@ function findByIdMain(courtdatesid) {
 		.where({ courtdatesid });
 
 }
+*/
 
 /*
 
