@@ -65,7 +65,7 @@ function findByIdMain(courtdatesid) {
 			'courtdates.estimatedadvancedate',
 			'courtdates.estimatedrebatedate',
 			'courtdates.ppid',
-			'courtdates.ppstatus''
+			'courtdates.ppstatus'
 		)
 		.where({ courtdatesid });
 }
