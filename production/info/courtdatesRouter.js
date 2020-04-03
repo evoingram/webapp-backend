@@ -33,7 +33,9 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 						hearingtitle: courtdate.hearingtitle,
 						judgename: courtdate.judgename,
 						judgetitle: courtdate.judgetitle
-					},
+					}
+					/*
+,
 					financial: {
 						invoiceno: courtdate.invoiceno,
 						rate: courtdate.rate,
@@ -188,6 +190,8 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 						stage4: {}
 					},
 					tasks: {}
+
+					*/
 				});
 			})
 			.catch(err => {
