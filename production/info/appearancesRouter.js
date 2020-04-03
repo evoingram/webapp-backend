@@ -1,11 +1,11 @@
 const router = require('express').Router();
 
-const Courtdates = require('./appearancesModel.js');
+const Appearances = require('./appearancesModel.js');
 const restricted = require('../auth/restriction.js');
 
 // GET:  Describe what it does
 router.get('/', restricted, (req, res) => {
-	Courtdates.find()
+	Appearances.find()
 		.then(courtdates => {
 			res.status(200).json(courtdates);
 		})
@@ -16,14 +16,14 @@ router.get('/', restricted, (req, res) => {
 router.get('/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
+		res.status(404).json({ message: 'The apps with the specified courtdatesid does not exist.' });
 	} else {
-		Courtdates.findAppsById(courtdatesid)
+		Appearances.findAppsById(courtdatesid)
 			.then(courtdate => {
 				res.status(201).json(courtdate);
 			})
 			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
+				res.status(500).json({ message: 'The apps information for this courtdate could not be retrieved.' });
 			});
 	}
 });
@@ -32,7 +32,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 router.post('/', restricted, (req, res) => {
 	const newStatus = req.body.status;
 
-	Statuses.add(newStatus)
+	Appearances.add(newStatus)
 		.then(status => {
 			res.status(201).json(status);
 		})
@@ -46,7 +46,7 @@ router.put('/:statusesid', restricted, (req, res) => {
 	const statusesid = req.params.statusesid;
 	const updatedStatus = { status: req.body.status };
 
-	Statuses.update(statusesid, updatedStatus)
+	Appearances.update(statusesid, updatedStatus)
 		.then(status => {
 			if (status) {
 				res.json(status);
@@ -64,7 +64,7 @@ router.delete('/:courtdatesid', restricted, (req, res) => {
 	if (!courtdatesid) {
 		res.status(404).json({ message: 'The courtdate with the specified ID does not exist.' });
 	}
-	Courtdates.remove(courtdatesid)
+	Appearances.remove(courtdatesid)
 		.then(courtdate => {
 			res.json(courtdate);
 		})
