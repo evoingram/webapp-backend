@@ -5,11 +5,7 @@ exports.up = function(knex) {
 		invoices
 			.integer('invoiceno')
 			.unsigned()
-			.notNullable()
-			.references('invoiceno')
-			.inTable('courtdates')
-			.onUpdate('CASCADE')
-			.onDelete('RESTRICT');
+			.notNullable();
 
 		invoices
 			.integer('customersid')
