@@ -29,7 +29,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 			.then(courtdate => {
 				let appearances = [
 					Appearances.findAppsById(courtdatesid).then(appearance => {
-						appearances.push(appearance);
+						return appearance;
 					})
 				];
 				res.status(201).json({
