@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const Appearances = require('./appearancesModel.js');
-const restricted = require('../auth/restriction.js');
+const restricted = require('../../auth/restriction.js');
 
 // GET:  Describe what it does
 router.get('/', restricted, (req, res) => {
@@ -19,11 +19,14 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 		res.status(404).json({ message: 'The apps with the specified courtdatesid does not exist.' });
 	} else {
 		Appearances.findAppsById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
+			.then(appearances => {
+				res.status(201).json(appearances);
 			})
 			.catch(err => {
-				res.status(500).json({ message: 'The apps information for this courtdate could not be retrieved.' });
+				res.status(500).json({
+					message: 'The apps information for this courtdate could not be retrieved.',
+					error: err
+				});
 			});
 	}
 });
