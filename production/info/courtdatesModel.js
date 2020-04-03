@@ -85,7 +85,7 @@ function findByIdMain(courtdatesid) {
 		.join('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', '=', 'courtdates.courtdatesid')
 		.join('cases', 'cases.casesid', '=', 'courtdatescasescustomers.casesid')
 		.join('turnaroundtimes', 'turnaroundtimes.ttid', '=', 'courtdates.ttid')
-		.where({ 'courtdates.courtdatesid': courtdatesid });
+		.where({ courtdatesid });
 }
 
 /*
