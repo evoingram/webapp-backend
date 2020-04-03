@@ -162,8 +162,7 @@ function findByIdMain(courtdatesid) {
 			'customers.notes',
 			'courtdatescasescustomers.cdccid',
 			'courtdatescasescustomers.courtdatesid',
-			'courtdatescasescustomers.casesid',
-			'courtdatescasescustomers.orderingid'
+			'courtdatescasescustomers.casesid'
 		)
 		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('turnaroundtimes', 'turnaroundtimes.ttid', 'courtdates.ttid')
