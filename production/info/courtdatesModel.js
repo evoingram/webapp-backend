@@ -170,30 +170,6 @@ function findByIdMain(courtdatesid) {
 			'payments.amount',
 			'payments.remitdate',
 			'payments.iid',
-			'courtdatescasescustomers.cdccid',
-			'courtdatescasescustomers.courtdatesid',
-			'courtdatescasescustomers.casesid',
-			'courtdatescasescustomers.orderingid'
-		)
-		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
-		.innerJoin('appearances', 'appearances.courtdatesid', 'courtdates.courtdatesid')
-		.innerJoin('turnaroundtimes', 'turnaroundtimes.ttid', 'courtdates.ttid')
-		.innerJoin('rates', 'rates.ratesid', 'courtdates.ratesid')
-		.innerJoin('brandingthemes', 'brandingthemes.btid', 'courtdates.btid')
-		.innerJoin('cases', 'cases.casesid', 'courtdatescasescustomers.casesid')
-		.innerJoin('agshortcuts', 'agshortcuts.courtdatesid', 'courtdates.courtdatesid')
-		.innerJoin('invoices', 'invoices.iid', 'courtdates.iid')
-		.innerJoin('customers', 'appearances.customersid', 'customers.customersid')
-		.innerJoin('expenses', 'expenses.courtdatesid', 'courtdates.courtdatesid')
-		.innerJoin('payments', 'payments.iid', 'invoices.iid')
-		.where('courtdates.courtdatesid', courtdatesid);
-}
-
-/*
-
-function findByIdMain(courtdatesid) {
-	return db('courtdates')
-		.select(
 			'shippingoptions.shipdate',
 			'shippingoptions.trackingno',
 			'shippingoptions.soid',
@@ -233,6 +209,33 @@ function findByIdMain(courtdatesid) {
 			'mailclass.mcid',
 			'mailclass.mailclass',
 			'mailclass.description',
+			'courtdatescasescustomers.cdccid',
+			'courtdatescasescustomers.courtdatesid',
+			'courtdatescasescustomers.casesid',
+			'courtdatescasescustomers.orderingid'
+		)
+		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('appearances', 'appearances.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('turnaroundtimes', 'turnaroundtimes.ttid', 'courtdates.ttid')
+		.innerJoin('rates', 'rates.ratesid', 'courtdates.ratesid')
+		.innerJoin('brandingthemes', 'brandingthemes.btid', 'courtdates.btid')
+		.innerJoin('cases', 'cases.casesid', 'courtdatescasescustomers.casesid')
+		.innerJoin('agshortcuts', 'agshortcuts.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('invoices', 'invoices.iid', 'courtdates.iid')
+		.innerJoin('customers', 'appearances.customersid', 'customers.customersid')
+		.innerJoin('expenses', 'expenses.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('payments', 'payments.iid', 'invoices.iid')
+		.join('shippingoptions', 'shippingoptions.courtdates', 'courtdates.courtdatesid')
+		.join('mailclass', 'mailclass.mcid', 'shippingoptions.mcid')
+		.join('packagetype', 'packagetype.ptid', 'shippingoptions.ptid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+
+/*
+
+function findByIdMain(courtdatesid) {
+	return db('courtdates')
+		.select(
 			'citationhyperlinks.chid',
 			'citationhyperlinks.findcitation',
 			'citationhyperlinks.replacehyperlink',
@@ -290,10 +293,7 @@ function findByIdMain(courtdatesid) {
 			'tasks.timelength',
 			'tasks.completed'
 		)
-		.join('shippingoptions', 'shippingoptions.courtdates', '=', 'courtdates.courtdatesid')
 		.join('communicationhistory', 'communicationhistory.courtdatesid', '=', 'courtdates.courtdatesid')
-		.join('mailclass', 'mailclass.mcid', '=', 'shippingoptions.mcid')
-		.join('packagetype', 'packagetype.ptid', '=', 'shippingoptions.ptid')
 		.join('statuses', 'statuses.courtdatesid', '=', 'courtdates.courtdatesid')
 		.join('tasks', 'tasks.courtdatesid', '=', 'courtdates.courtdatesid')
 		.where({ courtdatesid });
