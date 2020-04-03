@@ -18,20 +18,21 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 		Courtdates.findByIdMain(courtdatesid)
 			.then(courtdate => {
 				res.status(201).json({
+					test: { courtdate },
 					general: {
-						courtdatesid: courtdate.courtdates.courtdatesid,
-						ttid: courtdate.courtdates.ttid,
-						turnaround: courtdate.courtdates.turnaround,
-						hearingdate: courtdate.courtdates.hearingdate,
-						starttime: courtdate.courtdates.hearingstarttime,
-						endtime: courtdate.courtdates.hearingendtime,
-						audiolength: courtdate.courtdates.audiolength,
-						location: courtdate.courtdates.location,
-						duedate: courtdate.courtdates.duedate,
-						filed: courtdate.courtdates.filed,
-						hearingtitle: courtdate.courtdates.hearingtitle,
-						judgename: courtdate.courtdates.judgename,
-						judgetitle: courtdate.courtdates.judgetitle
+						courtdatesid: courtdate.courtdatesid,
+						ttid: courtdate.ttid,
+						turnaround: courtdate.turnaround,
+						hearingdate: courtdate.hearingdate,
+						starttime: courtdate.hearingstarttime,
+						endtime: courtdate.hearingendtime,
+						audiolength: courtdate.audiolength,
+						location: courtdate.location,
+						duedate: courtdate.duedate,
+						filed: courtdate.filed,
+						hearingtitle: courtdate.hearingtitle,
+						judgename: courtdate.judgename,
+						judgetitle: courtdate.judgetitle
 					},
 					financial: {
 						invoiceno: courtdate.invoiceno,
