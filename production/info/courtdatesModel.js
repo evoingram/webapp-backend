@@ -162,12 +162,6 @@ function findByIdMain(courtdatesid) {
 			'customers.state',
 			'customers.zip',
 			'customers.notes',
-			'expenses.eid',
-			'expenses.vendor',
-			'expenses.date',
-			'expenses.amount',
-			'expenses.description',
-			'expenses.courtdatesid',
 			'payments.pid',
 			'payments.amount',
 			'payments.remitdate',
@@ -265,6 +259,16 @@ function findByIdMain(courtdatesid) {
 			'courtdatescasescustomers.courtdatesid',
 			'courtdatescasescustomers.casesid',
 			'courtdatescasescustomers.orderingid'
+		)
+		.select(
+			[
+				'expenses.eid',
+				'expenses.vendor',
+				'expenses.date',
+				'expenses.amount',
+				'expenses.description',
+				'expenses.courtdatesid'
+			].as('expenses')
 		)
 		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('appearances', 'appearances.courtdatesid', 'courtdates.courtdatesid')
