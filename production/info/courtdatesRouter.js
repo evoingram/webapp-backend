@@ -179,7 +179,47 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 					},
 					agShortcuts: {
 						ag1: courtdate[0].ag1,
-						ag2: courtdate[0].ag2
+						ag2: courtdate[0].ag2,
+						ag3: courtdate[0].ag3,
+						ag4: courtdate[0].ag4,
+						ag5: courtdate[0].ag5,
+						ag6: courtdate[0].ag6,
+						ag11: courtdate[0].ag11,
+						ag12: courtdate[0].ag12,
+						ag13: courtdate[0].ag13,
+						ag14: courtdate[0].ag14,
+						ag15: courtdate[0].ag15,
+						ag16: courtdate[0].ag16,
+						ag21: courtdate[0].ag21,
+						ag22: courtdate[0].ag22,
+						ag23: courtdate[0].ag23,
+						ag24: courtdate[0].ag24,
+						ag25: courtdate[0].ag25,
+						ag26: courtdate[0].ag26,
+						ag31: courtdate[0].ag31,
+						ag32: courtdate[0].ag32,
+						ag33: courtdate[0].ag33,
+						ag34: courtdate[0].ag34,
+						ag35: courtdate[0].ag35,
+						ag36: courtdate[0].ag36,
+						ag41: courtdate[0].ag41,
+						ag42: courtdate[0].ag42,
+						ag43: courtdate[0].ag43,
+						ag44: courtdate[0].ag44,
+						ag45: courtdate[0].ag45,
+						ag46: courtdate[0].ag46,
+						ag51: courtdate[0].ag51,
+						ag52: courtdate[0].ag52,
+						ag53: courtdate[0].ag53,
+						ag54: courtdate[0].ag54,
+						ag55: courtdate[0].ag55,
+						ag56: courtdate[0].ag56,
+						ag61: courtdate[0].ag61,
+						ag62: courtdate[0].ag62,
+						ag63: courtdate[0].ag63,
+						ag64: courtdate[0].ag64,
+						ag65: courtdate[0].ag65,
+						ag66: courtdate[0].ag66
 					},
 					status: {
 						stage1: {},
@@ -187,7 +227,12 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 						stage3: {},
 						stage4: {}
 					},
-					tasks: {}
+					tasks: {
+						stage1: {},
+						stage2: {},
+						stage3: {},
+						stage4: {}
+					}
 				});
 			})
 			.catch(err => {
