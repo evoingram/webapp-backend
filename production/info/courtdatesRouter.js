@@ -56,27 +56,26 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 						itemcode: courtdate.itemcode,
 						description: courtdate.description,
 						accountcode: courtdate.accountcode,
-						taxtype: courtdate.taxtype,
-						},
-						case: {
-							party1: courtdate.party1,
-							party1name: courtdate.party1name,
-							party2: courtdate.party2,
-							party2name: courtdate.party2name,
-							casenumber1: courtdate.casenumber1,
-							casenumber2: courtdate.casenumber2,
-							jurisdiction: courtdate.jurisdiction,
-							notes: courtdate.notes
-						},
+						taxtype: courtdate.taxtype
+					},
+					case: {
+						party1: courtdate.party1,
+						party1name: courtdate.party1name,
+						party2: courtdate.party2,
+						party2name: courtdate.party2name,
+						casenumber1: courtdate.casenumber1,
+						casenumber2: courtdate.casenumber2,
+						jurisdiction: courtdate.jurisdiction,
+						notes: courtdate.notes
+					},
 
-						status: {
-							stage1: {},
-							stage2: {},
-							stage3: {},
-							stage4: {}
-						},
-						tasks: {}
-					}
+					status: {
+						stage1: {},
+						stage2: {},
+						stage3: {},
+						stage4: {}
+					},
+					tasks: {}
 				});
 			})
 			.catch(err => {
