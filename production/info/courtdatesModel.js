@@ -214,7 +214,6 @@ function findByIdMain(courtdatesid) {
 			'citations.courtdatesid',
 			'citationhyperlinks.chid',
 			'citationhyperlinks.findcitation',
-			'citationhyperlinks.replacehyperlink',
 			'citationhyperlinks.longcitation',
 			'citationhyperlinks.chcategory',
 			'citationhyperlinks.webaddress',
