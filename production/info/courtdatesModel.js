@@ -131,6 +131,12 @@ function findByIdMain(courtdatesid) {
 			'rates.description',
 			'brandingthemes.brandingtheme',
 			'brandingthemes.btid',
+			'expenses.eid',
+			'expenses.vendor',
+			'expenses.date',
+			'expenses.amount',
+			'expenses.description',
+			'expenses.courtdatesid',
 			'invoices.invoiceno',
 			'invoices.iid',
 			'invoices.btid',
@@ -259,14 +265,6 @@ function findByIdMain(courtdatesid) {
 			'courtdatescasescustomers.courtdatesid',
 			'courtdatescasescustomers.casesid',
 			'courtdatescasescustomers.orderingid'
-		)
-		.select(
-			'expenses.eid',
-			'expenses.vendor',
-			'expenses.date',
-			'expenses.amount',
-			'expenses.description',
-			'expenses.courtdatesid'
 		)
 		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('appearances', 'appearances.courtdatesid', 'courtdates.courtdatesid')
