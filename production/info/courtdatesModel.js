@@ -77,12 +77,22 @@ function findByIdMain(courtdatesid) {
 			'cases.notes',
 			'turnaroundtimes.ttid',
 			'turnaroundtimes.turnaroundtime',
+			'rates.ratesid',
+			'rates.rate',
+			'rates.code',
+			'rates.inventoryratecode',
+			'rates.productname',
+			'rates.description',
+			'brandingthemes.brandingtheme',
+			'brandingthemes.btid',
 			'courtdatescasescustomers.cdccid',
 			'courtdatescasescustomers.courtdatesid',
 			'courtdatescasescustomers.casesid'
 		)
 		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('turnaroundtimes', 'turnaroundtimes.ttid', 'courtdates.ttid')
+		.innerJoin('rates', 'rates.ratesid', 'courtdates.ratesid')
+		.innerJoin('brandingthemes', 'brandingthemes.btid', 'courtdates.btid')
 		.innerJoin('cases', 'cases.casesid', 'courtdatescasescustomers.casesid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
