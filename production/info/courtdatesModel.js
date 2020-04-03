@@ -290,7 +290,7 @@ function findByIdMain(courtdatesid) {
 		.innerJoin('statuses', 'courtdates.courtdatesid', 'statuses.courtdatesid')
 		.innerJoin('tasks', 'courtdates.courtdatesid', 'tasks.courtdatesid')
 		.innerJoin('citationhyperlinks', 'citations.citlinksid', 'citationhyperlinks.chid')
-		.innerJoin('usc', 'citations.uscid', 'usc.uscid')
+		.or.innerJoin('usc', 'citations.uscid', 'usc.uscid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
 
