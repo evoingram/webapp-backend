@@ -70,7 +70,7 @@ function findByIdMain(courtdatesid) {
 			'courtdatescasescustomers.courtdatesid',
 			'courtdatescasescustomers.casesid'
 		)
-		.join('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', '=', 'courtdates.courtdatesid')
+		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
 		.where({ courtdatesid });
 }
 
