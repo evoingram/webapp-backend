@@ -10,35 +10,28 @@ module.exports = {
 };
 
 function find() {
-	return db('courtdates').select('*');
+	return db('examtypes').select('*');
 }
 
 function findBy(filter) {
-	return db('courtdates').where(filter);
+	return db('examtypes').where(filter);
 }
 
-async function add(courtdate) {
-	const [courtdatesid] = await db('courtdates').insert(courtdate, 'courtdatesid');
-	return findById(courtdatesid);
+async function add(singleexamtype) {
+	const [eid] = await db('examtypes').insert(singleexamtype, 'eid');
+	return findById(eid);
 }
 
-function findById(courtdatesid) {
-	return db('courtdates')
-		.select('courtdatesid', '*')
-		.where({ courtdatesid })
-		.first();
+function findById(eid) {
+	return db('examtypes').select('eid', '*').where({ eid }).first();
 }
 
-function update(courtdatesid, courtdate) {
-	return db('courtdates')
-		.where('courtdatesid', Number(courtdatesid))
-		.update(courtdate);
+function update(eid, singleexamtype) {
+	return db('examtypes').where('eid', Number(eid)).update(singleexamtype);
 }
 
-function remove(courtdatesid) {
-	return db('courtdates')
-		.where('courtdatesid', Number(courtdatesid))
-		.del();
+function remove(eid) {
+	return db('examtypes').where('eid', Number(eid)).del();
 }
 
 /*

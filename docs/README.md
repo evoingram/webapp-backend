@@ -32,15 +32,28 @@ All endpoints have been tested via Postman.
 - [X] CRUD brandingthemes
 - [X] CRUD tasks
 - [X] CRUD statuses
-- [ ] CRUD expenses
+- [X] CRUD expenses
 - [ ] CRUD payments
 - [ ] CRUD commHistory
 - [ ] CRUD shipping
 - [ ] CRUD invoices
+- [ ] CRUD citations
 - [ ] CRUD customers
+
+- [ ] CRUD rates
+- [ ] CRUD agshortcuts
+- [ ] CRUD examtypes
+- [ ] CRUD styles
+- [ ] CRUD turnaroundtimes
+- [ ] CRUD courtdatescasescustomers
+- [ ] CRUD appearances
+- [ ] CRUD mailclass
+- [ ] CRUD packagetype
+
 - [ ] GET jobs by customer
 - [ ] GET jobs by duedate?
 - [ ] GET invoices by amount/duedate/factoring
 - [ ] GET customers by factoring
 - [ ] GET cases by customer
+- [ ] GET unpaid invoices
 
