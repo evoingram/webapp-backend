@@ -40,7 +40,7 @@ All endpoints have been tested via Postman.
 - [ ] CRUD citations
 - [ ] CRUD customers
 
-- [ ] CRUD rates
+- [X] CRUD rates
 - [ ] CRUD agshortcuts
 - [ ] CRUD examtypes
 - [ ] CRUD styles
