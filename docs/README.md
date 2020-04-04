@@ -38,15 +38,15 @@ All endpoints have been tested via Postman.
 - [X] CRUD shipping
 - [X] CRUD invoices
 - [X] CRUD citations
-- [ ] CRUD customers
+- [X] CRUD customers
 
 - [X] CRUD rates
 - [X] CRUD agshortcuts
 - [X] CRUD examtypes
 - [X] CRUD styles
 - [X] CRUD turnaroundtimes
-- [ ] CRUD courtdatescasescustomers
-- [ ] CRUD appearances
+- [X] CRUD courtdatescasescustomers
+- [X] CRUD appearances
 - [X] CRUD mailclass
 - [X] CRUD packagetype
 - [X] CRUD usc
