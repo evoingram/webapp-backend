@@ -18,20 +18,20 @@ function findBy(filter) {
 }
 
 async function add(expense) {
-	const [expensesid] = await db('expenses').insert(expense, 'expensesid');
-	return findById(expensesid);
+	const [eid] = await db('expenses').insert(expense, 'eid');
+	return findById(eid);
 }
 
-function findById(expensesid) {
-	return db('expenses').select('expensesid', '*').where({ expensesid }).first();
+function findById(eid) {
+	return db('expenses').select('eid', '*').where({ eid }).first();
 }
 
-function update(expensesid, expense) {
-	return db('expenses').where('expensesid', Number(expensesid)).update(expense);
+function update(eid, expense) {
+	return db('expenses').where('eid', Number(eid)).update(expense);
 }
 
-function remove(expensesid) {
-	return db('expenses').where('expensesid', Number(expensesid)).del();
+function remove(eid) {
+	return db('expenses').where('eid', Number(eid)).del();
 }
 
 /*
