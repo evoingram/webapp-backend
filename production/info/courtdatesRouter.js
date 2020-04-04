@@ -1,13 +1,6 @@
 const router = require('express').Router();
 
 const Courtdates = require('./courtdatesModel.js');
-const Appearances = require('./appearancesModel.js');
-const Tasks = require('../mgmt/tasksModel.js');
-const Citations = require('../authorities/citationsModel.js');
-const Shipping = require('../shipping/shippingModel.js');
-const Expenses = require('../../financials/expensesModel.js');
-const Payments = require('../../financials/paymentsModel.js');
-const CommHistory = require('./commHModel.js');
 const restricted = require('../../auth/restriction.js');
 
 router.get('/', restricted, (req, res) => {
@@ -20,7 +13,10 @@ router.get('/', restricted, (req, res) => {
 router.get('/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
+		res.status(404).json({
+			message: `The courtdate with the specified courtdatesid ${courtdatesid} does not exist.`,
+			error: err
+		});
 	} else {
 		Courtdates.findByIdMain(courtdatesid).then(courtdate => {
 			Courtdates.findAppsById(courtdatesid)
@@ -193,7 +189,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 				})
 				.catch(err => {
 					res.status(500).json({
-						message: 'The courtdate information could not be retrieved.',
+						message: `The courtdate information could not be retrieved.`,
 						error: err
 					});
 				});
@@ -204,132 +200,20 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 router.get('/basic/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
+		res.status(404).json({
+			message: `The courtdate with the specified courtdatesid ${courtdatesid} does not exist.`,
+			error: err
+		});
 	} else {
 		Courtdates.findById(courtdatesid)
 			.then(courtdate => {
 				res.status(201).json(courtdate);
 			})
 			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
-			});
-	}
-});
-
-router.get('/apps/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
-	} else {
-		Courtdates.findAppsById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
-			})
-			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
-			});
-	}
-});
-
-// also need:
-// 		expenses, payments, shipping
-// 		citations, tasks, commHistory
-
-router.get('/expenses/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
-	} else {
-		Courtdates.findExpensesById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
-			})
-			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
-			});
-	}
-});
-router.get('/payments/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
-	} else {
-		Courtdates.findPaymentsById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
-			})
-			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
-			});
-	}
-});
-router.get('/shipping/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
-	} else {
-		Courtdates.getShippingById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
-			})
-			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
-			});
-	}
-});
-router.get('/citations/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
-	} else {
-		Courtdates.findCitationsById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
-			})
-			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
-			});
-	}
-});
-router.get('/tasks/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
-	} else {
-		Courtdates.findTasksById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
-			})
-			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
-			});
-	}
-});
-router.get('/commhistory/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
-	} else {
-		Courtdates.findCommHistoryById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
-			})
-			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
-			});
-	}
-});
-router.get('/invoices/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
-	} else {
-		Courtdates.findInvoicesById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
-			})
-			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
+				res.status(500).json({
+					message: `The courtdate information ${courtdatesid} could not be retrieved.`,
+					error: err
+				});
 			});
 	}
 });
@@ -337,15 +221,376 @@ router.get('/invoices/:courtdatesid', restricted, (req, res) => {
 router.delete('/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified ID does not exist.' });
+		res.status(404).json({
+			message: `The courtdate with the specified ID ${courtdatesid} does not exist.`,
+			error: err
+		});
 	}
 	Courtdates.remove(courtdatesid)
 		.then(courtdate => {
 			res.json(courtdate);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'The courtdate could not be removed' });
+			res.status(500).json({ message: `The courtdate ${courtdatesid} could not be removed.`, error: err });
 		});
+});
+
+router.get('/apps/:courtdatesid', restricted, (req, res) => {
+	const courtdatesid = req.params.courtdatesid;
+	if (!courtdatesid) {
+		res.status(404).json({
+			message: `The apps with the specified courtdatesid ${courtdatesid} does not exist.`,
+			error: err
+		});
+	} else {
+		Courtdates.findAppsById(courtdatesid)
+			.then(courtdate => {
+				res.status(201).json(courtdate);
+			})
+			.catch(err => {
+				res.status(500).json({
+					message: `The apps information for this courtdate ${courtdatesid} could not be retrieved.`,
+					error: err
+				});
+			});
+	}
+});
+router.get('/expenses/:courtdatesid', restricted, (req, res) => {
+	const courtdatesid = req.params.courtdatesid;
+	if (!courtdatesid) {
+		res.status(404).json({
+			message: `The courtdate with the specified courtdatesid ${courtdatesid} does not exist.`,
+			error: err
+		});
+	} else {
+		Courtdates.findExpensesById(courtdatesid)
+			.then(courtdate => {
+				res.status(201).json(courtdate);
+			})
+			.catch(err => {
+				res.status(500).json({
+					message: `The expenses information for this courtdate ${courtdatesid} could not be retrieved.`
+				});
+			});
+	}
+});
+router.get('/payments/:courtdatesid', restricted, (req, res) => {
+	const courtdatesid = req.params.courtdatesid;
+	if (!courtdatesid) {
+		res.status(404).json({
+			message: `The courtdate with the specified courtdatesid ${courtdatesid} does not exist.`,
+			error: err
+		});
+	} else {
+		Courtdates.findPaymentsById(courtdatesid)
+			.then(courtdate => {
+				res.status(201).json(courtdate);
+			})
+			.catch(err => {
+				res.status(500).json({
+					message: `The payments information for this courtdate ${courtdatesid} could not be retrieved.`
+				});
+			});
+	}
+});
+router.get('/shipping/:courtdatesid', restricted, (req, res) => {
+	const courtdatesid = req.params.courtdatesid;
+	if (!courtdatesid) {
+		res.status(404).json({
+			message: `The courtdate with the specified courtdatesid ${courtdatesid} does not exist.`,
+			error: err
+		});
+	} else {
+		Courtdates.getShippingById(courtdatesid)
+			.then(courtdate => {
+				res.status(201).json(courtdate);
+			})
+			.catch(err => {
+				res.status(500).json({
+					message: `The shipping information for this courtdate ${courtdatesid} could not be retrieved.`
+				});
+			});
+	}
+});
+router.get('/citations/:courtdatesid', restricted, (req, res) => {
+	const courtdatesid = req.params.courtdatesid;
+	if (!courtdatesid) {
+		res.status(404).json({
+			message: `The courtdate with the specified courtdatesid ${courtdatesid} does not exist.`,
+			error: err
+		});
+	} else {
+		Courtdates.findCitationsById(courtdatesid)
+			.then(courtdate => {
+				res.status(201).json(courtdate);
+			})
+			.catch(err => {
+				res.status(500).json({
+					message: `The citations information for this courtdate ${courtdatesid} could not be retrieved.`
+				});
+			});
+	}
+});
+router.get('/tasks/:courtdatesid', restricted, (req, res) => {
+	const courtdatesid = req.params.courtdatesid;
+	if (!courtdatesid) {
+		res.status(404).json({ message: `The courtdate with the specified courtdatesid does not exist.`, error: err });
+	} else {
+		Courtdates.findTasksById(courtdatesid)
+			.then(courtdate => {
+				res.status(201).json(courtdate);
+			})
+			.catch(err => {
+				res.status(500).json({
+					message: `The tasks information for this courtdate ${courtdatesid} could not be retrieved.`,
+					error: err
+				});
+			});
+	}
+});
+router.get('/commhistory/:courtdatesid', restricted, (req, res) => {
+	const courtdatesid = req.params.courtdatesid;
+	if (!courtdatesid) {
+		res.status(404).json({
+			message: `The courtdate with the specified courtdatesid ${courtdatesid} does not exist.`,
+			error: err
+		});
+	} else {
+		Courtdates.findCommHistoryById(courtdatesid)
+			.then(courtdate => {
+				res.status(201).json(courtdate);
+			})
+			.catch(err => {
+				res.status(500).json({
+					message: `The commhistory information for this courtdate ${courtdatesid} could not be retrieved.`
+				});
+			});
+	}
+});
+router.get('/invoices/:courtdatesid', restricted, (req, res) => {
+	const courtdatesid = req.params.courtdatesid;
+	if (!courtdatesid) {
+		res.status(404).json({
+			message: `The courtdate with the specified courtdatesid ${courtdatesid} does not exist.`,
+			error: err
+		});
+	} else {
+		Courtdates.findInvoicesById(courtdatesid)
+			.then(courtdate => {
+				res.status(201).json(courtdate);
+			})
+			.catch(err => {
+				res.status(500).json({
+					message: `The invoice information for this courtdate ${courtdatesid} could not be retrieved.`,
+					error: err
+				});
+			});
+	}
+});
+
+router.get('/statuses/:courtdatesid', restricted, (req, res) => {
+	const courtdatesid = req.params.courtdatesid;
+	if (!courtdatesid) {
+		res.status(404).json({
+			message: `The courtdate with the specified courtdatesid ${courtdatesid} does not exist.`,
+			error: err
+		});
+	} else {
+		Courtdates.findStatusesById(courtdatesid)
+			.then(statuses => {
+				res.status(201).json(statuses);
+			})
+			.catch(err => {
+				res.status(500).json({
+					message: `The statuses information for this courtdate ${courtdatesid} could not be retrieved.`,
+					error: err
+				});
+			});
+	}
+});
+router.get('/brandingthemes/:courtdatesid', restricted, (req, res) => {
+	const courtdatesid = req.params.courtdatesid;
+	if (!courtdatesid) {
+		res.status(404).json({
+			message: `The courtdate with the specified courtdatesid ${courtdatesid} does not exist.`,
+			error: err
+		});
+	} else {
+		Courtdates.findBTsById(courtdatesid)
+			.then(brandingthemes => {
+				res.status(201).json(brandingthemes);
+			})
+			.catch(err => {
+				res.status(500).json({
+					message: `The brandingthemes information for this courtdate ${courtdatesid} could not be retrieved.`,
+					error: err
+				});
+			});
+	}
+});
+router.get('/rates/:courtdatesid', restricted, (req, res) => {
+	const courtdatesid = req.params.courtdatesid;
+	if (!courtdatesid) {
+		res.status(404).json({
+			message: `The courtdate with the specified courtdatesid ${courtdatesid} does not exist.`,
+			error: err
+		});
+	} else {
+		Courtdates.findRatesById(courtdatesid)
+			.then(rates => {
+				res.status(201).json(rates);
+			})
+			.catch(err => {
+				res.status(500).json({
+					message: `The rates information for this courtdate ${courtdatesid} could not be retrieved.`,
+					error: err
+				});
+			});
+	}
+});
+
+router.get('/agshortcuts/:courtdatesid', restricted, (req, res) => {
+	const courtdatesid = req.params.courtdatesid;
+	if (!courtdatesid) {
+		res.status(404).json({
+			message: `The courtdate with the specified courtdatesid ${courtdatesid} does not exist.`,
+			error: err
+		});
+	} else {
+		Courtdates.findAGSById(courtdatesid)
+			.then(agshortcuts => {
+				res.status(201).json(agshortcuts);
+			})
+			.catch(err => {
+				res.status(500).json({
+					message: `The agshortcuts list information for this courtdate ${courtdatesid} could not be retrieved.`,
+					error: err
+				});
+			});
+	}
+});
+
+router.get('/citationhyperlinks/:courtdatesid', restricted, (req, res) => {
+	const courtdatesid = req.params.courtdatesid;
+	if (!courtdatesid) {
+		res.status(404).json({
+			message: `The courtdate with the specified courtdatesid ${courtdatesid} does not exist.`,
+			error: err
+		});
+	} else {
+		Courtdates.findCHsById(courtdatesid)
+			.then(citationhyperlinks => {
+				res.status(201).json(citationhyperlinks);
+			})
+			.catch(err => {
+				res.status(500).json({
+					message: `The citationhyperlinks information for this courtdate ${courtdatesid} could not be retrieved.`,
+					error: err
+				});
+			});
+	}
+});
+router.get('/mailclasses/:courtdatesid', restricted, (req, res) => {
+	const courtdatesid = req.params.courtdatesid;
+	if (!courtdatesid) {
+		res.status(404).json({
+			message: `The courtdate with the specified courtdatesid ${courtdatesid} does not exist.`,
+			error: err
+		});
+	} else {
+		Courtdates.findMCsById(courtdatesid)
+			.then(mailclasses => {
+				res.status(201).json(mailclasses);
+			})
+			.catch(err => {
+				res.status(500).json({
+					message: `The mailclasses information for this courtdate ${courtdatesid} could not be retrieved.`,
+					error: err
+				});
+			});
+	}
+});
+router.get('/packagetypes/:courtdatesid', restricted, (req, res) => {
+	const courtdatesid = req.params.courtdatesid;
+	if (!courtdatesid) {
+		res.status(404).json({
+			message: `The courtdate with the specified courtdatesid ${courtdatesid} does not exist.`,
+			error: err
+		});
+	} else {
+		Courtdates.findPTsById(courtdatesid)
+			.then(packagetypes => {
+				res.status(201).json(packagetypes);
+			})
+			.catch(err => {
+				res.status(500).json({
+					message: `The packagetypes information for this courtdate ${courtdatesid} could not be retrieved.`,
+					error: err
+				});
+			});
+	}
+});
+
+router.get('/ccc/:courtdatesid', restricted, (req, res) => {
+	const courtdatesid = req.params.courtdatesid;
+	if (!courtdatesid) {
+		res.status(404).json({
+			message: `The courtdate with the specified courtdatesid ${courtdatesid} does not exist.`,
+			error: err
+		});
+	} else {
+		Courtdates.findCCCsById(courtdatesid)
+			.then(ccc => {
+				res.status(201).json(ccc);
+			})
+			.catch(err => {
+				res.status(500).json({
+					message: `The ccc information for this courtdate ${courtdatesid} could not be retrieved.`,
+					error: err
+				});
+			});
+	}
+});
+
+router.get('/ccc/:courtdatesid', restricted, (req, res) => {
+	const courtdatesid = req.params.courtdatesid;
+	if (!courtdatesid) {
+		res.status(404).json({
+			message: `The courtdate with the specified courtdatesid ${courtdatesid} does not exist.`,
+			error: err
+		});
+	} else {
+		Courtdates.findCCCsById(courtdatesid)
+			.then(ccc => {
+				res.status(201).json(ccc);
+			})
+			.catch(err => {
+				res.status(500).json({
+					message: `The ccc information for this courtdate ${courtdatesid} could not be retrieved.`,
+					error: err
+				});
+			});
+	}
+});
+router.get('/usc/:courtdatesid', restricted, (req, res) => {
+	const courtdatesid = req.params.courtdatesid;
+	if (!courtdatesid) {
+		res.status(404).json({
+			message: `The courtdate with the specified courtdatesid ${courtdatesid} does not exist.`,
+			error: err
+		});
+	} else {
+		Courtdates.findUSCsById(courtdatesid)
+			.then(usc => {
+				res.status(201).json(usc);
+			})
+			.catch(err => {
+				res.status(500).json({
+					message: `The usc information for this courtdate ${courtdatesid} could not be retrieved.`,
+					error: err
+				});
+			});
+	}
 });
 
 module.exports = router;

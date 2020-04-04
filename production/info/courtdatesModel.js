@@ -15,6 +15,17 @@ module.exports = {
 	findTasksById,
 	findCitationsById,
 	findInvoicesById,
+	findUSCsById,
+	findMCsById,
+	findPTsById,
+	findBTsById,
+	findRatesById,
+	findStatusesById,
+	findAGSById,
+	findETsById,
+	findStylesById,
+	findCCCsById,
+	findCHsById,
 	findAppsById
 };
 
@@ -57,7 +68,6 @@ function findExpensesById(courtdatesid) {
 		.innerJoin('expenses', 'expenses.courtdatesid', 'courtdates.courtdatesid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
-
 function findPaymentsById(courtdatesid) {
 	return db('courtdates')
 		.select(
@@ -71,7 +81,6 @@ function findPaymentsById(courtdatesid) {
 		.innerJoin('payments', 'payments.iid', 'courtdates.iid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
-
 function getShippingById(courtdatesid) {
 	return db('courtdates')
 		.select(
@@ -133,7 +142,6 @@ function getShippingById(courtdatesid) {
 		.innerJoin('packagetype', 'packagetype.ptid', 'shippingoptions.ptid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
-
 function findAppsById(courtdatesid) {
 	return db('courtdates')
 		.select(
@@ -162,7 +170,6 @@ function findAppsById(courtdatesid) {
 		.innerJoin('customers', 'appearances.customersid', 'customers.customersid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
-
 function findCitationsById(courtdatesid) {
 	return db('courtdates')
 		.select(
@@ -268,6 +275,176 @@ function findInvoicesById(courtdatesid) {
 		.innerJoin('invoices', 'invoices.iid', 'courtdates.iid')
 		.innerJoin('customers', 'invoices.customersid', 'customers.customersid')
 		.innerJoin('payments', 'payments.iid', 'invoices.iid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+
+function findMCsById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'shippingoptions.mcid',
+			'shippingoptions.courtdatesid',
+			'mailclass.mcid',
+			'mailclass.mailclass',
+			'mailclass.description'
+		)
+		.innerJoin('shippingoptions', 'shippingoptions.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('mailclass', 'mailclass.mcid', 'shippingoptions.mcid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+function findPTsById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'shippingoptions.mcid',
+			'shippingoptions.courtdatesid',
+			'packagetype.ptid',
+			'packagetype.packagetype',
+			'packagetype.description'
+		)
+		.innerJoin('shippingoptions', 'shippingoptions.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('packagetype', 'packagetype.ptid', 'shippingoptions.ptid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+function findBTsById(courtdatesid) {
+	return db('courtdates')
+		.select('courtdates.courtdatesid', 'courtdates.btid', 'brandingthemes.brandingtheme', 'brandingthemes.btid')
+		.innerJoin('brandingthemes', 'brandingthemes.btid', 'courtdates.btid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+function findRatesById(courtdatesid) {
+	return db('courtdates')
+		.select('courtdates.courtdatesid', 'courtdates.btid', 'brandingthemes.brandingtheme', 'brandingthemes.btid')
+		.innerJoin('brandingthemes', 'brandingthemes.btid', 'courtdates.btid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+
+function findStatusesById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'courtdates.ratesid',
+			'rates.ratesid',
+			'rates.rate',
+			'rates.code',
+			'rates.inventoryratecode',
+			'rates.productname',
+			'rates.description'
+		)
+		.innerJoin('rates', 'rates.ratesid', 'courtdates.ratesid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+function findAGSById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'agshortcuts.agsid',
+			'agshortcuts.courtdatesid',
+			'agshortcuts.ag1',
+			'agshortcuts.ag2',
+			'agshortcuts.ag3',
+			'agshortcuts.ag4',
+			'agshortcuts.ag5',
+			'agshortcuts.ag6',
+			'agshortcuts.ag11',
+			'agshortcuts.ag12',
+			'agshortcuts.ag13',
+			'agshortcuts.ag14',
+			'agshortcuts.ag15',
+			'agshortcuts.ag16',
+			'agshortcuts.ag21',
+			'agshortcuts.ag22',
+			'agshortcuts.ag23',
+			'agshortcuts.ag24',
+			'agshortcuts.ag25',
+			'agshortcuts.ag26',
+			'agshortcuts.ag31',
+			'agshortcuts.ag32',
+			'agshortcuts.ag33',
+			'agshortcuts.ag34',
+			'agshortcuts.ag35',
+			'agshortcuts.ag36',
+			'agshortcuts.ag41',
+			'agshortcuts.ag42',
+			'agshortcuts.ag43',
+			'agshortcuts.ag44',
+			'agshortcuts.ag45',
+			'agshortcuts.ag46',
+			'agshortcuts.ag51',
+			'agshortcuts.ag52',
+			'agshortcuts.ag53',
+			'agshortcuts.ag54',
+			'agshortcuts.ag55',
+			'agshortcuts.ag56',
+			'agshortcuts.ag61',
+			'agshortcuts.ag62',
+			'agshortcuts.ag63',
+			'agshortcuts.ag64',
+			'agshortcuts.ag65',
+			'agshortcuts.ag66'
+		)
+		.innerJoin('agshortcuts', 'agshortcuts.courtdatesid', 'courtdates.courtdatesid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+function findETsById(courtdatesid) {
+	return db('courtdates')
+		.select('courtdates.courtdatesid', 'examtypes.eid', 'examtypes.examination', 'examtypes.ecode')
+		.innerJoin('examtypes', 'courtdates.eid', 'examtypes.eid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+
+function findStylesById(courtdatesid) {
+	return db('courtdates')
+		.select('courtdates.courtdatesid', 'stylenames.sid', 'stylenames.stylename')
+		.innerJoin('stylenames', 'courtdates.sid', 'stylenames.sid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+function findCCCsById(courtdatesid) {
+	return db('courtdatescasescustomers')
+		.select(
+			'courtdates.courtdatesid',
+			'courtdatescasescustomers.cdccid',
+			'courtdatescasescustomers.courtdatesid',
+			'courtdatescasescustomers.casesid',
+			'courtdatescasescustomers.orderingid'
+		)
+		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+function findCHsById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'citations.citationsid',
+			'citations.uscid',
+			'citations.citlinksid',
+			'citations.courtdatesid',
+			'citationhyperlinks.chid',
+			'citationhyperlinks.findcitation',
+			'citationhyperlinks.longcitation',
+			'citationhyperlinks.chcategory',
+			'citationhyperlinks.webaddress'
+		)
+		.innerJoin('citations', 'courtdates.courtdatesid', 'citations.courtdatesid')
+		.innerJoin('citationhyperlinks', 'citations.citlinksid', 'citationhyperlinks.chid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+function findUSCsById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'citations.citationsid',
+			'citations.uscid',
+			'citations.citlinksid',
+			'citations.courtdatesid',
+			'usc.uscid',
+			'usc.findcitation',
+			'usc.longcitation',
+			'usc.chcategory',
+			'usc.webaddress'
+		)
+		.innerJoin('citations', 'courtdates.courtdatesid', 'citations.courtdatesid')
+		.innerJoin('usc', 'citations.uscid', 'usc.uscid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
 
@@ -519,82 +696,6 @@ function findByIdMain(courtdatesid) {
 
 /*
 
-SELECT [CourtDates].[CasesID]
-FROM CourtDates;
-
-*/
-
-/*
-
-
-SELECT DISTINCTROW *
-FROM CourtDates;
-
-*/
-
-/*
-
-SELECT [Cases].[Party1], [Cases].[Party2], [Cases].[CaseNumber1], [Cases].[CaseNumber2], [Cases].[Jurisdiction], [Cases].[HearingTitle], [Cases].[Judge], [Cases].[JudgeTitle], [Cases].[CourtDatesID], [CourtDates].[HearingDate], [CourtDates].[HearingStartTime], [CourtDates].[HearingEndTime], [CourtDates].[App1], [CourtDates].[App2], [CourtDates].[App3], [CourtDates].[App4], [CourtDates].[App5], [CourtDates].[App6], [CourtDates].[OrderingID], [CourtDates].[AudioLength], [CourtDates].[TurnaroundTimesCD], [CourtDates].[InvoicesID], [CourtDates].[DateFactored], [CourtDates].[DatePaid], [CourtDates].[ShipDate], [CourtDates].[ShippingID], [CourtDates].[TrackingNumber]
-FROM CourtDates INNER JOIN Cases ON [CourtDates].[ID] =[Cases].[CourtDatesID];
-
-
-*/
-
-/*
-
-SELECT CourtDatesBTQuery.CourtDates_ID, CourtDatesBTQuery.BrandingThemes_BrandingTheme, CourtDatesRatesQuery.CourtDatesID AS CourtDatesRatesQuery_CourtDatesID, InvoicesQuery4.CourtDatesID AS InvoicesQuery4_CourtDatesID, InvoicesQuery4.Reference, InvoicesQuery4.HearingDate, InvoicesQuery4.HearingStartTime, InvoicesQuery4.HearingEndTime, InvoicesQuery4.CasesID, InvoicesQuery4.OrderingID, InvoicesQuery4.AudioLength, InvoicesQuery4.Location, InvoicesQuery4.TurnaroundTimesCD, InvoicesQuery4.Expr1010, InvoicesQuery4.Cases_ID, InvoicesQuery4.Party1, InvoicesQuery4.Party2, InvoicesQuery4.CaseNumber1, InvoicesQuery4.CaseNumber2, InvoicesQuery4.Jurisdiction, InvoicesQuery4.CustomersID, InvoicesQuery4.Company, InvoicesQuery4.FirstName, InvoicesQuery4.LastName, InvoicesQuery4.Address, InvoicesQuery4.City, InvoicesQuery4.State, InvoicesQuery4.ZIP, InvoicesQuery4.EmailAddress, InvoicesQuery4.InvoiceNo, InvoicesQuery4.Quantity, InvoicesQuery4.DueDate, InvoicesQuery4.InvoiceDate, InvoicesQuery4.AccountCode, InvoicesQuery4.TaxType, CourtDatesRatesQuery.Code, CourtDatesRatesQuery.[List Price]
-FROM CourtDatesRatesQuery INNER JOIN (CourtDatesBTQuery INNER JOIN InvoicesQuery4 ON CourtDatesBTQuery.[CourtDatesID] = InvoicesQuery4.[CourtDatesID]) ON CourtDatesRatesQuery.[CourtDatesID] = InvoicesQuery4.[CourtDatesID];
-
-
-*/
-
-/*
-
-SELECT CourtDatesBTQuery.CourtDatesID, CourtDatesBTQuery.BrandingThemes_BrandingTheme, CourtDatesRatesQuery.CourtDatesID AS CourtDatesRatesQuery_CourtDatesID, InvoicesQuery4.CourtDatesID AS InvoicesQuery4_CourtDatesID, InvoicesQuery4.Reference, InvoicesQuery4.HearingDate, InvoicesQuery4.HearingStartTime, InvoicesQuery4.HearingEndTime, InvoicesQuery4.CasesID, InvoicesQuery4.OrderingID, InvoicesQuery4.AudioLength, InvoicesQuery4.Location, InvoicesQuery4.TurnaroundTimesCD, InvoicesQuery4.Expr1010, InvoicesQuery4.Cases_ID, InvoicesQuery4.Party1, InvoicesQuery4.Party2, InvoicesQuery4.CaseNumber1, InvoicesQuery4.CaseNumber2, InvoicesQuery4.Jurisdiction, InvoicesQuery4.CustomersID, InvoicesQuery4.Company, InvoicesQuery4.FirstName, InvoicesQuery4.LastName, InvoicesQuery4.Address, InvoicesQuery4.City, InvoicesQuery4.State, InvoicesQuery4.ZIP, InvoicesQuery4.EmailAddress, InvoicesQuery4.InvoiceNo, InvoicesQuery4.Quantity, InvoicesQuery4.DueDate, InvoicesQuery4.InvoiceDate, InvoicesQuery4.AccountCode, InvoicesQuery4.TaxType, CourtDatesRatesQuery.Code, CourtDatesRatesQuery.[Rate]
-FROM CourtDatesRatesQuery INNER JOIN (CourtDatesBTQuery INNER JOIN InvoicesQuery4 ON CourtDatesBTQuery.[CourtDatesID] = InvoicesQuery4.[CourtDatesID]) ON CourtDatesRatesQuery.[CourtDatesID] = InvoicesQuery4.[CourtDatesID];
-
-
-*/
-
-/*
-
-SELECT CourtDates.ID, CourtDates.HearingDate, CourtDates.HearingStartTime, [CourtDates].HearingEndTime
-FROM CourtDates
-WHERE (CourtDates.[ID])=forms![MMProcess Jobs].JobNumberField
-ORDER BY [HearingDate], [HearingStartTime], [HearingEndTime];
-
-
-
-*/
-
-/*
-
-SELECT CourtDates.ID AS CourtDatesID, CourtDates.InventoryRateCode, Rates.ID AS RatesID, Rates.Code, Rates.[List Price] AS Rate
-FROM CourtDates INNER JOIN Rates ON CourtDates.[InventoryRateCode]=Rates.[ID];
-
-
-*/
-
-/*
-
-
-SELECT CourtDates.InvoiceNo, "0" AS TotalExpenses
-FROM CourtDates LEFT JOIN Expenses ON CourtDates.[InvoiceNo] = Expenses.[InvoiceNo]
-WHERE (((Expenses.InvoiceNo) Is Null));
-
-
-*/
-
-/*
-
-SELECT CourtDates.ID AS CourtDatesID, UnitPrice.ID, CourtDates.AudioLength, CourtDates.TurnaroundTimesCD, CourtDates.InvoiceNo, CourtDates.InvoiceDate, CourtDates.PaymentDueDate, CourtDates.ExpectedAdvanceDate, CourtDates.ExpectedRebateDate, CourtDates.EstimatedPageCount, CourtDates.FactoringCost, CourtDates.UnitPrice, UnitPrice.Rate, CourtDates.ActualQuantity, CourtDates.DueDate, CourtDates.FinalPrice AS FinalPrice, Rate*ActualQuantity AS Subtotal
-FROM CourtDates INNER JOIN UnitPrice ON CourtDates.[UnitPrice] = UnitPrice.[ID];
-
-
-*/
-
-/*
-
 
 SELECT *
 FROM CourtDates INNER JOIN OrderingAttorneyInfo ON CourtDates.ID=OrderingAttorneyInfo.CourtDatesID;
@@ -649,32 +750,6 @@ FROM CourtDates INNER JOIN Payments ON CourtDates.[InvoiceNo] = Payments.[Invoic
 SELECT CourtDates.ID, CourtDates.InvoiceNo, CourtDates.UnitPrice, CourtDates.Quantity, CourtDates.Subtotal, CourtDates.AudioLength, CourtDates.TurnaroundTimesCD, CourtDates.DueDate, CourtDates.InvoiceDate, CourtDates.HearingStartTime, CourtDates.HearingEndTime, CourtDates.HearingDate, CourtDates.CasesID, CourtDates.OrderingID, CourtDates.FiledNotFiled, CourtDates.PaymentDueDate, CourtDates.ExpectedAdvanceDate, CourtDates.ExpectedRebateDate, CourtDates.EstimatedPageCount, Cases.Party1, Cases.Party2, Cases.Party1Name, Cases.Party2Name, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Cases.HearingTitle, Cases.Judge
 FROM CourtDates INNER JOIN CASES ON CourtDates.CasesID = Cases.ID
 WHERE CourtDates.ID=Forms![NewMainMenu]![ProcessJobSubformNMM].[Form]![JobNumberField];
-
-
-*/
-
-/*
-
-SELECT Max(CourtDates.ID) AS CourtDatesID
-FROM CourtDates;
-
-
-*/
-
-/*
-
-
-SELECT CourtDates.InvoiceNo, QTotalExpensesbyInvoiceNumber.InvoiceNo
-FROM CourtDates INNER JOIN QTotalExpensesbyInvoiceNumber ON CourtDates.InvoiceNo <> QTotalExpensesbyInvoiceNumber.InvoiceNo;
-
-
-*/
-
-/*
-
-SELECT DISTINCT InvoiceNo, InvoiceDate
-FROM CourtDates;
-
 
 
 */
@@ -941,65 +1016,6 @@ WHERE (((CourtDates.ID)=(Forms![NewMainMenu]![ProcessJobSubformNMM].Form![JobNum
 
 /*
 
-SELECT *
-FROM Cases INNER JOIN CourtDates ON Cases.ID = CourtDates.CasesID
-WHERE (((CourtDates.ID)=Forms!NewMainMenu!ProcessJobSubformNMM.Form!JobNumberField) And ((CourtDates.CasesID) Like Cases.ID));
-
-
-
-*/
-
-/*
-
-SELECT Cases.Notes, CourtDates.ID, CourtDates.CasesID, Cases.ID
-FROM Cases INNER JOIN CourtDates ON CourtDates.[CasesID] = Cases.[ID]
-WHERE ((CourtDates.ID Like Forms![MMProcess Jobs]!JobNumberField));
-
-
-
-*/
-
-/*
-
-
-SELECT CourtDates.CasesID, Cases.Party1, Cases.Party1Name, Cases.Party2, Cases.Party2Name, Cases.[CaseNumber1], Cases.[CaseNumber2], Cases.Jurisdiction, Cases.[HearingTitle], Cases.Judge, Cases.[JudgeTitle]
-FROM Cases INNER JOIN CourtDates ON Cases.ID=CourtDates.CasesID
-WHERE (((Cases.ID=CourtDates.CasesID) AND (CourtDates.ID) like Forms("[MMProcess Jobs]").Controls("ProcessJobSubform").Form.Controls("SCJSSBFM").Form.Controls("JobNumberField").Value));
-
-
-*/
-
-/*
-
-
-SELECT Statuses.ContactsEntered, Statuses.JobEntered, Statuses.Stage1PpwkGenerated, Statuses.[Transcribe], Statuses.Stage3PpwkGenerated, Statuses.AudioProof, Statuses.InvoiceCompleted, Statuses.Stage4PpwkGenerated, Statuses.Stage5PpwkGenerated, Statuses.BurnCD, Statuses.Mail, Statuses.GenerateShippingEM, Statuses.AddTrackingNumber, Statuses.[CourtDatesID]
-FROM Statuses INNER JOIN CourtDates ON (Statuses.[CourtDatesID])=(CourtDates.ID)
-WHERE ((Statuses.CourtDatesID)=(CourtDates.ID));
-
-
-*/
-
-/*
-
-
-SELECT Statuses.ContactsEntered, Statuses.JobEntered, Statuses.Stage1PpwkGenerated, Statuses.[Transcribe], Statuses.Stage3PpwkGenerated, Statuses.AudioProof, Statuses.InvoiceCompleted, Statuses.Stage4PpwkGenerated, Statuses.Stage5PpwkGenerated, Statuses.BurnCD, Statuses.Mail, Statuses.GenerateShippingEM, Statuses.AddTrackingNumber, Statuses.[CourtDatesID]
-FROM Statuses INNER JOIN CourtDates ON (Statuses.[CourtDatesID])=(CourtDates.ID)
-WHERE ((Statuses.CourtDatesID)=(CourtDates.ID));
-
-
-*/
-
-/*
-
-SELECT CourtDates.ID, Cases.Party1, Cases.Party2, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, CourtDates.AudioLength, CourtDates.DueDate, CourtDates.PaymentType, TaskMgmt.Hierarchy
-FROM TaskMgmt INNER JOIN (Cases INNER JOIN CourtDates ON Cases.ID = CourtDates.CasesID) ON TaskMgmt.ID = Cases.ID
-WHERE TaskMgmt.[CourtDatesID]=CourtDates.ID;
-
-
-*/
-
-/*
-
 SELECT Cases.Party1, Cases.Party1Name, Cases.Party2, Cases.Party2Name, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Cases.HearingTitle, Cases.Judge, Cases.JudgeTitle, CourtDates.HearingDate, CourtDates.HearingStartTime, CourtDates.HearingEndTime, CourtDates.ID, CourtDates.CasesID, CourtDates.App1, CourtDates.App2, CourtDates.App3, CourtDates.App4, CourtDates.App5, CourtDates.App6, CourtDates.OrderingID
 FROM Cases INNER JOIN CourtDates ON Cases.[ID] = CourtDates.[CasesID];
 
@@ -1009,759 +1025,8 @@ FROM Cases INNER JOIN CourtDates ON Cases.[ID] = CourtDates.[CasesID];
 
 /*
 
-
-SELECT Cases.Party1, Cases.Party1Name, Cases.Party2, Cases.Party2Name, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Cases.HearingTitle, Cases.Judge, Cases.JudgeTitle, CourtDates.HearingDate, CourtDates.HearingStartTime, CourtDates.HearingEndTime, CourtDates.ID, CourtDates.Quantity, CourtDates.CasesID, CourtDates.App1, CourtDates.App2, CourtDates.App3, CourtDates.App4, CourtDates.App5, CourtDates.App6, CourtDates.OrderingID, CourtDates.AudioLength, CourtDates.TurnaroundTImesCD, CourtDates.PaymentDueDate, CourtDates.UnitPrice, CourtDates.ExpectedRebateDate, CourtDates.ExpectedAdvanceDate, CourtDates.Location, CourtDates.InvoiceNo, CourtDates.FactoringCost, CourtDates.InvoiceDate, CourtDates.Subtotal, CourtDates.FinalPrice, CourtDates.PaymentSum, CourtDates.EstimatedPageCount, CourtDates.DueDate, CourtDates.ActualQuantity, CourtDates.DueDate, CourtDates.InvoiceDate, CourtDates.FiledNotFiled, CourtDates.EstimatedPageCount, CourtDates.Location
-FROM Cases INNER JOIN CourtDates ON Cases.[ID] = CourtDates.[CasesID]
-WHERE (((CourtDates.ID)=(Forms![NewMainMenu]![ProcessJobSubformNMM].Form![JobNumberField])));
-
-*/
-
-/*
-
-
-SELECT Cases.Party1, Cases.Party1Name, Cases.Party2, Cases.Party2Name, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Cases.HearingTitle, Cases.Judge, Cases.JudgeTitle, Cases.CourtDatesID, CourtDates.HearingDate, CourtDates.HearingStartTime, CourtDates.HearingEndTime, CourtDates.CasesID, CourtDates.App1, CourtDates.App2, CourtDates.App3, CourtDates.App4, CourtDates.App5, CourtDates.App6, CourtDates.OrderingID
-FROM Cases INNER JOIN CourtDates ON Cases.[ID] = CourtDates.[CasesID]
-WHERE CourtDates.ID=([OrderingInfoForm]![HDTOrderingInfo]![Column(0)]);
-
-
-*/
-
-/*
-
 SELECT Cases.Party1, Cases.Party1Name, Cases.Party2, Cases.Party2Name, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Cases.HearingTitle, Cases.Judge, Cases.JudgeTitle, CourtDates.HearingDate, CourtDates.HearingStartTime, CourtDates.HearingEndTime, CourtDates.ID, CourtDates.Quantity, CourtDates.CasesID, CourtDates.App1, CourtDates.App2, CourtDates.App3, CourtDates.App4, CourtDates.App5, CourtDates.App6, CourtDates.OrderingID, CourtDates.AudioLength, CourtDates.TurnaroundTImesCD, CourtDates.PaymentDueDate, CourtDates.UnitPrice, CourtDates.ExpectedRebateDate, CourtDates.ExpectedAdvanceDate, CourtDates.Location, CourtDates.InvoiceNo, CourtDates.FactoringCost, CourtDates.InvoiceDate, CourtDates.Subtotal, CourtDates.FinalPrice, CourtDates.PaymentSum, CourtDates.EstimatedPageCount, CourtDates.DueDate
 FROM Cases INNER JOIN CourtDates ON Cases.[ID] = CourtDates.[CasesID];
-
-
-*/
-
-/*
-
-SELECT Cases.Party1, Cases.Party1Name, Cases.Party2, Cases.Party2Name, Cases.CaseNumber1, Cases.CaseNumber2, Cases.Jurisdiction, Cases.HearingTitle, Cases.Judge, Cases.JudgeTitle, Cases.CourtDatesID
-FROM Cases INNER JOIN CourtDates ON (Cases.ID = CourtDates.CasesID) AND (Cases.CourtDatesID = CourtDates.ID);
-
-
-*/
-
-/*
-
-SELECT CourtDates.ID, CourtDates.HearingDate, CourtDates.HearingStartTime, CourtDates.HearingEndTime, Cases.Party1, Cases.Party2, Cases.Jurisdiction, Cases.HearingTitle, CourtDates.Location, CourtDates.CasesID
-FROM Cases INNER JOIN CourtDates ON CourtDates.[CasesID]=Cases.[ID]
-WHERE CourtDates.ID=(Forms![NewMainMenu]![ProcessJobSubformNMM].Form![JobNumberField]);
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
 
 
 */
