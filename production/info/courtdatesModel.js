@@ -271,6 +271,36 @@ function findInvoicesById(courtdatesid) {
 		.where('courtdates.courtdatesid', courtdatesid);
 }
 
+function findMCsById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'shippingoptions.mcid',
+			'shippingoptions.courtdatesid',
+			'mailclass.mcid',
+			'mailclass.mailclass',
+			'mailclass.description'
+		)
+		.innerJoin('shippingoptions', 'shippingoptions.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('mailclass', 'mailclass.mcid', 'shippingoptions.mcid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+
+function findPTsById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'shippingoptions.mcid',
+			'shippingoptions.courtdatesid',
+			'packagetype.ptid',
+			'packagetype.packagetype',
+			'packagetype.description'
+		)
+		.innerJoin('shippingoptions', 'shippingoptions.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('packagetype', 'packagetype.ptid', 'shippingoptions.ptid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+
 function findByIdMain(courtdatesid) {
 	return db('courtdates')
 		.select(
