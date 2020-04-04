@@ -36,7 +36,7 @@ All endpoints have been tested via Postman.
 - [ ] CRUD payments
 - [ ] CRUD commHistory
 - [ ] CRUD shipping
-- [ ] CRUD invoices
+- [X] CRUD invoices
 - [ ] CRUD citations
 - [ ] CRUD customers
 
