@@ -231,7 +231,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/usc`        | returns list of usc items     |
 | `GET`          | `/usc/:uscid` | returns one usc item          |
 
-### TO BE IMPLEMENTED:  Endpoints For ExamTypes
+### Endpoints For ExamTypes
 
 | Request Method | Endpoint           | Description                        |
 | :------------- | :----------------- | :--------------------------------- |
@@ -241,7 +241,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/examtypes`       | returns list of examtypes          |
 | `GET`          | `/examtypes/:etid` | returns one examtype               |
 
-### TO BE IMPLEMENTED:  Endpoints For Styles
+### Endpoints For Styles
 
 | Request Method | Endpoint       | Description                     |
 | :------------- | :------------- | :------------------------------ |
@@ -253,7 +253,9 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 
 ### TO DO
 
+- [ ] switch subcategory & courtdatesid around maybe on courtdates endpoints
 - [ ] test types/responses per hello world
+- [ ] advanced single courtdates endpoint:  id 2, 4, 5 don't work
 - [ ] add body as sample to post/put/delete
 - [ ] add example to post/put/deletes
 - [ ] proofer/transcriber endpoints
