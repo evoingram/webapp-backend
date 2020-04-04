@@ -1,30 +1,32 @@
 const router = require('express').Router();
 
-const Appearances = require('./cccModel.js');
-const restricted = require('../../auth/restriction.js');
+const CourtdatesCasesCustomers = require('./cccModel.js');
+const restricted = require('././auth/restriction.js');
 
 // GET:  get all courtdatescasescustomers (ties the three tables together)
 router.get('/', restricted, (req, res) => {
-	Appearances.find()
-		.then(courtdates => {
-			res.status(200).json(courtdates);
+	CourtdatesCasesCustomers.find()
+		.then(courtdatescasescustomers => {
+			res.status(200).json(courtdatescasescustomers);
 		})
 		.catch(err => res.send(err));
 });
 
 // GET:  get one entry from courtdatescasescustomers (ties the three tables together)
-router.get('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: `The apps with the specified courtdatesid ${courtdatesid} does not exist.` });
+router.get('/:cdccid', restricted, (req, res) => {
+	const cdccid = req.params.cdccid;
+	if (!cdccid) {
+		res.status(404).json({
+			message: `The courtdatecasecustomer with the specified cdccid ${cdccid} does not exist.`
+		});
 	} else {
-		Appearances.findAppsById(courtdatesid)
-			.then(appearances => {
-				res.status(201).json(appearances);
+		CourtdatesCasesCustomers.findById(cdccid)
+			.then(courtdatescasescustomers => {
+				res.status(201).json(courtdatescasescustomers);
 			})
 			.catch(err => {
 				res.status(500).json({
-					message: `The apps information for this courtdate ${courtdatesid} could not be retrieved.`,
+					message: `The courtdatecasecustomer information for this courtdatecasecustomer ${cdccid} could not be retrieved.`,
 					error: err
 				});
 			});
@@ -33,46 +35,46 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 
 // POST:  create an entry in courtdatescasescustomers (ties the three tables together)
 router.post('/', restricted, (req, res) => {
-	const newStatus = req.body.status;
+	const newCourtdateCaseCustomer = req.body.courtdatecasecustomer;
 
-	Appearances.add(newStatus)
-		.then(status => {
-			res.status(201).json(status);
+	CourtdatesCasesCustomers.add(newCourtdateCaseCustomer)
+		.then(courtdatecasecustomer => {
+			res.status(201).json(courtdatecasecustomer);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to create new status' });
+			res.status(500).json({ message: `Failed to create new courtdatecasecustomer.`, error: err });
 		});
 });
 
 // PUT:  update an entry in courtdatescasescustomers (ties the three tables together)
-router.put('/:statusesid', restricted, (req, res) => {
-	const statusesid = req.params.statusesid;
-	const updatedStatus = { status: req.body.status };
+router.put('/:cdccid', restricted, (req, res) => {
+	const cdccid = req.params.cdccid;
+	const updatedCourtdateCaseCustomer = { courtdatecasecustomer: req.body.courtdatecasecustomer };
 
-	Appearances.update(statusesid, updatedStatus)
-		.then(status => {
-			if (status) {
-				res.json(status);
+	CourtdatesCasesCustomers.update(cdccid, updatedCourtdateCaseCustomer)
+		.then(courtdatecasecustomer => {
+			if (courtdatecasecustomer) {
+				res.json(courtdatecasecustomer);
 			} else {
-				res.status(404).json({ message: 'Could not find status with given id' });
+				res.status(404).json({ message: `Could not find courtdatecasecustomer with given id ${cdccid}.` });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to update status' });
+			res.status(500).json({ message: `Failed to update courtdatecasecustomer.`, error: err });
 		});
 });
 // DELETE:  delete an entry in courtdatescasescustomers (ties the three tables together)
-router.delete('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified ID does not exist.' });
+router.delete('/:cdccid', restricted, (req, res) => {
+	const cdccid = req.params.cdccid;
+	if (!cdccid) {
+		res.status(404).json({ message: `The courtdatecasecustomer with the specified ID ${cdccid} does not exist.` });
 	}
-	Appearances.remove(courtdatesid)
-		.then(courtdate => {
-			res.json(courtdate);
+	CourtdatesCasesCustomers.remove(cdccid)
+		.then(courtdatecasecustomer => {
+			res.json(courtdatecasecustomer);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'The courtdate could not be removed' });
+			res.status(500).json({ message: `The courtdatecasecustomer could not be removed.`, error: err });
 		});
 });
 
