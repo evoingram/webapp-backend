@@ -1,6 +1,7 @@
 # Transcript Web App
 
-This is the back end, work in progress, for my database online port.  This is currently an empty database.  Copyright 2020 Erica Ingram.
+This is the back end, work in progress, for my database online port.  
+This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 
 ## [DB Schema](https://dbdesigner.page.link/gbEtfTr1XjgwDa2C7)
 
@@ -8,7 +9,10 @@ This is the back end, work in progress, for my database online port.  This is cu
 
 ## [POSTMAN DOCUMENTATION](https://documenter.getpostman.com/view/6401823/SzRxWAvu?version=latest)
 
-All endpoints have been tested via Postman.
+- Postman Docs were last published on 04/04/2020
+
+- All endpoints have been tested and documented via Postman.
+- Postman docs contain examples of nearly all get endpoint responses.
 
 ### Endpoints For Login / Registration
 
