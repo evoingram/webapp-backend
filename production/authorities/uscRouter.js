@@ -3,7 +3,7 @@ const router = require('express').Router();
 const USCCitations = require('./Model.js');
 const restricted = require('../auth/restriction.js');
 
-// GET:  Describe what it does
+// GET:  get all usc citaitons
 router.get('/', restricted, (req, res) => {
 	USCCitations.find()
 		.then(courtdates => {
@@ -12,7 +12,7 @@ router.get('/', restricted, (req, res) => {
 		.catch(err => res.send(err));
 });
 
-// GET:  Describe what it does
+// GET:  get one usc citaiton
 router.get('/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -28,7 +28,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 	}
 });
 
-// POST:  create status
+// POST:  create a usc citation
 router.post('/', restricted, (req, res) => {
 	const newStatus = req.body.status;
 
@@ -41,7 +41,7 @@ router.post('/', restricted, (req, res) => {
 		});
 });
 
-// PUT:  Describe what it does
+// PUT:  update a usc citation
 router.put('/:statusesid', restricted, (req, res) => {
 	const statusesid = req.params.statusesid;
 	const updatedStatus = { status: req.body.status };
@@ -58,7 +58,7 @@ router.put('/:statusesid', restricted, (req, res) => {
 			res.status(500).json({ message: `Failed to update status`, error: err });
 		});
 });
-// DELETE:  Describe what it does
+// DELETE:  delete a usc citation
 router.delete('/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {

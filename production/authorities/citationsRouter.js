@@ -3,73 +3,79 @@ const router = require('express').Router();
 const Citations = require('./citationsModel.js');
 const restricted = require('../../auth/restriction.js');
 
-// GET:  Describe what it does
+// GET:  get all citations
 router.get('/', restricted, (req, res) => {
 	Citations.find()
-		.then(courtdates => {
-			res.status(200).json(courtdates);
+		.then(citations => {
+			res.status(200).json(citations);
 		})
 		.catch(err => res.send(err));
 });
 
-// GET:  Describe what it does
-router.get('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: `The courtdate with the specified courtdatesid does not exist.`, error: err });
+// GET:  get one citation
+router.get('/:citationsid', restricted, (req, res) => {
+	const citationsid = req.params.citationsid;
+	if (!citationsid) {
+		res.status(404).json({
+			message: `The citation with the specified citationsid ${citationsid} does not exist.`,
+			error: err
+		});
 	} else {
-		Citations.findById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
+		Citations.findById(citationsid)
+			.then(citation => {
+				res.status(201).json(citation);
 			})
 			.catch(err => {
-				res.status(500).json({ message: `The courtdate information could not be retrieved.`, error: err });
+				res.status(500).json({ message: `The citation information could not be retrieved.`, error: err });
 			});
 	}
 });
 
-// POST:  create status
+// POST:  create a citation
 router.post('/', restricted, (req, res) => {
-	const newStatus = req.body.status;
+	const newCitation = req.body.citation;
 
-	Citations.add(newStatus)
-		.then(status => {
-			res.status(201).json(status);
+	Citations.add(newCitation)
+		.then(citation => {
+			res.status(201).json(citation);
 		})
 		.catch(err => {
-			res.status(500).json({ message: `Failed to create new status`, error: err });
+			res.status(500).json({ message: `Failed to create new citation.`, error: err });
 		});
 });
 
-// PUT:  Describe what it does
-router.put('/:statusesid', restricted, (req, res) => {
-	const statusesid = req.params.statusesid;
-	const updatedStatus = { status: req.body.status };
+// PUT:  update a citation
+router.put('/:citationsid', restricted, (req, res) => {
+	const citationsid = req.params.citationsid;
+	const updatedCitation = { citation: req.body.citation };
 
-	Citations.update(statusesid, updatedStatus)
-		.then(status => {
-			if (status) {
-				res.json(status);
+	Citations.update(citationsid, updatedCitation)
+		.then(citation => {
+			if (citation) {
+				res.json(citation);
 			} else {
-				res.status(404).json({ message: `Could not find status with given id`, error: err });
+				res.status(404).json({ message: `Could not find citation with given id ${citationsid}.`, error: err });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: `Failed to update status`, error: err });
+			res.status(500).json({ message: `Failed to update citation.`, error: err });
 		});
 });
-// DELETE:  Describe what it does
-router.delete('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: `The courtdate with the specified ID does not exist.`, error: err });
+// DELETE:  delete a citation
+router.delete('/:citationsid', restricted, (req, res) => {
+	const citationsid = req.params.citationsid;
+	if (!citationsid) {
+		res.status(404).json({
+			message: `The citation with the specified ID ${citationsid} does not exist.`,
+			error: err
+		});
 	}
-	Citations.remove(courtdatesid)
-		.then(courtdate => {
-			res.json(courtdate);
+	Citations.remove(citationsid)
+		.then(citation => {
+			res.json(citation);
 		})
 		.catch(err => {
-			res.status(500).json({ message: `The courtdate could not be removed`, error: err });
+			res.status(500).json({ message: `The citation could not be removed`, error: err });
 		});
 });
 
