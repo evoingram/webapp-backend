@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
-const USCCitations = require('./Model.js');
-const restricted = require('../auth/restriction.js');
+const USCCitations = require('./uscModel.js');
+const restricted = require('../../auth/restriction.js');
 
 // GET:  get all usc citaitons
 router.get('/', restricted, (req, res) => {

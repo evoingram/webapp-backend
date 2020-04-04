@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
-const Styles = require('./styleModel.js/index.js');
-const restricted = require('./auth/restriction.js');
+const Styles = require('./styleModel.js');
+const restricted = require('../../auth/restriction.js');
 
 // GET:  get all styles
 router.get('/', restricted, (req, res) => {

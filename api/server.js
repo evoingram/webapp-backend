@@ -17,6 +17,18 @@ const ShippingRouter = require('../production/shipping/shippingRouter.js');
 const ExpensesRouter = require('../financials/expensesRouter.js');
 const PaymentsRouter = require('../financials/paymentsRouter.js');
 const CommHistoryRouter = require('../production/info/commHRouter.js');
+const BTRouter = require('../financials/btRouter.js');
+const InvoicesRouter = require('../financials/invoicesRouter.js');
+const RatesRouter = require('../financials/ratesRouter.js');
+const USCRouter = require('../production/authorities/uscRouter.js');
+const AGSRouter = require('../production/formatting/agshortcutsRouter.js');
+const ETRouter = require('../production/formatting/examtypesRouter.js');
+const StyleRouter = require('../production/formatting/styleRouter.js');
+const TTRouter = require('../production/formatting/ttRouter.js');
+const CCCRouter = require('../production/info/cccRouter.js');
+const StatusesRouter = require('../production/mgmt/statusesRouter.js');
+const MCRouter = require('../production/shipping/mailclassRouter.js');
+const PTRouter = require('../production/shipping/packagetypeRouter.js');
 
 // courtdates table router
 // fields: courtdatesid ratesid ttid btid iid hearingdate hearingstarttime hearingendtime audiolength location shipdate duedate trackingno paymenttype filed factoringcost estimatedquantity actualquantity subtotal estimatedadvancerate estimatedrebatedate finalprice ppid ppstatus hearingtitle judgename judgetitle
@@ -46,6 +58,7 @@ server.use('/api/courtdates', courtdatesRouter);
 // fields: casesid party1 party1name party2 party2name casenumber1 casenumber2
 server.use('/api/cases', casesRouter);
 
+//
 server.use('/api/appearances', AppearancesRouter);
 server.use('/api/tasks', TasksRouter);
 server.use('/api/citations', CitationsRouter);
@@ -53,6 +66,24 @@ server.use('/api/shipping', ShippingRouter);
 server.use('/api/expenses', ExpensesRouter);
 server.use('/api/payments', PaymentsRouter);
 server.use('/api/commhistory', CommHistoryRouter);
+
+server.use('/api/brandingthemes', BTRouter);
+server.use('/api/invoices', InvoicesRouter);
+server.use('/api/rates', RatesRouter);
+
+server.use('/api/usc', USCRouter);
+
+server.use('/api/agshortcuts', AGSRouter);
+server.use('/api/examtypes', ETRouter);
+server.use('/api/styles', StyleRouter);
+server.use('/api/turnaroundtimes', TTRouter);
+
+server.use('/api/ccc', CCCRouter);
+
+server.use('/api/statuses', StatusesRouter);
+
+server.use('/api/mailclasses', MCRouter);
+server.use('/api/packagetypes', PTRouter);
 
 // unsecured/unlogged-in response
 server.get('/', (req, res) => {

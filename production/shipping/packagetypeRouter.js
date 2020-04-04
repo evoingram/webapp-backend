@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
-const PackageType = require('./Model.js');
-const restricted = require('../auth/restriction.js');
+const PackageType = require('./packagetypeModel.js');
+const restricted = require('../../auth/restriction.js');
 
 // GET:  get all packagetypes
 router.get('/', restricted, (req, res) => {

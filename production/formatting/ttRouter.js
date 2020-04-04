@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
-const TurnaroundTimes = require('./ttModel.js/index.js');
-const restricted = require('./auth/restriction.js');
+const TurnaroundTimes = require('./ttModel.js');
+const restricted = require('../../auth/restriction.js');
 
 // GET:  get all turnaroundtimes
 router.get('/', restricted, (req, res) => {

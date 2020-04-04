@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 const Statuses = require('./statusesModel.js');
-const restricted = require('../auth/restriction.js');
+const restricted = require('../../auth/restriction.js');
 
 // GET:  gets all statuses for all jobs
 router.get('/', restricted, (req, res) => {
