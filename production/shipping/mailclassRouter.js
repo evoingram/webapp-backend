@@ -3,73 +3,76 @@ const router = require('express').Router();
 const MailClass = require('./packagetypeModel.js/index.js');
 const restricted = require('../auth/restriction.js');
 
-// GET:  Describe what it does
+// GET:  get all mailclasses
 router.get('/', restricted, (req, res) => {
 	MailClass.find()
-		.then(courtdates => {
-			res.status(200).json(courtdates);
+		.then(mailclasses => {
+			res.status(200).json(mailclasses);
 		})
 		.catch(err => res.send(err));
 });
 
-// GET:  Describe what it does
-router.get('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: `The courtdate with the specified courtdatesid does not exist.`, error: err });
+// GET:  get one mailclass
+router.get('/:mcid', restricted, (req, res) => {
+	const mcid = req.params.mcid;
+	if (!mcid) {
+		res.status(404).json({
+			message: `The mailclass with the specified mcid ${mcid} does not exist.`,
+			error: err
+		});
 	} else {
-		MailClass.findById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
+		MailClass.findById(mcid)
+			.then(mailclass => {
+				res.status(201).json(mailclass);
 			})
 			.catch(err => {
-				res.status(500).json({ message: `The courtdate information could not be retrieved.`, error: err });
+				res.status(500).json({ message: `The mailclass information could not be retrieved.`, error: err });
 			});
 	}
 });
 
-// POST:  create status
+// POST:  create a mailclass
 router.post('/', restricted, (req, res) => {
-	const newStatus = req.body.status;
+	const newMailClass = req.body.mailclass;
 
-	MailClass.add(newStatus)
-		.then(status => {
-			res.status(201).json(status);
+	MailClass.add(newMailClass)
+		.then(mailclass => {
+			res.status(201).json(mailclass);
 		})
 		.catch(err => {
-			res.status(500).json({ message: `Failed to create new status`, error: err });
+			res.status(500).json({ message: `Failed to create new mailclass.`, error: err });
 		});
 });
 
-// PUT:  Describe what it does
-router.put('/:statusesid', restricted, (req, res) => {
-	const statusesid = req.params.statusesid;
-	const updatedStatus = { status: req.body.status };
+// PUT:  update a mailclass
+router.put('/:mcid', restricted, (req, res) => {
+	const mcid = req.params.mcid;
+	const updatedMailClass = { mailclass: req.body.mailclass };
 
-	MailClass.update(statusesid, updatedStatus)
-		.then(status => {
-			if (status) {
-				res.json(status);
+	MailClass.update(mcid, updatedMailClass)
+		.then(mailclass => {
+			if (mailclass) {
+				res.json(mailclass);
 			} else {
-				res.status(404).json({ message: `Could not find status with given id`, error: err });
+				res.status(404).json({ message: `Could not find mailclass with given id ${mcid}.`, error: err });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: `Failed to update status`, error: err });
+			res.status(500).json({ message: `Failed to update mailclass.`, error: err });
 		});
 });
-// DELETE:  Describe what it does
-router.delete('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: `The courtdate with the specified ID does not exist.`, error: err });
+// DELETE:  delete a mailclass
+router.delete('/:mcid', restricted, (req, res) => {
+	const mcid = req.params.mcid;
+	if (!mcid) {
+		res.status(404).json({ message: `The mailclass with the specified ID ${mcid} does not exist.`, error: err });
 	}
-	MailClass.remove(courtdatesid)
-		.then(courtdate => {
-			res.json(courtdate);
+	MailClass.remove(mcid)
+		.then(mailclass => {
+			res.json(mailclass);
 		})
 		.catch(err => {
-			res.status(500).json({ message: `The courtdate could not be removed`, error: err });
+			res.status(500).json({ message: `The mailclass could not be removed`, error: err });
 		});
 });
 
