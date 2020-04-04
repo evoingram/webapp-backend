@@ -1,75 +1,81 @@
 const router = require('express').Router();
 
-const Courtdates = require('./ttModel.js/index.js');
-const restricted = require('../auth/restriction.js');
+const TurnaroundTimes = require('./ttModel.js/index.js');
+const restricted = require('./auth/restriction.js');
 
-// GET:  Describe what it does
+// GET:  get all turnaroundtimes
 router.get('/', restricted, (req, res) => {
-	Courtdates.find()
-		.then(courtdates => {
-			res.status(200).json(courtdates);
+	TurnaroundTimes.find()
+		.then(turnaroundtimes => {
+			res.status(200).json(turnaroundtimes);
 		})
 		.catch(err => res.send(err));
 });
 
-// GET:  Describe what it does
-router.get('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
+// GET:  get a turnaroundtime
+router.get('/:ttid', restricted, (req, res) => {
+	const ttid = req.params.ttid;
+	if (!ttid) {
+		res.status(404).json({
+			message: `The turnaroundtime with the specified ttid ${ttid} does not exist.`,
+			error: err
+		});
 	} else {
-		Courtdates.findById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
+		TurnaroundTimes.findById(ttid)
+			.then(turnaroundtime => {
+				res.status(201).json(turnaroundtime);
 			})
 			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
+				res.status(500).json({ message: `The turnaroundtime information could not be retrieved.`, error: err });
 			});
 	}
 });
 
-// POST:  create status
+// POST:  create a turnaroundtime
 router.post('/', restricted, (req, res) => {
-	const newStatus = req.body.status;
+	const newTurnaroundTime = req.body.turnaroundtime;
 
-	Statuses.add(newStatus)
-		.then(status => {
-			res.status(201).json(status);
+	TurnaroundTimes.add(newTurnaroundTime)
+		.then(turnaroundtime => {
+			res.status(201).json(turnaroundtime);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to create new status' });
+			res.status(500).json({ message: `Failed to create new turnaroundtime.`, error: err });
 		});
 });
 
-// PUT:  Describe what it does
-router.put('/:statusesid', restricted, (req, res) => {
-	const statusesid = req.params.statusesid;
-	const updatedStatus = { status: req.body.status };
+// PUT:  update a turnaroundtime
+router.put('/:ttid', restricted, (req, res) => {
+	const ttid = req.params.ttid;
+	const updatedTurnaroundTime = { turnaroundtime: req.body.turnaroundtime };
 
-	Statuses.update(statusesid, updatedStatus)
-		.then(status => {
-			if (status) {
-				res.json(status);
+	TurnaroundTimes.update(ttid, updatedTurnaroundTime)
+		.then(turnaroundtime => {
+			if (turnaroundtime) {
+				res.json(turnaroundtime);
 			} else {
-				res.status(404).json({ message: 'Could not find status with given id' });
+				res.status(404).json({ message: `Could not find turnaroundtime with given id ${ttid}.`, error: err });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to update status' });
+			res.status(500).json({ message: `Failed to update turnaroundtime.`, error: err });
 		});
 });
-// DELETE:  Describe what it does
-router.delete('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified ID does not exist.' });
+// DELETE:  delete a turnaroundtime
+router.delete('/:ttid', restricted, (req, res) => {
+	const ttid = req.params.ttid;
+	if (!ttid) {
+		res.status(404).json({
+			message: `The turnaroundtime with the specified ID ${ttid} does not exist.`,
+			error: err
+		});
 	}
-	Courtdates.remove(courtdatesid)
-		.then(courtdate => {
-			res.json(courtdate);
+	TurnaroundTimes.remove(ttid)
+		.then(turnaroundtime => {
+			res.json(turnaroundtime);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'The courtdate could not be removed' });
+			res.status(500).json({ message: `The turnaroundtime with id ${ttid} could not be removed.`, error: err });
 		});
 });
 

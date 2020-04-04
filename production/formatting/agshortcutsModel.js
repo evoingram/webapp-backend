@@ -10,35 +10,28 @@ module.exports = {
 };
 
 function find() {
-	return db('courtdates').select('*');
+	return db('agshortcuts').select('*');
 }
 
 function findBy(filter) {
-	return db('courtdates').where(filter);
+	return db('agshortcuts').where(filter);
 }
 
-async function add(courtdate) {
-	const [courtdatesid] = await db('courtdates').insert(courtdate, 'courtdatesid');
-	return findById(courtdatesid);
+async function add(agshortcutset) {
+	const [agsid] = await db('agshortcuts').insert(agshortcutset, 'agsid');
+	return findById(agsid);
 }
 
-function findById(courtdatesid) {
-	return db('courtdates')
-		.select('courtdatesid', '*')
-		.where({ courtdatesid })
-		.first();
+function findById(agsid) {
+	return db('agshortcuts').select('agsid', '*').where({ agsid }).first();
 }
 
-function update(courtdatesid, courtdate) {
-	return db('courtdates')
-		.where('courtdatesid', Number(courtdatesid))
-		.update(courtdate);
+function update(agsid, agshortcutset) {
+	return db('agshortcuts').where('agsid', Number(agsid)).update(agshortcutset);
 }
 
-function remove(courtdatesid) {
-	return db('courtdates')
-		.where('courtdatesid', Number(courtdatesid))
-		.del();
+function remove(agsid) {
+	return db('agshortcuts').where('agsid', Number(agsid)).del();
 }
 
 /*

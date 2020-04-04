@@ -4,97 +4,27 @@ module.exports = {
 	add,
 	find,
 	findBy,
-	findAppsById,
 	update,
 	remove
 };
 
 function find() {
-	return db('courtdates').select('*');
+	return db('appearances').select('*');
 }
 
 function findBy(filter) {
-	return db('courtdates').where(filter);
+	return db('appearances').where(filter);
 }
 
-async function add(courtdate) {
-	const [courtdatesid] = await db('courtdates').insert(courtdate, 'courtdatesid');
-	return findById(courtdatesid);
+async function add(appearance) {
+	const [appid] = await db('appearances').insert(appearance, 'appid');
+	return findById(appid);
 }
 
-function findAppsById(courtdatesid) {
-	return db('courtdates')
-		.select(
-			'courtdates.courtdatesid',
-			'appearances.appid',
-			'appearances.cdappid',
-			'appearances.customersid',
-			'appearances.courtdatesid',
-			'customers.customersid',
-			'customers.factoring',
-			'customers.company',
-			'customers.mrms',
-			'customers.lastname',
-			'customers.firstname',
-			'customers.email',
-			'customers.jobtitle',
-			'customers.businessphone',
-			'customers.address1',
-			'customers.address2',
-			'customers.city',
-			'customers.state',
-			'customers.zip',
-			'customers.notes'
-		)
-		.innerJoin('appearances', 'courtdates.courtdatesid', 'appearances.courtdatesid')
-		.innerJoin('customers', 'appearances.customersid', 'customers.customersid')
-		.where({ courtdatesid });
+function update(appid, appearance) {
+	return db('appearances').where('appid', Number(appid)).update(appearance);
 }
 
-function update(courtdatesid, courtdate) {
-	return db('courtdates')
-		.where('courtdatesid', Number(courtdatesid))
-		.update(courtdate);
+function remove(appid) {
+	return db('appearances').where('appid', Number(appid)).del();
 }
-
-function remove(courtdatesid) {
-	return db('courtdates')
-		.where('courtdatesid', Number(courtdatesid))
-		.del();
-}
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/

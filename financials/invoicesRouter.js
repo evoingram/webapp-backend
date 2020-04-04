@@ -1,75 +1,76 @@
 const router = require('express').Router();
 
-const Courtdates = require('./Model.js');
+const Invoices = require('./invoicesModel.js');
 const restricted = require('../auth/restriction.js');
 
-// GET:  Describe what it does
+// GET:  get all invoices
 router.get('/', restricted, (req, res) => {
-	Courtdates.find()
-		.then(courtdates => {
-			res.status(200).json(courtdates);
+	Invoices.find()
+		.then(invoices => {
+			res.status(200).json(invoices);
 		})
 		.catch(err => res.send(err));
 });
 
-// GET:  Describe what it does
-router.get('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
+// GET:  get one invoice
+router.get('/:iid', restricted, (req, res) => {
+	const iid = req.params.iid;
+	if (!iid) {
+		res.status(404).json({ message: `The invoice with the specified iid ${iid} does not exist.` });
 	} else {
-		Courtdates.findById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
+		Invoices.findById(iid)
+			.then(invoice => {
+				res.status(201).json(invoice);
 			})
 			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
+				res.status(500).json({ message: 'The invoice information could not be retrieved.', error: err });
 			});
 	}
 });
 
-// POST:  create status
+// POST:  create invoice
 router.post('/', restricted, (req, res) => {
-	const newStatus = req.body.status;
+	const newInvoice = req.body.invoice;
 
-	Statuses.add(newStatus)
-		.then(status => {
-			res.status(201).json(status);
+	Invoices.add(newInvoice)
+		.then(invoice => {
+			res.status(201).json(invoice);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to create new status' });
+			res.status(500).json({ message: 'Failed to create new invoice' });
 		});
 });
 
-// PUT:  Describe what it does
-router.put('/:statusesid', restricted, (req, res) => {
-	const statusesid = req.params.statusesid;
-	const updatedStatus = { status: req.body.status };
+// PUT:  update invoice
+router.put('/:iid', restricted, (req, res) => {
+	const iid = req.params.iid;
+	const updatedStatus = { invoice: req.body.invoice };
 
-	Statuses.update(statusesid, updatedStatus)
-		.then(status => {
-			if (status) {
-				res.json(status);
+	Invoices.update(iid, updatedStatus)
+		.then(invoice => {
+			if (invoice) {
+				res.json(invoice);
 			} else {
-				res.status(404).json({ message: 'Could not find status with given id' });
+				res.status(404).json({ message: `Could not find invoice with given id ${iid}` });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to update status' });
+			res.status(500).json({ message: 'Failed to update invoice', error: err });
 		});
 });
-// DELETE:  Describe what it does
-router.delete('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified ID does not exist.' });
+
+// DELETE:  delete invoice
+router.delete('/:iid', restricted, (req, res) => {
+	const iid = req.params.iid;
+	if (!iid) {
+		res.status(404).json({ message: `The invoice with the specified ID ${iid} does not exist.` });
 	}
-	Courtdates.remove(courtdatesid)
-		.then(courtdate => {
-			res.json(courtdate);
+	Invoices.remove(iid)
+		.then(invoice => {
+			res.json(invoice);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'The courtdate could not be removed' });
+			res.status(500).json({ message: 'The invoice could not be removed', error: err });
 		});
 });
 

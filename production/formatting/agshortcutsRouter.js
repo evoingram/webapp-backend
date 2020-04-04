@@ -1,75 +1,84 @@
 const router = require('express').Router();
 
-const Courtdates = require('./Model.js');
-const restricted = require('../auth/restriction.js');
+const AGShortcuts = require('./Model.js');
+const restricted = require('./auth/restriction.js');
 
-// GET:  Describe what it does
+// GET: get all agshortcut lists
 router.get('/', restricted, (req, res) => {
-	Courtdates.find()
-		.then(courtdates => {
-			res.status(200).json(courtdates);
+	AGShortcuts.find()
+		.then(agshortcuts => {
+			res.status(200).json(agshortcuts);
 		})
 		.catch(err => res.send(err));
 });
 
-// GET:  Describe what it does
-router.get('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
+// GET:  get one agshortcuts list
+router.get('/:agsid', restricted, (req, res) => {
+	const agsid = req.params.agsid;
+	if (!agsid) {
+		res.status(404).json({
+			message: `The agshortcut with the specified agsid ${agsid} does not exist.`,
+			error: err
+		});
 	} else {
-		Courtdates.findById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
+		AGShortcuts.findById(agsid)
+			.then(agshortcut => {
+				res.status(201).json(agshortcut);
 			})
 			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
+				res.status(500).json({
+					message: `The agshortcut list information could not be retrieved.`,
+					error: err
+				});
 			});
 	}
 });
 
-// POST:  create status
+// POST:  create an agshortcuts list
 router.post('/', restricted, (req, res) => {
-	const newStatus = req.body.status;
+	const newAGShortcut = req.body.agshortcut;
 
-	Statuses.add(newStatus)
-		.then(status => {
-			res.status(201).json(status);
+	AGShortcuts.add(newAGShortcut)
+		.then(agshortcut => {
+			res.status(201).json(agshortcut);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to create new status' });
+			res.status(500).json({ message: `Failed to create new agshortcut list.`, error: err });
 		});
 });
 
-// PUT:  Describe what it does
-router.put('/:statusesid', restricted, (req, res) => {
-	const statusesid = req.params.statusesid;
-	const updatedStatus = { status: req.body.status };
+// PUT:  update an agshortcuts list
+router.put('/:agsid', restricted, (req, res) => {
+	const agsid = req.params.agsid;
+	const updatedAGShortcut = { agshortcut: req.body.agshortcut };
 
-	Statuses.update(statusesid, updatedStatus)
-		.then(status => {
-			if (status) {
-				res.json(status);
+	AGShortcuts.update(agsid, updatedAGShortcut)
+		.then(agshortcut => {
+			if (agshortcut) {
+				res.json(agshortcut);
 			} else {
-				res.status(404).json({ message: 'Could not find status with given id' });
+				res.status(404).json({ message: `Could not find agshortcut list with given id ${agsid}.`, error: err });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to update status' });
+			res.status(500).json({ message: `Failed to update agshortcut list.`, error: err });
 		});
 });
-// DELETE:  Describe what it does
-router.delete('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified ID does not exist.' });
+// DELETE:  delete an agshortcuts list
+router.delete('/:agsid', restricted, (req, res) => {
+	const agsid = req.params.agsid;
+	if (!agsid) {
+		res.status(404).json({
+			message: `The agshortcut list with the specified ID ${agsid} does not exist.`,
+			error: err
+		});
 	}
-	Courtdates.remove(courtdatesid)
-		.then(courtdate => {
-			res.json(courtdate);
+	AGShortcuts.remove(agsid)
+		.then(agshortcut => {
+			res.json(agshortcut);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'The courtdate could not be removed' });
+			res.status(500).json({ message: `The agshortcut list could not be removed.`, error: err });
 		});
 });
 

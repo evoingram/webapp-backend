@@ -1,75 +1,75 @@
 const router = require('express').Router();
 
-const Courtdates = require('./Model.js');
+const Rates = require('./ratesModel.js');
 const restricted = require('../auth/restriction.js');
 
-// GET:  Describe what it does
+// GET:  get all rates
 router.get('/', restricted, (req, res) => {
-	Courtdates.find()
-		.then(courtdates => {
-			res.status(200).json(courtdates);
+	Rates.find()
+		.then(rates => {
+			res.status(200).json(rates);
 		})
 		.catch(err => res.send(err));
 });
 
-// GET:  Describe what it does
-router.get('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
+// GET:  get one rate
+router.get('/:ratesid', restricted, (req, res) => {
+	const ratesid = req.params.ratesid;
+	if (!ratesid) {
+		res.status(404).json({ message: `The rate with the specified ratesid ${ratesid} does not exist.` });
 	} else {
-		Courtdates.findById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
+		Rates.findById(ratesid)
+			.then(rate => {
+				res.status(201).json(rate);
 			})
 			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
+				res.status(500).json({ message: `The rate information could not be retrieved.`, error: err });
 			});
 	}
 });
 
-// POST:  create status
+// POST:  create rate
 router.post('/', restricted, (req, res) => {
-	const newStatus = req.body.status;
+	const newRate = req.body.rate;
 
-	Statuses.add(newStatus)
-		.then(status => {
-			res.status(201).json(status);
+	Rates.add(newRate)
+		.then(rate => {
+			res.status(201).json(rate);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to create new status' });
+			res.status(500).json({ message: `Failed to create new rate.`, error: err });
 		});
 });
 
-// PUT:  Describe what it does
-router.put('/:statusesid', restricted, (req, res) => {
-	const statusesid = req.params.statusesid;
-	const updatedStatus = { status: req.body.status };
+// PUT:  update a rate
+router.put('/:ratesid', restricted, (req, res) => {
+	const ratesid = req.params.ratesid;
+	const updatedRate = { rate: req.body.rate };
 
-	Statuses.update(statusesid, updatedStatus)
-		.then(status => {
-			if (status) {
-				res.json(status);
+	Rates.update(ratesid, updatedRate)
+		.then(rate => {
+			if (rate) {
+				res.json(rate);
 			} else {
-				res.status(404).json({ message: 'Could not find status with given id' });
+				res.status(404).json({ message: `Could not find rate with given id .` });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to update status' });
+			res.status(500).json({ message: `Failed to update rate.`, error: err });
 		});
 });
-// DELETE:  Describe what it does
-router.delete('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified ID does not exist.' });
+// DELETE:  delete a rate
+router.delete('/:ratesid', restricted, (req, res) => {
+	const ratesid = req.params.ratesid;
+	if (!ratesid) {
+		res.status(404).json({ message: `The rate with the specified ID ${ratesid} does not exist.` });
 	}
-	Courtdates.remove(courtdatesid)
-		.then(courtdate => {
-			res.json(courtdate);
+	Rates.remove(ratesid)
+		.then(rate => {
+			res.json(rate);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'The courtdate could not be removed' });
+			res.status(500).json({ message: `The rate could not be removed.`, error: err });
 		});
 });
 

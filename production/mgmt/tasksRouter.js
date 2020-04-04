@@ -1,75 +1,75 @@
 const router = require('express').Router();
 
-const Courtdates = require('./tasksModel.js');
+const Tasks = require('./tasksModel.js');
 const restricted = require('../../auth/restriction.js');
 
-// GET:  Describe what it does
+// GET:  get all tasks
 router.get('/', restricted, (req, res) => {
-	Courtdates.find()
-		.then(courtdates => {
-			res.status(200).json(courtdates);
+	Tasks.find()
+		.then(task => {
+			res.status(200).json(task);
 		})
 		.catch(err => res.send(err));
 });
 
-// GET:  Describe what it does
-router.get('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
+// GET:  get one task
+router.get('/:tasksid', restricted, (req, res) => {
+	const tasksid = req.params.tasksid;
+	if (!tasksid) {
+		res.status(404).json({ message: `The task with the specified tasksid ${tasksid} does not exist.` });
 	} else {
-		Courtdates.findById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
+		Tasks.findById(tasksid)
+			.then(task => {
+				res.status(201).json(task);
 			})
 			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
+				res.status(500).json({ message: 'The task information could not be retrieved.', error: err });
 			});
 	}
 });
 
-// POST:  create status
+// POST:  create task
 router.post('/', restricted, (req, res) => {
-	const newStatus = req.body.status;
+	const newTask = req.body.task;
 
-	Statuses.add(newStatus)
-		.then(status => {
-			res.status(201).json(status);
+	Tasks.add(newTask)
+		.then(task => {
+			res.status(201).json(task);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to create new status' });
+			res.status(500).json({ message: 'Failed to create new task', error: err });
 		});
 });
 
-// PUT:  Describe what it does
-router.put('/:statusesid', restricted, (req, res) => {
-	const statusesid = req.params.statusesid;
-	const updatedStatus = { status: req.body.status };
+// PUT:  update task
+router.put('/:tasksid', restricted, (req, res) => {
+	const tasksid = req.params.tasksid;
+	const updatedTask = { task: req.body.task };
 
-	Statuses.update(statusesid, updatedStatus)
-		.then(status => {
-			if (status) {
-				res.json(status);
+	Tasks.update(tasksid, updatedTask)
+		.then(task => {
+			if (task) {
+				res.json(task);
 			} else {
-				res.status(404).json({ message: 'Could not find status with given id' });
+				res.status(404).json({ message: `Could not find task with given id ${tasksid}` });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to update status' });
+			res.status(500).json({ message: 'Failed to update task', error: err });
 		});
 });
-// DELETE:  Describe what it does
-router.delete('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified ID does not exist.' });
+// DELETE:  delete task
+router.delete('/:tasksid', restricted, (req, res) => {
+	const tasksid = req.params.tasksid;
+	if (!tasksid) {
+		res.status(404).json({ message: `The task with the specified tasksid ${tasksid} does not exist.` });
 	}
-	Courtdates.remove(courtdatesid)
-		.then(courtdate => {
-			res.json(courtdate);
+	Tasks.remove(tasksid)
+		.then(task => {
+			res.json(task);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'The courtdate could not be removed' });
+			res.status(500).json({ message: 'The task could not be removed.', error: err });
 		});
 });
 

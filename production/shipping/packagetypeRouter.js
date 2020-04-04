@@ -1,75 +1,84 @@
 const router = require('express').Router();
 
-const Courtdates = require('./Model.js');
+const PackageType = require('./Model.js');
 const restricted = require('../auth/restriction.js');
 
-// GET:  Describe what it does
+// GET:  get all packagetypes
 router.get('/', restricted, (req, res) => {
-	Courtdates.find()
-		.then(courtdates => {
-			res.status(200).json(courtdates);
+	PackageType.find()
+		.then(packagetypes => {
+			res.status(200).json(packagetypes);
 		})
 		.catch(err => res.send(err));
 });
 
-// GET:  Describe what it does
-router.get('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
+// GET:  get one packagetype
+router.get('/:ptid', restricted, (req, res) => {
+	const ptid = req.params.ptid;
+	if (!ptid) {
+		res.status(404).json({
+			message: `The packagetype with the specified ptid ${ptid} does not exist.`,
+			error: err
+		});
 	} else {
-		Courtdates.findById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
+		PackageType.findById(ptid)
+			.then(packagetype => {
+				res.status(201).json(packagetype);
 			})
 			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
+				res.status(500).json({ message: `The packagetype information could not be retrieved.`, error: err });
 			});
 	}
 });
 
-// POST:  create status
+// POST:  create a packagetype
 router.post('/', restricted, (req, res) => {
-	const newStatus = req.body.status;
+	const newPackageType = req.body.packagetype;
 
-	Statuses.add(newStatus)
-		.then(status => {
-			res.status(201).json(status);
+	PackageType.add(newPackageType)
+		.then(packagetype => {
+			res.status(201).json(packagetype);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to create new status' });
+			res.status(500).json({ message: `Failed to create new packagetype.`, error: err });
 		});
 });
 
-// PUT:  Describe what it does
-router.put('/:statusesid', restricted, (req, res) => {
-	const statusesid = req.params.statusesid;
-	const updatedStatus = { status: req.body.status };
+// PUT:  update a packagetype
+router.put('/:ptid', restricted, (req, res) => {
+	const ptid = req.params.ptid;
+	const updatedPackageType = { packagetype: req.body.packagetype };
 
-	Statuses.update(statusesid, updatedStatus)
-		.then(status => {
-			if (status) {
-				res.json(status);
+	PackageType.update(ptid, updatedPackageType)
+		.then(packagetype => {
+			if (packagetype) {
+				res.json(packagetype);
 			} else {
-				res.status(404).json({ message: 'Could not find status with given id' });
+				res.status(404).json({
+					message: `Could not find packagetype with given id ${ptid}`,
+					error: err
+				});
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to update status' });
+			res.status(500).json({ message: `Failed to update packagetype.`, error: err });
 		});
 });
-// DELETE:  Describe what it does
-router.delete('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified ID does not exist.' });
+// DELETE:  delete a packagetype
+router.delete('/:ptid', restricted, (req, res) => {
+	const ptid = req.params.ptid;
+	if (!ptid) {
+		res.status(404).json({
+			message: `The packagetype with the specified ID ${ptid} does not exist.`,
+			error: err
+		});
 	}
-	Courtdates.remove(courtdatesid)
-		.then(courtdate => {
-			res.json(courtdate);
+	PackageType.remove(ptid)
+		.then(packagetype => {
+			res.json(packagetype);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'The courtdate could not be removed' });
+			res.status(500).json({ message: `The packagetype could not be removed.`, error: err });
 		});
 });
 

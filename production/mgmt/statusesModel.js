@@ -10,35 +10,28 @@ module.exports = {
 };
 
 function find() {
-	return db('courtdates').select('*');
+	return db('statuses').select('*');
 }
 
 function findBy(filter) {
-	return db('courtdates').where(filter);
+	return db('statuses').where(filter);
 }
 
-async function add(courtdate) {
-	const [courtdatesid] = await db('courtdates').insert(courtdate, 'courtdatesid');
-	return findById(courtdatesid);
+async function add(status) {
+	const [statusesid] = await db('statuses').insert(status, 'statusesid');
+	return findById(statusesid);
 }
 
-function findById(courtdatesid) {
-	return db('courtdates')
-		.select('courtdatesid', '*')
-		.where({ courtdatesid })
-		.first();
+function findById(statusesid) {
+	return db('statuses').select('statusesid', '*').where({ statusesid }).first();
 }
 
-function update(courtdatesid, courtdate) {
-	return db('courtdates')
-		.where('courtdatesid', Number(courtdatesid))
-		.update(courtdate);
+function update(statusesid, status) {
+	return db('statuses').where('statusesid', Number(statusesid)).update(status);
 }
 
-function remove(courtdatesid) {
-	return db('courtdates')
-		.where('courtdatesid', Number(courtdatesid))
-		.del();
+function remove(statusesid) {
+	return db('statuses').where('statusesid', Number(statusesid)).del();
 }
 
 /*

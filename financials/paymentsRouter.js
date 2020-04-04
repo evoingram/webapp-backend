@@ -1,75 +1,75 @@
 const router = require('express').Router();
 
-const Courtdates = require('./paymentsModel.js');
+const Payments = require('./paymentsModel.js');
 const restricted = require('../auth/restriction.js');
 
-// GET:  Describe what it does
+// GET:  gets all payments records
 router.get('/', restricted, (req, res) => {
-	Courtdates.find()
-		.then(courtdates => {
-			res.status(200).json(courtdates);
+	Payments.find()
+		.then(payments => {
+			res.status(200).json(payments);
 		})
 		.catch(err => res.send(err));
 });
 
-// GET:  Describe what it does
-router.get('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
+// GET:  gets one payment record
+router.get('/:pid', restricted, (req, res) => {
+	const pid = req.params.pid;
+	if (!pid) {
+		res.status(404).json({ message: `The payment with the specified pid ${pid} does not exist.` });
 	} else {
-		Courtdates.findById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
+		Payments.findById(pid)
+			.then(payment => {
+				res.status(201).json(payment);
 			})
 			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
+				res.status(500).json({ message: `The payment information could not be retrieved.`, error: err });
 			});
 	}
 });
 
-// POST:  create status
+// POST:  record payment
 router.post('/', restricted, (req, res) => {
-	const newStatus = req.body.status;
+	const newPayment = req.body.payment;
 
-	Statuses.add(newStatus)
-		.then(status => {
-			res.status(201).json(status);
+	Payments.add(newPayment)
+		.then(payment => {
+			res.status(201).json(payment);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to create new status' });
+			res.status(500).json({ message: `Failed to create new payment.`, error: err });
 		});
 });
 
-// PUT:  Describe what it does
-router.put('/:statusesid', restricted, (req, res) => {
-	const statusesid = req.params.statusesid;
-	const updatedStatus = { status: req.body.status };
+// PUT:  update payment record
+router.put('/:pid', restricted, (req, res) => {
+	const pid = req.params.pid;
+	const updatedPayment = { payment: req.body.payment };
 
-	Statuses.update(statusesid, updatedStatus)
-		.then(status => {
-			if (status) {
-				res.json(status);
+	Payments.update(pid, updatedPayment)
+		.then(payment => {
+			if (payment) {
+				res.json(payment);
 			} else {
-				res.status(404).json({ message: 'Could not find status with given id' });
+				res.status(404).json({ message: `Could not find payment with given id ${pid}.` });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to update status' });
+			res.status(500).json({ message: `Failed to update payment.`, error: err });
 		});
 });
-// DELETE:  Describe what it does
-router.delete('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified ID does not exist.' });
+// DELETE:  delete payment record
+router.delete('/:pid', restricted, (req, res) => {
+	const pid = req.params.pid;
+	if (!pid) {
+		res.status(404).json({ message: `The payment with the specified ID ${pid} does not exist.` });
 	}
-	Courtdates.remove(courtdatesid)
-		.then(courtdate => {
-			res.json(courtdate);
+	Payments.remove(pid)
+		.then(payment => {
+			res.json(payment);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'The courtdate could not be removed' });
+			res.status(500).json({ message: `The payment could not be removed.`, error: err });
 		});
 });
 

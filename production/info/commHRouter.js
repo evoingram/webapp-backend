@@ -1,75 +1,78 @@
 const router = require('express').Router();
 
-const Courtdates = require('./commHModel.js');
+const CommHistory = require('./commHModel.js');
 const restricted = require('../../auth/restriction.js');
 
-// GET:  Describe what it does
+// GET:  get all commhistory items
 router.get('/', restricted, (req, res) => {
-	Courtdates.find()
-		.then(courtdates => {
-			res.status(200).json(courtdates);
+	CommHistory.find()
+		.then(commhistory => {
+			res.status(200).json(commhistory);
 		})
 		.catch(err => res.send(err));
 });
 
-// GET:  Describe what it does
-router.get('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
+// GET:  get one commhistory item
+router.get('/:chid', restricted, (req, res) => {
+	const chid = req.params.chid;
+	if (!chid) {
+		res.status(404).json({ message: `The singlecommhistory with the specified chid ${chid} does not exist.` });
 	} else {
-		Courtdates.findById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
+		CommHistory.findById(chid)
+			.then(singlecommhistory => {
+				res.status(201).json(singlecommhistory);
 			})
 			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
+				res.status(500).json({
+					message: `The singlecommhistory information could not be retrieved.`,
+					error: err
+				});
 			});
 	}
 });
 
-// POST:  create status
+// POST:  create a commhistory item
 router.post('/', restricted, (req, res) => {
-	const newStatus = req.body.status;
+	const newCommHistory = req.body.commhistory;
 
-	Statuses.add(newStatus)
-		.then(status => {
-			res.status(201).json(status);
+	CommHistory.add(newCommHistory)
+		.then(commhistory => {
+			res.status(201).json(commhistory);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to create new status' });
+			res.status(500).json({ message: `Failed to create new commhistory item.`, error: err });
 		});
 });
 
-// PUT:  Describe what it does
-router.put('/:statusesid', restricted, (req, res) => {
-	const statusesid = req.params.statusesid;
-	const updatedStatus = { status: req.body.status };
+// PUT:  update a commhistory item
+router.put('/:chid', restricted, (req, res) => {
+	const chid = req.params.chid;
+	const updatedCommHistory = { commhistory: req.body.commhistory };
 
-	Statuses.update(statusesid, updatedStatus)
-		.then(status => {
-			if (status) {
-				res.json(status);
+	CommHistory.update(chid, updatedCommHistory)
+		.then(commhistory => {
+			if (commhistory) {
+				res.json(commhistory);
 			} else {
-				res.status(404).json({ message: 'Could not find status with given id' });
+				res.status(404).json({ message: `Could not find commhistory item with given id ${chid}.` });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to update status' });
+			res.status(500).json({ message: `Failed to update commhistory.`, error: err });
 		});
 });
-// DELETE:  Describe what it does
-router.delete('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified ID does not exist.' });
+// DELETE:  delete an item of commhistory
+router.delete('/:chid', restricted, (req, res) => {
+	const chid = req.params.chid;
+	if (!chid) {
+		res.status(404).json({ message: `The singlecommhistory with the specified ID ${chid} does not exist.` });
 	}
-	Courtdates.remove(courtdatesid)
-		.then(courtdate => {
-			res.json(courtdate);
+	CommHistory.remove(chid)
+		.then(singlecommhistory => {
+			res.json(singlecommhistory);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'The courtdate could not be removed' });
+			res.status(500).json({ message: `The singlecommhistory could not be removed.`, error: err });
 		});
 });
 

@@ -9,9 +9,6 @@ const Expenses = require('../../financials/expensesModel.js');
 const Payments = require('../../financials/paymentsModel.js');
 const CommHistory = require('./commHModel.js');
 const restricted = require('../../auth/restriction.js');
-// also need:
-// 		expenses, payments, shipping
-// 		citations, tasks, commHistory
 
 router.get('/', restricted, (req, res) => {
 	Courtdates.find()

@@ -1,75 +1,75 @@
 const router = require('express').Router();
 
-const Courtdates = require('./styleModel.js/index.js');
-const restricted = require('../auth/restriction.js');
+const Styles = require('./styleModel.js/index.js');
+const restricted = require('./auth/restriction.js');
 
-// GET:  Describe what it does
+// GET:  get all styles
 router.get('/', restricted, (req, res) => {
-	Courtdates.find()
-		.then(courtdates => {
-			res.status(200).json(courtdates);
+	Styles.find()
+		.then(styles => {
+			res.status(200).json(styles);
 		})
 		.catch(err => res.send(err));
 });
 
-// GET:  Describe what it does
-router.get('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
+// GET:  get one style
+router.get('/:sid', restricted, (req, res) => {
+	const sid = req.params.sid;
+	if (!sid) {
+		res.status(404).json({ message: `The style with the specified sid ${sid} does not exist.`, error: err });
 	} else {
-		Courtdates.findById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
+		Styles.findById(sid)
+			.then(style => {
+				res.status(201).json(style);
 			})
 			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
+				res.status(500).json({ message: `The style information could not be retrieved.`, error: err });
 			});
 	}
 });
 
-// POST:  create status
+// POST:  create a style
 router.post('/', restricted, (req, res) => {
-	const newStatus = req.body.status;
+	const newStyle = req.body.style;
 
-	Statuses.add(newStatus)
-		.then(status => {
-			res.status(201).json(status);
+	StyleNames.add(newStyle)
+		.then(style => {
+			res.status(201).json(style);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to create new status' });
+			res.status(500).json({ message: `Failed to create new style.`, error: err });
 		});
 });
 
-// PUT:  Describe what it does
-router.put('/:statusesid', restricted, (req, res) => {
-	const statusesid = req.params.statusesid;
-	const updatedStatus = { status: req.body.status };
+// PUT:  update a style
+router.put('/:sid', restricted, (req, res) => {
+	const sid = req.params.sid;
+	const updatedStyle = { style: req.body.style };
 
-	Statuses.update(statusesid, updatedStatus)
-		.then(status => {
-			if (status) {
-				res.json(status);
+	StyleNames.update(sid, updatedStyle)
+		.then(style => {
+			if (style) {
+				res.json(style);
 			} else {
-				res.status(404).json({ message: 'Could not find status with given id' });
+				res.status(404).json({ message: `Could not find style with given id ${sid}.`, error: err });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to update status' });
+			res.status(500).json({ message: `Failed to update style.`, error: err });
 		});
 });
-// DELETE:  Describe what it does
-router.delete('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified ID does not exist.' });
+// DELETE:  delete a style
+router.delete('/:sid', restricted, (req, res) => {
+	const sid = req.params.sid;
+	if (!sid) {
+		res.status(404).json({ message: `The style with the specified ID ${sid} does not exist.`, error: err });
 	}
-	Courtdates.remove(courtdatesid)
-		.then(courtdate => {
-			res.json(courtdate);
+	Styles.remove(sid)
+		.then(style => {
+			res.json(style);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'The courtdate could not be removed' });
+			res.status(500).json({ message: `The style with id ${sid} could not be removed.`, error: err });
 		});
 });
 

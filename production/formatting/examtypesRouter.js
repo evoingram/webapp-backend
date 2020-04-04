@@ -1,75 +1,75 @@
 const router = require('express').Router();
 
-const Courtdates = require('./Model.js');
-const restricted = require('../auth/restriction.js');
+const ExamTypes = require('./Model.js');
+const restricted = require('./auth/restriction.js');
 
-// GET:  Describe what it does
+// GET:  get all examtypes
 router.get('/', restricted, (req, res) => {
-	Courtdates.find()
-		.then(courtdates => {
-			res.status(200).json(courtdates);
+	ExamTypes.find()
+		.then(examtypes => {
+			res.status(200).json(examtypes);
 		})
 		.catch(err => res.send(err));
 });
 
-// GET:  Describe what it does
-router.get('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
+// GET:  get an examtype
+router.get('/:eid', restricted, (req, res) => {
+	const eid = req.params.eid;
+	if (!eid) {
+		res.status(404).json({ message: `The examtype with the specified eid ${eid} does not exist.`, error: err });
 	} else {
-		Courtdates.findById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
+		ExamTypes.findById(eid)
+			.then(examtype => {
+				res.status(201).json(examtype);
 			})
 			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
+				res.status(500).json({ message: `The examtype information could not be retrieved.`, error: err });
 			});
 	}
 });
 
-// POST:  create status
+// POST:  create an examtype
 router.post('/', restricted, (req, res) => {
-	const newStatus = req.body.status;
+	const newExamType = req.body.examtype;
 
-	Statuses.add(newStatus)
-		.then(status => {
-			res.status(201).json(status);
+	ExamTypes.add(newExamType)
+		.then(examtype => {
+			res.status(201).json(examtype);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to create new status' });
+			res.status(500).json({ message: `Failed to create new examtype.`, error: err });
 		});
 });
 
-// PUT:  Describe what it does
-router.put('/:statusesid', restricted, (req, res) => {
-	const statusesid = req.params.statusesid;
-	const updatedStatus = { status: req.body.status };
+// PUT:  update an examtype
+router.put('/:eid', restricted, (req, res) => {
+	const eid = req.params.eid;
+	const updatedExamType = { examtype: req.body.examtype };
 
-	Statuses.update(statusesid, updatedStatus)
-		.then(status => {
-			if (status) {
-				res.json(status);
+	ExamTypes.update(eid, updatedExamType)
+		.then(examtype => {
+			if (examtype) {
+				res.json(examtype);
 			} else {
-				res.status(404).json({ message: 'Could not find status with given id' });
+				res.status(404).json({ message: `Could not find examtype with given id ${eid}.`, error: err });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to update status' });
+			res.status(500).json({ message: `Failed to update examtype with id ${eid}.`, error: err });
 		});
 });
-// DELETE:  Describe what it does
-router.delete('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified ID does not exist.' });
+// DELETE:  delete an examtype
+router.delete('/:eid', restricted, (req, res) => {
+	const eid = req.params.eid;
+	if (!eid) {
+		res.status(404).json({ message: `The examtype with the specified ID ${eid} does not exist.`, error: err });
 	}
-	Courtdates.remove(courtdatesid)
-		.then(courtdate => {
-			res.json(courtdate);
+	ExamTypes.remove(eid)
+		.then(examtype => {
+			res.json(examtype);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'The courtdate could not be removed' });
+			res.status(500).json({ message: `The examtype with id ${eid} could not be removed.`, error: err });
 		});
 });
 

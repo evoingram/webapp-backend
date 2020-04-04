@@ -10,69 +10,26 @@ module.exports = {
 };
 
 function find() {
-	return db('courtdates').select('*');
+	return db('packagetype').select('*');
 }
 
 function findBy(filter) {
-	return db('courtdates').where(filter);
+	return db('packagetype').where(filter);
 }
 
-async function add(courtdate) {
-	const [courtdatesid] = await db('courtdates').insert(courtdate, 'courtdatesid');
-	return findById(courtdatesid);
+async function add(singlepackagetype) {
+	const [ptid] = await db('packagetype').insert(singlepackagetype, 'ptid');
+	return findById(ptid);
 }
 
-function findById(courtdatesid) {
-	return db('courtdates')
-		.select('courtdatesid', '*')
-		.where({ courtdatesid })
-		.first();
+function findById(ptid) {
+	return db('packagetype').select('ptid', '*').where({ ptid }).first();
 }
 
-function update(courtdatesid, courtdate) {
-	return db('courtdates')
-		.where('courtdatesid', Number(courtdatesid))
-		.update(courtdate);
+function update(ptid, singlepackagetype) {
+	return db('packagetype').where('ptid', Number(ptid)).update(singlepackagetype);
 }
 
-function remove(courtdatesid) {
-	return db('courtdates')
-		.where('courtdatesid', Number(courtdatesid))
-		.del();
+function remove(ptid) {
+	return db('packagetype').where('ptid', Number(ptid)).del();
 }
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
