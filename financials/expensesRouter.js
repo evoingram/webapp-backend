@@ -13,18 +13,18 @@ router.get('/', restricted, (req, res) => {
 });
 
 // GET:  get one expense
-router.get('/:expensesid', restricted, (req, res) => {
-	const expensesid = req.params.expensesid;
-	if (!expensesid) {
-		res.status(404).json({ message: `The expense with the specified expensesid ${expensesid} does not exist.` });
+router.get('/:eid', restricted, (req, res) => {
+	const eid = req.params.eid;
+	if (!eid) {
+		res.status(404).json({ message: `The expense with the specified eid ${eid} does not exist.` });
 	} else {
-		Expenses.findById(expensesid)
+		Expenses.findById(eid)
 			.then(expense => {
 				res.status(201).json(expense);
 			})
 			.catch(err => {
 				res.status(500).json({
-					message: `The expense information for ${expensesid} could not be retrieved.`,
+					message: `The expense information for ${eid} could not be retrieved.`,
 					error: err
 				});
 			});
@@ -45,16 +45,16 @@ router.post('/', restricted, (req, res) => {
 });
 
 // PUT:  update expense
-router.put('/:expensesid', restricted, (req, res) => {
-	const expensesid = req.params.expensesid;
+router.put('/:eid', restricted, (req, res) => {
+	const eid = req.params.eid;
 	const updatedExpense = { status: req.body.expense };
 
-	Expenses.update(expensesid, updatedExpense)
+	Expenses.update(eid, updatedExpense)
 		.then(expense => {
 			if (status) {
 				res.json(expense);
 			} else {
-				res.status(404).json({ message: `Could not find expense with given id ${expensesid}.` });
+				res.status(404).json({ message: `Could not find expense with given id ${eid}.` });
 			}
 		})
 		.catch(err => {
@@ -62,12 +62,12 @@ router.put('/:expensesid', restricted, (req, res) => {
 		});
 });
 // DELETE:  delete expense
-router.delete('/:expensesid', restricted, (req, res) => {
-	const expensesid = req.params.expensesid;
-	if (!expensesid) {
-		res.status(404).json({ message: `The expense with the specified ID ${expensesid} does not exist.` });
+router.delete('/:eid', restricted, (req, res) => {
+	const eid = req.params.eid;
+	if (!eid) {
+		res.status(404).json({ message: `The expense with the specified ID ${eid} does not exist.` });
 	}
-	Expenses.remove(expensesid)
+	Expenses.remove(eid)
 		.then(expense => {
 			res.json(expense);
 		})
