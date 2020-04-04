@@ -68,6 +68,26 @@ router.get('/:customersid/cases', restricted, (req, res) => {
 			});
 	}
 });
+
+// GET:  invoices for a single customer endpoint
+router.get('/:customersid/invoices', restricted, (req, res) => {
+	const customersid = req.params.customersid;
+	if (!customersid) {
+		res.status(404).json({ message: `The customer with the specified customersid ${customersid} does not exist.` });
+	} else {
+		Customers.findInvoicesById(customersid)
+			.then(invoicelist => {
+				res.status(201).json(invoicelist);
+			})
+			.catch(err => {
+				res.status(500).json({
+					message: `Invoices for the customer id ${customersid} could not be retrieved.`,
+					error: err
+				});
+			});
+	}
+});
+
 // DELETE:  single customer endpoint
 router.delete('/:customersid', restricted, (req, res) => {
 	const customersid = req.params.customersid;

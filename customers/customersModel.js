@@ -15,7 +15,8 @@ module.exports = {
 	findByAppNumberCasesID,
 	selectCustomerID,
 	findJobsById,
-	findCasesById
+	findCasesById,
+	findInvoicesById
 };
 
 // returns list of customers, displays customersid, username, email
@@ -324,6 +325,81 @@ function findCasesById(customersid) {
 		.innerJoin('appearances', 'courtdates.courtdatesid', 'appearances.courtdatesid')
 		.innerJoin('courtdates', 'appearances.courtdatesid', 'courtdates.courtdatesid')
 		.where('customers.customersid', customersid);
+}
+
+// return invoices of one customer
+function findInvoicesById(customersid) {
+	return db('customers')
+		.select(
+			'courtdates.courtdatesid',
+			'courtdates.ttid',
+			'courtdates.hearingdate',
+			'courtdates.hearingstarttime',
+			'courtdates.hearingendtime',
+			'courtdates.audiolength',
+			'courtdates.location',
+			'courtdates.duedate',
+			'courtdates.filed',
+			'courtdates.hearingtitle',
+			'courtdates.judgename',
+			'courtdates.judgetitle',
+			'courtdates.factoringcost',
+			'courtdates.estimatedquantity',
+			'courtdates.actualquantity',
+			'courtdates.subtotal',
+			'courtdates.finalprice',
+			'courtdates.estimatedadvancedate',
+			'courtdates.estimatedrebatedate',
+			'courtdates.ppid',
+			'courtdates.ppstatus',
+			'courtdates.shipdate',
+			'courtdates.trackingno',
+			'invoices.invoiceno',
+			'invoices.iid',
+			'invoices.btid',
+			'invoices.discount',
+			'invoices.reference',
+			'invoices.invoicedate',
+			'invoices.duedate AS iduedate',
+			'invoices.itemcode',
+			'invoices.description',
+			'invoices.accountcode',
+			'invoices.taxtype',
+			'invoices.ratesid',
+			'appearances.appid',
+			'appearances.cdappid',
+			'appearances.customersid',
+			'appearances.courtdatesid',
+			'customers.customersid',
+			'customers.factoring',
+			'customers.company',
+			'customers.mrms',
+			'customers.lastname',
+			'customers.firstname',
+			'customers.email',
+			'customers.jobtitle',
+			'customers.businessphone',
+			'customers.address1',
+			'customers.address2',
+			'customers.city',
+			'customers.state',
+			'customers.zip',
+			'customers.notes',
+			'payments.pid',
+			'payments.amount AS pamount',
+			'payments.remitdate',
+			'payments.iid',
+			'courtdatescasescustomers.cdccid',
+			'courtdatescasescustomers.courtdatesid',
+			'courtdatescasescustomers.casesid',
+			'courtdatescasescustomers.orderingid'
+		)
+		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('appearances', 'appearances.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('invoices', 'invoices.iid', 'courtdates.iid')
+		.innerJoin('customers', 'appearances.customersid', 'customers.customersid')
+		.innerJoin('payments', 'payments.iid', 'invoices.iid')
+		.where({ customersid });
 }
 
 /*
