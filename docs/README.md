@@ -34,8 +34,8 @@ All endpoints have been tested via Postman.
 - [X] CRUD statuses
 - [X] CRUD expenses
 - [X] CRUD payments
-- [ ] CRUD commHistory
-- [ ] CRUD shipping
+- [X] CRUD commHistory
+- [X] CRUD shipping
 - [X] CRUD invoices
 - [ ] CRUD citations
 - [ ] CRUD customers
@@ -47,8 +47,8 @@ All endpoints have been tested via Postman.
 - [ ] CRUD turnaroundtimes
 - [ ] CRUD courtdatescasescustomers
 - [ ] CRUD appearances
-- [ ] CRUD mailclass
-- [ ] CRUD packagetype
+- [X] CRUD mailclass
+- [X] CRUD packagetype
 
 - [ ] GET jobs by customer
 - [ ] GET jobs by duedate?

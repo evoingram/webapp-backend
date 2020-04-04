@@ -1,75 +1,75 @@
 const router = require('express').Router();
 
-const Courtdates = require('./shippingModel.js');
+const ShippingOptions = require('./shippingModel.js');
 const restricted = require('../../auth/restriction.js');
 
-// GET:  Describe what it does
+// GET:  get all packages shipped
 router.get('/', restricted, (req, res) => {
-	Courtdates.find()
-		.then(courtdates => {
-			res.status(200).json(courtdates);
+	ShippingOptions.find()
+		.then(shippingoptions => {
+			res.status(200).json(shippingoptions);
 		})
 		.catch(err => res.send(err));
 });
 
-// GET:  Describe what it does
-router.get('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
+// GET:  get one shipped package
+router.get('/:soid', restricted, (req, res) => {
+	const soid = req.params.soid;
+	if (!soid) {
+		res.status(404).json({ message: `The shippingitem with the specified soid ${soid} does not exist.` });
 	} else {
-		Courtdates.findById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
+		ShippingOptions.findById(soid)
+			.then(shippingitem => {
+				res.status(201).json(shippingitem);
 			})
 			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
+				res.status(500).json({ message: `The shippingitem information could not be retrieved.`, error: err });
 			});
 	}
 });
 
-// POST:  create status
+// POST:  create a shipped package record
 router.post('/', restricted, (req, res) => {
-	const newStatus = req.body.status;
+	const newShippingOptions = req.body.shippingitem;
 
-	Statuses.add(newStatus)
-		.then(status => {
-			res.status(201).json(status);
+	ShippingOptions.add(newShippingOptions)
+		.then(shippingitem => {
+			res.status(201).json(shippingitem);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to create new status' });
+			res.status(500).json({ message: `Failed to create new shippingitem.`, error: err });
 		});
 });
 
-// PUT:  Describe what it does
-router.put('/:statusesid', restricted, (req, res) => {
-	const statusesid = req.params.statusesid;
-	const updatedStatus = { status: req.body.status };
+// PUT:  update a shipped package record
+router.put('/:soid', restricted, (req, res) => {
+	const soid = req.params.soid;
+	const updatedShippingOptions = { shippingitem: req.body.shippingitem };
 
-	Statuses.update(statusesid, updatedStatus)
-		.then(status => {
-			if (status) {
-				res.json(status);
+	ShippingOptions.update(soid, updatedShippingOptions)
+		.then(shippingitem => {
+			if (shippingitem) {
+				res.json(shippingitem);
 			} else {
-				res.status(404).json({ message: 'Could not find status with given id' });
+				res.status(404).json({ message: `Could not find shippingitem with given id ${soid}.` });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to update status' });
+			res.status(500).json({ message: `Failed to update shippingitem.`, error: err });
 		});
 });
-// DELETE:  Describe what it does
-router.delete('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified ID does not exist.' });
+// DELETE:  delete a shipped package record
+router.delete('/:soid', restricted, (req, res) => {
+	const soid = req.params.soid;
+	if (!soid) {
+		res.status(404).json({ message: `The shippingitem with the specified ID ${soid} does not exist.` });
 	}
-	Courtdates.remove(courtdatesid)
-		.then(courtdate => {
-			res.json(courtdate);
+	ShippingOptions.remove(soid)
+		.then(shippingitem => {
+			res.json(shippingitem);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'The courtdate could not be removed' });
+			res.status(500).json({ message: `The shippingitem could not be removed.`, error: err });
 		});
 });
 
