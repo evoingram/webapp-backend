@@ -23,7 +23,7 @@ async function add(singlemailclass) {
 }
 
 function findById(mcid) {
-	return db('mailclass').select('mcid', '*').where({ mcid }).first();
+	return db('mailclass').select('mcid', '*').where({ mcid });
 }
 
 function update(mcid, singlemailclass) {
