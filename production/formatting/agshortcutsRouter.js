@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
-const AGShortcuts = require('./Model.js');
-const restricted = require('./auth/restriction.js');
+const AGShortcuts = require('./agshortcutsModel.js');
+const restricted = require('../../auth/restriction.js');
 
 // GET: get all agshortcut lists
 router.get('/', restricted, (req, res) => {

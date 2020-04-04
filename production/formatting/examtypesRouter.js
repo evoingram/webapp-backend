@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
-const ExamTypes = require('./Model.js');
-const restricted = require('./auth/restriction.js');
+const ExamTypes = require('./examtypesModel.js');
+const restricted = require('../../auth/restriction.js');
 
 // GET:  get all examtypes
 router.get('/', restricted, (req, res) => {
