@@ -37,7 +37,7 @@ All endpoints have been tested via Postman.
 - [X] CRUD commHistory
 - [X] CRUD shipping
 - [X] CRUD invoices
-- [ ] CRUD citations
+- [X] CRUD citations
 - [ ] CRUD customers
 
 - [X] CRUD rates
@@ -49,6 +49,7 @@ All endpoints have been tested via Postman.
 - [ ] CRUD appearances
 - [X] CRUD mailclass
 - [X] CRUD packagetype
+- [X] CRUD usc
 
 - [ ] GET jobs by customer
 - [ ] GET jobs by duedate?

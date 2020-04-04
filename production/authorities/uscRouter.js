@@ -6,70 +6,70 @@ const restricted = require('../auth/restriction.js');
 // GET:  get all usc citaitons
 router.get('/', restricted, (req, res) => {
 	USCCitations.find()
-		.then(courtdates => {
-			res.status(200).json(courtdates);
+		.then(uscs => {
+			res.status(200).json(uscs);
 		})
 		.catch(err => res.send(err));
 });
 
 // GET:  get one usc citaiton
-router.get('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: `The courtdate with the specified courtdatesid does not exist.`, error: err });
+router.get('/:uscid', restricted, (req, res) => {
+	const uscid = req.params.uscid;
+	if (!uscid) {
+		res.status(404).json({ message: `The uscitem with the specified uscid ${uscid} does not exist.`, error: err });
 	} else {
-		USCCitations.findById(courtdatesid)
-			.then(courtdate => {
-				res.status(201).json(courtdate);
+		USCCitations.findById(uscid)
+			.then(uscitem => {
+				res.status(201).json(uscitem);
 			})
 			.catch(err => {
-				res.status(500).json({ message: `The courtdate information could not be retrieved.`, error: err });
+				res.status(500).json({ message: `The uscitem information could not be retrieved.`, error: err });
 			});
 	}
 });
 
 // POST:  create a usc citation
 router.post('/', restricted, (req, res) => {
-	const newStatus = req.body.status;
+	const newUSCCodeItem = req.body.uscCodeItem;
 
-	Statuses.add(newStatus)
-		.then(status => {
-			res.status(201).json(status);
+	USCCitations.add(newUSCCodeItem)
+		.then(uscitem => {
+			res.status(201).json(uscitem);
 		})
 		.catch(err => {
-			res.status(500).json({ message: `Failed to create new status`, error: err });
+			res.status(500).json({ message: `Failed to create new uscitem.`, error: err });
 		});
 });
 
 // PUT:  update a usc citation
-router.put('/:statusesid', restricted, (req, res) => {
-	const statusesid = req.params.statusesid;
-	const updatedStatus = { status: req.body.status };
+router.put('/:uscid', restricted, (req, res) => {
+	const uscid = req.params.uscid;
+	const updatedUSCCodeItem = { usc: req.body.usc };
 
-	Statuses.update(statusesid, updatedStatus)
-		.then(status => {
-			if (status) {
-				res.json(status);
+	USCCitations.update(uscid, updatedUSCCodeItem)
+		.then(uscitem => {
+			if (uscitem) {
+				res.json(uscitem);
 			} else {
-				res.status(404).json({ message: `Could not find status with given id`, error: err });
+				res.status(404).json({ message: `Could not find uscitem with given id ${uscid}.`, error: err });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: `Failed to update status`, error: err });
+			res.status(500).json({ message: `Failed to update uscitem.`, error: err });
 		});
 });
 // DELETE:  delete a usc citation
-router.delete('/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({ message: `The courtdate with the specified ID does not exist.`, error: err });
+router.delete('/:uscid', restricted, (req, res) => {
+	const uscid = req.params.uscid;
+	if (!uscid) {
+		res.status(404).json({ message: `The uscitem with the specified ID ${uscid} does not exist.`, error: err });
 	}
-	USCCitations.remove(courtdatesid)
-		.then(courtdate => {
-			res.json(courtdate);
+	USCCitations.remove(uscid)
+		.then(uscitem => {
+			res.json(uscitem);
 		})
 		.catch(err => {
-			res.status(500).json({ message: `The courtdate could not be removed`, error: err });
+			res.status(500).json({ message: `The uscitem could not be removed`, error: err });
 		});
 });
 
