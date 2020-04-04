@@ -13,12 +13,12 @@ router.get('/', restricted, (req, res) => {
 });
 
 // GET:  get one task
-router.get('/:tasksid', restricted, (req, res) => {
-	const tasksid = req.params.tasksid;
-	if (!tasksid) {
-		res.status(404).json({ message: `The task with the specified tasksid ${tasksid} does not exist.` });
+router.get('/:tid', restricted, (req, res) => {
+	const tid = req.params.tid;
+	if (!tid) {
+		res.status(404).json({ message: `The task with the specified tid ${tid} does not exist.` });
 	} else {
-		Tasks.findById(tasksid)
+		Tasks.findById(tid)
 			.then(task => {
 				res.status(201).json(task);
 			})
@@ -42,16 +42,16 @@ router.post('/', restricted, (req, res) => {
 });
 
 // PUT:  update task
-router.put('/:tasksid', restricted, (req, res) => {
-	const tasksid = req.params.tasksid;
+router.put('/:tid', restricted, (req, res) => {
+	const tid = req.params.tid;
 	const updatedTask = { task: req.body.task };
 
-	Tasks.update(tasksid, updatedTask)
+	Tasks.update(tid, updatedTask)
 		.then(task => {
 			if (task) {
 				res.json(task);
 			} else {
-				res.status(404).json({ message: `Could not find task with given id ${tasksid}` });
+				res.status(404).json({ message: `Could not find task with given id ${tid}` });
 			}
 		})
 		.catch(err => {
@@ -59,12 +59,12 @@ router.put('/:tasksid', restricted, (req, res) => {
 		});
 });
 // DELETE:  delete task
-router.delete('/:tasksid', restricted, (req, res) => {
-	const tasksid = req.params.tasksid;
-	if (!tasksid) {
-		res.status(404).json({ message: `The task with the specified tasksid ${tasksid} does not exist.` });
+router.delete('/:tid', restricted, (req, res) => {
+	const tid = req.params.tid;
+	if (!tid) {
+		res.status(404).json({ message: `The task with the specified tid ${tid} does not exist.` });
 	}
-	Tasks.remove(tasksid)
+	Tasks.remove(tid)
 		.then(task => {
 			res.json(task);
 		})

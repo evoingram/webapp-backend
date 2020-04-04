@@ -18,20 +18,20 @@ function findBy(filter) {
 }
 
 async function add(task) {
-	const [tasksid] = await db('tasks').insert(task, 'tasksid');
-	return findById(tasksid);
+	const [tid] = await db('tasks').insert(task, 'tid');
+	return findById(tid);
 }
 
-function findById(tasksid) {
-	return db('tasks').select('tasksid', '*').where({ tasksid }).first();
+function findById(tid) {
+	return db('tasks').select('tid', '*').where({ tid });
 }
 
-function update(tasksid, task) {
-	return db('tasks').where('tasksid', Number(tasksid)).update(task);
+function update(tid, task) {
+	return db('tasks').where('tid', Number(tid)).update(task);
 }
 
-function remove(tasksid) {
-	return db('tasks').where('tasksid', Number(tasksid)).del();
+function remove(tid) {
+	return db('tasks').where('tid', Number(tid)).del();
 }
 
 /*

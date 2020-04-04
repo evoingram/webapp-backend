@@ -4,6 +4,7 @@ module.exports = {
 	add,
 	find,
 	findBy,
+	findById,
 	update,
 	remove
 };
@@ -14,6 +15,9 @@ function find() {
 
 function findBy(filter) {
 	return db('appearances').where(filter);
+}
+function findById(appid) {
+	return db('appearances').select('*').where({ appid });
 }
 
 async function add(appearance) {

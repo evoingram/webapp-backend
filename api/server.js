@@ -29,6 +29,7 @@ const CCCRouter = require('../production/info/cccRouter.js');
 const StatusesRouter = require('../production/mgmt/statusesRouter.js');
 const MCRouter = require('../production/shipping/mailclassRouter.js');
 const PTRouter = require('../production/shipping/packagetypeRouter.js');
+const CitationHyperlinksRouter = require('../production/authorities/citationhyperlinksRouter.js');
 
 // courtdates table router
 // fields: courtdatesid ratesid ttid btid iid hearingdate hearingstarttime hearingendtime audiolength location shipdate duedate trackingno paymenttype filed factoringcost estimatedquantity actualquantity subtotal estimatedadvancerate estimatedrebatedate finalprice ppid ppstatus hearingtitle judgename judgetitle
@@ -72,6 +73,7 @@ server.use('/api/invoices', InvoicesRouter);
 server.use('/api/rates', RatesRouter);
 
 server.use('/api/usc', USCRouter);
+server.use('/api/citationhyperlinks', CitationHyperlinksRouter);
 
 server.use('/api/agshortcuts', AGSRouter);
 server.use('/api/examtypes', ETRouter);

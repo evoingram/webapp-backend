@@ -18,7 +18,7 @@ router.get('/:appid', restricted, (req, res) => {
 	if (!appid) {
 		res.status(404).json({ message: `The appearance with the specified appid ${appid} does not exist.` });
 	} else {
-		Appearances.findAppsById(appid)
+		Appearances.findById(appid)
 			.then(appearances => {
 				res.status(201).json(appearances);
 			})
