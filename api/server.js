@@ -10,6 +10,7 @@ const logger = require('../middleware/logger');
 const customersRouter = require('../customers/customersRouter');
 const loginRouter = require('../auth/loginRouter.js');
 const registerRouter = require('../auth/registerRouter.js');
+
 const AppearancesRouter = require('../production/info/appearancesRouter.js');
 const TasksRouter = require('../production/mgmt/tasksRouter.js');
 const CitationsRouter = require('../production/authorities/citationsRouter.js');
@@ -27,8 +28,10 @@ const StyleRouter = require('../production/formatting/styleRouter.js');
 const TTRouter = require('../production/formatting/ttRouter.js');
 const CCCRouter = require('../production/info/cccRouter.js');
 const StatusesRouter = require('../production/mgmt/statusesRouter.js');
+
 const MCRouter = require('../production/shipping/mailclassRouter.js');
 const PTRouter = require('../production/shipping/packagetypeRouter.js');
+
 const CitationHyperlinksRouter = require('../production/authorities/citationhyperlinksRouter.js');
 
 // courtdates table router
@@ -59,32 +62,52 @@ server.use('/api/courtdates', courtdatesRouter);
 // fields: casesid party1 party1name party2 party2name casenumber1 casenumber2
 server.use('/api/cases', casesRouter);
 
-//
+// appearances table router
 server.use('/api/appearances', AppearancesRouter);
+// tasks table router
 server.use('/api/tasks', TasksRouter);
+// citations table router
 server.use('/api/citations', CitationsRouter);
+// shippingoptions table router
 server.use('/api/shipping', ShippingRouter);
+// expenses table router
 server.use('/api/expenses', ExpensesRouter);
+// payments table router
 server.use('/api/payments', PaymentsRouter);
+// commhistory table router
 server.use('/api/commhistory', CommHistoryRouter);
 
+// brandingthemes table router
 server.use('/api/brandingthemes', BTRouter);
+// invoices table router
 server.use('/api/invoices', InvoicesRouter);
+// rates table router
 server.use('/api/rates', RatesRouter);
 
+// usc table router
 server.use('/api/usc', USCRouter);
+// citationhyperlinks table router
 server.use('/api/citationhyperlinks', CitationHyperlinksRouter);
 
+// agshortcuts table router
 server.use('/api/agshortcuts', AGSRouter);
+// examtypes table router
 server.use('/api/examtypes', ETRouter);
+// styles table router
 server.use('/api/styles', StyleRouter);
+// turnaroundtimes table router
 server.use('/api/turnaroundtimes', TTRouter);
 
+// courtdatescasescustomers table router
 server.use('/api/ccc', CCCRouter);
 
+// statuses table router
 server.use('/api/statuses', StatusesRouter);
 
+// mailclasses table router
 server.use('/api/mailclasses', MCRouter);
+
+// packagetypes table router
 server.use('/api/packagetypes', PTRouter);
 
 // unsecured/unlogged-in response

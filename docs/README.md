@@ -253,5 +253,6 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 
 ### TO DO
 
+- [ ] test types/response post/put/delete
 - [ ] proofer/transcriber endpoints
 - [ ] brainstorm other custom needs
