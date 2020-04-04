@@ -33,7 +33,7 @@ All endpoints have been tested via Postman.
 - [X] CRUD tasks
 - [X] CRUD statuses
 - [X] CRUD expenses
-- [ ] CRUD payments
+- [X] CRUD payments
 - [ ] CRUD commHistory
 - [ ] CRUD shipping
 - [X] CRUD invoices
