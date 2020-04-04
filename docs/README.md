@@ -51,11 +51,10 @@ All endpoints have been tested via Postman.
 - [X] CRUD packagetype
 - [X] CRUD usc
 
-- [ ] GET jobs by customer
-- [ ] GET jobs by duedate?
-- [ ] GET invoices by amount/duedate/factoring
+- [X] GET jobs by customer
 - [ ] GET customers by factoring
 - [ ] GET cases by customer
 - [ ] GET unpaid invoices
+
+- [ ] proofer/transcriber endpoints
 - [ ] brainstorm other custom needs
-- [ ] brainstorm proofer/transcriber endpoints
