@@ -3,7 +3,7 @@ const router = require('express').Router();
 const ExamTypes = require('./Model.js');
 const restricted = require('./auth/restriction.js');
 
-// GET:  Describe what it does
+// GET:  get all examtypes
 router.get('/', restricted, (req, res) => {
 	ExamTypes.find()
 		.then(examtypes => {
@@ -12,11 +12,11 @@ router.get('/', restricted, (req, res) => {
 		.catch(err => res.send(err));
 });
 
-// GET:  Describe what it does
+// GET:  get an examtype
 router.get('/:eid', restricted, (req, res) => {
 	const eid = req.params.eid;
 	if (!eid) {
-		res.status(404).json({ message: `The examtype with the specified eid does not exist.`, error: err });
+		res.status(404).json({ message: `The examtype with the specified eid ${eid} does not exist.`, error: err });
 	} else {
 		ExamTypes.findById(eid)
 			.then(examtype => {
@@ -28,48 +28,48 @@ router.get('/:eid', restricted, (req, res) => {
 	}
 });
 
-// POST:  create status
+// POST:  create an examtype
 router.post('/', restricted, (req, res) => {
-	const newExamType = req.body.status;
+	const newExamType = req.body.examtype;
 
 	ExamTypes.add(newExamType)
-		.then(status => {
-			res.status(201).json(status);
+		.then(examtype => {
+			res.status(201).json(examtype);
 		})
 		.catch(err => {
-			res.status(500).json({ message: `Failed to create new status.`, error: err });
+			res.status(500).json({ message: `Failed to create new examtype.`, error: err });
 		});
 });
 
-// PUT:  Describe what it does
+// PUT:  update an examtype
 router.put('/:eid', restricted, (req, res) => {
 	const eid = req.params.eid;
-	const updatedExamType = { status: req.body.status };
+	const updatedExamType = { examtype: req.body.examtype };
 
 	ExamTypes.update(eid, updatedExamType)
-		.then(status => {
-			if (status) {
-				res.json(status);
+		.then(examtype => {
+			if (examtype) {
+				res.json(examtype);
 			} else {
-				res.status(404).json({ message: `Could not find status with given id.`, error: err });
+				res.status(404).json({ message: `Could not find examtype with given id ${eid}.`, error: err });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: `Failed to update status.`, error: err });
+			res.status(500).json({ message: `Failed to update examtype with id ${eid}.`, error: err });
 		});
 });
-// DELETE:  Describe what it does
+// DELETE:  delete an examtype
 router.delete('/:eid', restricted, (req, res) => {
 	const eid = req.params.eid;
 	if (!eid) {
-		res.status(404).json({ message: `The examtype with the specified ID does not exist.`, error: err });
+		res.status(404).json({ message: `The examtype with the specified ID ${eid} does not exist.`, error: err });
 	}
 	ExamTypes.remove(eid)
 		.then(examtype => {
 			res.json(examtype);
 		})
 		.catch(err => {
-			res.status(500).json({ message: `The examtype could not be removed.`, error: err });
+			res.status(500).json({ message: `The examtype with id ${eid} could not be removed.`, error: err });
 		});
 });
 
