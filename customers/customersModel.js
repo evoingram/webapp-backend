@@ -14,7 +14,8 @@ module.exports = {
 	findAppearance,
 	findByAppNumberCasesID,
 	selectCustomerID,
-	findJobsById
+	findJobsById,
+	findCasesById
 };
 
 // returns list of customers, displays customersid, username, email
@@ -290,6 +291,36 @@ function findJobsById(customersid) {
 		.innerJoin('statuses', 'courtdates.courtdatesid', 'statuses.courtdatesid')
 		.innerJoin('tasks', 'courtdates.courtdatesid', 'tasks.courtdatesid')
 		.innerJoin('citationhyperlinks', 'citations.citlinksid', 'citationhyperlinks.chid')
+		.innerJoin('appearances', 'courtdates.courtdatesid', 'appearances.courtdatesid')
+		.innerJoin('courtdates', 'appearances.courtdatesid', 'courtdates.courtdatesid')
+		.where('customers.customersid', customersid);
+}
+// returns a list of cases by customer
+function findCasesById(customersid) {
+	return db('customers')
+		.select(
+			'courtdates.courtdatesid',
+			'cases.casesid',
+			'cases.party1',
+			'cases.party1name',
+			'cases.party2',
+			'cases.party2name',
+			'cases.casenumber1',
+			'cases.casenumber2',
+			'cases.jurisdiction',
+			'cases.notes',
+			'appearances.appid',
+			'appearances.cdappid',
+			'appearances.customersid',
+			'appearances.courtdatesid',
+			'customers.customersid',
+			'courtdatescasescustomers.cdccid',
+			'courtdatescasescustomers.courtdatesid',
+			'courtdatescasescustomers.casesid',
+			'courtdatescasescustomers.orderingid'
+		)
+		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('cases', 'cases.casesid', 'courtdatescasescustomers.casesid')
 		.innerJoin('appearances', 'courtdates.courtdatesid', 'appearances.courtdatesid')
 		.innerJoin('courtdates', 'appearances.courtdatesid', 'courtdates.courtdatesid')
 		.where('customers.customersid', customersid);

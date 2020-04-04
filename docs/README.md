@@ -52,8 +52,7 @@ All endpoints have been tested via Postman.
 - [X] CRUD usc
 
 - [X] GET jobs by customer
-- [ ] GET customers by factoring
-- [ ] GET cases by customer
+- [X] GET cases by customer
 - [ ] GET unpaid invoices
 
 - [ ] proofer/transcriber endpoints
