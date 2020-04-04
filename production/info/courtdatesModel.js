@@ -15,6 +15,17 @@ module.exports = {
 	findTasksById,
 	findCitationsById,
 	findInvoicesById,
+	findUSCsById,
+	findMCsById,
+	findPTsById,
+	findBTsById,
+	findRatesById,
+	findStatusesById,
+	findAGSById,
+	findETsById,
+	findStylesById,
+	findCCCsById,
+	findCHsById,
 	findAppsById
 };
 
@@ -57,7 +68,6 @@ function findExpensesById(courtdatesid) {
 		.innerJoin('expenses', 'expenses.courtdatesid', 'courtdates.courtdatesid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
-
 function findPaymentsById(courtdatesid) {
 	return db('courtdates')
 		.select(
@@ -71,7 +81,6 @@ function findPaymentsById(courtdatesid) {
 		.innerJoin('payments', 'payments.iid', 'courtdates.iid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
-
 function getShippingById(courtdatesid) {
 	return db('courtdates')
 		.select(
@@ -133,7 +142,6 @@ function getShippingById(courtdatesid) {
 		.innerJoin('packagetype', 'packagetype.ptid', 'shippingoptions.ptid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
-
 function findAppsById(courtdatesid) {
 	return db('courtdates')
 		.select(
@@ -162,7 +170,6 @@ function findAppsById(courtdatesid) {
 		.innerJoin('customers', 'appearances.customersid', 'customers.customersid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
-
 function findCitationsById(courtdatesid) {
 	return db('courtdates')
 		.select(
@@ -285,7 +292,6 @@ function findMCsById(courtdatesid) {
 		.innerJoin('mailclass', 'mailclass.mcid', 'shippingoptions.mcid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
-
 function findPTsById(courtdatesid) {
 	return db('courtdates')
 		.select(
@@ -298,6 +304,147 @@ function findPTsById(courtdatesid) {
 		)
 		.innerJoin('shippingoptions', 'shippingoptions.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('packagetype', 'packagetype.ptid', 'shippingoptions.ptid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+function findBTsById(courtdatesid) {
+	return db('courtdates')
+		.select('courtdates.courtdatesid', 'courtdates.btid', 'brandingthemes.brandingtheme', 'brandingthemes.btid')
+		.innerJoin('brandingthemes', 'brandingthemes.btid', 'courtdates.btid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+function findRatesById(courtdatesid) {
+	return db('courtdates')
+		.select('courtdates.courtdatesid', 'courtdates.btid', 'brandingthemes.brandingtheme', 'brandingthemes.btid')
+		.innerJoin('brandingthemes', 'brandingthemes.btid', 'courtdates.btid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+
+function findStatusesById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'courtdates.ratesid',
+			'rates.ratesid',
+			'rates.rate',
+			'rates.code',
+			'rates.inventoryratecode',
+			'rates.productname',
+			'rates.description'
+		)
+		.innerJoin('rates', 'rates.ratesid', 'courtdates.ratesid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+function findAGSById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'agshortcuts.agsid',
+			'agshortcuts.courtdatesid',
+			'agshortcuts.ag1',
+			'agshortcuts.ag2',
+			'agshortcuts.ag3',
+			'agshortcuts.ag4',
+			'agshortcuts.ag5',
+			'agshortcuts.ag6',
+			'agshortcuts.ag11',
+			'agshortcuts.ag12',
+			'agshortcuts.ag13',
+			'agshortcuts.ag14',
+			'agshortcuts.ag15',
+			'agshortcuts.ag16',
+			'agshortcuts.ag21',
+			'agshortcuts.ag22',
+			'agshortcuts.ag23',
+			'agshortcuts.ag24',
+			'agshortcuts.ag25',
+			'agshortcuts.ag26',
+			'agshortcuts.ag31',
+			'agshortcuts.ag32',
+			'agshortcuts.ag33',
+			'agshortcuts.ag34',
+			'agshortcuts.ag35',
+			'agshortcuts.ag36',
+			'agshortcuts.ag41',
+			'agshortcuts.ag42',
+			'agshortcuts.ag43',
+			'agshortcuts.ag44',
+			'agshortcuts.ag45',
+			'agshortcuts.ag46',
+			'agshortcuts.ag51',
+			'agshortcuts.ag52',
+			'agshortcuts.ag53',
+			'agshortcuts.ag54',
+			'agshortcuts.ag55',
+			'agshortcuts.ag56',
+			'agshortcuts.ag61',
+			'agshortcuts.ag62',
+			'agshortcuts.ag63',
+			'agshortcuts.ag64',
+			'agshortcuts.ag65',
+			'agshortcuts.ag66'
+		)
+		.innerJoin('agshortcuts', 'agshortcuts.courtdatesid', 'courtdates.courtdatesid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+function findETsById(courtdatesid) {
+	return db('courtdates')
+		.select('courtdates.courtdatesid', 'examtypes.eid', 'examtypes.examination', 'examtypes.ecode')
+		.innerJoin('examtypes', 'courtdates.eid', 'examtypes.eid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+
+function findStylesById(courtdatesid) {
+	return db('courtdates')
+		.select('courtdates.courtdatesid', 'stylenames.sid', 'stylenames.stylename')
+		.innerJoin('stylenames', 'courtdates.sid', 'stylenames.sid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+function findCCCsById(courtdatesid) {
+	return db('courtdatescasescustomers')
+		.select(
+			'courtdates.courtdatesid',
+			'courtdatescasescustomers.cdccid',
+			'courtdatescasescustomers.courtdatesid',
+			'courtdatescasescustomers.casesid',
+			'courtdatescasescustomers.orderingid'
+		)
+		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+function findCHsById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'citations.citationsid',
+			'citations.uscid',
+			'citations.citlinksid',
+			'citations.courtdatesid',
+			'citationhyperlinks.chid',
+			'citationhyperlinks.findcitation',
+			'citationhyperlinks.longcitation',
+			'citationhyperlinks.chcategory',
+			'citationhyperlinks.webaddress'
+		)
+		.innerJoin('citations', 'courtdates.courtdatesid', 'citations.courtdatesid')
+		.innerJoin('citationhyperlinks', 'citations.citlinksid', 'citationhyperlinks.chid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+function findUSCsById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'citations.citationsid',
+			'citations.uscid',
+			'citations.citlinksid',
+			'citations.courtdatesid',
+			'usc.uscid',
+			'usc.findcitation',
+			'usc.longcitation',
+			'usc.chcategory',
+			'usc.webaddress'
+		)
+		.innerJoin('citations', 'courtdates.courtdatesid', 'citations.courtdatesid')
+		.innerJoin('usc', 'citations.uscid', 'usc.uscid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
 
