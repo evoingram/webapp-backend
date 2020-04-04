@@ -30,10 +30,6 @@ function update(iid, invoice) {
 	return db('invoices').where('iid', Number(iid)).update(invoice);
 }
 
-function findUnpaidInvoicesByCustomer(iid) {
-	return db('invoices').select('iid', '*').where({ iid }).first();
-}
-
 function remove(iid) {
 	return db('invoices').where('iid', Number(iid)).del();
 }

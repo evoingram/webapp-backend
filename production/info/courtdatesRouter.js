@@ -3,6 +3,7 @@ const router = require('express').Router();
 const Courtdates = require('./courtdatesModel.js');
 const restricted = require('../../auth/restriction.js');
 
+// GET:  returns all courtdates
 router.get('/', restricted, (req, res) => {
 	Courtdates.find()
 		.then(courtdates => {
@@ -10,6 +11,8 @@ router.get('/', restricted, (req, res) => {
 		})
 		.catch(err => res.send(err));
 });
+
+// GET:  returns info for one job/courtdate
 router.get('/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -197,6 +200,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 	}
 });
 
+// GET:  returns basic info for one job/courtdate
 router.get('/basic/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -218,6 +222,7 @@ router.get('/basic/:courtdatesid', restricted, (req, res) => {
 	}
 });
 
+// DELETE:  delete a courtdates record
 router.delete('/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -235,6 +240,38 @@ router.delete('/:courtdatesid', restricted, (req, res) => {
 		});
 });
 
+// POST:  create a courtdates record
+router.post('/', restricted, (req, res) => {
+	const newCourtdate = req.body.courtdate;
+
+	Courtdates.add(newCourtdate)
+		.then(courtdate => {
+			res.status(201).json(courtdate);
+		})
+		.catch(err => {
+			res.status(500).json({ message: `Failed to create new courtdate.`, error: err });
+		});
+});
+
+// PUT:  update a courtdates record
+router.put('/:courtdatesid', restricted, (req, res) => {
+	const courtdatesid = req.params.courtdatesid;
+	const updatedCourtdates = { courtdate: req.body.courtdate };
+
+	Courtdates.update(courtdatesid, updatedCourtdates)
+		.then(courtdate => {
+			if (courtdate) {
+				res.json(courtdate);
+			} else {
+				res.status(404).json({ message: `Could not find courtdate with given id ${courtdatesid}.` });
+			}
+		})
+		.catch(err => {
+			res.status(500).json({ message: `Failed to update courtdate.`, error: err });
+		});
+});
+
+// GET:  returns apps for one job/courtdate
 router.get('/apps/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -255,6 +292,8 @@ router.get('/apps/:courtdatesid', restricted, (req, res) => {
 			});
 	}
 });
+
+// GET:  returns expenses for one job/courtdate
 router.get('/expenses/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -274,6 +313,8 @@ router.get('/expenses/:courtdatesid', restricted, (req, res) => {
 			});
 	}
 });
+
+// GET:  returns payments for one job/courtdate
 router.get('/payments/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -293,6 +334,8 @@ router.get('/payments/:courtdatesid', restricted, (req, res) => {
 			});
 	}
 });
+
+// GET:  returns shipping for one job/courtdate
 router.get('/shipping/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -312,6 +355,8 @@ router.get('/shipping/:courtdatesid', restricted, (req, res) => {
 			});
 	}
 });
+
+// GET:  returns citations for one job/courtdate
 router.get('/citations/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -331,6 +376,8 @@ router.get('/citations/:courtdatesid', restricted, (req, res) => {
 			});
 	}
 });
+
+// GET:  returns tasks for one job/courtdate
 router.get('/tasks/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -348,6 +395,8 @@ router.get('/tasks/:courtdatesid', restricted, (req, res) => {
 			});
 	}
 });
+
+// GET:  returns commhistory for one job/courtdate
 router.get('/commhistory/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -367,6 +416,8 @@ router.get('/commhistory/:courtdatesid', restricted, (req, res) => {
 			});
 	}
 });
+
+// GET:  returns invoices for one job/courtdate
 router.get('/invoices/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -388,6 +439,7 @@ router.get('/invoices/:courtdatesid', restricted, (req, res) => {
 	}
 });
 
+// GET:  returns statuses for one job/courtdate
 router.get('/statuses/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -408,6 +460,8 @@ router.get('/statuses/:courtdatesid', restricted, (req, res) => {
 			});
 	}
 });
+
+// GET:  returns brandingthemes for one job/courtdate
 router.get('/brandingthemes/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -428,6 +482,8 @@ router.get('/brandingthemes/:courtdatesid', restricted, (req, res) => {
 			});
 	}
 });
+
+// GET:  returns rates for one job/courtdate
 router.get('/rates/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -449,6 +505,7 @@ router.get('/rates/:courtdatesid', restricted, (req, res) => {
 	}
 });
 
+// GET:  returns agshortcuts for one job/courtdate
 router.get('/agshortcuts/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -470,6 +527,7 @@ router.get('/agshortcuts/:courtdatesid', restricted, (req, res) => {
 	}
 });
 
+// GET:  returns citationhyperlinks for one job/courtdate
 router.get('/citationhyperlinks/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -490,6 +548,8 @@ router.get('/citationhyperlinks/:courtdatesid', restricted, (req, res) => {
 			});
 	}
 });
+
+// GET:  returns mailclasses for one job/courtdate
 router.get('/mailclasses/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -510,6 +570,8 @@ router.get('/mailclasses/:courtdatesid', restricted, (req, res) => {
 			});
 	}
 });
+
+// GET:  returns packagetypes for one job/courtdate
 router.get('/packagetypes/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -531,6 +593,7 @@ router.get('/packagetypes/:courtdatesid', restricted, (req, res) => {
 	}
 });
 
+// GET:  returns ccc for one job/courtdate
 router.get('/ccc/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -552,26 +615,7 @@ router.get('/ccc/:courtdatesid', restricted, (req, res) => {
 	}
 });
 
-router.get('/ccc/:courtdatesid', restricted, (req, res) => {
-	const courtdatesid = req.params.courtdatesid;
-	if (!courtdatesid) {
-		res.status(404).json({
-			message: `The courtdate with the specified courtdatesid ${courtdatesid} does not exist.`,
-			error: err
-		});
-	} else {
-		Courtdates.findCCCsById(courtdatesid)
-			.then(ccc => {
-				res.status(201).json(ccc);
-			})
-			.catch(err => {
-				res.status(500).json({
-					message: `The ccc information for this courtdate ${courtdatesid} could not be retrieved.`,
-					error: err
-				});
-			});
-	}
-});
+// GET:  returns usc items for one job/courtdate
 router.get('/usc/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
