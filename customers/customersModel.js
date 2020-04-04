@@ -13,7 +13,10 @@ module.exports = {
 	selectDistinct,
 	findAppearance,
 	findByAppNumberCasesID,
-	selectCustomerID
+	selectCustomerID,
+	findJobsById,
+	findCasesById,
+	findInvoicesById
 };
 
 // returns list of customers, displays customersid, username, email
@@ -34,25 +37,369 @@ async function add(customer) {
 
 // returns a customer by ID number
 function findById(customersid) {
-	return db('customers')
-		.select('customersid', 'username', 'email')
-		.where({ customersid })
-		.first();
+	return db('customers').select('customersid', 'username', 'email').where({ customersid }).first();
 }
 
 // updates a customer
 function update(customersid, user) {
-	return db('customers')
-		.where('customersid', Number(customersid))
-		.update(user);
+	return db('customers').where('customersid', Number(customersid)).update(user);
 }
 
 // deletes a customer
 // TODO: Make sure it removes all associated data
 function remove(customersid) {
+	return db('customers').where('customersid', Number(customersid)).del();
+}
+// returns a list of jobs by customer
+function findJobsById(customersid) {
 	return db('customers')
-		.where('customersid', Number(customersid))
-		.del();
+		.select(
+			'agshortcuts.agsid',
+			'agshortcuts.courtdatesid',
+			'agshortcuts.ag1',
+			'agshortcuts.ag2',
+			'agshortcuts.ag3',
+			'agshortcuts.ag4',
+			'agshortcuts.ag5',
+			'agshortcuts.ag6',
+			'agshortcuts.ag11',
+			'agshortcuts.ag12',
+			'agshortcuts.ag13',
+			'agshortcuts.ag14',
+			'agshortcuts.ag15',
+			'agshortcuts.ag16',
+			'agshortcuts.ag21',
+			'agshortcuts.ag22',
+			'agshortcuts.ag23',
+			'agshortcuts.ag24',
+			'agshortcuts.ag25',
+			'agshortcuts.ag26',
+			'agshortcuts.ag31',
+			'agshortcuts.ag32',
+			'agshortcuts.ag33',
+			'agshortcuts.ag34',
+			'agshortcuts.ag35',
+			'agshortcuts.ag36',
+			'agshortcuts.ag41',
+			'agshortcuts.ag42',
+			'agshortcuts.ag43',
+			'agshortcuts.ag44',
+			'agshortcuts.ag45',
+			'agshortcuts.ag46',
+			'agshortcuts.ag51',
+			'agshortcuts.ag52',
+			'agshortcuts.ag53',
+			'agshortcuts.ag54',
+			'agshortcuts.ag55',
+			'agshortcuts.ag56',
+			'agshortcuts.ag61',
+			'agshortcuts.ag62',
+			'agshortcuts.ag63',
+			'agshortcuts.ag64',
+			'agshortcuts.ag65',
+			'agshortcuts.ag66',
+			'courtdates.courtdatesid',
+			'courtdates.ttid',
+			'courtdates.hearingdate',
+			'courtdates.hearingstarttime',
+			'courtdates.hearingendtime',
+			'courtdates.audiolength',
+			'courtdates.location',
+			'courtdates.duedate',
+			'courtdates.filed',
+			'courtdates.hearingtitle',
+			'courtdates.judgename',
+			'courtdates.judgetitle',
+			'courtdates.factoringcost',
+			'courtdates.estimatedquantity',
+			'courtdates.actualquantity',
+			'courtdates.subtotal',
+			'courtdates.finalprice',
+			'courtdates.estimatedadvancedate',
+			'courtdates.estimatedrebatedate',
+			'courtdates.ppid',
+			'courtdates.ppstatus',
+			'courtdates.shipdate',
+			'courtdates.trackingno',
+			'cases.casesid',
+			'cases.party1',
+			'cases.party1name',
+			'cases.party2',
+			'cases.party2name',
+			'cases.casenumber1',
+			'cases.casenumber2',
+			'cases.jurisdiction',
+			'cases.notes',
+			'turnaroundtimes.ttid',
+			'turnaroundtimes.turnaroundtime',
+			'rates.ratesid',
+			'rates.rate',
+			'rates.code',
+			'rates.inventoryratecode',
+			'rates.productname',
+			'rates.description',
+			'brandingthemes.brandingtheme',
+			'brandingthemes.btid',
+			'expenses.eid',
+			'expenses.vendor',
+			'expenses.date',
+			'expenses.amount AS eamount',
+			'expenses.description',
+			'expenses.courtdatesid',
+			'invoices.invoiceno',
+			'invoices.iid',
+			'invoices.btid',
+			'invoices.discount',
+			'invoices.reference',
+			'invoices.invoicedate',
+			'invoices.duedate AS iduedate',
+			'invoices.itemcode',
+			'invoices.description',
+			'invoices.accountcode',
+			'invoices.taxtype',
+			'invoices.ratesid',
+			'appearances.appid',
+			'appearances.cdappid',
+			'appearances.customersid',
+			'appearances.courtdatesid',
+			'customers.customersid',
+			'customers.factoring',
+			'customers.company',
+			'customers.mrms',
+			'customers.lastname',
+			'customers.firstname',
+			'customers.email',
+			'customers.jobtitle',
+			'customers.businessphone',
+			'customers.address1',
+			'customers.address2',
+			'customers.city',
+			'customers.state',
+			'customers.zip',
+			'customers.notes',
+			'payments.pid',
+			'payments.amount AS pamount',
+			'payments.remitdate',
+			'payments.iid',
+			'shippingoptions.soid',
+			'shippingoptions.mcid',
+			'shippingoptions.ptid',
+			'shippingoptions.customersid',
+			'shippingoptions.amount',
+			'shippingoptions.shippingcost',
+			'shippingoptions.width',
+			'shippingoptions.length',
+			'shippingoptions.height',
+			'shippingoptions.prioritymailexpress1030',
+			'shippingoptions.holidaydelivery',
+			'shippingoptions.sundaydelivery',
+			'shippingoptions.saturdaydelivery',
+			'shippingoptions.signaturerequired',
+			'shippingoptions.stealth',
+			'shippingoptions.replypostage',
+			'shippingoptions.insuredmail',
+			'shippingoptions.cod',
+			'shippingoptions.restricteddelivery',
+			'shippingoptions.adultsigrestricted',
+			'shippingoptions.adultsigrequired',
+			'shippingoptions.returnreceipt',
+			'shippingoptions.certifiedmail',
+			'shippingoptions.sigconfirmation',
+			'shippingoptions.uspstracking',
+			'shippingoptions.reference',
+			'shippingoptions.value',
+			'shippingoptions.description',
+			'shippingoptions.weightoz',
+			'shippingoptions.output',
+			'packagetype.ptid',
+			'packagetype.packagetype',
+			'packagetype.description',
+			'mailclass.mcid',
+			'mailclass.mailclass',
+			'mailclass.description',
+			'communicationhistory.chid',
+			'communicationhistory.courtdatesid',
+			'communicationhistory.customersid',
+			'communicationhistory.filepath',
+			'communicationhistory.datecreated',
+			'statuses.sid',
+			'statuses.courtdatesid',
+			'statuses.jobentered',
+			'statuses.appsentered',
+			'statuses.coverpage',
+			'statuses.autocorrect',
+			'statuses.schedule',
+			'statuses.prepinvoice',
+			'statuses.agshortcuts',
+			'statuses.transcribe',
+			'statuses.addrdtocover',
+			'statuses.findreplacerd',
+			'statuses.hyperlink',
+			'statuses.spellingsemail',
+			'statuses.audioproof',
+			'statuses.invoicecompleted',
+			'statuses.noticeofservice',
+			'statuses.peletter',
+			'statuses.cdlabel',
+			'statuses.generatezips',
+			'statuses.transcriptsready',
+			'statuses.invoicetofactoremail',
+			'statuses.filetranscript',
+			'statuses.burncd',
+			'statuses.shippingxmls',
+			'statuses.shippingemail',
+			'statuses.addtrackingno',
+			'tasks.tid',
+			'tasks.courtdatesid',
+			'tasks.title',
+			'tasks.priority',
+			'tasks.status',
+			'tasks.description',
+			'tasks.startdate AS tstartdate',
+			'tasks.duedate AS tduedate',
+			'tasks.prioritypoints',
+			'tasks.category',
+			'tasks.timelength',
+			'tasks.completed',
+			'citations.citationsid',
+			'citations.uscid',
+			'citations.citlinksid',
+			'citations.courtdatesid',
+			'citationhyperlinks.chid',
+			'citationhyperlinks.findcitation',
+			'citationhyperlinks.longcitation',
+			'citationhyperlinks.chcategory',
+			'citationhyperlinks.webaddress',
+			'courtdatescasescustomers.cdccid',
+			'courtdatescasescustomers.courtdatesid',
+			'courtdatescasescustomers.casesid',
+			'courtdatescasescustomers.orderingid'
+		)
+		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('turnaroundtimes', 'turnaroundtimes.ttid', 'courtdates.ttid')
+		.innerJoin('rates', 'rates.ratesid', 'courtdates.ratesid')
+		.innerJoin('brandingthemes', 'brandingthemes.btid', 'courtdates.btid')
+		.innerJoin('cases', 'cases.casesid', 'courtdatescasescustomers.casesid')
+		.innerJoin('agshortcuts', 'agshortcuts.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('invoices', 'invoices.iid', 'courtdates.iid')
+		.innerJoin('expenses', 'expenses.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('payments', 'payments.iid', 'invoices.iid')
+		.innerJoin('shippingoptions', 'shippingoptions.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('mailclass', 'mailclass.mcid', 'shippingoptions.mcid')
+		.innerJoin('packagetype', 'packagetype.ptid', 'shippingoptions.ptid')
+		.innerJoin('citations', 'courtdates.courtdatesid', 'citations.courtdatesid')
+		.innerJoin('communicationhistory', 'communicationhistory.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('statuses', 'courtdates.courtdatesid', 'statuses.courtdatesid')
+		.innerJoin('tasks', 'courtdates.courtdatesid', 'tasks.courtdatesid')
+		.innerJoin('citationhyperlinks', 'citations.citlinksid', 'citationhyperlinks.chid')
+		.innerJoin('appearances', 'courtdates.courtdatesid', 'appearances.courtdatesid')
+		.innerJoin('courtdates', 'appearances.courtdatesid', 'courtdates.courtdatesid')
+		.where('customers.customersid', customersid);
+}
+// returns a list of cases by customer
+function findCasesById(customersid) {
+	return db('customers')
+		.select(
+			'courtdates.courtdatesid',
+			'cases.casesid',
+			'cases.party1',
+			'cases.party1name',
+			'cases.party2',
+			'cases.party2name',
+			'cases.casenumber1',
+			'cases.casenumber2',
+			'cases.jurisdiction',
+			'cases.notes',
+			'appearances.appid',
+			'appearances.cdappid',
+			'appearances.customersid',
+			'appearances.courtdatesid',
+			'customers.customersid',
+			'courtdatescasescustomers.cdccid',
+			'courtdatescasescustomers.courtdatesid',
+			'courtdatescasescustomers.casesid',
+			'courtdatescasescustomers.orderingid'
+		)
+		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('cases', 'cases.casesid', 'courtdatescasescustomers.casesid')
+		.innerJoin('appearances', 'courtdates.courtdatesid', 'appearances.courtdatesid')
+		.innerJoin('courtdates', 'appearances.courtdatesid', 'courtdates.courtdatesid')
+		.where('customers.customersid', customersid);
+}
+
+// return invoices of one customer
+function findInvoicesById(customersid) {
+	return db('customers')
+		.select(
+			'courtdates.courtdatesid',
+			'courtdates.ttid',
+			'courtdates.hearingdate',
+			'courtdates.hearingstarttime',
+			'courtdates.hearingendtime',
+			'courtdates.audiolength',
+			'courtdates.location',
+			'courtdates.duedate',
+			'courtdates.filed',
+			'courtdates.hearingtitle',
+			'courtdates.judgename',
+			'courtdates.judgetitle',
+			'courtdates.factoringcost',
+			'courtdates.estimatedquantity',
+			'courtdates.actualquantity',
+			'courtdates.subtotal',
+			'courtdates.finalprice',
+			'courtdates.estimatedadvancedate',
+			'courtdates.estimatedrebatedate',
+			'courtdates.ppid',
+			'courtdates.ppstatus',
+			'courtdates.shipdate',
+			'courtdates.trackingno',
+			'invoices.invoiceno',
+			'invoices.iid',
+			'invoices.btid',
+			'invoices.discount',
+			'invoices.reference',
+			'invoices.invoicedate',
+			'invoices.duedate AS iduedate',
+			'invoices.itemcode',
+			'invoices.description',
+			'invoices.accountcode',
+			'invoices.taxtype',
+			'invoices.ratesid',
+			'appearances.appid',
+			'appearances.cdappid',
+			'appearances.customersid',
+			'appearances.courtdatesid',
+			'customers.customersid',
+			'customers.factoring',
+			'customers.company',
+			'customers.mrms',
+			'customers.lastname',
+			'customers.firstname',
+			'customers.email',
+			'customers.jobtitle',
+			'customers.businessphone',
+			'customers.address1',
+			'customers.address2',
+			'customers.city',
+			'customers.state',
+			'customers.zip',
+			'customers.notes',
+			'payments.pid',
+			'payments.amount AS pamount',
+			'payments.remitdate',
+			'payments.iid',
+			'courtdatescasescustomers.cdccid',
+			'courtdatescasescustomers.courtdatesid',
+			'courtdatescasescustomers.casesid',
+			'courtdatescasescustomers.orderingid'
+		)
+		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('appearances', 'appearances.courtdatesid', 'courtdates.courtdatesid')
+		.innerJoin('invoices', 'invoices.iid', 'courtdates.iid')
+		.innerJoin('customers', 'appearances.customersid', 'customers.customersid')
+		.innerJoin('payments', 'payments.iid', 'invoices.iid')
+		.where({ customersid });
 }
 
 /*
@@ -72,9 +419,7 @@ SELECT DISTINCTROW *
 FROM Customers;
 */
 function selectDistinct() {
-	return db('customers')
-		.select('*')
-		.distinct();
+	return db('customers').select('*').distinct();
 }
 
 /*
@@ -136,14 +481,9 @@ function findAppearance(courtdatesid, appearanceid) {
 	// sort apps by appno (0=ordering,1=plaintiff, etc)
 	// look up provided customer by customersid from appearances
 
-	let desiredApp = db('appearances')
-		.select('*')
-		.where({ courtdatesid })
-		.andWhere('appno', appearanceid);
+	let desiredApp = db('appearances').select('*').where({ courtdatesid }).andWhere('appno', appearanceid);
 
-	return db('customers')
-		.select('*')
-		.where('customersid', desiredApp.customersid);
+	return db('customers').select('*').where('customersid', desiredApp.customersid);
 }
 
 /*
@@ -155,10 +495,7 @@ FROM Customers INNER JOIN (Cases INNER JOIN CourtDates ON Cases.[ID] = CourtDate
 */
 
 function findByAppNumberCasesID(customersid, appearanceid) {
-	let desiredApp = db('appearances')
-		.select('*')
-		.where({ courtdatesid })
-		.andWhere('appno', appearanceid);
+	let desiredApp = db('appearances').select('*').where({ courtdatesid }).andWhere('appno', appearanceid);
 
 	return db('customers')
 		.select(
