@@ -16,14 +16,14 @@ router.get('/', restricted, (req, res) => {
 router.get('/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
-		res.status(404).json({ message: `The courtdate with the specified courtdatesid does not exist.` });
+		res.status(404).json({ message: `The courtdate with the specified courtdatesid does not exist.`, error: err });
 	} else {
 		USCCitations.findById(courtdatesid)
 			.then(courtdate => {
 				res.status(201).json(courtdate);
 			})
 			.catch(err => {
-				res.status(500).json({ message: `The courtdate information could not be retrieved.` });
+				res.status(500).json({ message: `The courtdate information could not be retrieved.`, error: err });
 			});
 	}
 });
@@ -37,7 +37,7 @@ router.post('/', restricted, (req, res) => {
 			res.status(201).json(status);
 		})
 		.catch(err => {
-			res.status(500).json({ message: `Failed to create new status` });
+			res.status(500).json({ message: `Failed to create new status`, error: err });
 		});
 });
 
@@ -51,25 +51,25 @@ router.put('/:statusesid', restricted, (req, res) => {
 			if (status) {
 				res.json(status);
 			} else {
-				res.status(404).json({ message: `Could not find status with given id` });
+				res.status(404).json({ message: `Could not find status with given id`, error: err });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: `Failed to update status` });
+			res.status(500).json({ message: `Failed to update status`, error: err });
 		});
 });
 // DELETE:  Describe what it does
 router.delete('/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
-		res.status(404).json({ message: `The courtdate with the specified ID does not exist.` });
+		res.status(404).json({ message: `The courtdate with the specified ID does not exist.`, error: err });
 	}
 	USCCitations.remove(courtdatesid)
 		.then(courtdate => {
 			res.json(courtdate);
 		})
 		.catch(err => {
-			res.status(500).json({ message: `The courtdate could not be removed` });
+			res.status(500).json({ message: `The courtdate could not be removed`, error: err });
 		});
 });
 
