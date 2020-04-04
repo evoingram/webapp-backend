@@ -4,7 +4,7 @@ module.exports = {
 	add,
 	find,
 	findBy,
-	findByCHId,
+	findById,
 	update,
 	remove
 };
@@ -22,7 +22,7 @@ async function add(communication) {
 	return findById(chid);
 }
 
-function findByCHId(chid) {
+function findById(chid) {
 	return db('communicationhistory').select('chid', '*').where({ chid }).first();
 }
 

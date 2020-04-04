@@ -13,12 +13,12 @@ router.get('/', restricted, (req, res) => {
 });
 
 // GET:  gets one status item
-router.get('/:statusesid', restricted, (req, res) => {
-	const statusesid = req.params.statusesid;
-	if (!statusesid) {
-		res.status(404).json({ message: `The status with the specified statusesid ${statusesid} does not exist.` });
+router.get('/:sid', restricted, (req, res) => {
+	const sid = req.params.sid;
+	if (!sid) {
+		res.status(404).json({ message: `The status with the specified sid ${sid} does not exist.` });
 	} else {
-		Statuses.findById(statusesid)
+		Statuses.findById(sid)
 			.then(status => {
 				res.status(201).json(status);
 			})
@@ -42,16 +42,16 @@ router.post('/', restricted, (req, res) => {
 });
 
 // PUT:  Describe what it does
-router.put('/:statusesid', restricted, (req, res) => {
-	const statusesid = req.params.statusesid;
+router.put('/:sid', restricted, (req, res) => {
+	const sid = req.params.sid;
 	const updatedStatus = { status: req.body.status };
 
-	Statuses.update(statusesid, updatedStatus)
+	Statuses.update(sid, updatedStatus)
 		.then(status => {
 			if (status) {
 				res.json(status);
 			} else {
-				res.status(404).json({ message: `Could not find status with given id ${statusesid}` });
+				res.status(404).json({ message: `Could not find status with given id ${sid}` });
 			}
 		})
 		.catch(err => {
@@ -59,17 +59,17 @@ router.put('/:statusesid', restricted, (req, res) => {
 		});
 });
 // DELETE:  delete a status
-router.delete('/:statusesid', restricted, (req, res) => {
-	const statusesid = req.params.statusesid;
-	if (!statusesid) {
-		res.status(404).json({ message: `The status with the specified ID ${statusesid} does not exist.` });
+router.delete('/:sid', restricted, (req, res) => {
+	const sid = req.params.sid;
+	if (!sid) {
+		res.status(404).json({ message: `The status with the specified ID ${sid} does not exist.` });
 	}
-	Statuses.remove(statusesid)
+	Statuses.remove(sid)
 		.then(status => {
 			res.json(status);
 		})
 		.catch(err => {
-			res.status(500).json({ message: `The status ${statusesid} could not be removed`, error: err });
+			res.status(500).json({ message: `The status ${sid} could not be removed`, error: err });
 		});
 });
 
