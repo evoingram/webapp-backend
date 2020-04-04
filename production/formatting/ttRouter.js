@@ -16,7 +16,10 @@ router.get('/', restricted, (req, res) => {
 router.get('/:ttid', restricted, (req, res) => {
 	const ttid = req.params.ttid;
 	if (!ttid) {
-		res.status(404).json({ message: `The turnaroundtime with the specified ttid does not exist.`, error: err });
+		res.status(404).json({
+			message: `The turnaroundtime with the specified ttid ${ttid} does not exist.`,
+			error: err
+		});
 	} else {
 		TurnaroundTimes.findById(ttid)
 			.then(turnaroundtime => {
@@ -30,46 +33,49 @@ router.get('/:ttid', restricted, (req, res) => {
 
 // POST:  create a turnaroundtime
 router.post('/', restricted, (req, res) => {
-	const newStatus = req.body.status;
+	const newTurnaroundTime = req.body.turnaroundtime;
 
-	TurnaroundTimes.add(newStatus)
-		.then(status => {
-			res.status(201).json(status);
+	TurnaroundTimes.add(newTurnaroundTime)
+		.then(turnaroundtime => {
+			res.status(201).json(turnaroundtime);
 		})
 		.catch(err => {
-			res.status(500).json({ message: `Failed to create new status.`, error: err });
+			res.status(500).json({ message: `Failed to create new turnaroundtime.`, error: err });
 		});
 });
 
 // PUT:  update a turnaroundtime
 router.put('/:ttid', restricted, (req, res) => {
 	const ttid = req.params.ttid;
-	const updatedStatus = { status: req.body.status };
+	const updatedTurnaroundTime = { turnaroundtime: req.body.turnaroundtime };
 
-	TurnaroundTimes.update(ttid, updatedStatus)
-		.then(status => {
-			if (status) {
-				res.json(status);
+	TurnaroundTimes.update(ttid, updatedTurnaroundTime)
+		.then(turnaroundtime => {
+			if (turnaroundtime) {
+				res.json(turnaroundtime);
 			} else {
-				res.status(404).json({ message: `Could not find status with given id.`, error: err });
+				res.status(404).json({ message: `Could not find turnaroundtime with given id ${ttid}.`, error: err });
 			}
 		})
 		.catch(err => {
-			res.status(500).json({ message: `Failed to update status.`, error: err });
+			res.status(500).json({ message: `Failed to update turnaroundtime.`, error: err });
 		});
 });
 // DELETE:  delete a turnaroundtime
 router.delete('/:ttid', restricted, (req, res) => {
 	const ttid = req.params.ttid;
 	if (!ttid) {
-		res.status(404).json({ message: `The turnaroundtime with the specified ID does not exist.`, error: err });
+		res.status(404).json({
+			message: `The turnaroundtime with the specified ID ${ttid} does not exist.`,
+			error: err
+		});
 	}
 	TurnaroundTimes.remove(ttid)
 		.then(turnaroundtime => {
 			res.json(turnaroundtime);
 		})
 		.catch(err => {
-			res.status(500).json({ message: `The turnaroundtime could not be removed.`, error: err });
+			res.status(500).json({ message: `The turnaroundtime with id ${ttid} could not be removed.`, error: err });
 		});
 });
 
