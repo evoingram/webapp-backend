@@ -253,6 +253,8 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 
 ### TO DO
 
-- [ ] test types/response post/put/delete
+- [ ] test types/responses per hello world
+- [ ] add body as sample to post/put/delete
+- [ ] add example to post/put/deletes
 - [ ] proofer/transcriber endpoints
 - [ ] brainstorm other custom needs
