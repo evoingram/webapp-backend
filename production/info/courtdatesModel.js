@@ -314,13 +314,6 @@ function findBTsById(courtdatesid) {
 }
 function findRatesById(courtdatesid) {
 	return db('courtdates')
-		.select('courtdates.courtdatesid', 'courtdates.btid', 'brandingthemes.brandingtheme', 'brandingthemes.btid')
-		.innerJoin('brandingthemes', 'brandingthemes.btid', 'courtdates.btid')
-		.where('courtdates.courtdatesid', courtdatesid);
-}
-
-function findStatusesById(courtdatesid) {
-	return db('courtdates')
 		.select(
 			'courtdates.courtdatesid',
 			'courtdates.ratesid',
@@ -332,6 +325,43 @@ function findStatusesById(courtdatesid) {
 			'rates.description'
 		)
 		.innerJoin('rates', 'rates.ratesid', 'courtdates.ratesid')
+		.where('courtdates.courtdatesid', courtdatesid);
+}
+
+function findStatusesById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'courtdates.ratesid',
+			'statuses.sid',
+			'statuses.courtdatesid',
+			'statuses.jobentered',
+			'statuses.appsentered',
+			'statuses.coverpage',
+			'statuses.autocorrect',
+			'statuses.schedule',
+			'statuses.prepinvoice',
+			'statuses.agshortcuts',
+			'statuses.transcribe',
+			'statuses.addrdtocover',
+			'statuses.findreplacerd',
+			'statuses.hyperlink',
+			'statuses.spellingsemail',
+			'statuses.audioproof',
+			'statuses.invoicecompleted',
+			'statuses.noticeofservice',
+			'statuses.peletter',
+			'statuses.cdlabel',
+			'statuses.generatezips',
+			'statuses.transcriptsready',
+			'statuses.invoicetofactoremail',
+			'statuses.filetranscript',
+			'statuses.burncd',
+			'statuses.shippingxmls',
+			'statuses.shippingemail',
+			'statuses.addtrackingno'
+		)
+		.innerJoin('statuses', 'courtdates.courtdatesid', 'statuses.courtdatesid')
 		.where('courtdates.courtdatesid', courtdatesid);
 }
 function findAGSById(courtdatesid) {

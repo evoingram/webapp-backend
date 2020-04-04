@@ -57,4 +57,5 @@ All endpoints have been tested via Postman.
 - [ ] GET customers by factoring
 - [ ] GET cases by customer
 - [ ] GET unpaid invoices
-
+- [ ] brainstorm other custom needs
+- [ ] brainstorm proofer/transcriber endpoints
