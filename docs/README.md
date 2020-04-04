@@ -41,8 +41,8 @@ All endpoints have been tested via Postman.
 - [ ] CRUD customers
 
 - [X] CRUD rates
-- [ ] CRUD agshortcuts
-- [ ] CRUD examtypes
+- [X] CRUD agshortcuts
+- [X] CRUD examtypes
 - [ ] CRUD styles
 - [ ] CRUD turnaroundtimes
 - [ ] CRUD courtdatescasescustomers

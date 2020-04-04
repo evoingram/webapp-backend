@@ -3,7 +3,7 @@ const router = require('express').Router();
 const TurnaroundTimes = require('./ttModel.js/index.js');
 const restricted = require('./auth/restriction.js');
 
-// GET:  Describe what it does
+// GET:  get all turnaroundtimes
 router.get('/', restricted, (req, res) => {
 	TurnaroundTimes.find()
 		.then(turnaroundtimes => {
@@ -12,7 +12,7 @@ router.get('/', restricted, (req, res) => {
 		.catch(err => res.send(err));
 });
 
-// GET:  Describe what it does
+// GET:  get a turnaroundtime
 router.get('/:ttid', restricted, (req, res) => {
 	const ttid = req.params.ttid;
 	if (!ttid) {
@@ -28,7 +28,7 @@ router.get('/:ttid', restricted, (req, res) => {
 	}
 });
 
-// POST:  create status
+// POST:  create a turnaroundtime
 router.post('/', restricted, (req, res) => {
 	const newStatus = req.body.status;
 
@@ -41,7 +41,7 @@ router.post('/', restricted, (req, res) => {
 		});
 });
 
-// PUT:  Describe what it does
+// PUT:  update a turnaroundtime
 router.put('/:ttid', restricted, (req, res) => {
 	const ttid = req.params.ttid;
 	const updatedStatus = { status: req.body.status };
@@ -58,7 +58,7 @@ router.put('/:ttid', restricted, (req, res) => {
 			res.status(500).json({ message: `Failed to update status.`, error: err });
 		});
 });
-// DELETE:  Describe what it does
+// DELETE:  delete a turnaroundtime
 router.delete('/:ttid', restricted, (req, res) => {
 	const ttid = req.params.ttid;
 	if (!ttid) {

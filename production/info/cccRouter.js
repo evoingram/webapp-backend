@@ -3,7 +3,7 @@ const router = require('express').Router();
 const Appearances = require('./cccModel.js');
 const restricted = require('../../auth/restriction.js');
 
-// GET:  Describe what it does
+// GET:  get all courtdatescasescustomers (ties the three tables together)
 router.get('/', restricted, (req, res) => {
 	Appearances.find()
 		.then(courtdates => {
@@ -12,7 +12,7 @@ router.get('/', restricted, (req, res) => {
 		.catch(err => res.send(err));
 });
 
-// GET:  Describe what it does
+// GET:  get one entry from courtdatescasescustomers (ties the three tables together)
 router.get('/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
@@ -31,7 +31,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 	}
 });
 
-// POST:  create status
+// POST:  create an entry in courtdatescasescustomers (ties the three tables together)
 router.post('/', restricted, (req, res) => {
 	const newStatus = req.body.status;
 
@@ -44,7 +44,7 @@ router.post('/', restricted, (req, res) => {
 		});
 });
 
-// PUT:  Describe what it does
+// PUT:  update an entry in courtdatescasescustomers (ties the three tables together)
 router.put('/:statusesid', restricted, (req, res) => {
 	const statusesid = req.params.statusesid;
 	const updatedStatus = { status: req.body.status };
@@ -61,7 +61,7 @@ router.put('/:statusesid', restricted, (req, res) => {
 			res.status(500).json({ message: 'Failed to update status' });
 		});
 });
-// DELETE:  Describe what it does
+// DELETE:  delete an entry in courtdatescasescustomers (ties the three tables together)
 router.delete('/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
