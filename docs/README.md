@@ -253,9 +253,11 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 
 ### TO DO
 
+- [ ] fix statuses 200/201 on gets
 - [ ] switch subcategory & courtdatesid around maybe on courtdates endpoints
 - [ ] test types/responses per hello world
 - [ ] advanced single courtdates endpoint:  id 2, 4, 5 don't work
+- [ ] note where support for outside apis provided (xero, pp, etc)
 - [ ] add body as sample to post/put/delete
 - [ ] add example to post/put/deletes
 - [ ] proofer/transcriber endpoints
