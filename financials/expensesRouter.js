@@ -20,7 +20,7 @@ router.get('/:eid', restricted, (req, res) => {
 	} else {
 		Expenses.findById(eid)
 			.then(expense => {
-				res.status(201).json(expense);
+				res.status(200).json(expense);
 			})
 			.catch(err => {
 				res.status(500).json({

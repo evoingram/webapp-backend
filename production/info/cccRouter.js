@@ -22,7 +22,7 @@ router.get('/:cdccid', restricted, (req, res) => {
 	} else {
 		CourtdatesCasesCustomers.findById(cdccid)
 			.then(courtdatescasescustomers => {
-				res.status(201).json(courtdatescasescustomers);
+				res.status(200).json(courtdatescasescustomers);
 			})
 			.catch(err => {
 				res.status(500).json({

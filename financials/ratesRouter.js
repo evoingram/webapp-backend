@@ -20,7 +20,7 @@ router.get('/:ratesid', restricted, (req, res) => {
 	} else {
 		Rates.findById(ratesid)
 			.then(rate => {
-				res.status(201).json(rate);
+				res.status(200).json(rate);
 			})
 			.catch(err => {
 				res.status(500).json({ message: `The rate information could not be retrieved.`, error: err });

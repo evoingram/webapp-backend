@@ -23,7 +23,7 @@ router.get('/:customersid', restricted, (req, res) => {
 	} else {
 		Customers.findById(customersid)
 			.then(customer => {
-				res.status(201).json(customer);
+				res.status(200).json(customer);
 			})
 			.catch(err => {
 				res.status(500).json({ message: `The customer information could not be retrieved.`, error: err });
@@ -39,7 +39,7 @@ router.get('/:customersid/jobs', restricted, (req, res) => {
 	} else {
 		Customers.findJobsById(customersid)
 			.then(joblist => {
-				res.status(201).json(joblist);
+				res.status(200).json(joblist);
 			})
 			.catch(err => {
 				res.status(500).json({
@@ -58,7 +58,7 @@ router.get('/:customersid/cases', restricted, (req, res) => {
 	} else {
 		Customers.findCasesById(customersid)
 			.then(caselist => {
-				res.status(201).json(caselist);
+				res.status(200).json(caselist);
 			})
 			.catch(err => {
 				res.status(500).json({
@@ -77,7 +77,7 @@ router.get('/:customersid/invoices', restricted, (req, res) => {
 	} else {
 		Customers.findInvoicesById(customersid)
 			.then(invoicelist => {
-				res.status(201).json(invoicelist);
+				res.status(200).json(invoicelist);
 			})
 			.catch(err => {
 				res.status(500).json({

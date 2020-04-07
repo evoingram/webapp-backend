@@ -43,23 +43,24 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `DELETE`       | `/courtdates/:courtdatesid`                    | deletes a job                              |
 | `GET`          | `/courtdates`                                  | returns list of jobs                       |
 | `GET`          | `/courtdates/:courtdatesid`                    | returns a job                              |
-| `GET`          | `/courtdates/apps/:courtdatesid`               | returns apps of a job record               |
-| `GET`          | `/courtdates/expenses/:courtdatesid`           | returns expenses of a job record           |
-| `GET`          | `/courtdates/payments/:courtdatesid`           | returns payments of a job record           |
-| `GET`          | `/courtdates/shipping/:courtdatesid`           | returns shipping of a job record           |
-| `GET`          | `/courtdates/citations/:courtdatesid`          | returns citations of a job record          |
-| `GET`          | `/courtdates/tasks/:courtdatesid`              | returns tasks of a job record              |
-| `GET`          | `/courtdates/commhistory/:courtdatesid`        | returns commhistory of a job record        |
-| `GET`          | `/courtdates/invoices/:courtdatesid`           | returns invoices of a job record           |
-| `GET`          | `/courtdates/statuses/:courtdatesid`           | returns statuses of a job record           |
-| `GET`          | `/courtdates/brandingthemes/:courtdatesid`     | returns brandingthemes of a job record     |
-| `GET`          | `/courtdates/rates/:courtdatesid`              | returns rates of a job record              |
-| `GET`          | `/courtdates/agshortcuts/:courtdatesid`        | returns agshortcuts of a job record        |
-| `GET`          | `/courtdates/citationhyperlinks/:courtdatesid` | returns citationhyperlinks of a job record |
-| `GET`          | `/courtdates/mailclasses/:courtdatesid`        | returns mailclasses of a job record        |
-| `GET`          | `/courtdates/packagetypes/:courtdatesid`       | returns packagetypes of a job record       |
-| `GET`          | `/courtdates/ccc/:courtdatesid`                | returns cccs of a job record               |
-| `GET`          | `/courtdates/usc/:courtdatesid`                | returns usc items of a job record          |
+| `GET`          | `/courtdates/:courtdatesid/apps`               | returns apps of a job record               |
+| `GET`          | `/courtdates/:courtdatesid/expenses`           | returns expenses of a job record           |
+| `GET`          | `/courtdates/:courtdatesid/payments`           | returns payments of a job record           |
+| `GET`          | `/courtdates/:courtdatesid/shipping`           | returns shipping of a job record           |
+| `GET`          | `/courtdates/:courtdatesid/citations`          | returns citations of a job record          |
+| `GET`          | `/courtdates/:courtdatesid/tasks`              | returns tasks of a job record              |
+| `GET`          | `/courtdates/:courtdatesid/commhistory`        | returns commhistory of a job record        |
+| `GET`          | `/courtdates/:courtdatesid/invoices`           | returns invoices of a job record           |
+| `GET`          | `/courtdates/:courtdatesid/statuses`           | returns statuses of a job record           |
+| `GET`          | `/courtdates/:courtdatesid/brandingthemes`     | returns brandingthemes of a job record     |
+| `GET`          | `/courtdates/:courtdatesid/rates`              | returns rates of a job record              |
+| `GET`          | `/courtdates/:courtdatesid/agshortcuts`        | returns agshortcuts of a job record        |
+| `GET`          | `/courtdates/:courtdatesid/citationhyperlinks` | returns citationhyperlinks of a job record |
+| `GET`          | `/courtdates/:courtdatesid/mailclasses`        | returns mailclasses of a job record        |
+| `GET`          | `/courtdates/:courtdatesid/packagetypes`       | returns packagetypes of a job record       |
+| `GET`          | `/courtdates/:courtdatesid/ccc`                | returns cccs of a job record               |
+| `GET`          | `/courtdates/:courtdatesid/usc`                | returns usc items of a job record          |
+| `GET`          | `/courtdates/:courtdatesid/contractors`        | returns contractors of a job record        |
 
 ### Endpoints For Appearances
 
@@ -253,12 +254,6 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 
 ### TO DO
 
-- [ ] fix statuses 200/201 on gets
-- [ ] switch subcategory & courtdatesid around maybe on courtdates endpoints
-- [ ] test types/responses per hello world
-- [ ] advanced single courtdates endpoint:  id 2, 4, 5 don't work
-- [ ] note where support for outside apis provided (xero, pp, etc)
-- [ ] add body as sample to post/put/delete
-- [ ] add example to post/put/deletes
-- [ ] proofer/transcriber endpoints
-- [ ] brainstorm other custom needs
+- [ ] test types/responses per hello world (p)
+- [ ] add body as sample to post/put/delete (p)
+- [ ] add example to post/put/deletes (p)

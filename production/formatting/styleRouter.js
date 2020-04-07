@@ -20,7 +20,7 @@ router.get('/:sid', restricted, (req, res) => {
 	} else {
 		Styles.findById(sid)
 			.then(style => {
-				res.status(201).json(style);
+				res.status(200).json(style);
 			})
 			.catch(err => {
 				res.status(500).json({ message: `The style information could not be retrieved.`, error: err });

@@ -1,4 +1,4 @@
-exports.up = function(knex) {
+exports.up = function (knex) {
 	return knex.schema.createTable('courtdates', courtdates => {
 		courtdates.increments('courtdatesid');
 
@@ -69,9 +69,11 @@ exports.up = function(knex) {
 		courtdates.string('hearingtitle');
 		courtdates.string('judgename');
 		courtdates.string('judgetitle');
+		courtdates.integer('trid');
+		courtdates.integer('prid');
 	});
 };
 
-exports.down = function(knex) {
+exports.down = function (knex) {
 	return knex.schema.dropTableIfExists('courtdates');
 };

@@ -20,7 +20,7 @@ router.get('/:soid', restricted, (req, res) => {
 	} else {
 		ShippingOptions.findById(soid)
 			.then(shippingitem => {
-				res.status(201).json(shippingitem);
+				res.status(200).json(shippingitem);
 			})
 			.catch(err => {
 				res.status(500).json({ message: `The shippingitem information could not be retrieved.`, error: err });

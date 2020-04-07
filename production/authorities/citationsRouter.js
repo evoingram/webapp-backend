@@ -23,7 +23,7 @@ router.get('/:citationsid', restricted, (req, res) => {
 	} else {
 		Citations.findById(citationsid)
 			.then(citation => {
-				res.status(201).json(citation);
+				res.status(200).json(citation);
 			})
 			.catch(err => {
 				res.status(500).json({ message: `The citation information could not be retrieved.`, error: err });

@@ -20,7 +20,7 @@ router.get('/:uscid', restricted, (req, res) => {
 	} else {
 		USCCitations.findById(uscid)
 			.then(uscitem => {
-				res.status(201).json(uscitem);
+				res.status(200).json(uscitem);
 			})
 			.catch(err => {
 				res.status(500).json({ message: `The uscitem information could not be retrieved.`, error: err });

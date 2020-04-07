@@ -23,7 +23,7 @@ router.get('/:ttid', restricted, (req, res) => {
 	} else {
 		TurnaroundTimes.findById(ttid)
 			.then(turnaroundtime => {
-				res.status(201).json(turnaroundtime);
+				res.status(200).json(turnaroundtime);
 			})
 			.catch(err => {
 				res.status(500).json({ message: `The turnaroundtime information could not be retrieved.`, error: err });

@@ -18,7 +18,7 @@ router.get('/:casesid', restricted, (req, res) => {
 	} else {
 		Cases.findById(casesid)
 			.then(onecase => {
-				res.status(201).json(onecase);
+				res.status(200).json(onecase);
 			})
 			.catch(err => {
 				res.status(500).json({ message: 'The case information could not be retrieved.' });

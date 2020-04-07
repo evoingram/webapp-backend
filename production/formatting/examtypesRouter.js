@@ -20,7 +20,7 @@ router.get('/:eid', restricted, (req, res) => {
 	} else {
 		ExamTypes.findById(eid)
 			.then(examtype => {
-				res.status(201).json(examtype);
+				res.status(200).json(examtype);
 			})
 			.catch(err => {
 				res.status(500).json({ message: `The examtype information could not be retrieved.`, error: err });
