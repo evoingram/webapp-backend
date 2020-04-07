@@ -32,7 +32,7 @@ router.get('/:sid', restricted, (req, res) => {
 router.post('/', restricted, (req, res) => {
 	const newStyle = req.body;
 
-	StyleNames.add(newStyle)
+	Styles.add(newStyle)
 		.then(style => {
 			res.status(201).json(style);
 		})
@@ -46,7 +46,7 @@ router.put('/:sid', restricted, (req, res) => {
 	const sid = req.params.sid;
 	const updatedStyle = req.body;
 
-	StyleNames.update(sid, updatedStyle)
+	Styles.update(sid, updatedStyle)
 		.then(style => {
 			if (style) {
 				res.json(style);
