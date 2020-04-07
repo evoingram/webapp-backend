@@ -81,7 +81,7 @@ async function update(customersid, user) {
 		)
 		.where({ customersid })
 		.update(user);
-	return findById(customersidA);
+	return findById(customersid);
 }
 
 // deletes a customer
