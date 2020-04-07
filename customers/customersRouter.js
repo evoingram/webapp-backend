@@ -88,6 +88,36 @@ router.get('/:customersid/invoices', restricted, (req, res) => {
 	}
 });
 
+// POST:  create customer
+router.post('/', restricted, (req, res) => {
+	const newCustomer = req.body.customer;
+
+	Customers.add(newCustomer)
+		.then(customer => {
+			res.status(201).json(customer);
+		})
+		.catch(err => {
+			res.status(500).json({ message: 'Failed to create new customer.', error: err });
+		});
+});
+
+// PUT:  update customer
+router.put('/:customersid', restricted, (req, res) => {
+	const customersid = req.params.customersid;
+	const updatedCustomer = { customer: req.body.customer };
+
+	Customers.update(customersid, updatedCustomer)
+		.then(customer => {
+			if (customer) {
+				res.json(customer);
+			} else {
+				res.status(404).json({ message: `Could not find customer with given id ${customersid}.` });
+			}
+		})
+		.catch(err => {
+			res.status(500).json({ message: 'Failed to update customer.', error: err });
+		});
+});
 // DELETE:  single customer endpoint
 router.delete('/:customersid', restricted, (req, res) => {
 	const customersid = req.params.customersid;
