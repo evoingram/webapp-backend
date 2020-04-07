@@ -64,93 +64,93 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 
 ### Endpoints For Appearances
 
-| Request Method | Endpoint              | Description                          |
-| :------------- | :-------------------- | :----------------------------------- |
-| `POST`         | `/appearances/`       | creates an appearance                |
-| `PUT`          | `/appearances/:appid` | updates an appearance                |
-| `DELETE`       | `/appearances/:appid` | deletes an appearance                |
-| `GET`          | `/appearances`        | returns list of appearances          |
-| `GET`          | `/appearances/:appid` | returns one appearance               |
+| Request Method | Endpoint              | Description                   |
+| :------------- | :-------------------- | :---------------------------- |
+| `POST`         | `/appearances/`       | creates an appearance         |
+| `PUT`          | `/appearances/:appid` | updates an appearance         |
+| `DELETE`       | `/appearances/:appid` | deletes an appearance         |
+| `GET`          | `/appearances`        | returns list of appearances   |
+| `GET`          | `/appearances/:appid` | returns one appearance        |
 
 ### Endpoints For Tasks
 
-| Request Method | Endpoint          | Description           |
-| :------------- | :---------------- | :-------------------- |
-| `POST`         | `/tasks/`         | creates a task        |
-| `PUT`          | `/tasks/:tasksid` | updates a task        |
-| `DELETE`       | `/tasks/:tasksid` | deletes a task        |
-| `GET`          | `/tasks`          | returns list of tasks |
-| `GET`          | `/tasks/:tasksid` | returns one task      |
+| Request Method | Endpoint          | Description                       |
+| :------------- | :---------------- | :-------------------------------- |
+| `POST`         | `/tasks/`         | creates a task                    |
+| `PUT`          | `/tasks/:tasksid` | updates a task                    |
+| `DELETE`       | `/tasks/:tasksid` | deletes a task                    |
+| `GET`          | `/tasks`          | returns list of tasks             |
+| `GET`          | `/tasks/:tasksid` | returns one task                  |
 
 ### Endpoints For Statuses
 
-| Request Method | Endpoint                | Description                |
-| :------------- | :---------------------- | :------------------------- |
-| `POST`         | `/statuses/`            | creates a status           |
-| `PUT`          | `/statuses/:statusesid` | updates a appearance       |
-| `DELETE`       | `/statuses/:statusesid` | deletes a appearance       |
-| `GET`          | `/statuses`             | returns list of statuses   |
-| `GET`          | `/statuses/:statusesid` | returns one status         |
+| Request Method | Endpoint                | Description                 |
+| :------------- | :---------------------- | :-------------------------- |
+| `POST`         | `/statuses/`            | creates a status            |
+| `PUT`          | `/statuses/:statusesid` | updates a appearance        |
+| `DELETE`       | `/statuses/:statusesid` | deletes a appearance        |
+| `GET`          | `/statuses`             | returns list of statuses    |
+| `GET`          | `/statuses/:statusesid` | returns one status          |
 
 ### Endpoints For Expenses
 
-| Request Method | Endpoint         | Description                       |
-| :------------- | :--------------- | :-------------------------------- |
-| `POST`         | `/expenses/`     | creates an expense                |
-| `PUT`          | `/expenses/:eid` | updates an expense                |
-| `DELETE`       | `/expenses/:eid` | deletes an expense                |
-| `GET`          | `/expenses`      | returns list of expenses          |
-| `GET`          | `/expenses/:eid` | returns one expense               |
+| Request Method | Endpoint         | Description                        |
+| :------------- | :--------------- | :--------------------------------- |
+| `POST`         | `/expenses/`     | creates an expense                 |
+| `PUT`          | `/expenses/:eid` | updates an expense                 |
+| `DELETE`       | `/expenses/:eid` | deletes an expense                 |
+| `GET`          | `/expenses`      | returns list of expenses           |
+| `GET`          | `/expenses/:eid` | returns one expense                |
 
 ### Endpoints For Payments
 
-| Request Method | Endpoint         | Description                       |
-| :------------- | :--------------- | :-------------------------------- |
-| `POST`         | `/payments/`     | creates a payment                 |
-| `PUT`          | `/payments/:pid` | updates a payment                 |
-| `DELETE`       | `/payments/:pid` | deletes a payment                 |
-| `GET`          | `/payments`      | returns list of payments          |
-| `GET`          | `/payments/:pid` | returns one payment               |
+| Request Method | Endpoint         | Description                        |
+| :------------- | :--------------- | :--------------------------------- |
+| `POST`         | `/payments/`     | creates a payment                  |
+| `PUT`          | `/payments/:pid` | updates a payment                  |
+| `DELETE`       | `/payments/:pid` | deletes a payment                  |
+| `GET`          | `/payments`      | returns list of payments           |
+| `GET`          | `/payments/:pid` | returns one payment                |
 
 ### Endpoints For Shipping
 
-| Request Method | Endpoint          | Description                       |
-| :------------- | :---------------- | :-------------------------------- |
-| `POST`         | `/shipping/`      | creates a shipping item           |
-| `PUT`          | `/shipping/:soid` | updates a shipping item           |
-| `DELETE`       | `/shipping/:soid` | deletes a shipping item           |
-| `GET`          | `/shipping`       | returns list of shipping items    |
-| `GET`          | `/shipping/:soid` | returns one shipping item         |
+| Request Method | Endpoint          | Description                        |
+| :------------- | :---------------- | :--------------------------------- |
+| `POST`         | `/shipping/`      | creates a shipping item            |
+| `PUT`          | `/shipping/:soid` | updates a shipping item            |
+| `DELETE`       | `/shipping/:soid` | deletes a shipping item            |
+| `GET`          | `/shipping`       | returns list of shipping items     |
+| `GET`          | `/shipping/:soid` | returns one shipping item          |
 
 ### Endpoints For Invoices
 
-| Request Method | Endpoint         | Description                       |
-| :------------- | :--------------- | :-------------------------------- |
-| `POST`         | `/invoices/`     | creates an invoice                |
-| `PUT`          | `/invoices/:iid` | updates an invoice                |
-| `DELETE`       | `/invoices/:iid` | deletes an invoice                |
-| `GET`          | `/invoices`      | returns list of invoices          |
-| `GET`          | `/invoices/:iid` | returns one invoice               |
+| Request Method | Endpoint         | Description                         |
+| :------------- | :--------------- | :---------------------------------- |
+| `POST`         | `/invoices/`     | creates an invoice                  |
+| `PUT`          | `/invoices/:iid` | updates an invoice                  |
+| `DELETE`       | `/invoices/:iid` | deletes an invoice                  |
+| `GET`          | `/invoices`      | returns list of invoices            |
+| `GET`          | `/invoices/:iid` | returns one invoice                 |
 
 ### Endpoints For Citations
 
-| Request Method | Endpoint                  | Description               |
-| :------------- | :------------------------ | :------------------------ |
-| `POST`         | `/citations/`             | creates a citation        |
-| `PUT`          | `/citations/:citationsid` | updates a citation        |
-| `DELETE`       | `/citations/:citationsid` | deletes a citation        |
-| `GET`          | `/citations`              | returns list of citations |
-| `GET`          | `/citations/:citationsid` | returns one citation      |
+| Request Method | Endpoint                  | Description                |
+| :------------- | :------------------------ | :------------------------- |
+| `POST`         | `/citations/`             | creates a citation         |
+| `PUT`          | `/citations/:citationsid` | updates a citation         |
+| `DELETE`       | `/citations/:citationsid` | deletes a citation         |
+| `GET`          | `/citations`              | returns list of citations  |
+| `GET`          | `/citations/:citationsid` | returns one citation       |
 
 ### Endpoints For Rates
 
-| Request Method | Endpoint          | Description                       |
-| :------------- | :---------------- | :-------------------------------- |
-| `POST`         | `/rates/`         | creates a rate                    |
-| `PUT`          | `/rates/:ratesid` | updates a rate                    |
-| `DELETE`       | `/rates/:ratesid` | deletes a rate                    |
-| `GET`          | `/rates`          | returns list of rates             |
-| `GET`          | `/rates/:ratesid` | returns one rate                  |
+| Request Method | Endpoint          | Description                        |
+| :------------- | :---------------- | :--------------------------------- |
+| `POST`         | `/rates/`         | creates a rate                     |
+| `PUT`          | `/rates/:ratesid` | updates a rate                     |
+| `DELETE`       | `/rates/:ratesid` | deletes a rate                     |
+| `GET`          | `/rates`          | returns list of rates              |
+| `GET`          | `/rates/:ratesid` | returns one rate                   |
 
 ### Endpoints For Turnaroundtimes
 
@@ -234,13 +234,13 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 
 ### Endpoints For ExamTypes
 
-| Request Method | Endpoint           | Description                        |
-| :------------- | :----------------- | :--------------------------------- |
-| `POST`         | `/examtypes/`      | creates an examtype                |
-| `PUT`          | `/examtypes/:etid` | updates an examtype                |
-| `DELETE`       | `/examtypes/:etid` | deletes an examtype                |
-| `GET`          | `/examtypes`       | returns list of examtypes          |
-| `GET`          | `/examtypes/:etid` | returns one examtype               |
+| Request Method | Endpoint           | Description                 |
+| :------------- | :----------------- | :-------------------------- |
+| `POST`         | `/examtypes/`      | creates an examtype         |
+| `PUT`          | `/examtypes/:etid` | updates an examtype         |
+| `DELETE`       | `/examtypes/:etid` | deletes an examtype         |
+| `GET`          | `/examtypes`       | returns list of examtypes   |
+| `GET`          | `/examtypes/:etid` | returns one examtype        |
 
 ### Endpoints For Styles
 
@@ -254,6 +254,5 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 
 ### TO DO
 
-- [ ] test types/responses per hello world (p)
 - [ ] add body as sample to post/put/delete (p)
 - [ ] add example to post/put/deletes (p)
