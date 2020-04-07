@@ -31,7 +31,7 @@ function update(ratesid, rate) {
 }
 */
 async function update(ratesid, rate) {
-	const [ratesidA] = await db('rates').insert(rate, 'ratesid');
+	const [ratesidA] = await db('rates').update(rate);
 	return findById(ratesidA);
 }
 
