@@ -90,7 +90,7 @@ router.get('/:customersid/invoices', restricted, (req, res) => {
 
 // POST:  create customer
 router.post('/', restricted, (req, res) => {
-	const newCustomer = req.body.customer;
+	const newCustomer = req.body;
 
 	Customers.add(newCustomer)
 		.then(customer => {

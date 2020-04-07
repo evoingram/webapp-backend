@@ -44,7 +44,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  update a rate
 router.put('/:ratesid', restricted, (req, res) => {
 	const ratesid = req.params.ratesid;
-	const updatedRate = { rate: req.body.rate };
+	const updatedRate = req.body;
 
 	Rates.update(ratesid, updatedRate)
 		.then(rate => {
