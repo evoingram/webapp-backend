@@ -27,7 +27,7 @@ function findById(stfid) {
 }
 
 function update(stfid, contractor) {
-	return db('staff').where('stfid', Number(stfid)).update(contractor);
+	return db('staff').where({ stfid }).update(contractor);
 }
 
 function remove(stfid) {

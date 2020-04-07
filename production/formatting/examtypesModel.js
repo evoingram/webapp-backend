@@ -27,7 +27,7 @@ function findById(eid) {
 }
 
 function update(eid, singleexamtype) {
-	return db('examtypes').where('eid', Number(eid)).update(singleexamtype);
+	return db('examtypes').where({ eid }).update(singleexamtype);
 }
 
 function remove(eid) {

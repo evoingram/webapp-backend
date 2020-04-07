@@ -27,7 +27,7 @@ function findById(citationsid) {
 }
 
 function update(citationsid, singlecitation) {
-	return db('citations').where('citationsid', Number(citationsid)).update(singlecitation);
+	return db('citations').where({ citationsid }).update(singlecitation);
 }
 
 function remove(citationsid) {

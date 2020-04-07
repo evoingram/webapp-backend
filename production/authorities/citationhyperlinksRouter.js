@@ -36,7 +36,7 @@ router.get('/:chid', restricted, (req, res) => {
 
 // POST:  create a citationhyperlinks citation
 router.post('/', restricted, (req, res) => {
-	const newUSCCodeItem = req.body.citationhyperlinksCodeItem;
+	const newUSCCodeItem = req.body;
 
 	CitationHyperlinks.add(newUSCCodeItem)
 		.then(citationhyperlinksitem => {
@@ -50,7 +50,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  update a citationhyperlinks citation
 router.put('/:chid', restricted, (req, res) => {
 	const chid = req.params.chid;
-	const updatedUSCCodeItem = { citationhyperlinks: req.body.citationhyperlinks };
+	const updatedUSCCodeItem = req.body;
 
 	CitationHyperlinks.update(chid, updatedUSCCodeItem)
 		.then(citationhyperlinksitem => {

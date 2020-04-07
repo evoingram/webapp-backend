@@ -26,6 +26,37 @@ router.get('/:casesid', restricted, (req, res) => {
 	}
 });
 
+// POST:  create case
+router.post('/', restricted, (req, res) => {
+	const newCase = req.body;
+
+	Cases.add(newCase)
+		.then(casenew => {
+			res.status(201).json(casenew);
+		})
+		.catch(err => {
+			res.status(500).json({ message: 'Failed to create new case.', error: err });
+		});
+});
+
+// PUT:  update case
+router.put('/:casesid', restricted, (req, res) => {
+	const casesid = req.params.casesid;
+	const updatedCase = req.body;
+
+	Cases.update(casesid, updatedCase)
+		.then(casetoupdate => {
+			if (casetoupdate) {
+				res.json(casetoupdate);
+			} else {
+				res.status(404).json({ message: `Could not find case with given id ${casesid}.` });
+			}
+		})
+		.catch(err => {
+			res.status(500).json({ message: 'Failed to update case.', error: err });
+		});
+});
+
 router.delete('/:casesid', restricted, (req, res) => {
 	const casesid = req.params.casesid;
 	if (!casesid) {

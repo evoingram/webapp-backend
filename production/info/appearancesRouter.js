@@ -33,7 +33,7 @@ router.get('/:appid', restricted, (req, res) => {
 
 // POST:  create appearance
 router.post('/', restricted, (req, res) => {
-	const newAppearance = req.body.appearance;
+	const newAppearance = req.body;
 
 	Appearances.add(newAppearance)
 		.then(appearance => {
@@ -47,7 +47,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  update appearance
 router.put('/:appid', restricted, (req, res) => {
 	const appid = req.params.appid;
-	const updatedAppearance = { status: req.body.appearance };
+	const updatedAppearance = req.body;
 
 	Appearances.update(appid, updatedAppearance)
 		.then(appearance => {

@@ -36,7 +36,7 @@ router.get('/:agsid', restricted, (req, res) => {
 
 // POST:  create an agshortcuts list
 router.post('/', restricted, (req, res) => {
-	const newAGShortcut = req.body.agshortcut;
+	const newAGShortcut = req.body;
 
 	AGShortcuts.add(newAGShortcut)
 		.then(agshortcut => {
@@ -50,7 +50,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  update an agshortcuts list
 router.put('/:agsid', restricted, (req, res) => {
 	const agsid = req.params.agsid;
-	const updatedAGShortcut = { agshortcut: req.body.agshortcut };
+	const updatedAGShortcut = req.body;
 
 	AGShortcuts.update(agsid, updatedAGShortcut)
 		.then(agshortcut => {

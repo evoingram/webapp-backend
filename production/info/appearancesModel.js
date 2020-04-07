@@ -26,7 +26,7 @@ async function add(appearance) {
 }
 
 function update(appid, appearance) {
-	return db('appearances').where('appid', Number(appid)).update(appearance);
+	return db('appearances').where({ appid }).update(appearance);
 }
 
 function remove(appid) {

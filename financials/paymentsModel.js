@@ -27,7 +27,7 @@ function findById(pid) {
 }
 
 function update(pid, payment) {
-	return db('payments').where('pid', Number(pid)).update(payment);
+	return db('payments').where({ pid }).update(payment);
 }
 
 function remove(pid) {

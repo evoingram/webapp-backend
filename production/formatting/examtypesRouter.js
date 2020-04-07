@@ -30,7 +30,7 @@ router.get('/:eid', restricted, (req, res) => {
 
 // POST:  create an examtype
 router.post('/', restricted, (req, res) => {
-	const newExamType = req.body.examtype;
+	const newExamType = req.body;
 
 	ExamTypes.add(newExamType)
 		.then(examtype => {
@@ -44,7 +44,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  update an examtype
 router.put('/:eid', restricted, (req, res) => {
 	const eid = req.params.eid;
-	const updatedExamType = { examtype: req.body.examtype };
+	const updatedExamType = req.body;
 
 	ExamTypes.update(eid, updatedExamType)
 		.then(examtype => {

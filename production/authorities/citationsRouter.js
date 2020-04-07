@@ -33,7 +33,7 @@ router.get('/:citationsid', restricted, (req, res) => {
 
 // POST:  create a citation
 router.post('/', restricted, (req, res) => {
-	const newCitation = req.body.citation;
+	const newCitation = req.body;
 
 	Citations.add(newCitation)
 		.then(citation => {
@@ -47,7 +47,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  update a citation
 router.put('/:citationsid', restricted, (req, res) => {
 	const citationsid = req.params.citationsid;
-	const updatedCitation = { citation: req.body.citation };
+	const updatedCitation = req.body;
 
 	Citations.update(citationsid, updatedCitation)
 		.then(citation => {

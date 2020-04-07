@@ -27,7 +27,7 @@ function findById(chid) {
 }
 
 function update(chid, communication) {
-	return db('communicationhistory').where('chid', Number(chid)).update(communication);
+	return db('communicationhistory').where({ chid }).update(communication);
 }
 
 function remove(chid) {

@@ -27,7 +27,7 @@ function findById(iid) {
 }
 
 function update(iid, invoice) {
-	return db('invoices').where('iid', Number(iid)).update(invoice);
+	return db('invoices').where({ iid }).update(invoice);
 }
 
 function remove(iid) {

@@ -27,7 +27,7 @@ function findById(btid) {
 }
 
 function update(btid, courtdate) {
-	return db('brandingthemes').where('btid', Number(btid)).update(courtdate);
+	return db('brandingthemes').where({ btid }).update(courtdate);
 }
 
 function remove(btid) {

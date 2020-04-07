@@ -49,7 +49,7 @@ function findById(courtdatesid) {
 }
 
 function update(courtdatesid, courtdate) {
-	return db('courtdates').where('courtdatesid', Number(courtdatesid)).update(courtdate);
+	return db('courtdates').where({ courtdatesid }).update(courtdate);
 }
 
 function remove(courtdatesid) {

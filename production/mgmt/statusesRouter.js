@@ -30,7 +30,7 @@ router.get('/:sid', restricted, (req, res) => {
 
 // POST:  create status
 router.post('/', restricted, (req, res) => {
-	const newStatus = req.body.status;
+	const newStatus = req.body;
 
 	Statuses.add(newStatus)
 		.then(status => {
@@ -44,7 +44,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  Describe what it does
 router.put('/:sid', restricted, (req, res) => {
 	const sid = req.params.sid;
-	const updatedStatus = { status: req.body.status };
+	const updatedStatus = req.body;
 
 	Statuses.update(sid, updatedStatus)
 		.then(status => {

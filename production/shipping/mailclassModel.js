@@ -27,7 +27,7 @@ function findById(mcid) {
 }
 
 function update(mcid, singlemailclass) {
-	return db('mailclass').where('mcid', Number(mcid)).update(singlemailclass);
+	return db('mailclass').where({ mcid }).update(singlemailclass);
 }
 
 function remove(mcid) {

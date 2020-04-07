@@ -30,21 +30,21 @@ router.get('/:iid', restricted, (req, res) => {
 
 // POST:  create invoice
 router.post('/', restricted, (req, res) => {
-	const newInvoice = req.body.invoice;
+	const newInvoice = req.body;
 
 	Invoices.add(newInvoice)
 		.then(invoice => {
 			res.status(201).json(invoice);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to create new invoice' });
+			res.status(500).json({ message: 'Failed to create new invoice', error: err });
 		});
 });
 
 // PUT:  update invoice
 router.put('/:iid', restricted, (req, res) => {
 	const iid = req.params.iid;
-	const updatedStatus = { invoice: req.body.invoice };
+	const updatedStatus = req.body;
 
 	Invoices.update(iid, updatedStatus)
 		.then(invoice => {

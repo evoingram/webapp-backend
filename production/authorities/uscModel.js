@@ -27,7 +27,7 @@ function findById(uscid) {
 }
 
 function update(uscid, singlecitation) {
-	return db('usc').where('uscid', Number(uscid)).update(singlecitation);
+	return db('usc').where({ uscid }).update(singlecitation);
 }
 
 function remove(uscid) {

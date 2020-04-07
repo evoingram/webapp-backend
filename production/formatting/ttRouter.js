@@ -33,7 +33,7 @@ router.get('/:ttid', restricted, (req, res) => {
 
 // POST:  create a turnaroundtime
 router.post('/', restricted, (req, res) => {
-	const newTurnaroundTime = req.body.turnaroundtime;
+	const newTurnaroundTime = req.body;
 
 	TurnaroundTimes.add(newTurnaroundTime)
 		.then(turnaroundtime => {
@@ -47,7 +47,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  update a turnaroundtime
 router.put('/:ttid', restricted, (req, res) => {
 	const ttid = req.params.ttid;
-	const updatedTurnaroundTime = { turnaroundtime: req.body.turnaroundtime };
+	const updatedTurnaroundTime = req.body;
 
 	TurnaroundTimes.update(ttid, updatedTurnaroundTime)
 		.then(turnaroundtime => {

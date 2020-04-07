@@ -27,7 +27,7 @@ function findById(tid) {
 }
 
 function update(tid, task) {
-	return db('tasks').where('tid', Number(tid)).update(task);
+	return db('tasks').where({ tid }).update(task);
 }
 
 function remove(tid) {

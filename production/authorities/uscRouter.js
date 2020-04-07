@@ -30,7 +30,7 @@ router.get('/:uscid', restricted, (req, res) => {
 
 // POST:  create a usc citation
 router.post('/', restricted, (req, res) => {
-	const newUSCCodeItem = req.body.uscCodeItem;
+	const newUSCCodeItem = req.body;
 
 	USCCitations.add(newUSCCodeItem)
 		.then(uscitem => {
@@ -44,7 +44,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  update a usc citation
 router.put('/:uscid', restricted, (req, res) => {
 	const uscid = req.params.uscid;
-	const updatedUSCCodeItem = { usc: req.body.usc };
+	const updatedUSCCodeItem = req.body;
 
 	USCCitations.update(uscid, updatedUSCCodeItem)
 		.then(uscitem => {

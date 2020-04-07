@@ -27,45 +27,9 @@ function findById(soid) {
 }
 
 function update(soid, package) {
-	return db('shippingoptions').where('soid', Number(soid)).update(package);
+	return db('shippingoptions').where({ soid }).update(package);
 }
 
 function remove(soid) {
 	return db('shippingoptions').where('soid', Number(soid)).del();
 }
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
-
-/*
-
-
-
-*/
