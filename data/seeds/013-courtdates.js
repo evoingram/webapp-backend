@@ -1,8 +1,8 @@
-exports.seed = function(knex) {
+exports.seed = function (knex) {
 	// Deletes ALL existing entries
 	return knex('courtdates')
 		.del()
-		.then(function() {
+		.then(function () {
 			// Inserts seed entries
 			return knex('courtdates').insert([
 				{
@@ -33,7 +33,9 @@ exports.seed = function(knex) {
 					ppstatus: '',
 					hearingtitle: 'Hearing',
 					judgename: 'Judge John Doe',
-					judgetitle: 'King County Superior Court Judge'
+					judgetitle: 'King County Superior Court Judge',
+					trid: 3,
+					prid: 4
 				},
 				{
 					courtdatesid: 2,
@@ -63,7 +65,9 @@ exports.seed = function(knex) {
 					ppstatus: '',
 					hearingtitle: 'Hearing',
 					judgename: 'Judge John Doe',
-					judgetitle: 'King County Superior Court Judge'
+					judgetitle: 'King County Superior Court Judge',
+					trid: 3,
+					prid: 4
 				},
 				{
 					courtdatesid: 3,
@@ -93,7 +97,9 @@ exports.seed = function(knex) {
 					ppstatus: '',
 					hearingtitle: 'Hearing',
 					judgename: 'Judge John Doe',
-					judgetitle: 'King County Superior Court Judge'
+					judgetitle: 'King County Superior Court Judge',
+					trid: 3,
+					prid: 4
 				},
 				{
 					courtdatesid: 4,
@@ -123,7 +129,9 @@ exports.seed = function(knex) {
 					ppstatus: '',
 					hearingtitle: 'Hearing',
 					judgename: 'Judge John Doe',
-					judgetitle: 'King County Superior Court Judge'
+					judgetitle: 'King County Superior Court Judge',
+					trid: 3,
+					prid: 4
 				},
 				{
 					courtdatesid: 5,
@@ -153,7 +161,9 @@ exports.seed = function(knex) {
 					ppstatus: '',
 					hearingtitle: 'Hearing',
 					judgename: 'Judge John Doe',
-					judgetitle: 'King County Superior Court Judge'
+					judgetitle: 'King County Superior Court Judge',
+					trid: 3,
+					prid: 4
 				}
 			]);
 		});

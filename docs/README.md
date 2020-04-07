@@ -60,6 +60,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/courtdates/:courtdatesid/packagetypes`       | returns packagetypes of a job record       |
 | `GET`          | `/courtdates/:courtdatesid/ccc`                | returns cccs of a job record               |
 | `GET`          | `/courtdates/:courtdatesid/usc`                | returns usc items of a job record          |
+| `GET`          | `/courtdates/:courtdatesid/contractors`        | returns contractors of a job record        |
 
 ### Endpoints For Appearances
 
@@ -253,16 +254,6 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 
 ### TO DO
 
-- [ ] add different levels of users:  admin, manager, transcriber, proofer, customer
-- [ ] proofer/transcriber endpoints
-    - [ ] assign transcriber/proofer
-    - [ ] unassign transcriber/proofer
-    - [ ] file transmission transcriber/proofer
-    - [ ] transcript submitted transcriber/proofer
-    - [ ] job invoiced from transcriber/proofer
-    - [ ] transcriber/proofer paid
-    - [ ] spellings/add'l info
-- [ ] advanced single courtdates endpoint:  2/4/5 don't work:  possibly need more if/elses in big endpoint
 - [ ] test types/responses per hello world (p)
 - [ ] add body as sample to post/put/delete (p)
 - [ ] add example to post/put/deletes (p)

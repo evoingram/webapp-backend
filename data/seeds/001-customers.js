@@ -1,14 +1,15 @@
-exports.seed = function(knex) {
+exports.seed = function (knex) {
 	// Deletes ALL existing entries
 	return knex('customers')
 		.del()
-		.then(function() {
+		.then(function () {
 			// Inserts seed entries
 			return knex('customers').insert([
 				{
 					customersid: 1,
 					username: 'admin',
 					password: 'eyJwYXNzd29yZCI6InBhc3N3b3JkIn0',
+					usertype: 'admin',
 					email: 'inquiries@aquoco.co',
 					company: 'A Quo Co.',
 					mrms: 'Ms',
@@ -26,9 +27,10 @@ exports.seed = function(knex) {
 				},
 				{
 					customersid: 2,
-					username: 'evoingram',
+					username: 'evoingram4',
 					password: 'eyJwYXNzd29yZCI6InBhc3N3b3JkIn0',
-					email: 'evoingram@aquoco.onmicrosoft.com',
+					usertype: 'admin',
+					email: 'evoingram4@aquoco.onmicrosoft.com',
 					company: 'A Quo Co.',
 					mrms: 'Ms',
 					lastname: 'Ingram',
@@ -47,6 +49,7 @@ exports.seed = function(knex) {
 					customersid: 3,
 					username: 'customer',
 					password: 'eyJwYXNzd29yZCI6InBhc3N3b3JkIn0',
+					usertype: 'customer',
 					email: 'customer@aquoco.onmicrosoft.com',
 					company: 'Customer Co.',
 					mrms: 'Ms',
@@ -66,6 +69,7 @@ exports.seed = function(knex) {
 					customersid: 4,
 					username: 'evoingram2',
 					password: 'eyJwYXNzd29yZCI6InBhc3N3b3JkIn0',
+					usertype: 'contractor',
 					email: 'evoingram2@aquoco.onmicrosoft.com',
 					company: 'A Quo Co.',
 					mrms: 'Ms',
@@ -85,6 +89,7 @@ exports.seed = function(knex) {
 					customersid: 5,
 					username: 'customer3',
 					password: 'eyJwYXNzd29yZCI6InBhc3N3b3JkIn0',
+					usertype: 'customer',
 					email: 'customer3@aquoco.onmicrosoft.com',
 					company: 'Customer Co.',
 					mrms: 'Ms',

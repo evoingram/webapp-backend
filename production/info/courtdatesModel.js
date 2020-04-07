@@ -1,4 +1,5 @@
 const db = require('../../data/dbConfig');
+const { union } = require('../../data/dbConfig');
 
 module.exports = {
 	add,
@@ -26,7 +27,8 @@ module.exports = {
 	findStylesById,
 	findCCCsById,
 	findCHsById,
-	findAppsById
+	findAppsById,
+	findContractorsById
 };
 
 function find() {
@@ -722,6 +724,55 @@ function findByIdMain(courtdatesid) {
 		.innerJoin('tasks', 'courtdates.courtdatesid', 'tasks.courtdatesid')
 		.innerJoin('citationhyperlinks', 'citations.citlinksid', 'citationhyperlinks.chid')
 		.where('courtdates.courtdatesid', courtdatesid);
+}
+
+function findContractorsById(courtdatesid) {
+	return db('courtdates')
+		.select(
+			'courtdates.courtdatesid',
+			'courtdates.trid',
+			'courtdates.prid',
+			'customers.factoring',
+			'customers.company',
+			'customers.mrms',
+			'customers.lastname',
+			'customers.firstname',
+			'customers.email',
+			'customers.jobtitle',
+			'customers.businessphone',
+			'customers.address1',
+			'customers.address2',
+			'customers.city',
+			'customers.state',
+			'customers.zip',
+			'customers.notes'
+		)
+		.innerJoin('customers', 'courtdates.trid', 'customers.customersid')
+		.where('courtdates.courtdatesid', courtdatesid)
+		.union(
+			db('courtdates')
+				.select(
+					'courtdates.courtdatesid',
+					'courtdates.trid',
+					'courtdates.prid',
+					'customers.factoring',
+					'customers.company',
+					'customers.mrms',
+					'customers.lastname',
+					'customers.firstname',
+					'customers.email',
+					'customers.jobtitle',
+					'customers.businessphone',
+					'customers.address1',
+					'customers.address2',
+					'customers.city',
+					'customers.state',
+					'customers.zip',
+					'customers.notes'
+				)
+				.innerJoin('customers', 'courtdates.prid', 'customers.customersid')
+				.where('courtdates.courtdatesid', courtdatesid)
+		);
 }
 
 /*
