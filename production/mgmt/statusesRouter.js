@@ -20,7 +20,7 @@ router.get('/:sid', restricted, (req, res) => {
 	} else {
 		Statuses.findById(sid)
 			.then(status => {
-				res.status(201).json(status);
+				res.status(200).json(status);
 			})
 			.catch(err => {
 				res.status(500).json({ message: 'The status information could not be retrieved.', error: err });

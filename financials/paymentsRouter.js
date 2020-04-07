@@ -20,7 +20,7 @@ router.get('/:pid', restricted, (req, res) => {
 	} else {
 		Payments.findById(pid)
 			.then(payment => {
-				res.status(201).json(payment);
+				res.status(200).json(payment);
 			})
 			.catch(err => {
 				res.status(500).json({ message: `The payment information could not be retrieved.`, error: err });

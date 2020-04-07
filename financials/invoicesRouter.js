@@ -20,7 +20,7 @@ router.get('/:iid', restricted, (req, res) => {
 	} else {
 		Invoices.findById(iid)
 			.then(invoice => {
-				res.status(201).json(invoice);
+				res.status(200).json(invoice);
 			})
 			.catch(err => {
 				res.status(500).json({ message: 'The invoice information could not be retrieved.', error: err });

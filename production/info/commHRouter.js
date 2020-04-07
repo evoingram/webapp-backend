@@ -20,7 +20,7 @@ router.get('/:chid', restricted, (req, res) => {
 	} else {
 		CommHistory.findById(chid)
 			.then(singlecommhistory => {
-				res.status(201).json(singlecommhistory);
+				res.status(200).json(singlecommhistory);
 			})
 			.catch(err => {
 				res.status(500).json({

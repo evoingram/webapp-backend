@@ -31,7 +31,7 @@ router.get('/:courtdatesid', restricted, (req, res) => {
 									Courtdates.findTasksById(courtdatesid).then(tasks => {
 										Courtdates.findCitationsById(courtdatesid).then(citations => {
 											Courtdates.findInvoicesById(courtdatesid).then(invoices => {
-												res.status(201).json({
+												res.status(200).json({
 													general: {
 														courtdatesid: courtdate[0].courtdatesid,
 														turnaround: courtdate[0].turnaroundtime,
@@ -211,7 +211,7 @@ router.get('/basic/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findById(courtdatesid)
 			.then(courtdate => {
-				res.status(201).json(courtdate);
+				res.status(200).json(courtdate);
 			})
 			.catch(err => {
 				res.status(500).json({
@@ -282,7 +282,7 @@ router.get('/apps/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findAppsById(courtdatesid)
 			.then(courtdate => {
-				res.status(201).json(courtdate);
+				res.status(200).json(courtdate);
 			})
 			.catch(err => {
 				res.status(500).json({
@@ -304,7 +304,7 @@ router.get('/expenses/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findExpensesById(courtdatesid)
 			.then(courtdate => {
-				res.status(201).json(courtdate);
+				res.status(200).json(courtdate);
 			})
 			.catch(err => {
 				res.status(500).json({
@@ -325,7 +325,7 @@ router.get('/payments/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findPaymentsById(courtdatesid)
 			.then(courtdate => {
-				res.status(201).json(courtdate);
+				res.status(200).json(courtdate);
 			})
 			.catch(err => {
 				res.status(500).json({
@@ -346,7 +346,7 @@ router.get('/shipping/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.getShippingById(courtdatesid)
 			.then(courtdate => {
-				res.status(201).json(courtdate);
+				res.status(200).json(courtdate);
 			})
 			.catch(err => {
 				res.status(500).json({
@@ -367,7 +367,7 @@ router.get('/citations/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findCitationsById(courtdatesid)
 			.then(courtdate => {
-				res.status(201).json(courtdate);
+				res.status(200).json(courtdate);
 			})
 			.catch(err => {
 				res.status(500).json({
@@ -385,7 +385,7 @@ router.get('/tasks/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findTasksById(courtdatesid)
 			.then(courtdate => {
-				res.status(201).json(courtdate);
+				res.status(200).json(courtdate);
 			})
 			.catch(err => {
 				res.status(500).json({
@@ -407,7 +407,7 @@ router.get('/commhistory/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findCommHistoryById(courtdatesid)
 			.then(courtdate => {
-				res.status(201).json(courtdate);
+				res.status(200).json(courtdate);
 			})
 			.catch(err => {
 				res.status(500).json({
@@ -428,7 +428,7 @@ router.get('/invoices/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findInvoicesById(courtdatesid)
 			.then(courtdate => {
-				res.status(201).json(courtdate);
+				res.status(200).json(courtdate);
 			})
 			.catch(err => {
 				res.status(500).json({
@@ -450,7 +450,7 @@ router.get('/statuses/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findStatusesById(courtdatesid)
 			.then(statuses => {
-				res.status(201).json(statuses);
+				res.status(200).json(statuses);
 			})
 			.catch(err => {
 				res.status(500).json({
@@ -472,7 +472,7 @@ router.get('/brandingthemes/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findBTsById(courtdatesid)
 			.then(brandingthemes => {
-				res.status(201).json(brandingthemes);
+				res.status(200).json(brandingthemes);
 			})
 			.catch(err => {
 				res.status(500).json({
@@ -494,7 +494,7 @@ router.get('/rates/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findRatesById(courtdatesid)
 			.then(rates => {
-				res.status(201).json(rates);
+				res.status(200).json(rates);
 			})
 			.catch(err => {
 				res.status(500).json({
@@ -516,7 +516,7 @@ router.get('/agshortcuts/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findAGSById(courtdatesid)
 			.then(agshortcuts => {
-				res.status(201).json(agshortcuts);
+				res.status(200).json(agshortcuts);
 			})
 			.catch(err => {
 				res.status(500).json({
@@ -538,7 +538,7 @@ router.get('/citationhyperlinks/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findCHsById(courtdatesid)
 			.then(citationhyperlinks => {
-				res.status(201).json(citationhyperlinks);
+				res.status(200).json(citationhyperlinks);
 			})
 			.catch(err => {
 				res.status(500).json({
@@ -560,7 +560,7 @@ router.get('/mailclasses/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findMCsById(courtdatesid)
 			.then(mailclasses => {
-				res.status(201).json(mailclasses);
+				res.status(200).json(mailclasses);
 			})
 			.catch(err => {
 				res.status(500).json({
@@ -582,7 +582,7 @@ router.get('/packagetypes/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findPTsById(courtdatesid)
 			.then(packagetypes => {
-				res.status(201).json(packagetypes);
+				res.status(200).json(packagetypes);
 			})
 			.catch(err => {
 				res.status(500).json({
@@ -604,7 +604,7 @@ router.get('/ccc/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findCCCsById(courtdatesid)
 			.then(ccc => {
-				res.status(201).json(ccc);
+				res.status(200).json(ccc);
 			})
 			.catch(err => {
 				res.status(500).json({
@@ -626,7 +626,7 @@ router.get('/usc/:courtdatesid', restricted, (req, res) => {
 	} else {
 		Courtdates.findUSCsById(courtdatesid)
 			.then(usc => {
-				res.status(201).json(usc);
+				res.status(200).json(usc);
 			})
 			.catch(err => {
 				res.status(500).json({

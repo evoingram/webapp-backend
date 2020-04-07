@@ -23,7 +23,7 @@ router.get('/:chid', restricted, (req, res) => {
 	} else {
 		CitationHyperlinks.findById(chid)
 			.then(citationhyperlinksitem => {
-				res.status(201).json(citationhyperlinksitem);
+				res.status(200).json(citationhyperlinksitem);
 			})
 			.catch(err => {
 				res.status(500).json({

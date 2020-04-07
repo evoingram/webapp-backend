@@ -23,7 +23,7 @@ router.get('/:mcid', restricted, (req, res) => {
 	} else {
 		MailClass.findById(mcid)
 			.then(mailclass => {
-				res.status(201).json(mailclass);
+				res.status(200).json(mailclass);
 			})
 			.catch(err => {
 				res.status(500).json({ message: `The mailclass information could not be retrieved.`, error: err });

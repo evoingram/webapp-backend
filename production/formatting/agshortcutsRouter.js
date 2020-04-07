@@ -23,7 +23,7 @@ router.get('/:agsid', restricted, (req, res) => {
 	} else {
 		AGShortcuts.findById(agsid)
 			.then(agshortcut => {
-				res.status(201).json(agshortcut);
+				res.status(200).json(agshortcut);
 			})
 			.catch(err => {
 				res.status(500).json({

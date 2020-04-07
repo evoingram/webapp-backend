@@ -20,7 +20,7 @@ router.get('/:appid', restricted, (req, res) => {
 	} else {
 		Appearances.findById(appid)
 			.then(appearances => {
-				res.status(201).json(appearances);
+				res.status(200).json(appearances);
 			})
 			.catch(err => {
 				res.status(500).json({

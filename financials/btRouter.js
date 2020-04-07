@@ -22,7 +22,7 @@ router.get('/:btid', restricted, (req, res) => {
 	} else {
 		BrandingThemes.findById(btid)
 			.then(brandingtheme => {
-				res.status(201).json(brandingtheme);
+				res.status(200).json(brandingtheme);
 			})
 			.catch(err => {
 				res.status(500).json({ message: 'The courtdate information could not be retrieved.', error: err });
