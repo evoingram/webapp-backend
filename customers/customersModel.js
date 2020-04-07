@@ -37,7 +37,26 @@ async function add(customer) {
 
 // returns a customer by ID number
 function findById(customersid) {
-	return db('customers').select('customersid', 'username', 'email').where({ customersid }).first();
+	return db('customers')
+		.select(
+			'customersid',
+			'username',
+			'email',
+			'company',
+			'mrms',
+			'firstname',
+			'lastname',
+			'jobtitle',
+			'businessphone',
+			'address1',
+			'address2',
+			'city',
+			'state',
+			'zip',
+			'notes'
+		)
+		.where({ customersid })
+		.first();
 }
 
 // updates a customer
