@@ -60,8 +60,7 @@ function findById(customersid) {
 }
 
 // updates a customer
-/*
-async function update(customersid, user) {
+function update(customersid, user) {
 	return db('customers')
 		.select(
 			'customersid',
@@ -82,9 +81,8 @@ async function update(customersid, user) {
 		)
 		.where({ customersid })
 		.update(user);
-	return;
 }
-*/
+/*
 async function update(customersid, user) {
 	const [customersidA] = await db('customers')
 		.select(
@@ -108,6 +106,7 @@ async function update(customersid, user) {
 		.update(user);
 	return findById(customersidA);
 }
+*/
 
 // deletes a customer
 // TODO: Make sure it removes all associated data
