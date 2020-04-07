@@ -61,7 +61,7 @@ function findById(customersid) {
 
 // updates a customer
 function update(customersid, user) {
-	return db('customers')
+	db('customers')
 		.select(
 			'customersid',
 			'username',
@@ -79,8 +79,9 @@ function update(customersid, user) {
 			'zip',
 			'notes'
 		)
-		.where('customersid', Number(customersid))
+		.where({ customersid })
 		.update(user);
+	return findById(customersid);
 }
 
 // deletes a customer
