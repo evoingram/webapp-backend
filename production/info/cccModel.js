@@ -26,7 +26,7 @@ async function add(courtdate) {
 }
 
 function update(cdccid, courtdate) {
-	return db('courtdatescasescustomers').where('cdccid', Number(cdccid)).update(courtdate);
+	return db('courtdatescasescustomers').where({ cdccid }).update(courtdate);
 }
 
 function remove(cdccid) {

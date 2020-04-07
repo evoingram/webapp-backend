@@ -29,10 +29,7 @@ FROM Cases;
 */
 
 function findById(casesid) {
-	return db('cases')
-		.select('*')
-		.where({ casesid })
-		.first();
+	return db('cases').select('*').where({ casesid }).first();
 }
 
 /*
@@ -56,15 +53,11 @@ async function add(onecase) {
 }
 
 function update(casesid, onecase) {
-	return db('cases')
-		.where('casesid', Number(casesid))
-		.update(onecase);
+	return db('cases').where({ casesid }).update(onecase);
 }
 
 function remove(casesid) {
-	return db('cases')
-		.where('casesid', Number(casesid))
-		.del();
+	return db('cases').where('casesid', Number(casesid)).del();
 }
 
 /*

@@ -27,7 +27,7 @@ function findById(ptid) {
 }
 
 function update(ptid, singlepackagetype) {
-	return db('packagetype').where('ptid', Number(ptid)).update(singlepackagetype);
+	return db('packagetype').where({ ptid }).update(singlepackagetype);
 }
 
 function remove(ptid) {

@@ -255,5 +255,4 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 ### TO DO
 
 - [ ] add body as sample to post/put/delete (p)
-    - [ ] fix up all post/put models to match rates/customers
 - [ ] add example to post/put/deletes (p)

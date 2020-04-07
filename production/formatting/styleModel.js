@@ -27,7 +27,7 @@ function findById(sid) {
 }
 
 function update(sid, style) {
-	return db('stylenames').where('sid', Number(sid)).update(style);
+	return db('stylenames').where({ sid }).update(style);
 }
 
 function remove(sid) {

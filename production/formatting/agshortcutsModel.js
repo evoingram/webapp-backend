@@ -27,7 +27,7 @@ function findById(agsid) {
 }
 
 function update(agsid, agshortcutset) {
-	return db('agshortcuts').where('agsid', Number(agsid)).update(agshortcutset);
+	return db('agshortcuts').where({ agsid }).update(agshortcutset);
 }
 
 function remove(agsid) {

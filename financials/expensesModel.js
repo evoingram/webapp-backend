@@ -27,7 +27,7 @@ function findById(eid) {
 }
 
 function update(eid, expense) {
-	return db('expenses').where('eid', Number(eid)).update(expense);
+	return db('expenses').where({ eid }).update(expense);
 }
 
 function remove(eid) {

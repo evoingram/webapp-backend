@@ -27,7 +27,7 @@ function findById(ttid) {
 }
 
 function update(ttid, turnaroundtime) {
-	return db('turnaroundtimes').where('ttid', Number(ttid)).update(turnaroundtime);
+	return db('turnaroundtimes').where({ ttid }).update(turnaroundtime);
 }
 
 function remove(ttid) {

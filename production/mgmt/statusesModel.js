@@ -27,7 +27,7 @@ function findById(sid) {
 }
 
 function update(sid, status) {
-	return db('statuses').where('sid', Number(sid)).update(status);
+	return db('statuses').where({ sid }).update(status);
 }
 
 function remove(sid) {

@@ -27,7 +27,7 @@ function findById(chid) {
 }
 
 function update(chid, singlecitation) {
-	return db('citationhyperlinks').where('chid', Number(chid)).update(singlecitation);
+	return db('citationhyperlinks').where({ chid }).update(singlecitation);
 }
 
 function remove(chid) {
