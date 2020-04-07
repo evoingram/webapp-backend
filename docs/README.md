@@ -1,6 +1,6 @@
 # Transcript Web App
 
-This is the back end, work in progress, for my database online port.  
+This is the back end, work in progress, for my database online port.
 This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 
 ## [DB Schema](https://dbdesigner.page.link/gbEtfTr1XjgwDa2C7)
@@ -12,7 +12,8 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 - Postman Docs were last published on 04/07/2020
 
 - All endpoints have been tested and documented via Postman.
-- Postman docs contain examples of nearly all get endpoint responses.
+- Postman docs contain examples of all get, post, and put endpoint body submissions AND responses.
+- This is still a work in progress.
 
 ### Endpoints For Login / Registration
 
@@ -252,7 +253,6 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/styles`      | returns list of styles          |
 | `GET`          | `/styles/:sid` | returns one style               |
 
-### TO DO
+## To do
 
-- [ ] add body as sample to deletes (p)
-- [ ] add example to deletes (p)
+- [ ] user level access (implement restrictedA/restrictedC)
