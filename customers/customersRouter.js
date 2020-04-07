@@ -104,7 +104,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  update customer
 router.put('/:customersid', restricted, (req, res) => {
 	const customersid = req.params.customersid;
-	const updatedCustomer = { req.body };
+	const updatedCustomer = req.body;
 
 	Customers.update(customersid, updatedCustomer)
 		.then(customer => {
