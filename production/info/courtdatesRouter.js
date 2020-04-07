@@ -272,7 +272,7 @@ router.put('/:courtdatesid', restricted, (req, res) => {
 });
 
 // GET:  returns apps for one job/courtdate
-router.get('/apps/:courtdatesid', restricted, (req, res) => {
+router.get('/:courtdatesid/apps', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
 		res.status(404).json({
@@ -294,7 +294,7 @@ router.get('/apps/:courtdatesid', restricted, (req, res) => {
 });
 
 // GET:  returns expenses for one job/courtdate
-router.get('/expenses/:courtdatesid', restricted, (req, res) => {
+router.get('/:courtdatesid/expenses', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
 		res.status(404).json({
@@ -315,7 +315,7 @@ router.get('/expenses/:courtdatesid', restricted, (req, res) => {
 });
 
 // GET:  returns payments for one job/courtdate
-router.get('/payments/:courtdatesid', restricted, (req, res) => {
+router.get('/:courtdatesid/payments', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
 		res.status(404).json({
@@ -336,7 +336,7 @@ router.get('/payments/:courtdatesid', restricted, (req, res) => {
 });
 
 // GET:  returns shipping for one job/courtdate
-router.get('/shipping/:courtdatesid', restricted, (req, res) => {
+router.get('/:courtdatesid/shipping', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
 		res.status(404).json({
@@ -357,7 +357,7 @@ router.get('/shipping/:courtdatesid', restricted, (req, res) => {
 });
 
 // GET:  returns citations for one job/courtdate
-router.get('/citations/:courtdatesid', restricted, (req, res) => {
+router.get('/:courtdatesid/citations', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
 		res.status(404).json({
@@ -378,7 +378,7 @@ router.get('/citations/:courtdatesid', restricted, (req, res) => {
 });
 
 // GET:  returns tasks for one job/courtdate
-router.get('/tasks/:courtdatesid', restricted, (req, res) => {
+router.get('/:courtdatesid/tasks', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
 		res.status(404).json({ message: `The courtdate with the specified courtdatesid does not exist.`, error: err });
@@ -397,7 +397,7 @@ router.get('/tasks/:courtdatesid', restricted, (req, res) => {
 });
 
 // GET:  returns commhistory for one job/courtdate
-router.get('/commhistory/:courtdatesid', restricted, (req, res) => {
+router.get('/:courtdatesid/commhistory', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
 		res.status(404).json({
@@ -418,7 +418,7 @@ router.get('/commhistory/:courtdatesid', restricted, (req, res) => {
 });
 
 // GET:  returns invoices for one job/courtdate
-router.get('/invoices/:courtdatesid', restricted, (req, res) => {
+router.get('/:courtdatesid/invoices', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
 		res.status(404).json({
@@ -440,7 +440,7 @@ router.get('/invoices/:courtdatesid', restricted, (req, res) => {
 });
 
 // GET:  returns statuses for one job/courtdate
-router.get('/statuses/:courtdatesid', restricted, (req, res) => {
+router.get('/:courtdatesid/statuses', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
 		res.status(404).json({
@@ -462,7 +462,7 @@ router.get('/statuses/:courtdatesid', restricted, (req, res) => {
 });
 
 // GET:  returns brandingthemes for one job/courtdate
-router.get('/brandingthemes/:courtdatesid', restricted, (req, res) => {
+router.get('/:courtdatesid/brandingthemes', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
 		res.status(404).json({
@@ -484,7 +484,7 @@ router.get('/brandingthemes/:courtdatesid', restricted, (req, res) => {
 });
 
 // GET:  returns rates for one job/courtdate
-router.get('/rates/:courtdatesid', restricted, (req, res) => {
+router.get('/:courtdatesid/rates', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
 		res.status(404).json({
@@ -506,7 +506,7 @@ router.get('/rates/:courtdatesid', restricted, (req, res) => {
 });
 
 // GET:  returns agshortcuts for one job/courtdate
-router.get('/agshortcuts/:courtdatesid', restricted, (req, res) => {
+router.get('/:courtdatesid/agshortcuts', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
 		res.status(404).json({
@@ -528,7 +528,7 @@ router.get('/agshortcuts/:courtdatesid', restricted, (req, res) => {
 });
 
 // GET:  returns citationhyperlinks for one job/courtdate
-router.get('/citationhyperlinks/:courtdatesid', restricted, (req, res) => {
+router.get('/:courtdatesid/citationhyperlinks', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
 		res.status(404).json({
@@ -550,7 +550,7 @@ router.get('/citationhyperlinks/:courtdatesid', restricted, (req, res) => {
 });
 
 // GET:  returns mailclasses for one job/courtdate
-router.get('/mailclasses/:courtdatesid', restricted, (req, res) => {
+router.get('/:courtdatesid/mailclasses', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
 		res.status(404).json({
@@ -572,7 +572,7 @@ router.get('/mailclasses/:courtdatesid', restricted, (req, res) => {
 });
 
 // GET:  returns packagetypes for one job/courtdate
-router.get('/packagetypes/:courtdatesid', restricted, (req, res) => {
+router.get('/:courtdatesid/packagetypes', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
 		res.status(404).json({
@@ -594,7 +594,7 @@ router.get('/packagetypes/:courtdatesid', restricted, (req, res) => {
 });
 
 // GET:  returns ccc for one job/courtdate
-router.get('/ccc/:courtdatesid', restricted, (req, res) => {
+router.get('/:courtdatesid/ccc', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
 		res.status(404).json({
@@ -616,7 +616,7 @@ router.get('/ccc/:courtdatesid', restricted, (req, res) => {
 });
 
 // GET:  returns usc items for one job/courtdate
-router.get('/usc/:courtdatesid', restricted, (req, res) => {
+router.get('/:courtdatesid/usc', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
 		res.status(404).json({
