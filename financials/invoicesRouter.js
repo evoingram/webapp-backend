@@ -37,7 +37,7 @@ router.post('/', restricted, (req, res) => {
 			res.status(201).json(invoice);
 		})
 		.catch(err => {
-			res.status(500).json({ message: 'Failed to create new invoice' });
+			res.status(500).json({ message: 'Failed to create new invoice', error: err });
 		});
 });
 
