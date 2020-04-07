@@ -60,6 +60,7 @@ function findById(customersid) {
 }
 
 // updates a customer
+/*
 async function update(customersid, user) {
 	return db('customers')
 		.select(
@@ -81,6 +82,31 @@ async function update(customersid, user) {
 		)
 		.where({ customersid })
 		.update(user);
+	return;
+}
+*/
+async function update(customersid, user) {
+	const [customersidA] = await db('customers')
+		.select(
+			'customersid',
+			'username',
+			'email',
+			'company',
+			'mrms',
+			'firstname',
+			'lastname',
+			'jobtitle',
+			'businessphone',
+			'address1',
+			'address2',
+			'city',
+			'state',
+			'zip',
+			'notes'
+		)
+		.where({ customersid })
+		.update(user);
+	return findById(customersidA);
 }
 
 // deletes a customer
