@@ -61,7 +61,26 @@ function findById(customersid) {
 
 // updates a customer
 function update(customersid, user) {
-	return db('customers').where('customersid', Number(customersid)).update(user);
+	return db('customers')
+		.select(
+			'customersid',
+			'username',
+			'email',
+			'company',
+			'mrms',
+			'firstname',
+			'lastname',
+			'jobtitle',
+			'businessphone',
+			'address1',
+			'address2',
+			'city',
+			'state',
+			'zip',
+			'notes'
+		)
+		.where('customersid', Number(customersid))
+		.update(user);
 }
 
 // deletes a customer
