@@ -26,7 +26,10 @@ function findById(ratesid) {
 	return db('rates').select('ratesid', '*').where({ ratesid }).first();
 }
 function update(ratesid, rate) {
-	return db('rates').select('*').where({ ratesid }).update(rate);
+	return db('rates')
+		.select('code', 'inventoryratecode', 'productname', 'dsecription', 'rate')
+		.where({ ratesid })
+		.update(rate);
 }
 /*
 async function update(ratesid, rate) {
