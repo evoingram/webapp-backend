@@ -30,7 +30,7 @@ router.get('/:ratesid', restricted, (req, res) => {
 
 // POST:  create rate
 router.post('/', restricted, (req, res) => {
-	const newRate = req.body.rate;
+	const newRate = req.body;
 
 	Rates.add(newRate)
 		.then(rate => {
