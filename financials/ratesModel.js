@@ -29,10 +29,6 @@ function findById(ratesid) {
 function update(ratesid, rate) {
 	return db('rates').where('ratesid', Number(ratesid)).update(rate);
 }
-async function update(rate) {
-	const [ratesid] = await db('rates').where('ratesid', Number(ratesid)).update(rate);
-	return findById(ratesid);
-}
 
 function remove(ratesid) {
 	return db('rates').where('ratesid', Number(ratesid)).del();
