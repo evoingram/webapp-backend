@@ -50,7 +50,7 @@ router.put('/:eid', restricted, (req, res) => {
 	const updatedExpense = req.body;
 	Expenses.update(eid, updatedExpense)
 		.then(expense => {
-			if (status) {
+			if (expense) {
 				res.json(expense);
 			} else {
 				res.status(404).json({ message: `Could not find expense with given id ${eid}.` });

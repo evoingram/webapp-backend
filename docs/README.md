@@ -254,5 +254,5 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 
 ### TO DO
 
-- [ ] add body as sample to post/put/delete (p)
-- [ ] add example to post/put/deletes (p)
+- [ ] add body as sample to deletes (p)
+- [ ] add example to deletes (p)
