@@ -33,7 +33,7 @@ router.get('/:ptid', restricted, (req, res) => {
 
 // POST:  create a packagetype
 router.post('/', restricted, (req, res) => {
-	const newPackageType = req.body.packagetype;
+	const newPackageType = req.body;
 
 	PackageType.add(newPackageType)
 		.then(packagetype => {
@@ -47,7 +47,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  update a packagetype
 router.put('/:ptid', restricted, (req, res) => {
 	const ptid = req.params.ptid;
-	const updatedPackageType = { packagetype: req.body.packagetype };
+	const updatedPackageType = req.body;
 
 	PackageType.update(ptid, updatedPackageType)
 		.then(packagetype => {

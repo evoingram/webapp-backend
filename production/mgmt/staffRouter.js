@@ -30,7 +30,7 @@ router.get('/:stfid', restricted, (req, res) => {
 
 // POST:  create staff
 router.post('/', restricted, (req, res) => {
-	const newContractor = req.body.contractor;
+	const newContractor = req.body;
 
 	Tasks.add(newContractor)
 		.then(contractor => {
@@ -44,7 +44,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  update contractor
 router.put('/:stfid', restricted, (req, res) => {
 	const stfid = req.params.stfid;
-	const updatedContractor = { contractor: req.body.contractor };
+	const updatedContractor = req.body;
 
 	Tasks.update(stfid, updatedContractor)
 		.then(contractor => {

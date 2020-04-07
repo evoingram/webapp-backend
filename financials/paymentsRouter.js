@@ -30,7 +30,7 @@ router.get('/:pid', restricted, (req, res) => {
 
 // POST:  record payment
 router.post('/', restricted, (req, res) => {
-	const newPayment = req.body.payment;
+	const newPayment = req.body;
 
 	Payments.add(newPayment)
 		.then(payment => {
@@ -44,7 +44,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  update payment record
 router.put('/:pid', restricted, (req, res) => {
 	const pid = req.params.pid;
-	const updatedPayment = { payment: req.body.payment };
+	const updatedPayment = req.body;
 
 	Payments.update(pid, updatedPayment)
 		.then(payment => {

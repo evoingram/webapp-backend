@@ -30,7 +30,7 @@ router.get('/:soid', restricted, (req, res) => {
 
 // POST:  create a shipped package record
 router.post('/', restricted, (req, res) => {
-	const newShippingOptions = req.body.shippingitem;
+	const newShippingOptions = req.body;
 
 	ShippingOptions.add(newShippingOptions)
 		.then(shippingitem => {
@@ -44,7 +44,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  update a shipped package record
 router.put('/:soid', restricted, (req, res) => {
 	const soid = req.params.soid;
-	const updatedShippingOptions = { shippingitem: req.body.shippingitem };
+	const updatedShippingOptions = req.body;
 
 	ShippingOptions.update(soid, updatedShippingOptions)
 		.then(shippingitem => {

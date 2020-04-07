@@ -33,7 +33,7 @@ router.get('/:eid', restricted, (req, res) => {
 
 // POST:  create expense
 router.post('/', restricted, (req, res) => {
-	const newExpense = req.body.status;
+	const newExpense = req.body;
 
 	Expenses.add(newExpense)
 		.then(expense => {
@@ -47,8 +47,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  update expense
 router.put('/:eid', restricted, (req, res) => {
 	const eid = req.params.eid;
-	const updatedExpense = { status: req.body.expense };
-
+	const updatedExpense = req.body;
 	Expenses.update(eid, updatedExpense)
 		.then(expense => {
 			if (status) {

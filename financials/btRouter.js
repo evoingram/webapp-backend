@@ -32,7 +32,7 @@ router.get('/:btid', restricted, (req, res) => {
 
 // POST:  create brandingtheme
 router.post('/', restricted, (req, res) => {
-	const newBrandingTheme = req.body.brandingtheme;
+	const newBrandingTheme = req.body;
 
 	BrandingThemes.add(newBrandingTheme)
 		.then(brandingtheme => {
@@ -46,7 +46,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  update brandingtheme
 router.put('/:btid', restricted, (req, res) => {
 	const btid = req.params.btid;
-	const updatedBrandingTheme = { status: req.body.brandingtheme };
+	const updatedBrandingTheme = req.body;
 
 	BrandingThemes.update(btid, updatedBrandingTheme)
 		.then(brandingtheme => {

@@ -30,7 +30,7 @@ router.get('/:tid', restricted, (req, res) => {
 
 // POST:  create task
 router.post('/', restricted, (req, res) => {
-	const newTask = req.body.task;
+	const newTask = req.body;
 
 	Tasks.add(newTask)
 		.then(task => {
@@ -44,7 +44,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  update task
 router.put('/:tid', restricted, (req, res) => {
 	const tid = req.params.tid;
-	const updatedTask = { task: req.body.task };
+	const updatedTask = req.body;
 
 	Tasks.update(tid, updatedTask)
 		.then(task => {

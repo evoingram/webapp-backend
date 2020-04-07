@@ -30,7 +30,7 @@ router.get('/:iid', restricted, (req, res) => {
 
 // POST:  create invoice
 router.post('/', restricted, (req, res) => {
-	const newInvoice = req.body.invoice;
+	const newInvoice = req.body;
 
 	Invoices.add(newInvoice)
 		.then(invoice => {
@@ -44,7 +44,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  update invoice
 router.put('/:iid', restricted, (req, res) => {
 	const iid = req.params.iid;
-	const updatedStatus = { invoice: req.body.invoice };
+	const updatedStatus = req.body;
 
 	Invoices.update(iid, updatedStatus)
 		.then(invoice => {

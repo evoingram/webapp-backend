@@ -9,7 +9,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 
 ## [POSTMAN DOCUMENTATION](https://documenter.getpostman.com/view/6401823/SzRxWAvu?version=latest)
 
-- Postman Docs were last published on 04/04/2020
+- Postman Docs were last published on 04/07/2020
 
 - All endpoints have been tested and documented via Postman.
 - Postman docs contain examples of nearly all get endpoint responses.
@@ -255,4 +255,5 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 ### TO DO
 
 - [ ] add body as sample to post/put/delete (p)
+    - [ ] fix up all post/put models to match rates/customers
 - [ ] add example to post/put/deletes (p)

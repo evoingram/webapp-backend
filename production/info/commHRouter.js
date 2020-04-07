@@ -33,7 +33,7 @@ router.get('/:chid', restricted, (req, res) => {
 
 // POST:  create a commhistory item
 router.post('/', restricted, (req, res) => {
-	const newCommHistory = req.body.commhistory;
+	const newCommHistory = req.body;
 
 	CommHistory.add(newCommHistory)
 		.then(commhistory => {
@@ -47,7 +47,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  update a commhistory item
 router.put('/:chid', restricted, (req, res) => {
 	const chid = req.params.chid;
-	const updatedCommHistory = { commhistory: req.body.commhistory };
+	const updatedCommHistory = req.body;
 
 	CommHistory.update(chid, updatedCommHistory)
 		.then(commhistory => {

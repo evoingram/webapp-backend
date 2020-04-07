@@ -35,7 +35,7 @@ router.get('/:cdccid', restricted, (req, res) => {
 
 // POST:  create an entry in courtdatescasescustomers (ties the three tables together)
 router.post('/', restricted, (req, res) => {
-	const newCourtdateCaseCustomer = req.body.courtdatecasecustomer;
+	const newCourtdateCaseCustomer = req.body;
 
 	CourtdatesCasesCustomers.add(newCourtdateCaseCustomer)
 		.then(courtdatecasecustomer => {
@@ -49,7 +49,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  update an entry in courtdatescasescustomers (ties the three tables together)
 router.put('/:cdccid', restricted, (req, res) => {
 	const cdccid = req.params.cdccid;
-	const updatedCourtdateCaseCustomer = { courtdatecasecustomer: req.body.courtdatecasecustomer };
+	const updatedCourtdateCaseCustomer = req.body;
 
 	CourtdatesCasesCustomers.update(cdccid, updatedCourtdateCaseCustomer)
 		.then(courtdatecasecustomer => {

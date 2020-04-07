@@ -397,7 +397,7 @@ router.delete('/:courtdatesid', restricted, (req, res) => {
 
 // POST:  create a courtdates record
 router.post('/', restricted, (req, res) => {
-	const newCourtdate = req.body.courtdate;
+	const newCourtdate = req.body;
 
 	Courtdates.add(newCourtdate)
 		.then(courtdate => {
@@ -411,7 +411,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  update a courtdates record
 router.put('/:courtdatesid', restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
-	const updatedCourtdates = { courtdate: req.body.courtdate };
+	const updatedCourtdates = req.body;
 
 	Courtdates.update(courtdatesid, updatedCourtdates)
 		.then(courtdate => {

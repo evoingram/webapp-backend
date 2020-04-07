@@ -33,7 +33,7 @@ router.get('/:mcid', restricted, (req, res) => {
 
 // POST:  create a mailclass
 router.post('/', restricted, (req, res) => {
-	const newMailClass = req.body.mailclass;
+	const newMailClass = req.body;
 
 	MailClass.add(newMailClass)
 		.then(mailclass => {
@@ -47,7 +47,7 @@ router.post('/', restricted, (req, res) => {
 // PUT:  update a mailclass
 router.put('/:mcid', restricted, (req, res) => {
 	const mcid = req.params.mcid;
-	const updatedMailClass = { mailclass: req.body.mailclass };
+	const updatedMailClass = req.body;
 
 	MailClass.update(mcid, updatedMailClass)
 		.then(mailclass => {
