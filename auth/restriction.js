@@ -15,17 +15,11 @@ module.exports = (req, res, next) => {
 				res.status(401).json({ message: 'invalid credentials from restriction' });
 			} else {
 				req.decodedJwt = decodedToken;
-				// next();
+				next();
+				/*
 				Customers.findById(customersid)
-					// admin, manager, contractor, customer
 					.then(customer => {
-						if (customer.usertype === '') {
-							next();
-						} else {
-							res.status(400).json({
-								message: 'Inadequate credentials provided to access this endpoint'
-							});
-						}
+						next();
 					})
 					.catch(err => {
 						res.status(500).json({
@@ -33,6 +27,7 @@ module.exports = (req, res, next) => {
 							error: err
 						});
 					});
+					*/
 			}
 		});
 	} else {
