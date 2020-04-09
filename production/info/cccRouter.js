@@ -2,9 +2,9 @@ const router = require('express').Router();
 
 const CourtdatesCasesCustomers = require('./cccModel.js');
 const restricted = require('../../auth/restriction.js');
-const restrictedA = require('../auth/restrictionA.js');
-const restrictedC = require('../auth/restrictionC.js');
-const restrictedM = require('../auth/restrictionM.js');
+const restrictedA = require('../../auth/restrictionA.js');
+const restrictedC = require('../../auth/restrictionC.js');
+const restrictedM = require('../../auth/restrictionM.js');
 
 // GET:  get all courtdatescasescustomers (ties the three tables together)
 router.get('/', restrictedM, (req, res) => {
