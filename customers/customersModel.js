@@ -229,8 +229,6 @@ function findJobsById(customersid) {
 			'rates.inventoryratecode',
 			'rates.productname',
 			'rates.description',
-			'brandingthemes.brandingtheme',
-			'brandingthemes.btid',
 			'expenses.eid',
 			'expenses.vendor',
 			'expenses.date',
@@ -366,10 +364,11 @@ function findJobsById(customersid) {
 			'courtdatescasescustomers.casesid',
 			'courtdatescasescustomers.orderingid'
 		)
+		.innerJoin('appearances', 'customers.customersid', 'appearances.customersid')
+		.innerJoin('courtdates', 'appearances.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('turnaroundtimes', 'turnaroundtimes.ttid', 'courtdates.ttid')
 		.innerJoin('rates', 'rates.ratesid', 'courtdates.ratesid')
-		.innerJoin('brandingthemes', 'brandingthemes.btid', 'courtdates.btid')
 		.innerJoin('cases', 'cases.casesid', 'courtdatescasescustomers.casesid')
 		.innerJoin('agshortcuts', 'agshortcuts.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('invoices', 'invoices.iid', 'courtdates.iid')
@@ -383,8 +382,6 @@ function findJobsById(customersid) {
 		.innerJoin('statuses', 'courtdates.courtdatesid', 'statuses.courtdatesid')
 		.innerJoin('tasks', 'courtdates.courtdatesid', 'tasks.courtdatesid')
 		.innerJoin('citationhyperlinks', 'citations.citlinksid', 'citationhyperlinks.chid')
-		.innerJoin('appearances', 'courtdates.courtdatesid', 'appearances.courtdatesid')
-		.innerJoin('courtdates', 'appearances.courtdatesid', 'courtdates.courtdatesid')
 		.where({ 'customers.customersid': customersid });
 }
 // returns a list of cases by customer
