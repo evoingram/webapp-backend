@@ -15,11 +15,21 @@ module.exports = (req, res, next) => {
 				res.status(401).json({ message: 'invalid credentials from restriction' });
 			} else {
 				req.decodedJwt = decodedToken;
-				next();
-				/*
-				Customers.findById(customersid)
+				// next();
+				Customers.findUsertypeById(customersid)
+					// admin, manager, contractor, customer
 					.then(customer => {
-						next();
+						if (
+							customer.usertype === 'admin' ||
+							customer.usertype === 'manager' ||
+							customer.usertype === 'contractor'
+						) {
+							next();
+						} else {
+							res.status(400).json({
+								message: 'Inadequate credentials provided to access this endpoint'
+							});
+						}
 					})
 					.catch(err => {
 						res.status(500).json({
@@ -27,24 +37,9 @@ module.exports = (req, res, next) => {
 							error: err
 						});
 					});
-					*/
 			}
 		});
 	} else {
 		res.status(400).json({ message: 'No credentials provided' });
 	}
 };
-
-/*
-		Customers.findById(customersid)
-			.then(customer => {
-				if(customer.usertype === "") {next();}
-				else {res.status(400).json({ message: 'Inadequate credentials provided to access this endpoint' });}
-			})
-			.catch(err => {
-				res.status(500).json({ message: `The customer information could not be retrieved.`, error: err });
-			});
-
-	
-
-*/

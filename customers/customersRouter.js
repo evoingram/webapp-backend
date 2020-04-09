@@ -5,6 +5,9 @@ const Customers = require('./customersModel.js');
 
 // locks endpoints behind login in below endpoints
 const restricted = require('../auth/restriction.js');
+const restrictedA = require('../auth/restrictionA.js');
+const restrictedC = require('../auth/restrictionC.js');
+const restrictedM = require('../auth/restrictionM.js');
 
 // GET:  list of customers endpoint
 router.get('/', restricted, (req, res) => {
@@ -27,6 +30,25 @@ router.get('/:customersid', restricted, (req, res) => {
 			})
 			.catch(err => {
 				res.status(500).json({ message: `The customer information could not be retrieved.`, error: err });
+			});
+	}
+});
+
+// GET:  usertype for a single customer endpoint
+router.get('/:customersid/usertype', restricted, (req, res) => {
+	const customersid = req.params.customersid;
+	if (!customersid) {
+		res.status(404).json({ message: `The customer with the specified customersid ${customersid} does not exist.` });
+	} else {
+		Customers.findUsertypeById(customersid)
+			.then(usertype => {
+				res.status(200).json(usertype);
+			})
+			.catch(err => {
+				res.status(500).json({
+					message: `Jobs for the customer id ${customersid} could not be retrieved.`,
+					error: err
+				});
 			});
 	}
 });
