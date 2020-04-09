@@ -389,6 +389,7 @@ function findCasesById(customersid) {
 	return db('customers')
 		.select(
 			'courtdates.courtdatesid',
+			'cases.casesid',
 			'cases.party1',
 			'cases.party1name',
 			'cases.party2',
