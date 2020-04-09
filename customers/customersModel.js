@@ -389,7 +389,6 @@ function findCasesById(customersid) {
 	return db('customers')
 		.select(
 			'courtdates.courtdatesid',
-			'cases.casesid',
 			'cases.party1',
 			'cases.party1name',
 			'cases.party2',
@@ -408,6 +407,7 @@ function findCasesById(customersid) {
 			'courtdatescasescustomers.casesid',
 			'courtdatescasescustomers.orderingid'
 		)
+		.distinct('cases.casesid')
 		.innerJoin('appearances', 'customers.customersid', 'appearances.customersid')
 		.innerJoin('courtdates', 'appearances.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
