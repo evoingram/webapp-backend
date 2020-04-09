@@ -19,6 +19,7 @@ module.exports = (req, res, next) => {
 				Customers.findUsertypeById(customersid)
 					// admin, manager, contractor, customer
 					.then(customer => {
+						console.log(customer);
 						if (customer.usertype === 'admin' || customer.usertype === 'manager') {
 							next();
 						} else {
