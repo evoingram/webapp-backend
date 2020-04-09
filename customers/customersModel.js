@@ -387,8 +387,8 @@ function findJobsById(customersid) {
 // returns a list of cases by customer
 function findCasesById(customersid) {
 	return db('customers')
-		.select(
-			'courtdates.courtdatesid',
+		.selectDistinct(
+			'customers.customersid',
 			'cases.casesid',
 			'cases.party1',
 			'cases.party1name',
@@ -397,53 +397,21 @@ function findCasesById(customersid) {
 			'cases.casenumber1',
 			'cases.casenumber2',
 			'cases.jurisdiction',
-			'cases.notes',
-			'appearances.appid',
-			'appearances.cdappid',
-			'appearances.customersid',
-			'appearances.courtdatesid',
-			'customers.customersid',
-			'courtdatescasescustomers.cdccid',
-			'courtdatescasescustomers.courtdatesid',
-			'courtdatescasescustomers.casesid',
-			'courtdatescasescustomers.orderingid'
+			'cases.notes'
 		)
 		.distinct('cases.casesid')
 		.innerJoin('appearances', 'customers.customersid', 'appearances.customersid')
 		.innerJoin('courtdates', 'appearances.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('cases', 'cases.casesid', 'courtdatescasescustomers.casesid')
-		.where('customers.customersid', Number(customersid))
-		.andWhere('cases.casesid', 'courtdatescasescustomers.casesid');
+		.where('customers.customersid', Number(customersid));
 }
 
 // return invoices of one customer
 function findInvoicesById(customersid) {
 	return db('customers')
-		.select(
-			'courtdates.courtdatesid',
-			'courtdates.ttid',
-			'courtdates.hearingdate',
-			'courtdates.hearingstarttime',
-			'courtdates.hearingendtime',
-			'courtdates.audiolength',
-			'courtdates.location',
-			'courtdates.duedate',
-			'courtdates.filed',
-			'courtdates.hearingtitle',
-			'courtdates.judgename',
-			'courtdates.judgetitle',
-			'courtdates.factoringcost',
-			'courtdates.estimatedquantity',
-			'courtdates.actualquantity',
-			'courtdates.subtotal',
-			'courtdates.finalprice',
-			'courtdates.estimatedadvancedate',
-			'courtdates.estimatedrebatedate',
-			'courtdates.ppid',
-			'courtdates.ppstatus',
-			'courtdates.shipdate',
-			'courtdates.trackingno',
+		.selectDistinct(
+			'customers.customersid',
 			'invoices.invoiceno',
 			'invoices.iid',
 			'invoices.btid',
@@ -456,33 +424,10 @@ function findInvoicesById(customersid) {
 			'invoices.accountcode',
 			'invoices.taxtype',
 			'invoices.ratesid',
-			'appearances.appid',
-			'appearances.cdappid',
-			'appearances.customersid',
-			'appearances.courtdatesid',
-			'customers.customersid',
-			'customers.factoring',
-			'customers.company',
-			'customers.mrms',
-			'customers.lastname',
-			'customers.firstname',
-			'customers.email',
-			'customers.jobtitle',
-			'customers.businessphone',
-			'customers.address1',
-			'customers.address2',
-			'customers.city',
-			'customers.state',
-			'customers.zip',
-			'customers.notes',
 			'payments.pid',
 			'payments.amount AS pamount',
 			'payments.remitdate',
-			'payments.iid',
-			'courtdatescasescustomers.cdccid',
-			'courtdatescasescustomers.courtdatesid',
-			'courtdatescasescustomers.casesid',
-			'courtdatescasescustomers.orderingid'
+			'payments.iid'
 		)
 		.innerJoin('appearances', 'customers.customersid', 'appearances.customersid')
 		.innerJoin('courtdates', 'appearances.courtdatesid', 'courtdates.courtdatesid')
