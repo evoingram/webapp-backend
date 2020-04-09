@@ -7,7 +7,7 @@ const restrictedC = require('../auth/restrictionC.js');
 const restrictedM = require('../auth/restrictionM.js');
 
 // GET:  get all packages shipped
-router.get('/', restricted, (req, res) => {
+router.get('/', restrictedM, (req, res) => {
 	ShippingOptions.find()
 		.then(shippingoptions => {
 			res.status(200).json(shippingoptions);

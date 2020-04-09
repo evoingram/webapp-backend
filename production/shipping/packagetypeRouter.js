@@ -7,7 +7,7 @@ const restrictedC = require('../auth/restrictionC.js');
 const restrictedM = require('../auth/restrictionM.js');
 
 // GET:  get all packagetypes
-router.get('/', restricted, (req, res) => {
+router.get('/', restrictedM, (req, res) => {
 	PackageType.find()
 		.then(packagetypes => {
 			res.status(200).json(packagetypes);
@@ -35,7 +35,7 @@ router.get('/:ptid', restricted, (req, res) => {
 });
 
 // POST:  create a packagetype
-router.post('/', restricted, (req, res) => {
+router.post('/', restrictedM, (req, res) => {
 	const newPackageType = req.body;
 
 	PackageType.add(newPackageType)
@@ -48,7 +48,7 @@ router.post('/', restricted, (req, res) => {
 });
 
 // PUT:  update a packagetype
-router.put('/:ptid', restricted, (req, res) => {
+router.put('/:ptid', restrictedM, (req, res) => {
 	const ptid = req.params.ptid;
 	const updatedPackageType = req.body;
 
@@ -68,7 +68,7 @@ router.put('/:ptid', restricted, (req, res) => {
 		});
 });
 // DELETE:  delete a packagetype
-router.delete('/:ptid', restricted, (req, res) => {
+router.delete('/:ptid', restrictedM, (req, res) => {
 	const ptid = req.params.ptid;
 	if (!ptid) {
 		res.status(404).json({
