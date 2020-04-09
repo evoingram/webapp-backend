@@ -8,6 +8,7 @@ exports.up = function (knex) {
 			.integer('customersid')
 			.unsigned()
 			.notNullable()
+			.unique()
 			.references('customersid')
 			.inTable('customers')
 			.onUpdate('CASCADE')

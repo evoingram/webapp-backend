@@ -11,22 +11,22 @@ exports.seed = function (knex) {
 					usertype: 'admin'
 				},
 				{
-					utid: 1,
+					utid: 2,
 					customersid: 2,
 					usertype: 'admin'
 				},
 				{
-					utid: 1,
+					utid: 3,
 					customersid: 3,
 					usertype: 'customer'
 				},
 				{
-					utid: 1,
+					utid: 4,
 					customersid: 4,
 					usertype: 'contractor'
 				},
 				{
-					utid: 1,
+					utid: 5,
 					customersid: 5,
 					usertype: 'customer'
 				}
