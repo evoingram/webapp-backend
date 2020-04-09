@@ -7,7 +7,7 @@ const restrictedC = require('../auth/restrictionC.js');
 const restrictedM = require('../auth/restrictionM.js');
 
 // GET:  gets all payments records
-router.get('/', restricted, (req, res) => {
+router.get('/', restrictedM, (req, res) => {
 	Payments.find()
 		.then(payments => {
 			res.status(200).json(payments);
@@ -45,7 +45,7 @@ router.post('/', restricted, (req, res) => {
 });
 
 // PUT:  update payment record
-router.put('/:pid', restricted, (req, res) => {
+router.put('/:pid', restrictedM, (req, res) => {
 	const pid = req.params.pid;
 	const updatedPayment = req.body;
 
@@ -62,7 +62,7 @@ router.put('/:pid', restricted, (req, res) => {
 		});
 });
 // DELETE:  delete payment record
-router.delete('/:pid', restricted, (req, res) => {
+router.delete('/:pid', restrictedM, (req, res) => {
 	const pid = req.params.pid;
 	if (!pid) {
 		res.status(404).json({ message: `The payment with the specified ID ${pid} does not exist.` });
