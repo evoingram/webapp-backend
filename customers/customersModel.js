@@ -387,7 +387,7 @@ function findJobsById(customersid) {
 // returns a list of cases by customer
 function findCasesById(customersid) {
 	return db('customers')
-		.selectDistinct(
+		.distinct(
 			'customers.customersid',
 			'cases.casesid',
 			'cases.party1',
@@ -410,7 +410,7 @@ function findCasesById(customersid) {
 // return invoices of one customer
 function findInvoicesById(customersid) {
 	return db('customers')
-		.selectDistinct(
+		.distinct(
 			'customers.customersid',
 			'invoices.invoiceno',
 			'invoices.iid',
