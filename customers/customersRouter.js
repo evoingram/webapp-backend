@@ -61,7 +61,7 @@ router.get('/:customersid/jobs', restricted, (req, res) => {
 	} else {
 		Customers.findJobsById(customersid)
 			.then(joblist => {
-				res.status(200).json(joblist);
+				res.status(200).json([joblist]);
 			})
 			.catch(err => {
 				res.status(500).json({

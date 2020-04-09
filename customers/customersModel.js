@@ -385,7 +385,7 @@ function findJobsById(customersid) {
 		.innerJoin('citationhyperlinks', 'citations.citlinksid', 'citationhyperlinks.chid')
 		.innerJoin('appearances', 'courtdates.courtdatesid', 'appearances.courtdatesid')
 		.innerJoin('courtdates', 'appearances.courtdatesid', 'courtdates.courtdatesid')
-		.where('customers.customersid', customersid);
+		.where({ 'customers.customersid': customersid });
 }
 // returns a list of cases by customer
 function findCasesById(customersid) {
