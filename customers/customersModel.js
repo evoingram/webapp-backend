@@ -408,10 +408,10 @@ function findCasesById(customersid) {
 			'courtdatescasescustomers.casesid',
 			'courtdatescasescustomers.orderingid'
 		)
+		.innerJoin('appearances', 'customers.customersid', 'appearances.customersid')
+		.innerJoin('courtdates', 'appearances.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('cases', 'cases.casesid', 'courtdatescasescustomers.casesid')
-		.innerJoin('appearances', 'courtdates.courtdatesid', 'appearances.courtdatesid')
-		.innerJoin('courtdates', 'appearances.courtdatesid', 'courtdates.courtdatesid')
 		.where('customers.customersid', customersid);
 }
 
@@ -482,12 +482,12 @@ function findInvoicesById(customersid) {
 			'courtdatescasescustomers.casesid',
 			'courtdatescasescustomers.orderingid'
 		)
+		.innerJoin('appearances', 'customers.customersid', 'appearances.customersid')
+		.innerJoin('courtdates', 'appearances.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
-		.innerJoin('appearances', 'appearances.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('invoices', 'invoices.iid', 'courtdates.iid')
-		.innerJoin('customers', 'appearances.customersid', 'customers.customersid')
 		.innerJoin('payments', 'payments.iid', 'invoices.iid')
-		.where({ customersid });
+		.where('customers.customersid', customersid);
 }
 
 /*
