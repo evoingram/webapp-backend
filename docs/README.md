@@ -252,7 +252,3 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `DELETE`       | `/styles/:sid` | deletes a style                 |
 | `GET`          | `/styles`      | returns list of styles          |
 | `GET`          | `/styles/:sid` | returns one style               |
-
-## To do 
-
-- [ ] restrict to specific customer

@@ -8,10 +8,6 @@ module.exports = (req, res, next) => {
 	const token = req.headers.authorization;
 	const customersid = req.params.customersid;
 
-	//"email": "evoingram3@aquoco.onmicrosoft.com"
-	// "customersid": 5,
-	// "username": "customer3",
-
 	if (token) {
 		const secret = process.env.JWT_SECRET;
 
