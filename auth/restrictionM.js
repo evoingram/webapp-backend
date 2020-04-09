@@ -11,14 +11,13 @@ module.exports = (req, res, next) => {
 	if (token) {
 		const secret = process.env.JWT_SECRET;
 
-		jwt.verify(token, secret, (err, decodedToken, customersid) => {
+		jwt.verify(token, secret, customersid, (err, decodedToken) => {
 			if (err) {
 				res.status(401).json({ message: 'invalid credentials from restriction' });
 			} else {
 				req.decodedJwt = decodedToken;
 				// next();
 				Customers.findUsertypeById(customersid)
-					// admin, manager, contractor, customer
 					.then(customer => {
 						console.log(customer);
 						if (customer.usertype === 'admin' || customer.usertype === 'manager') {
