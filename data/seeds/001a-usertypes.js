@@ -29,6 +29,11 @@ exports.seed = function (knex) {
 					utid: 5,
 					customersid: 5,
 					usertype: 'customer'
+				},
+				{
+					utid: 6,
+					customersid: 6,
+					usertype: 'admin'
 				}
 			]);
 		});
