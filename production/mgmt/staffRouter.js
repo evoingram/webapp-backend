@@ -7,7 +7,7 @@ const restrictedC = require('../auth/restrictionC.js');
 const restrictedM = require('../auth/restrictionM.js');
 
 // GET:  get all contractors
-router.get('/', restricted, (req, res) => {
+router.get('/', restrictedM, (req, res) => {
 	Tasks.find()
 		.then(contractors => {
 			res.status(200).json(contractors);
@@ -16,7 +16,7 @@ router.get('/', restricted, (req, res) => {
 });
 
 // GET:  get one contractor
-router.get('/:stfid', restricted, (req, res) => {
+router.get('/:stfid', restrictedC, (req, res) => {
 	const stfid = req.params.stfid;
 	if (!stfid) {
 		res.status(404).json({ message: `The staff with the specified stfid ${stfid} does not exist.` });
@@ -32,7 +32,7 @@ router.get('/:stfid', restricted, (req, res) => {
 });
 
 // POST:  create staff
-router.post('/', restricted, (req, res) => {
+router.post('/', restrictedM, (req, res) => {
 	const newContractor = req.body;
 
 	Tasks.add(newContractor)
@@ -45,7 +45,7 @@ router.post('/', restricted, (req, res) => {
 });
 
 // PUT:  update contractor
-router.put('/:stfid', restricted, (req, res) => {
+router.put('/:stfid', restrictedM, (req, res) => {
 	const stfid = req.params.stfid;
 	const updatedContractor = req.body;
 
@@ -62,7 +62,7 @@ router.put('/:stfid', restricted, (req, res) => {
 		});
 });
 // DELETE:  delete contractor
-router.delete('/:stfid', restricted, (req, res) => {
+router.delete('/:stfid', restrictedM, (req, res) => {
 	const stfid = req.params.stfid;
 	if (!stfid) {
 		res.status(404).json({ message: `The contractor with the specified stfid ${stfid} does not exist.` });
