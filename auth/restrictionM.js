@@ -16,10 +16,10 @@ module.exports = (req, res, next) => {
 			} else {
 				req.decodedJwt = decodedToken;
 				// next();
-				Customers.findById(customersid)
+				Customers.findUsertypeById(customersid)
 					// admin, manager, contractor, customer
 					.then(customer => {
-						if (customer.usertype === '') {
+						if (customer.usertype === 'admin' || customer.usertype === 'manager') {
 							next();
 						} else {
 							res.status(400).json({

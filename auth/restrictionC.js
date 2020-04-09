@@ -16,10 +16,14 @@ module.exports = (req, res, next) => {
 			} else {
 				req.decodedJwt = decodedToken;
 				// next();
-				Customers.findById(customersid)
+				Customers.findUsertypeById(customersid)
 					// admin, manager, contractor, customer
 					.then(customer => {
-						if (customer.usertype === '') {
+						if (
+							customer.usertype === 'admin' ||
+							customer.usertype === 'manager' ||
+							customer.usertype === 'contractor'
+						) {
 							next();
 						} else {
 							res.status(400).json({
@@ -39,17 +43,3 @@ module.exports = (req, res, next) => {
 		res.status(400).json({ message: 'No credentials provided' });
 	}
 };
-
-/*
-		Customers.findById(customersid)
-			.then(customer => {
-				if(customer.usertype === "") {next();}
-				else {res.status(400).json({ message: 'Inadequate credentials provided to access this endpoint' });}
-			})
-			.catch(err => {
-				res.status(500).json({ message: `The customer information could not be retrieved.`, error: err });
-			});
-
-	
-
-*/

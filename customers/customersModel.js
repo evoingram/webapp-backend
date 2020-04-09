@@ -16,6 +16,9 @@ module.exports = {
 	selectCustomerID,
 	findJobsById,
 	findCasesById,
+	findUsertypeById,
+	updateUsertypeById,
+	addUsertypeById,
 	findInvoicesById
 };
 
@@ -32,6 +35,10 @@ function findBy(filter) {
 // adds a customer (register function)
 async function add(customer) {
 	const [customersid] = await db('customers').insert(customer, 'customersid');
+	const [utid] = await db('usertypes').insert({
+		'usertypes.customersid': customersid,
+		'usertypes.usertype': 'customer'
+	});
 	return findById(customersid);
 }
 
@@ -57,6 +64,27 @@ function findById(customersid) {
 		)
 		.where({ customersid })
 		.first();
+}
+// returns a customer usertype by ID number
+function findUsertypeById(customersid) {
+	return db('customers')
+		.select('customers.customersid', 'customers.username', 'customers.email', 'usertypes.usertype')
+		.innerJoin('usertypes', 'usertypes.customersid', 'customers.customersid')
+		.where('customers.customersid', customersid)
+		.first();
+}
+// updates a customer usertype by ID number
+function updateUsertypeById(customersid, newUsertype) {
+	return db('usertypes').select('utid', 'customersid', 'usertype').where({ customersid }).update(newUsertype).first();
+}
+
+// adds a customer usertype by ID number
+async function addUsertypeById(customersid) {
+	const [utid] = await db('usertypes').insert({
+		'usertypes.customersid': customersid,
+		'usertypes.usertype': 'customer'
+	});
+	return findUsertypeById(utid);
 }
 
 // updates a customer

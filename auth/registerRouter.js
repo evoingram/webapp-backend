@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
 		// registers user
 		Customers.add(customer)
 			.then(saved => {
-				res.status(201).json({
+				Customers.res.status(201).json({
 					customersid: saved.customersid,
 					email: saved.email,
 					token: token
