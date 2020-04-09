@@ -414,7 +414,7 @@ function findCasesById(customersid) {
 		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('cases', 'cases.casesid', 'courtdatescasescustomers.casesid')
 		.where('customers.customersid', customersid)
-		.where('cases.casesid', 'courtdatescasescustomers.casesid');
+		.andWhere('cases.casesid', 'courtdatescasescustomers.casesid');
 }
 
 // return invoices of one customer
