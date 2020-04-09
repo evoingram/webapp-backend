@@ -2,9 +2,12 @@ const router = require('express').Router();
 
 const Styles = require('./styleModel.js');
 const restricted = require('../../auth/restriction.js');
+const restrictedA = require('../../auth/restrictionA.js');
+const restrictedC = require('../../auth/restrictionC.js');
+const restrictedM = require('../../auth/restrictionM.js');
 
 // GET:  get all styles
-router.get('/', restricted, (req, res) => {
+router.get('/', restrictedC, (req, res) => {
 	Styles.find()
 		.then(styles => {
 			res.status(200).json(styles);
@@ -13,7 +16,7 @@ router.get('/', restricted, (req, res) => {
 });
 
 // GET:  get one style
-router.get('/:sid', restricted, (req, res) => {
+router.get('/:sid', restrictedC, (req, res) => {
 	const sid = req.params.sid;
 	if (!sid) {
 		res.status(404).json({ message: `The style with the specified sid ${sid} does not exist.`, error: err });
@@ -29,7 +32,7 @@ router.get('/:sid', restricted, (req, res) => {
 });
 
 // POST:  create a style
-router.post('/', restricted, (req, res) => {
+router.post('/', restrictedC, (req, res) => {
 	const newStyle = req.body;
 
 	Styles.add(newStyle)
@@ -42,7 +45,7 @@ router.post('/', restricted, (req, res) => {
 });
 
 // PUT:  update a style
-router.put('/:sid', restricted, (req, res) => {
+router.put('/:sid', restrictedC, (req, res) => {
 	const sid = req.params.sid;
 	const updatedStyle = req.body;
 
@@ -59,7 +62,7 @@ router.put('/:sid', restricted, (req, res) => {
 		});
 });
 // DELETE:  delete a style
-router.delete('/:sid', restricted, (req, res) => {
+router.delete('/:sid', restrictedM, (req, res) => {
 	const sid = req.params.sid;
 	if (!sid) {
 		res.status(404).json({ message: `The style with the specified ID ${sid} does not exist.`, error: err });

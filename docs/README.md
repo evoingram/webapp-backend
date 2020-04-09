@@ -9,7 +9,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 
 ## [POSTMAN DOCUMENTATION](https://documenter.getpostman.com/view/6401823/SzRxWAvu?version=latest)
 
-- Postman Docs were last published on 04/07/2020
+- Postman Docs were last published on 04/08/2020
 
 - All endpoints have been tested and documented via Postman.
 - Postman docs contain examples of all get, post, and put endpoint body submissions AND responses.

@@ -2,9 +2,12 @@ const router = require('express').Router();
 
 const CommHistory = require('./commHModel.js');
 const restricted = require('../../auth/restriction.js');
+const restrictedA = require('../../auth/restrictionA.js');
+const restrictedC = require('../../auth/restrictionC.js');
+const restrictedM = require('../../auth/restrictionM.js');
 
 // GET:  get all commhistory items
-router.get('/', restricted, (req, res) => {
+router.get('/', restrictedM, (req, res) => {
 	CommHistory.find()
 		.then(commhistory => {
 			res.status(200).json(commhistory);
@@ -13,7 +16,7 @@ router.get('/', restricted, (req, res) => {
 });
 
 // GET:  get one commhistory item
-router.get('/:chid', restricted, (req, res) => {
+router.get('/:chid', restrictedC, (req, res) => {
 	const chid = req.params.chid;
 	if (!chid) {
 		res.status(404).json({ message: `The singlecommhistory with the specified chid ${chid} does not exist.` });
@@ -32,7 +35,7 @@ router.get('/:chid', restricted, (req, res) => {
 });
 
 // POST:  create a commhistory item
-router.post('/', restricted, (req, res) => {
+router.post('/', restrictedM, (req, res) => {
 	const newCommHistory = req.body;
 
 	CommHistory.add(newCommHistory)
@@ -45,7 +48,7 @@ router.post('/', restricted, (req, res) => {
 });
 
 // PUT:  update a commhistory item
-router.put('/:chid', restricted, (req, res) => {
+router.put('/:chid', restrictedM, (req, res) => {
 	const chid = req.params.chid;
 	const updatedCommHistory = req.body;
 
@@ -62,7 +65,7 @@ router.put('/:chid', restricted, (req, res) => {
 		});
 });
 // DELETE:  delete an item of commhistory
-router.delete('/:chid', restricted, (req, res) => {
+router.delete('/:chid', restrictedM, (req, res) => {
 	const chid = req.params.chid;
 	if (!chid) {
 		res.status(404).json({ message: `The singlecommhistory with the specified ID ${chid} does not exist.` });

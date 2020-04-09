@@ -2,6 +2,9 @@ const router = require('express').Router();
 
 const Courtdates = require('./courtdatesModel.js');
 const restricted = require('../../auth/restriction.js');
+const restrictedA = require('../../auth/restrictionA.js');
+const restrictedC = require('../../auth/restrictionC.js');
+const restrictedM = require('../../auth/restrictionM.js');
 
 // GET:  returns all courtdates
 router.get('/', restricted, (req, res) => {
@@ -378,7 +381,7 @@ router.get('/basic/:courtdatesid', restricted, (req, res) => {
 });
 
 // DELETE:  delete a courtdates record
-router.delete('/:courtdatesid', restricted, (req, res) => {
+router.delete('/:courtdatesid', restrictedM, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
 		res.status(404).json({
@@ -409,7 +412,7 @@ router.post('/', restricted, (req, res) => {
 });
 
 // PUT:  update a courtdates record
-router.put('/:courtdatesid', restricted, (req, res) => {
+router.put('/:courtdatesid', restrictedM, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	const updatedCourtdates = req.body;
 

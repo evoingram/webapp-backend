@@ -2,8 +2,11 @@ const router = require('express').Router();
 
 const Cases = require('./casesModel.js');
 const restricted = require('../../auth/restriction.js');
+const restrictedA = require('../../auth/restrictionA.js');
+const restrictedC = require('../../auth/restrictionC.js');
+const restrictedM = require('../../auth/restrictionM.js');
 
-router.get('/', restricted, (req, res) => {
+router.get('/', restrictedM, (req, res) => {
 	Cases.find()
 		.then(cases => {
 			res.status(200).json(cases);
@@ -57,7 +60,7 @@ router.put('/:casesid', restricted, (req, res) => {
 		});
 });
 
-router.delete('/:casesid', restricted, (req, res) => {
+router.delete('/:casesid', restrictedM, (req, res) => {
 	const casesid = req.params.casesid;
 	if (!casesid) {
 		res.status(404).json({ message: 'The case with the specified ID does not exist.' });

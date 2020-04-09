@@ -2,9 +2,12 @@ const router = require('express').Router();
 
 const Citations = require('./citationsModel.js');
 const restricted = require('../../auth/restriction.js');
+const restrictedA = require('../../auth/restrictionA.js');
+const restrictedC = require('../../auth/restrictionC.js');
+const restrictedM = require('../../auth/restrictionM.js');
 
 // GET:  get all citations
-router.get('/', restricted, (req, res) => {
+router.get('/', restrictedC, (req, res) => {
 	Citations.find()
 		.then(citations => {
 			res.status(200).json(citations);
@@ -32,7 +35,7 @@ router.get('/:citationsid', restricted, (req, res) => {
 });
 
 // POST:  create a citation
-router.post('/', restricted, (req, res) => {
+router.post('/', restrictedC, (req, res) => {
 	const newCitation = req.body;
 
 	Citations.add(newCitation)
@@ -45,7 +48,7 @@ router.post('/', restricted, (req, res) => {
 });
 
 // PUT:  update a citation
-router.put('/:citationsid', restricted, (req, res) => {
+router.put('/:citationsid', restrictedM, (req, res) => {
 	const citationsid = req.params.citationsid;
 	const updatedCitation = req.body;
 
@@ -62,7 +65,7 @@ router.put('/:citationsid', restricted, (req, res) => {
 		});
 });
 // DELETE:  delete a citation
-router.delete('/:citationsid', restricted, (req, res) => {
+router.delete('/:citationsid', restrictedM, (req, res) => {
 	const citationsid = req.params.citationsid;
 	if (!citationsid) {
 		res.status(404).json({

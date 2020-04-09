@@ -2,9 +2,12 @@ const router = require('express').Router();
 
 const Statuses = require('./statusesModel.js');
 const restricted = require('../../auth/restriction.js');
+const restrictedA = require('../../auth/restrictionA.js');
+const restrictedC = require('../../auth/restrictionC.js');
+const restrictedM = require('../../auth/restrictionM.js');
 
 // GET:  gets all statuses for all jobs
-router.get('/', restricted, (req, res) => {
+router.get('/', restrictedC, (req, res) => {
 	Statuses.find()
 		.then(statuses => {
 			res.status(200).json(statuses);
@@ -13,7 +16,7 @@ router.get('/', restricted, (req, res) => {
 });
 
 // GET:  gets one status item
-router.get('/:sid', restricted, (req, res) => {
+router.get('/:sid', restrictedC, (req, res) => {
 	const sid = req.params.sid;
 	if (!sid) {
 		res.status(404).json({ message: `The status with the specified sid ${sid} does not exist.` });
@@ -29,7 +32,7 @@ router.get('/:sid', restricted, (req, res) => {
 });
 
 // POST:  create status
-router.post('/', restricted, (req, res) => {
+router.post('/', restrictedM, (req, res) => {
 	const newStatus = req.body;
 
 	Statuses.add(newStatus)
@@ -41,8 +44,8 @@ router.post('/', restricted, (req, res) => {
 		});
 });
 
-// PUT:  Describe what it does
-router.put('/:sid', restricted, (req, res) => {
+// PUT:  update a status item
+router.put('/:sid', restrictedM, (req, res) => {
 	const sid = req.params.sid;
 	const updatedStatus = req.body;
 
@@ -58,8 +61,8 @@ router.put('/:sid', restricted, (req, res) => {
 			res.status(500).json({ message: 'Failed to update status', error: err });
 		});
 });
-// DELETE:  delete a status
-router.delete('/:sid', restricted, (req, res) => {
+// DELETE:  delete a status item
+router.delete('/:sid', restrictedM, (req, res) => {
 	const sid = req.params.sid;
 	if (!sid) {
 		res.status(404).json({ message: `The status with the specified ID ${sid} does not exist.` });
