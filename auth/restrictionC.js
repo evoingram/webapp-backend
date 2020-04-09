@@ -6,18 +6,22 @@ const Customers = require('../customers/customersModel.js');
 // add customersid variable & url or function inputs
 module.exports = (req, res, next) => {
 	const token = req.headers.authorization;
+	const customersid = req.params.customersid;
+
+	//"email": "evoingram3@aquoco.onmicrosoft.com"
+	// "customersid": 5,
+	// "username": "customer3",
 
 	if (token) {
 		const secret = process.env.JWT_SECRET;
 
-		jwt.verify(token, secret, (err, decodedToken) => {
+		jwt.verify(token, secret, customersid, (err, decodedToken) => {
 			if (err) {
 				res.status(401).json({ message: 'invalid credentials from restriction' });
 			} else {
 				req.decodedJwt = decodedToken;
 				// next();
 				Customers.findUsertypeById(customersid)
-					// admin, manager, contractor, customer
 					.then(customer => {
 						if (
 							customer.usertype === 'admin' ||

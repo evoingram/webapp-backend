@@ -103,3 +103,5 @@ exports.seed = function (knex) {
 			]);
 		});
 };
+// "password": "password",
+// "email": "evoingram3@aquoco.onmicrosoft.com"
