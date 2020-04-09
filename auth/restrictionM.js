@@ -19,8 +19,10 @@ module.exports = (req, res, next) => {
 				// next();
 				Customers.findUsertypeById(customersid)
 					.then(customer => {
-						console.log(customer);
 						if (customer.usertype === 'admin' || customer.usertype === 'manager') {
+							res.status(200).json({
+								customer: customer
+							});
 							next();
 						} else {
 							res.status(400).json({
