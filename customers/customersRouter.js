@@ -54,7 +54,7 @@ router.get('/:customersid/usertype', restrictedM, (req, res) => {
 });
 
 // GET:  jobs for a single customer endpoint
-router.get('/:customersid/jobs', restrictedM, (req, res) => {
+router.get('/:customersid/jobs', restricted, (req, res) => {
 	const customersid = req.params.customersid;
 	if (!customersid) {
 		res.status(404).json({ message: `The customer with the specified customersid ${customersid} does not exist.` });
@@ -141,7 +141,7 @@ router.put('/:customersid', restricted, (req, res) => {
 		});
 });
 // DELETE:  single customer endpoint
-router.delete('/:customersid', restricted, (req, res) => {
+router.delete('/:customersid', restrictedM, (req, res) => {
 	const customersid = req.params.customersid;
 	if (!customersid) {
 		res.status(404).json({ message: `The customer with the specified ID ${customersid} does not exist.` });
