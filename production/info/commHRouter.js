@@ -2,6 +2,9 @@ const router = require('express').Router();
 
 const CommHistory = require('./commHModel.js');
 const restricted = require('../../auth/restriction.js');
+const restrictedA = require('../auth/restrictionA.js');
+const restrictedC = require('../auth/restrictionC.js');
+const restrictedM = require('../auth/restrictionM.js');
 
 // GET:  get all commhistory items
 router.get('/', restricted, (req, res) => {

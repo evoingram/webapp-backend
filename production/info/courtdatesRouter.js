@@ -2,6 +2,9 @@ const router = require('express').Router();
 
 const Courtdates = require('./courtdatesModel.js');
 const restricted = require('../../auth/restriction.js');
+const restrictedA = require('../auth/restrictionA.js');
+const restrictedC = require('../auth/restrictionC.js');
+const restrictedM = require('../auth/restrictionM.js');
 
 // GET:  returns all courtdates
 router.get('/', restricted, (req, res) => {

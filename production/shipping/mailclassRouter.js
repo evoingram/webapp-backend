@@ -2,6 +2,9 @@ const router = require('express').Router();
 
 const MailClass = require('./mailclassModel.js');
 const restricted = require('../../auth/restriction.js');
+const restrictedA = require('../auth/restrictionA.js');
+const restrictedC = require('../auth/restrictionC.js');
+const restrictedM = require('../auth/restrictionM.js');
 
 // GET:  get all mailclasses
 router.get('/', restricted, (req, res) => {
