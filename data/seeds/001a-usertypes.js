@@ -18,7 +18,7 @@ exports.seed = function (knex) {
 				{
 					utid: 1,
 					customersid: 3,
-					username: 'customer'
+					usertype: 'customer'
 				},
 				{
 					utid: 1,
