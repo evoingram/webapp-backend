@@ -35,7 +35,7 @@ router.get('/:ttid', restricted, (req, res) => {
 });
 
 // POST:  create a turnaroundtime
-router.post('/', restricted, (req, res) => {
+router.post('/', restrictedM, (req, res) => {
 	const newTurnaroundTime = req.body;
 
 	TurnaroundTimes.add(newTurnaroundTime)
@@ -48,7 +48,7 @@ router.post('/', restricted, (req, res) => {
 });
 
 // PUT:  update a turnaroundtime
-router.put('/:ttid', restricted, (req, res) => {
+router.put('/:ttid', restrictedM, (req, res) => {
 	const ttid = req.params.ttid;
 	const updatedTurnaroundTime = req.body;
 
@@ -65,7 +65,7 @@ router.put('/:ttid', restricted, (req, res) => {
 		});
 });
 // DELETE:  delete a turnaroundtime
-router.delete('/:ttid', restricted, (req, res) => {
+router.delete('/:ttid', restrictedM, (req, res) => {
 	const ttid = req.params.ttid;
 	if (!ttid) {
 		res.status(404).json({
