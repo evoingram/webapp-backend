@@ -413,7 +413,7 @@ function findCasesById(customersid) {
 		.innerJoin('courtdates', 'appearances.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('courtdatescasescustomers', 'courtdatescasescustomers.courtdatesid', 'courtdates.courtdatesid')
 		.innerJoin('cases', 'cases.casesid', 'courtdatescasescustomers.casesid')
-		.where('customers.customersid', customersid)
+		.where('customers.customersid', Number(customersid))
 		.andWhere('cases.casesid', 'courtdatescasescustomers.casesid');
 }
 
