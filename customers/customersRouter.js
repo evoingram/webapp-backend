@@ -10,7 +10,7 @@ const restrictedC = require('../auth/restrictionC.js');
 const restrictedM = require('../auth/restrictionM.js');
 
 // GET:  list of customers endpoint
-router.get('/', restricted, (req, res) => {
+router.get('/', restrictedM, (req, res) => {
 	Customers.find()
 		.then(customers => {
 			res.status(200).json(customers);
