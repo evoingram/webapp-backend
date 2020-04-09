@@ -54,7 +54,7 @@ router.get('/:customersid/usertype', restricted, (req, res) => {
 });
 
 // GET:  jobs for a single customer endpoint
-router.get('/:customersid/jobs', restricted, (req, res) => {
+router.get('/:customersid/jobs', restrictedM, (req, res) => {
 	const customersid = req.params.customersid;
 	if (!customersid) {
 		res.status(404).json({ message: `The customer with the specified customersid ${customersid} does not exist.` });
