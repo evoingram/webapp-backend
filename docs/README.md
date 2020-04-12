@@ -15,14 +15,18 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 - Postman docs contain examples of all get, post, and put endpoint body submissions AND responses.
 - This is still a work in progress.
 
-### Endpoints For Login / Registration
+## [Front End](https://github.com/evoingram/webapp-frontend/) (still in planning stages)
+
+## Endpoints
+
+### Login / Registration
 
 | Request Method | Endpoint         | Description                          |
 | :------------- | :--------------- | :----------------------------------- |
 | `POST`         | `/login`         | Logs user in and returns a token     |
 | `POST`         | `/register`      | creates a user                       |
 
-### Endpoints For Users
+### Users
 
 | Request Method | Endpoint                           | Description                          |
 | :------------- | :--------------------------------- | :----------------------------------- |
@@ -35,7 +39,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/customers/:customersid/cases`    | returns a user's cases               |
 | `GET`          | `/customers/:customersid/invoices` | returns a user's invoices            |
 
-### Endpoints For Courtdates (Jobs)
+### Courtdates (Jobs)
 
 | Request Method | Endpoint                                       | Description                                |
 | :------------- | :--------------------------------------------- | :----------------------------------------- |
@@ -63,7 +67,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/courtdates/:courtdatesid/usc`                | returns usc items of a job record          |
 | `GET`          | `/courtdates/:courtdatesid/contractors`        | returns contractors of a job record        |
 
-### Endpoints For Appearances
+### Appearances
 
 | Request Method | Endpoint              | Description                   |
 | :------------- | :-------------------- | :---------------------------- |
@@ -73,7 +77,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/appearances`        | returns list of appearances   |
 | `GET`          | `/appearances/:appid` | returns one appearance        |
 
-### Endpoints For Tasks
+### Tasks
 
 | Request Method | Endpoint          | Description                       |
 | :------------- | :---------------- | :-------------------------------- |
@@ -83,7 +87,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/tasks`          | returns list of tasks             |
 | `GET`          | `/tasks/:tasksid` | returns one task                  |
 
-### Endpoints For Statuses
+### Statuses
 
 | Request Method | Endpoint                | Description                 |
 | :------------- | :---------------------- | :-------------------------- |
@@ -93,7 +97,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/statuses`             | returns list of statuses    |
 | `GET`          | `/statuses/:statusesid` | returns one status          |
 
-### Endpoints For Expenses
+### Expenses
 
 | Request Method | Endpoint         | Description                        |
 | :------------- | :--------------- | :--------------------------------- |
@@ -103,7 +107,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/expenses`      | returns list of expenses           |
 | `GET`          | `/expenses/:eid` | returns one expense                |
 
-### Endpoints For Payments
+### Payments
 
 | Request Method | Endpoint         | Description                        |
 | :------------- | :--------------- | :--------------------------------- |
@@ -113,7 +117,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/payments`      | returns list of payments           |
 | `GET`          | `/payments/:pid` | returns one payment                |
 
-### Endpoints For Shipping
+### Shipping
 
 | Request Method | Endpoint          | Description                        |
 | :------------- | :---------------- | :--------------------------------- |
@@ -123,7 +127,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/shipping`       | returns list of shipping items     |
 | `GET`          | `/shipping/:soid` | returns one shipping item          |
 
-### Endpoints For Invoices
+### Invoices
 
 | Request Method | Endpoint         | Description                         |
 | :------------- | :--------------- | :---------------------------------- |
@@ -133,7 +137,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/invoices`      | returns list of invoices            |
 | `GET`          | `/invoices/:iid` | returns one invoice                 |
 
-### Endpoints For Citations
+### Citations
 
 | Request Method | Endpoint                  | Description                |
 | :------------- | :------------------------ | :------------------------- |
@@ -143,7 +147,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/citations`              | returns list of citations  |
 | `GET`          | `/citations/:citationsid` | returns one citation       |
 
-### Endpoints For Rates
+### Rates
 
 | Request Method | Endpoint          | Description                        |
 | :------------- | :---------------- | :--------------------------------- |
@@ -153,7 +157,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/rates`          | returns list of rates              |
 | `GET`          | `/rates/:ratesid` | returns one rate                   |
 
-### Endpoints For Turnaroundtimes
+### Turnaroundtimes
 
 | Request Method | Endpoint                 | Description                     |
 | :------------- | :----------------------- | :------------------------------ |
@@ -163,7 +167,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/turnaroundtimes`       | returns list of turnaroundtimes |
 | `GET`          | `/turnaroundtimes/:ttid` | returns one turnaroundtime      |
 
-### Endpoints For Courtdatescasescustomers
+### Courtdatescasescustomers
 
 | Request Method | Endpoint       | Description                              |
 | :------------- | :------------- | :--------------------------------------- |
@@ -173,7 +177,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/ccc`         | returns list of courtdatescasescustomers |
 | `GET`          | `/ccc/:cdccid` | returns one courtdatecasecustomer        |
 
-### Endpoints For CommHistory
+### CommHistory
 
 | Request Method | Endpoint             | Description                       |
 | :------------- | :------------------- | :-------------------------------- |
@@ -183,7 +187,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/commhistory`       | returns list of commhistory items |
 | `GET`          | `/commhistory/:chid` | returns one commhistory item      |
 
-### Endpoints For AGShortcuts
+### AGShortcuts
 
 | Request Method | Endpoint              | Description                      |
 | :------------- | :-------------------- | :------------------------------- |
@@ -193,7 +197,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/agshortcuts`        | returns list of agshortcut lists |
 | `GET`          | `/agshortcuts/:agsid` | returns one agshortcut list      |
 
-### Endpoints For MailClasses
+### MailClasses
 
 | Request Method | Endpoint             | Description                    |
 | :------------- | :------------------- | :----------------------------- |
@@ -203,7 +207,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/mailclasses`       | returns list of mailclasses    |
 | `GET`          | `/mailclasses/:mcid` | returns one mailclass          |
 
-### Endpoints For PackageTypes
+### PackageTypes
 
 | Request Method | Endpoint              | Description                   |
 | :------------- | :-------------------- | :---------------------------- |
@@ -213,7 +217,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/packagetypes`       | returns list of packagetypes  |
 | `GET`          | `/packagetypes/:ptid` | returns one packagetype       |
 
-### Endpoints For BrandingThemes
+### BrandingThemes
 
 | Request Method | Endpoint                | Description                    |
 | :------------- | :---------------------- | :----------------------------- |
@@ -223,7 +227,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/brandingthemes`       | returns list of brandingthemes |
 | `GET`          | `/brandingthemes/:btid` | returns one brandingtheme      |
 
-### Endpoints For USC Items
+### USC Items
 
 | Request Method | Endpoint      | Description                   |
 | :------------- | :------------ | :---------------------------- |
@@ -233,7 +237,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/usc`        | returns list of usc items     |
 | `GET`          | `/usc/:uscid` | returns one usc item          |
 
-### Endpoints For ExamTypes
+### ExamTypes
 
 | Request Method | Endpoint           | Description                 |
 | :------------- | :----------------- | :-------------------------- |
@@ -243,7 +247,7 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `GET`          | `/examtypes`       | returns list of examtypes   |
 | `GET`          | `/examtypes/:etid` | returns one examtype        |
 
-### Endpoints For Styles
+### Styles
 
 | Request Method | Endpoint       | Description                     |
 | :------------- | :------------- | :------------------------------ |
