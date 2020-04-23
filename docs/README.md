@@ -1,3 +1,5 @@
+[![Maintainability](https://api.codeclimate.com/v1/badges/c1474fe518ccb398d184/maintainability)](https://codeclimate.com/github/evoingram/webapp-backend/maintainability)
+
 # Transcript Web App
 
 This is the back end, work in progress, for my database online port.
