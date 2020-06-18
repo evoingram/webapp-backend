@@ -34,7 +34,6 @@ Back end deployed to `Heroku` and built using:
 ## Testing
 
 - All endpoints have been tested and documented via Postman.
-- Postman docs contain examples of all get, post, and put endpoint body submissions AND responses.
 
 ## Documentation
 
