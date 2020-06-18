@@ -258,3 +258,63 @@ This currently contains fake sample data.  Copyright 2020 Erica Ingram.
 | `DELETE`       | `/styles/:sid` | deletes a style                 |
 | `GET`          | `/styles`      | returns list of styles          |
 | `GET`          | `/styles/:sid` | returns one style               |
+
+
+
+
+# Title
+
+## Product Overview
+
+* You can find the deployed project at 
+
+* Trello Boards: 
+    - [Labs 18]()
+
+* [Product Canvas]()
+
+* [Design Files]()
+
+# Project Description
+
+
+
+## Key Features
+
+## Tech Stack
+
+Front end deployed to `Netlify` and built using:
+
+- [React](https://www.apollographql.com/): ReactJS is an open-source JavaScript library which is used for building user interfaces specifically for single page applications. It's used for handling view layer for web and mobile apps. React also allows us to create reusable UI components.
+
+# Available Scripts 
+
+in the project directory, you can run: 
+
+### `npm start`
+
+# APIs
+
+## Auth0 authentication API 
+
+## Environment Variables
+
+#### Variables:
+   
+# Testing
+
+## Cypress
+
+# Contributing
+
+## Issue/Bug Request
+
+## Feature Requests
+
+## Pull Requests
+
+### Pull Request Guidelines
+
+## Attribution
+
+## Documentation
