@@ -1,58 +1,51 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/c1474fe518ccb398d184/maintainability)](https://codeclimate.com/github/evoingram/webapp-backend/maintainability)
 
-# Transcript Web App
-
-This is the back end, work in progress, for my database online port.
-This currently contains fake sample data.  Copyright 2020 Erica Ingram.
-
-## [DB Schema](https://dbdesigner.page.link/gbEtfTr1XjgwDa2C7)
-
-## [BASE URL](https://transcript-webapp.herokuapp.com/api)
-
-## [POSTMAN DOCUMENTATION](https://documenter.getpostman.com/view/6401823/SzRxWAvu?version=latest)
-
-- Postman Docs were last published on 04/08/2020
-
-- All endpoints have been tested and documented via Postman.
-- Postman docs contain examples of all get, post, and put endpoint body submissions AND responses.
-- This is still a work in progress.
-
-## [Front End](https://github.com/evoingram/webapp-frontend/) (still in planning stages)
-
-# Title
+# Transcript Web App Back End
 
 ## Product Overview
 
-* [Deployed Project](https://nasasearchclone.now.sh/)
-
-* [Original Cloned Site](https://images.nasa.gov/)
+### [DB Schema](https://dbdesigner.page.link/gbEtfTr1XjgwDa2C7)
+### [BASE URL](https://transcript-webapp.herokuapp.com/api)
+### [Front End](https://github.com/evoingram/webapp-frontend/) (still in planning stages)
 
 # Project Description
 
-This is a clone of images.NASA.gov, NASA's media library, improved over the original.
+This is the back end for the online port of my database.  It currently contains fake sample data.  It still needs certain endpoints added to it, but is fully functional.  Copyright 2020 Erica Ingram.
 
 ## Key Features
 
-- 
+- Live solo project
+- RESTful API with auth services for transcript production system
+- 126 endpoints
+- CourtListener, Xero, PayPal, & Office API support, tested and documented via Postman
 
 ## Tech Stack
 
-Front end deployed to `Heroku` and built using:
+Back end deployed to `Heroku` and built using:
 
-- [React](https://www.apollographql.com/): ReactJS is an open-source JavaScript library which is used for building user interfaces specifically for single page applications. It's used for handling view layer for web and mobile apps. React also allows us to create reusable UI components.
+- [Node.js](https://github.com/nodejs/node):  a JavaScript runtime.
+- [Knex](https://github.com/knex/knex):  a query builder for PostgreSQL, MySQL and SQLite3, designed to be flexible, portable, and fun to use.
+- [Express](https://github.com/expressjs/express):  a fast, unopinionated, minimalist web framework for Node.
+- [bcrypt](https://github.com/pyca/bcrypt/):  modern(-ish) password hashing for your software and your servers.
 
 # Available Scripts 
 
+### `npm server`
 ### `npm start`
-### `npm build`
-### `npm test`
-### `npm eject`
 
 # APIs
 
+### [BASE URL](https://transcript-webapp.herokuapp.com/api)
    
 # Testing
 
-Cypress testing will be completed in a future release.
+- All endpoints have been tested and documented via Postman.
+- Postman docs contain examples of all get, post, and put endpoint body submissions AND responses.
 
 ## Documentation
+
+### [ENDPOINTS](https://github.com/evoingram/webapp-backend/blob/master/docs/endpoints.md)
+### [POSTMAN DOCUMENTATION](https://documenter.getpostman.com/view/6401823/SzRxWAvu?version=latest)
+
+- Postman Docs were last published on 04/08/2020
+- Postman docs contain examples of all get, post, and put endpoint body submissions AND responses.
