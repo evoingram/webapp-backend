@@ -4,9 +4,7 @@
 
 ## Product Overview
 
-### [DB Schema](https://dbdesigner.page.link/gbEtfTr1XjgwDa2C7)
-### [BASE URL](https://transcript-webapp.herokuapp.com/api)
-### [Front End](https://github.com/evoingram/webapp-frontend/) (still in planning stages)
+### [DB Schema](https://dbdesigner.page.link/gbEtfTr1XjgwDa2C7)   |   [BASE URL](https://transcript-webapp.herokuapp.com/api)   |   [Front End](https://github.com/evoingram/webapp-frontend/) (still in planning stages)   
 
 # Project Description
 
@@ -32,10 +30,6 @@ Back end deployed to `Heroku` and built using:
 
 ### `npm server`
 ### `npm start`
-
-# APIs
-
-### [BASE URL](https://transcript-webapp.herokuapp.com/api)
    
 # Testing
 
