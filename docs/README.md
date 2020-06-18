@@ -8,7 +8,7 @@
 
 # Project Description
 
-This is the back end for the online port of my database.  It currently contains fake sample data.  It still needs certain endpoints added to it, but is fully functional.  Copyright 2020 Erica Ingram.
+This is the back end for the online port of my company's VB database, which is used for transcript production and workflow management.  The VB database does everything from scheduling to automated shorthand to automated hyperlinking and document formatting, shipping, production, and many other business operations, and this back end was designed and created to support a front end that also does such things.  It currently contains fake sample data and still needs certain endpoints added to it, but is fully functional.  Copyright 2020 Erica Ingram.
 
 ## Key Features
 
