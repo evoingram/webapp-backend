@@ -6,7 +6,7 @@
 
 ### [DB Schema](https://dbdesigner.page.link/gbEtfTr1XjgwDa2C7)   |   [BASE URL](https://transcript-webapp.herokuapp.com/api)   |   [Front End](https://github.com/evoingram/webapp-frontend/) (still in planning stages)   
 
-# Project Description
+## Project Description
 
 This is the back end for the online port of my company's VB database, which is used for transcript production and workflow management.  The VB database does everything from scheduling to automated shorthand to automated hyperlinking and document formatting, shipping, production, management of company financials, and other business operations, and this back end was designed and created to support a front end that also does such things.  It currently contains fake sample data and still needs certain endpoints added to it, but is fully functional.  Copyright 2020 Erica Ingram.
 
@@ -26,20 +26,20 @@ Back end deployed to `Heroku` and built using:
 - [Express](https://github.com/expressjs/express):  a fast, unopinionated, minimalist web framework for Node.
 - [bcrypt](https://github.com/pyca/bcrypt/):  modern(-ish) password hashing for your software and your servers.
 
-# Available Scripts 
+## Available Scripts 
 
 ### `npm server`
 ### `npm start`
    
-# Testing
+## Testing
 
 - All endpoints have been tested and documented via Postman.
 - Postman docs contain examples of all get, post, and put endpoint body submissions AND responses.
 
-# Documentation
+## Documentation
 
-## [PRODUCT VISION](https://aquoco-my.sharepoint.com/:w:/g/personal/evoingram_aquoco_onmicrosoft_com/ES9-HPl3otdAjjtMrqpWIrkBMTrLyRDvxVEtYGkOMWLDUQ?e=fXTfhK)   |   [ENDPOINTS](https://github.com/evoingram/webapp-backend/blob/master/docs/endpoints.md)
-## [POSTMAN DOCUMENTATION](https://documenter.getpostman.com/view/6401823/SzRxWAvu?version=latest)
+### [PRODUCT VISION](https://aquoco-my.sharepoint.com/:w:/g/personal/evoingram_aquoco_onmicrosoft_com/ES9-HPl3otdAjjtMrqpWIrkBMTrLyRDvxVEtYGkOMWLDUQ?e=fXTfhK)   |   [ENDPOINTS](https://github.com/evoingram/webapp-backend/blob/master/docs/endpoints.md)
+### [POSTMAN DOCUMENTATION](https://documenter.getpostman.com/view/6401823/SzRxWAvu?version=latest)
 
 - Postman Docs were last published on 04/08/2020
 - Postman docs contain examples of all get, post, and put endpoint body submissions AND responses.
