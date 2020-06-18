@@ -26,6 +26,13 @@ Back end deployed to `Heroku` and built using:
 
 ### `npm server`
 ### `npm start`
+
+## API 
+
+- [CourtListener](http://courtlistener.com/):  assists in automation of authority hyperlinking.
+- [Office](https://docs.microsoft.com/en-us/previous-versions/office/office-365-api/):  document creation, formatting, and management.
+- [PayPal](https://developer.paypal.com/home/):  payment processing and management.
+- [Wunderlist](https://developer.wunderlist.com/):  to-do list management.
    
 ## Testing
 
