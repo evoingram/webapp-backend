@@ -1,52 +1,26 @@
 exports.up = function (knex) {
 	return knex.schema.createTable('courtdates', courtdates => {
 		courtdates.increments('courtdatesid');
-
 		courtdates
-			.integer('casesid')
-			.unsigned()
-			.notNullable()
-			.references('casesid')
-			.inTable('cases')
-			.onUpdate('CASCADE')
-			.onDelete('RESTRICT');
-
+			.integer('casesid').unsigned().notNullable()
+			.references('casesid').inTable('cases')
+			.onUpdate('CASCADE').onDelete('RESTRICT');
 		courtdates
-			.integer('ratesid')
-			.unsigned()
-			.notNullable()
-			.references('ratesid')
-			.inTable('rates')
-			.onUpdate('CASCADE')
-			.onDelete('RESTRICT');
-
+			.integer('ratesid').unsigned().notNullable()
+			.references('ratesid').inTable('rates')
+			.onUpdate('CASCADE').onDelete('RESTRICT');
 		courtdates
-			.integer('ttid')
-			.unsigned()
-			.notNullable()
-			.references('ttid')
-			.inTable('turnaroundtimes')
-			.onUpdate('CASCADE')
-			.onDelete('RESTRICT');
-
+			.integer('ttid').unsigned().notNullable()
+			.references('ttid').inTable('turnaroundtimes')
+			.onUpdate('CASCADE').onDelete('RESTRICT');
 		courtdates
-			.integer('btid')
-			.unsigned()
-			.notNullable()
-			.references('btid')
-			.inTable('brandingthemes')
-			.onUpdate('CASCADE')
-			.onDelete('RESTRICT');
-
+			.integer('btid').unsigned().notNullable()
+			.references('btid').inTable('brandingthemes')
+			.onUpdate('CASCADE').onDelete('RESTRICT');
 		courtdates
-			.integer('iid')
-			.unsigned()
-			.notNullable()
-			.references('iid')
-			.inTable('invoices')
-			.onUpdate('CASCADE')
-			.onDelete('RESTRICT');
-
+			.integer('iid').unsigned().notNullable()
+			.references('iid').inTable('invoices')
+			.onUpdate('CASCADE').onDelete('RESTRICT');
 		courtdates.date('hearingdate').notNullable();
 		courtdates.time('hearingstarttime');
 		courtdates.time('hearingendtime');

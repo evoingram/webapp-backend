@@ -1,9 +1,7 @@
 exports.seed = function(knex) {
-	// Deletes ALL existing entries
 	return knex('examtypes')
 		.del()
 		.then(function() {
-			// Inserts seed entries
 			return knex('examtypes').insert([
 				{
 					eid: 1,
