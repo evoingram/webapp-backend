@@ -15,7 +15,7 @@ This is the back end for the online port of my company's VB database, which is u
 - Live solo project
 - RESTful API with auth services for transcript production system
 - 126 endpoints
-- CourtListener, Xero, PayPal, & Office API support
+- CourtListener, Xero, PayPal, Wunderlist, & Office API support
 - Tested and documented via Postman
 
 ## Tech Stack
@@ -38,6 +38,7 @@ Back end deployed to `Heroku` and built using:
 - [Office](https://docs.microsoft.com/en-us/previous-versions/office/office-365-api/):  document creation, formatting, and management.
 - [PayPal](https://developer.paypal.com/home/):  payment processing and management.
 - [Wunderlist](https://developer.wunderlist.com/):  to-do list management.
+- [Xero](https://developer.xero.com/) business accounting software online.
    
 ## Testing
 
