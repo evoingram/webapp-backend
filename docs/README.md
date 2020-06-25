@@ -15,7 +15,8 @@ This is the back end for the online port of my company's VB database, which is u
 - Live solo project
 - RESTful API with auth services for transcript production system
 - 126 endpoints
-- CourtListener, Xero, PayPal, & Office API support, tested and documented via Postman
+- CourtListener, Xero, PayPal, & Office API support
+- Tested and documented via Postman
 
 ## Tech Stack
 
