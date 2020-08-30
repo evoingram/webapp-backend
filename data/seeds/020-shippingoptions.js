@@ -1,10 +1,9 @@
-exports.seed = function(knex) {
-	// Deletes ALL existing entries
-	return knex('shippingoptions')
+/* eslint-disable linebreak-style */
+exports.seed = (knex) => {
+	return knex("shippingoptions")
 		.del()
-		.then(function() {
-			// Inserts seed entries
-			return knex('shippingoptions').insert([
+		.then(() => {
+			return knex("shippingoptions").insert([
 				{
 					soid: 1,
 					courtdatesid: 1,
@@ -34,9 +33,9 @@ exports.seed = function(knex) {
 					uspstracking: false,
 					reference: 1,
 					value: 100,
-					description: 'transcripts',
+					description: "transcripts",
 					weightoz: 10,
-					output: '/output/path/xml/output'
+					output: "/output/path/xml/output"
 				},
 				{
 					soid: 2,
@@ -67,9 +66,9 @@ exports.seed = function(knex) {
 					uspstracking: false,
 					reference: 2,
 					value: 100,
-					description: 'transcripts',
+					description: "transcripts",
 					weightoz: 10,
-					output: '/output/path/xml/output'
+					output: "/output/path/xml/output"
 				},
 				{
 					soid: 3,
@@ -100,9 +99,9 @@ exports.seed = function(knex) {
 					uspstracking: false,
 					reference: 3,
 					value: 100,
-					description: 'transcripts',
+					description: "transcripts",
 					weightoz: 10,
-					output: '/output/path/xml/output'
+					output: "/output/path/xml/output"
 				},
 				{
 					soid: 4,
@@ -133,9 +132,9 @@ exports.seed = function(knex) {
 					uspstracking: false,
 					reference: 4,
 					value: 100,
-					description: 'transcripts',
+					description: "transcripts",
 					weightoz: 10,
-					output: '/output/path/xml/output'
+					output: "/output/path/xml/output"
 				},
 				{
 					soid: 5,
@@ -166,9 +165,9 @@ exports.seed = function(knex) {
 					uspstracking: false,
 					reference: 5,
 					value: 100,
-					description: 'transcripts',
+					description: "transcripts",
 					weightoz: 10,
-					output: '/output/path/xml/output'
+					output: "/output/path/xml/output"
 				}
 			]);
 		});

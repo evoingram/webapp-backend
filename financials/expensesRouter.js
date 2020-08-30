@@ -1,31 +1,31 @@
-const router = require('express').Router();
+const router = require("express").Router();
 
-const Expenses = require('./expensesModel.js');
-const restricted = require('../auth/restriction.js');
-const restrictedA = require('../auth/restrictionA.js');
-const restrictedC = require('../auth/restrictionC.js');
-const restrictedM = require('../auth/restrictionM.js');
+const Expenses = require("./expensesModel.js");
+const restricted = require("../auth/restriction.js");
+const restrictedA = require("../auth/restrictionA.js");
+const restrictedC = require("../auth/restrictionC.js");
+const restrictedM = require("../auth/restrictionM.js");
 
 // GET:  get all expenses
-router.get('/', restrictedM, (req, res) => {
+router.get("/", restrictedM, (req, res) => {
 	Expenses.find()
-		.then(expenses => {
+		.then((expenses) => {
 			res.status(200).json(expenses);
 		})
-		.catch(err => res.send(err));
+		.catch((err) => res.send(err));
 });
 
 // GET:  get one expense
-router.get('/:eid', restrictedM, (req, res) => {
+router.get("/:eid", restrictedM, (req, res) => {
 	const eid = req.params.eid;
 	if (!eid) {
 		res.status(404).json({ message: `The expense with the specified eid ${eid} does not exist.` });
 	} else {
 		Expenses.findById(eid)
-			.then(expense => {
+			.then((expense) => {
 				res.status(200).json(expense);
 			})
-			.catch(err => {
+			.catch((err) => {
 				res.status(500).json({
 					message: `The expense information for ${eid} could not be retrieved.`,
 					error: err
@@ -35,46 +35,46 @@ router.get('/:eid', restrictedM, (req, res) => {
 });
 
 // POST:  create expense
-router.post('/', restrictedM, (req, res) => {
+router.post("/", restrictedM, (req, res) => {
 	const newExpense = req.body;
 
 	Expenses.add(newExpense)
-		.then(expense => {
+		.then((expense) => {
 			res.status(201).json(expense);
 		})
-		.catch(err => {
-			res.status(500).json({ message: `Failed to create new expense.`, error: err });
+		.catch((err) => {
+			res.status(500).json({ message: "Failed to create new expense.", error: err });
 		});
 });
 
 // PUT:  update expense
-router.put('/:eid', restrictedM, (req, res) => {
+router.put("/:eid", restrictedM, (req, res) => {
 	const eid = req.params.eid;
 	const updatedExpense = req.body;
 	Expenses.update(eid, updatedExpense)
-		.then(expense => {
+		.then((expense) => {
 			if (expense) {
 				res.json(expense);
 			} else {
 				res.status(404).json({ message: `Could not find expense with given id ${eid}.` });
 			}
 		})
-		.catch(err => {
-			res.status(500).json({ message: `Failed to update expense.`, error: err });
+		.catch((err) => {
+			res.status(500).json({ message: "Failed to update expense.", error: err });
 		});
 });
 // DELETE:  delete expense
-router.delete('/:eid', restrictedM, (req, res) => {
+router.delete("/:eid", restrictedM, (req, res) => {
 	const eid = req.params.eid;
 	if (!eid) {
 		res.status(404).json({ message: `The expense with the specified ID ${eid} does not exist.` });
 	}
 	Expenses.remove(eid)
-		.then(expense => {
+		.then((expense) => {
 			res.json(expense);
 		})
-		.catch(err => {
-			res.status(500).json({ message: `The expense could not be removed.`, error: err });
+		.catch((err) => {
+			res.status(500).json({ message: "The expense could not be removed.", error: err });
 		});
 });
 

@@ -1,30 +1,31 @@
-exports.up = function(knex) {
-	return knex.schema.createTable('communicationhistory', communicationhistory => {
-		communicationhistory.increments('chid');
+/* eslint-disable linebreak-style */
+exports.up = (knex) => {
+	return knex.schema.createTable("communicationhistory", (communicationhistory) => {
+		communicationhistory.increments("chid");
 
 		communicationhistory
-			.integer('courtdatesid')
+			.integer("courtdatesid")
 			.unsigned()
 			.notNullable()
-			.references('courtdatesid')
-			.inTable('courtdates')
-			.onUpdate('CASCADE')
-			.onDelete('RESTRICT');
+			.references("courtdatesid")
+			.inTable("courtdates")
+			.onUpdate("CASCADE")
+			.onDelete("RESTRICT");
 
 		communicationhistory
-			.integer('customersid')
+			.integer("customersid")
 			.unsigned()
 			.notNullable()
-			.references('customersid')
-			.inTable('customers')
-			.onUpdate('CASCADE')
-			.onDelete('RESTRICT');
+			.references("customersid")
+			.inTable("customers")
+			.onUpdate("CASCADE")
+			.onDelete("RESTRICT");
 
-		communicationhistory.string('filepath');
-		communicationhistory.date('datecreated').notNullable();
+		communicationhistory.string("filepath");
+		communicationhistory.date("datecreated").notNullable();
 	});
 };
 
-exports.down = function(knex) {
-	return knex.schema.dropTableIfExists('communicationhistory');
+exports.down = (knex) => {
+	return knex.schema.dropTableIfExists("communicationhistory");
 };

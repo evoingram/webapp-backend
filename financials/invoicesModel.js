@@ -1,4 +1,4 @@
-const db = require('../data/dbConfig');
+const db = require("../data/dbConfig");
 
 module.exports = {
 	add,
@@ -10,28 +10,28 @@ module.exports = {
 };
 
 function find() {
-	return db('invoices').select('*');
+	return db("invoices").select("*");
 }
 
 function findBy(filter) {
-	return db('invoices').where(filter);
+	return db("invoices").where(filter);
 }
 
 async function add(invoice) {
-	const [iid] = await db('invoices').insert(invoice, 'iid');
+	const [iid] = await db("invoices").insert(invoice, "iid");
 	return findById(iid);
 }
 
 function findById(iid) {
-	return db('invoices').select('iid', '*').where({ iid }).first();
+	return db("invoices").select("iid", "*").where({ iid }).first();
 }
 
 function update(iid, invoice) {
-	return db('invoices').where({ iid }).update(invoice);
+	return db("invoices").where({ iid }).update(invoice);
 }
 
 function remove(iid) {
-	return db('invoices').where('iid', Number(iid)).del();
+	return db("invoices").where("iid", Number(iid)).del();
 }
 
 /*

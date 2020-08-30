@@ -1,4 +1,4 @@
-const db = require('../../data/dbConfig');
+const db = require("../../data/dbConfig");
 
 module.exports = {
 	add,
@@ -10,28 +10,28 @@ module.exports = {
 };
 
 function find() {
-	return db('citations').select('*');
+	return db("citations").select("*");
 }
 
 function findBy(filter) {
-	return db('citations').where(filter);
+	return db("citations").where(filter);
 }
 
 async function add(singlecitation) {
-	const [citationsid] = await db('citations').insert(singlecitation, 'citationsid');
+	const [citationsid] = await db("citations").insert(singlecitation, "citationsid");
 	return findById(citationsid);
 }
 
 function findById(citationsid) {
-	return db('citations').select('citationsid', '*').where({ citationsid }).first();
+	return db("citations").select("citationsid", "*").where({ citationsid }).first();
 }
 
 function update(citationsid, singlecitation) {
-	return db('citations').where({ citationsid }).update(singlecitation);
+	return db("citations").where({ citationsid }).update(singlecitation);
 }
 
 function remove(citationsid) {
-	return db('citations').where('citationsid', Number(citationsid)).del();
+	return db("citations").where("citationsid", Number(citationsid)).del();
 }
 
 /*

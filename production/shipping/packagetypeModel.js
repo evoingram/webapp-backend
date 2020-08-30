@@ -1,4 +1,4 @@
-const db = require('../../data/dbConfig');
+const db = require("../../data/dbConfig");
 
 module.exports = {
 	add,
@@ -10,26 +10,26 @@ module.exports = {
 };
 
 function find() {
-	return db('packagetype').select('*');
+	return db("packagetype").select("*");
 }
 
 function findBy(filter) {
-	return db('packagetype').where(filter);
+	return db("packagetype").where(filter);
 }
 
 async function add(singlepackagetype) {
-	const [ptid] = await db('packagetype').insert(singlepackagetype, 'ptid');
+	const [ptid] = await db("packagetype").insert(singlepackagetype, "ptid");
 	return findById(ptid);
 }
 
 function findById(ptid) {
-	return db('packagetype').select('ptid', '*').where({ ptid }).first();
+	return db("packagetype").select("ptid", "*").where({ ptid }).first();
 }
 
 function update(ptid, singlepackagetype) {
-	return db('packagetype').where({ ptid }).update(singlepackagetype);
+	return db("packagetype").where({ ptid }).update(singlepackagetype);
 }
 
 function remove(ptid) {
-	return db('packagetype').where('ptid', Number(ptid)).del();
+	return db("packagetype").where("ptid", Number(ptid)).del();
 }

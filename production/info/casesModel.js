@@ -1,4 +1,4 @@
-const db = require('../../data/dbConfig');
+const db = require("../../data/dbConfig");
 
 module.exports = {
 	add,
@@ -10,11 +10,11 @@ module.exports = {
 };
 
 function find() {
-	return db('cases').select('*');
+	return db("cases").select("*");
 }
 
 function findBy(filter) {
-	return db('cases').where(filter);
+	return db("cases").where(filter);
 }
 
 /*
@@ -29,7 +29,7 @@ FROM Cases;
 */
 
 function findById(casesid) {
-	return db('cases').select('*').where({ casesid }).first();
+	return db("cases").select("*").where({ casesid }).first();
 }
 
 /*
@@ -42,22 +42,22 @@ ORDER BY Cases.[Party1], Cases.[Party2];
 */
 function findByParty(partyText, partyNo) {
 	let partyname = `party${partyNo}`;
-	return db('cases')
-		.select('*')
+	return db("cases")
+		.select("*")
 		.where({ partyname: `${partyText}` });
 }
 
 async function add(onecase) {
-	const [casesid] = await db('cases').insert(onecase, 'casesid');
+	const [casesid] = await db("cases").insert(onecase, "casesid");
 	return findById(casesid);
 }
 
 function update(casesid, onecase) {
-	return db('cases').where({ casesid }).update(onecase);
+	return db("cases").where({ casesid }).update(onecase);
 }
 
 function remove(casesid) {
-	return db('cases').where('casesid', Number(casesid)).del();
+	return db("cases").where("casesid", Number(casesid)).del();
 }
 
 /*

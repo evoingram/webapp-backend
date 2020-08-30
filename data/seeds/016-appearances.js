@@ -1,10 +1,9 @@
-exports.seed = function(knex) {
-	// Deletes ALL existing entries
-	return knex('appearances')
+/* eslint-disable linebreak-style */
+exports.seed = (knex) => {
+	return knex("appearances")
 		.del()
-		.then(function() {
-			// Inserts seed entries
-			return knex('appearances').insert([
+		.then(() => {
+			return knex("appearances").insert([
 				{
 					appid: 1,
 					customersid: 1,

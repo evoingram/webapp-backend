@@ -1,19 +1,19 @@
-const router = require('express').Router();
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const router = require("express").Router();
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 // defines functions for customers table endpoints
-const Customers = require('../customers/customersModel.js');
+const Customers = require("../customers/customersModel.js");
 
-const Token = require('./authHelpers.js');
+const Token = require("./authHelpers.js");
 
-router.post('/', (req, res) => {
+router.post("/", (req, res) => {
 	let { email, password } = req.body;
 
 	// finds customer info submitted via login
 	Customers.findBy({ email })
 		.first()
-		.then(customer => {
+		.then((customer) => {
 			if (customer && bcrypt.compareSync(password, customer.password)) {
 				const token = Token.getJwt(customer.email);
 				res.status(200).json({
@@ -28,8 +28,8 @@ router.post('/', (req, res) => {
 				});
 			}
 		})
-		.catch(error => {
-			res.status(500).json('user not found.  Error:  ' + error);
+		.catch((error) => {
+			res.status(500).json("user not found.  Error:  " + error);
 		});
 });
 

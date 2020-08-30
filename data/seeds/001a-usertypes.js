@@ -1,39 +1,38 @@
-exports.seed = function (knex) {
-	// Deletes ALL existing entries
-	return knex('usertypes')
+/* eslint-disable linebreak-style */
+exports.seed = (knex) => {
+	return knex("usertypes")
 		.del()
-		.then(function () {
-			// Inserts seed entries
-			return knex('usertypes').insert([
+		.then(() => {
+			return knex("usertypes").insert([
 				{
 					utid: 1,
 					customersid: 1,
-					usertype: 'admin'
+					usertype: "admin"
 				},
 				{
 					utid: 2,
 					customersid: 2,
-					usertype: 'admin'
+					usertype: "admin"
 				},
 				{
 					utid: 3,
 					customersid: 3,
-					usertype: 'customer'
+					usertype: "customer"
 				},
 				{
 					utid: 4,
 					customersid: 4,
-					usertype: 'contractor'
+					usertype: "contractor"
 				},
 				{
 					utid: 5,
 					customersid: 5,
-					usertype: 'customer'
+					usertype: "customer"
 				},
 				{
 					utid: 6,
 					customersid: 6,
-					usertype: 'admin'
+					usertype: "admin"
 				}
 			]);
 		});

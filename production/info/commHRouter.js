@@ -1,33 +1,33 @@
-const router = require('express').Router();
+const router = require("express").Router();
 
-const CommHistory = require('./commHModel.js');
-const restricted = require('../../auth/restriction.js');
-const restrictedA = require('../../auth/restrictionA.js');
-const restrictedC = require('../../auth/restrictionC.js');
-const restrictedM = require('../../auth/restrictionM.js');
+const CommHistory = require("./commHModel.js");
+const restricted = require("../../auth/restriction.js");
+const restrictedA = require("../../auth/restrictionA.js");
+const restrictedC = require("../../auth/restrictionC.js");
+const restrictedM = require("../../auth/restrictionM.js");
 
 // GET:  get all commhistory items
-router.get('/', restrictedM, (req, res) => {
+router.get("/", restrictedM, (req, res) => {
 	CommHistory.find()
-		.then(commhistory => {
+		.then((commhistory) => {
 			res.status(200).json(commhistory);
 		})
-		.catch(err => res.send(err));
+		.catch((err) => res.send(err));
 });
 
 // GET:  get one commhistory item
-router.get('/:chid', restrictedC, (req, res) => {
+router.get("/:chid", restrictedC, (req, res) => {
 	const chid = req.params.chid;
 	if (!chid) {
 		res.status(404).json({ message: `The singlecommhistory with the specified chid ${chid} does not exist.` });
 	} else {
 		CommHistory.findById(chid)
-			.then(singlecommhistory => {
+			.then((singlecommhistory) => {
 				res.status(200).json(singlecommhistory);
 			})
-			.catch(err => {
+			.catch((err) => {
 				res.status(500).json({
-					message: `The singlecommhistory information could not be retrieved.`,
+					message: "The singlecommhistory information could not be retrieved.",
 					error: err
 				});
 			});
@@ -35,47 +35,47 @@ router.get('/:chid', restrictedC, (req, res) => {
 });
 
 // POST:  create a commhistory item
-router.post('/', restrictedM, (req, res) => {
+router.post("/", restrictedM, (req, res) => {
 	const newCommHistory = req.body;
 
 	CommHistory.add(newCommHistory)
-		.then(commhistory => {
+		.then((commhistory) => {
 			res.status(201).json(commhistory);
 		})
-		.catch(err => {
-			res.status(500).json({ message: `Failed to create new commhistory item.`, error: err });
+		.catch((err) => {
+			res.status(500).json({ message: "Failed to create new commhistory item.", error: err });
 		});
 });
 
 // PUT:  update a commhistory item
-router.put('/:chid', restrictedM, (req, res) => {
+router.put("/:chid", restrictedM, (req, res) => {
 	const chid = req.params.chid;
 	const updatedCommHistory = req.body;
 
 	CommHistory.update(chid, updatedCommHistory)
-		.then(commhistory => {
+		.then((commhistory) => {
 			if (commhistory) {
 				res.json(commhistory);
 			} else {
 				res.status(404).json({ message: `Could not find commhistory item with given id ${chid}.` });
 			}
 		})
-		.catch(err => {
-			res.status(500).json({ message: `Failed to update commhistory.`, error: err });
+		.catch((err) => {
+			res.status(500).json({ message: "Failed to update commhistory.", error: err });
 		});
 });
 // DELETE:  delete an item of commhistory
-router.delete('/:chid', restrictedM, (req, res) => {
+router.delete("/:chid", restrictedM, (req, res) => {
 	const chid = req.params.chid;
 	if (!chid) {
 		res.status(404).json({ message: `The singlecommhistory with the specified ID ${chid} does not exist.` });
 	}
 	CommHistory.remove(chid)
-		.then(singlecommhistory => {
+		.then((singlecommhistory) => {
 			res.json(singlecommhistory);
 		})
-		.catch(err => {
-			res.status(500).json({ message: `The singlecommhistory could not be removed.`, error: err });
+		.catch((err) => {
+			res.status(500).json({ message: "The singlecommhistory could not be removed.", error: err });
 		});
 });
 

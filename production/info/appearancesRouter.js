@@ -1,31 +1,31 @@
-const router = require('express').Router();
+const router = require("express").Router();
 
-const Appearances = require('./appearancesModel.js');
-const restricted = require('../../auth/restriction.js');
-const restrictedA = require('../../auth/restrictionA.js');
-const restrictedC = require('../../auth/restrictionC.js');
-const restrictedM = require('../../auth/restrictionM.js');
+const Appearances = require("./appearancesModel.js");
+const restricted = require("../../auth/restriction.js");
+const restrictedA = require("../../auth/restrictionA.js");
+const restrictedC = require("../../auth/restrictionC.js");
+const restrictedM = require("../../auth/restrictionM.js");
 
 // GET:  get all appearances for all jobs
-router.get('/', restricted, (req, res) => {
+router.get("/", restricted, (req, res) => {
 	Appearances.find()
-		.then(appearances => {
+		.then((appearances) => {
 			res.status(200).json(appearances);
 		})
-		.catch(err => res.send(err));
+		.catch((err) => res.send(err));
 });
 
 // GET:  get one appearance
-router.get('/:appid', restricted, (req, res) => {
+router.get("/:appid", restricted, (req, res) => {
 	const appid = req.params.appid;
 	if (!appid) {
 		res.status(404).json({ message: `The appearance with the specified appid ${appid} does not exist.` });
 	} else {
 		Appearances.findById(appid)
-			.then(appearances => {
+			.then((appearances) => {
 				res.status(200).json(appearances);
 			})
-			.catch(err => {
+			.catch((err) => {
 				res.status(500).json({
 					message: `The app information for this appearance ${appid} could not be retrieved.`,
 					error: err
@@ -35,47 +35,47 @@ router.get('/:appid', restricted, (req, res) => {
 });
 
 // POST:  create appearance
-router.post('/', restricted, (req, res) => {
+router.post("/", restricted, (req, res) => {
 	const newAppearance = req.body;
 
 	Appearances.add(newAppearance)
-		.then(appearance => {
+		.then((appearance) => {
 			res.status(201).json(appearance);
 		})
-		.catch(err => {
-			res.status(500).json({ message: 'Failed to create new appearance.', error: err });
+		.catch((err) => {
+			res.status(500).json({ message: "Failed to create new appearance.", error: err });
 		});
 });
 
 // PUT:  update appearance
-router.put('/:appid', restricted, (req, res) => {
+router.put("/:appid", restricted, (req, res) => {
 	const appid = req.params.appid;
 	const updatedAppearance = req.body;
 
 	Appearances.update(appid, updatedAppearance)
-		.then(appearance => {
+		.then((appearance) => {
 			if (appearance) {
 				res.json(appearance);
 			} else {
 				res.status(404).json({ message: `Could not find appearance with given id ${appid}.` });
 			}
 		})
-		.catch(err => {
-			res.status(500).json({ message: 'Failed to update appearance.', error: err });
+		.catch((err) => {
+			res.status(500).json({ message: "Failed to update appearance.", error: err });
 		});
 });
 // DELETE:  delete appearance
-router.delete('/:appid', restricted, (req, res) => {
+router.delete("/:appid", restricted, (req, res) => {
 	const appid = req.params.appid;
 	if (!appid) {
 		res.status(404).json({ message: `The appearance with the specified ID ${appid} does not exist.` });
 	}
 	Appearances.remove(appid)
-		.then(appearance => {
+		.then((appearance) => {
 			res.json(appearance);
 		})
-		.catch(err => {
-			res.status(500).json({ message: 'The appearance could not be removed.', error: err });
+		.catch((err) => {
+			res.status(500).json({ message: "The appearance could not be removed.", error: err });
 		});
 });
 

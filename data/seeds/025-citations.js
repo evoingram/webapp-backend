@@ -1,10 +1,9 @@
-exports.seed = function(knex) {
-	// Deletes ALL existing entries
-	return knex('citations')
+/* eslint-disable linebreak-style */
+exports.seed = (knex) => {
+	return knex("citations")
 		.del()
-		.then(function() {
-			// Inserts seed entries
-			return knex('citations').insert([
+		.then(() => {
+			return knex("citations").insert([
 				{
 					citationsid: 1,
 					uscid: 1,

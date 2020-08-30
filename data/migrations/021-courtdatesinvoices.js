@@ -1,27 +1,28 @@
-exports.up = function(knex) {
-	return knex.schema.createTable('courtdatesinvoices', courtdatesinvoices => {
-		courtdatesinvoices.increments('cdinid');
+/* eslint-disable linebreak-style */
+exports.up = (knex) => {
+	return knex.schema.createTable("courtdatesinvoices", (courtdatesinvoices) => {
+		courtdatesinvoices.increments("cdinid");
 
 		courtdatesinvoices
-			.integer('courtdatesid')
+			.integer("courtdatesid")
 			.unsigned()
 			.notNullable()
-			.references('courtdatesid')
-			.inTable('courtdates')
-			.onUpdate('CASCADE')
-			.onDelete('RESTRICT');
+			.references("courtdatesid")
+			.inTable("courtdates")
+			.onUpdate("CASCADE")
+			.onDelete("RESTRICT");
 
 		courtdatesinvoices
-			.integer('iid')
+			.integer("iid")
 			.unsigned()
 			.notNullable()
-			.references('iid')
-			.inTable('invoices')
-			.onUpdate('CASCADE')
-			.onDelete('RESTRICT');
+			.references("iid")
+			.inTable("invoices")
+			.onUpdate("CASCADE")
+			.onDelete("RESTRICT");
 	});
 };
 
-exports.down = function(knex) {
-	return knex.schema.dropTableIfExists('courtdatesinvoices');
+exports.down = (knex) => {
+	return knex.schema.dropTableIfExists("courtdatesinvoices");
 };
