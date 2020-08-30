@@ -1,9 +1,9 @@
-exports.seed = function (knex) {
-	// Deletes ALL existing entries
-	return knex('statuses')
+/* eslint-disable linebreak-style */
+exports.seed = (knex) => {
+	return knex("statuses")
 		.del()
-		.then(function () {
-			return knex('statuses').insert([
+		.then(() => {
+			return knex("statuses").insert([
 				{
 					sid: 1,
 					courtdatesid: 1,

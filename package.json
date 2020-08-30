@@ -6,19 +6,19 @@
   "description": "api for A Quo Co. transcription management",
   "homepage": "https://www.github.com/evoingram/webapp-backend#readme",
   "author": {
-             "name": "Erica L. Ingram", 
-             "email": "evoingram@aquoco.onmicrosoft.com", 
-             "url": "https://www.aquoco.co"
-            },
-"repository": {
-              "type" : "git",
-              "url" : "https://github.com/evoingram/webapp-backend.git"
-              },
+    "name": "Erica L. Ingram",
+    "email": "evoingram@aquoco.onmicrosoft.com",
+    "url": "https://www.aquoco.co"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/evoingram/webapp-backend.git"
+  },
   "bugs": {
-          "name": "Erica L. Ingram", 
-          "email": "evoingram@aquoco.onmicrosoft.com", 
-          "url": "https://www.aquoco.co"
-          },
+    "name": "Erica L. Ingram",
+    "email": "evoingram@aquoco.onmicrosoft.com",
+    "url": "https://www.aquoco.co"
+  },
   "scripts": {
     "server": "nodemon",
     "start": "node index.js",
@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.1",
+    "eslint": "^7.7.0",
     "jest": "^25.1.0",
     "nodemon": "^2.0.2",
     "supertest": "^4.0.2"

@@ -1,4 +1,4 @@
-const db = require('../../data/dbConfig');
+const db = require("../../data/dbConfig");
 
 module.exports = {
 	add,
@@ -10,28 +10,28 @@ module.exports = {
 };
 
 function find() {
-	return db('usc').select('*');
+	return db("usc").select("*");
 }
 
 function findBy(filter) {
-	return db('usc').where(filter);
+	return db("usc").where(filter);
 }
 
 async function add(singlecitation) {
-	const [uscid] = await db('usc').insert(singlecitation, 'uscid');
+	const [uscid] = await db("usc").insert(singlecitation, "uscid");
 	return findById(uscid);
 }
 
 function findById(uscid) {
-	return db('usc').select('uscid', '*').where({ uscid }).first();
+	return db("usc").select("uscid", "*").where({ uscid }).first();
 }
 
 function update(uscid, singlecitation) {
-	return db('usc').where({ uscid }).update(singlecitation);
+	return db("usc").where({ uscid }).update(singlecitation);
 }
 
 function remove(uscid) {
-	return db('usc').where('uscid', Number(uscid)).del();
+	return db("usc").where("uscid", Number(uscid)).del();
 }
 
 /*

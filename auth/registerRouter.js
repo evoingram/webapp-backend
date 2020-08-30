@@ -1,15 +1,15 @@
-const router = require('express').Router();
-const bcrypt = require('bcryptjs');
+const router = require("express").Router();
+const bcrypt = require("bcryptjs");
 
 // defines functions for customers table endpoints
-const Customers = require('../customers/customersModel.js');
+const Customers = require("../customers/customersModel.js");
 
-const Token = require('./authHelpers.js');
+const Token = require("./authHelpers.js");
 
 // validates username/password
-const { validateCustomer } = require('../customers/customersHelpers.js');
+const { validateCustomer } = require("../customers/customersHelpers.js");
 
-router.post('/', (req, res) => {
+router.post("/", (req, res) => {
 	let customer = req.body;
 
 	// validates username/password
@@ -22,22 +22,22 @@ router.post('/', (req, res) => {
 		const token = Token.getJwt(customer.email);
 		// registers user
 		Customers.add(customer)
-			.then(saved => {
+			.then((saved) => {
 				Customers.res.status(201).json({
 					customersid: saved.customersid,
 					email: saved.email,
 					token: token
 				});
 			})
-			.catch(error => {
+			.catch((error) => {
 				res.status(500).json({
-					message: 'invalid credentials from registerRouter',
+					message: "invalid credentials from registerRouter",
 					error: error
 				});
 			});
 	} else {
 		res.status(400).json({
-			message: 'Invalid customer info, see errors',
+			message: "Invalid customer info, see errors",
 			errors: validateResult.errors
 		});
 	}

@@ -1,4 +1,4 @@
-const db = require('../../data/dbConfig');
+const db = require("../../data/dbConfig");
 
 module.exports = {
 	add,
@@ -10,27 +10,27 @@ module.exports = {
 };
 
 function find() {
-	return db('courtdatescasescustomers').select('*');
+	return db("courtdatescasescustomers").select("*");
 }
 
 function findBy(filter) {
-	return db('courtdatescasescustomers').where(filter);
+	return db("courtdatescasescustomers").where(filter);
 }
 
 function findById(cdccid) {
-	return db('courtdatescasescustomers').select('cdccid', '*').where({ cdccid });
+	return db("courtdatescasescustomers").select("cdccid", "*").where({ cdccid });
 }
 async function add(courtdate) {
-	const [cdccid] = await db('courtdatescasescustomers').insert(courtdate, 'cdccid');
+	const [cdccid] = await db("courtdatescasescustomers").insert(courtdate, "cdccid");
 	return findById(cdccid);
 }
 
 function update(cdccid, courtdate) {
-	return db('courtdatescasescustomers').where({ cdccid }).update(courtdate);
+	return db("courtdatescasescustomers").where({ cdccid }).update(courtdate);
 }
 
 function remove(cdccid) {
-	return db('courtdatescasescustomers').where('cdccid', Number(cdccid)).del();
+	return db("courtdatescasescustomers").where("cdccid", Number(cdccid)).del();
 }
 
 /*

@@ -1,78 +1,78 @@
-const router = require('express').Router();
+const router = require("express").Router();
 
-const Tasks = require('./staffModel.js');
-const restricted = require('../../auth/restriction.js');
-const restrictedA = require('../auth/restrictionA.js');
-const restrictedC = require('../auth/restrictionC.js');
-const restrictedM = require('../auth/restrictionM.js');
+const Tasks = require("./staffModel.js");
+const restricted = require("../../auth/restriction.js");
+const restrictedA = require("../auth/restrictionA.js");
+const restrictedC = require("../auth/restrictionC.js");
+const restrictedM = require("../auth/restrictionM.js");
 
 // GET:  get all contractors
-router.get('/', restrictedM, (req, res) => {
+router.get("/", restrictedM, (req, res) => {
 	Tasks.find()
-		.then(contractors => {
+		.then((contractors) => {
 			res.status(200).json(contractors);
 		})
-		.catch(err => res.send(err));
+		.catch((err) => res.send(err));
 });
 
 // GET:  get one contractor
-router.get('/:stfid', restrictedC, (req, res) => {
+router.get("/:stfid", restrictedC, (req, res) => {
 	const stfid = req.params.stfid;
 	if (!stfid) {
 		res.status(404).json({ message: `The staff with the specified stfid ${stfid} does not exist.` });
 	} else {
 		Tasks.findById(stfid)
-			.then(contractor => {
+			.then((contractor) => {
 				res.status(200).json(contractor);
 			})
-			.catch(err => {
-				res.status(500).json({ message: 'The contractor information could not be retrieved.', error: err });
+			.catch((err) => {
+				res.status(500).json({ message: "The contractor information could not be retrieved.", error: err });
 			});
 	}
 });
 
 // POST:  create staff
-router.post('/', restrictedM, (req, res) => {
+router.post("/", restrictedM, (req, res) => {
 	const newContractor = req.body;
 
 	Tasks.add(newContractor)
-		.then(contractor => {
+		.then((contractor) => {
 			res.status(201).json(contractor);
 		})
-		.catch(err => {
-			res.status(500).json({ message: 'Failed to create new contractor', error: err });
+		.catch((err) => {
+			res.status(500).json({ message: "Failed to create new contractor", error: err });
 		});
 });
 
 // PUT:  update contractor
-router.put('/:stfid', restrictedM, (req, res) => {
+router.put("/:stfid", restrictedM, (req, res) => {
 	const stfid = req.params.stfid;
 	const updatedContractor = req.body;
 
 	Tasks.update(stfid, updatedContractor)
-		.then(contractor => {
+		.then((contractor) => {
 			if (contractor) {
 				res.json(contractor);
 			} else {
 				res.status(404).json({ message: `Could not find contractor with given id ${stfid}` });
 			}
 		})
-		.catch(err => {
-			res.status(500).json({ message: 'Failed to update contractor', error: err });
+		.catch((err) => {
+			res.status(500).json({ message: "Failed to update contractor", error: err });
 		});
 });
 // DELETE:  delete contractor
-router.delete('/:stfid', restrictedM, (req, res) => {
+router.delete("/:stfid", restrictedM, (req, res) => {
 	const stfid = req.params.stfid;
 	if (!stfid) {
 		res.status(404).json({ message: `The contractor with the specified stfid ${stfid} does not exist.` });
 	}
 	Tasks.remove(stfid)
-		.then(contractor => {
+		.then((contractor) => {
 			res.json(contractor);
 		})
-		.catch(err => {
-			res.status(500).json({ message: 'The contractor could not be removed.', error: err });
+		.catch((err) => {
+			res.status(500).json({ message: "The contractor could not be removed.", error: err });
 		});
 });
 

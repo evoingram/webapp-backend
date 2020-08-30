@@ -1,4 +1,4 @@
-const db = require('../../data/dbConfig');
+const db = require("../../data/dbConfig");
 
 module.exports = {
 	add,
@@ -10,28 +10,28 @@ module.exports = {
 };
 
 function find() {
-	return db('stylenames').select('*');
+	return db("stylenames").select("*");
 }
 
 function findBy(filter) {
-	return db('stylenames').where(filter);
+	return db("stylenames").where(filter);
 }
 
 async function add(style) {
-	const [sid] = await db('stylenames').insert(style, 'sid');
+	const [sid] = await db("stylenames").insert(style, "sid");
 	return findById(sid);
 }
 
 function findById(sid) {
-	return db('stylenames').select('sid', '*').where({ sid }).first();
+	return db("stylenames").select("sid", "*").where({ sid }).first();
 }
 
 function update(sid, style) {
-	return db('stylenames').where({ sid }).update(style);
+	return db("stylenames").where({ sid }).update(style);
 }
 
 function remove(sid) {
-	return db('stylenames').where('sid', Number(sid)).del();
+	return db("stylenames").where("sid", Number(sid)).del();
 }
 
 /*

@@ -1,14 +1,14 @@
 
-## Endpoints
+# Endpoints
 
-### Login / Registration
+## Login / Registration
 
 | Request Method | Endpoint         | Description                          |
 | :------------- | :--------------- | :----------------------------------- |
 | `POST`         | `/login`         | Logs user in and returns a token     |
 | `POST`         | `/register`      | creates a user                       |
 
-### Users
+## Users
 
 | Request Method | Endpoint                           | Description                          |
 | :------------- | :--------------------------------- | :----------------------------------- |
@@ -21,7 +21,7 @@
 | `GET`          | `/customers/:customersid/cases`    | returns a user's cases               |
 | `GET`          | `/customers/:customersid/invoices` | returns a user's invoices            |
 
-### Courtdates (Jobs)
+## Courtdates (Jobs)
 
 | Request Method | Endpoint                                       | Description                                |
 | :------------- | :--------------------------------------------- | :----------------------------------------- |
@@ -49,7 +49,7 @@
 | `GET`          | `/courtdates/:courtdatesid/usc`                | returns usc items of a job record          |
 | `GET`          | `/courtdates/:courtdatesid/contractors`        | returns contractors of a job record        |
 
-### Appearances
+## Appearances
 
 | Request Method | Endpoint              | Description                   |
 | :------------- | :-------------------- | :---------------------------- |
@@ -59,7 +59,7 @@
 | `GET`          | `/appearances`        | returns list of appearances   |
 | `GET`          | `/appearances/:appid` | returns one appearance        |
 
-### Tasks
+## Tasks
 
 | Request Method | Endpoint          | Description                       |
 | :------------- | :---------------- | :-------------------------------- |
@@ -69,7 +69,7 @@
 | `GET`          | `/tasks`          | returns list of tasks             |
 | `GET`          | `/tasks/:tasksid` | returns one task                  |
 
-### Statuses
+## Statuses
 
 | Request Method | Endpoint                | Description                 |
 | :------------- | :---------------------- | :-------------------------- |
@@ -79,7 +79,7 @@
 | `GET`          | `/statuses`             | returns list of statuses    |
 | `GET`          | `/statuses/:statusesid` | returns one status          |
 
-### Expenses
+## Expenses
 
 | Request Method | Endpoint         | Description                        |
 | :------------- | :--------------- | :--------------------------------- |
@@ -89,7 +89,7 @@
 | `GET`          | `/expenses`      | returns list of expenses           |
 | `GET`          | `/expenses/:eid` | returns one expense                |
 
-### Payments
+## Payments
 
 | Request Method | Endpoint         | Description                        |
 | :------------- | :--------------- | :--------------------------------- |
@@ -99,7 +99,7 @@
 | `GET`          | `/payments`      | returns list of payments           |
 | `GET`          | `/payments/:pid` | returns one payment                |
 
-### Shipping
+## Shipping
 
 | Request Method | Endpoint          | Description                        |
 | :------------- | :---------------- | :--------------------------------- |
@@ -109,7 +109,7 @@
 | `GET`          | `/shipping`       | returns list of shipping items     |
 | `GET`          | `/shipping/:soid` | returns one shipping item          |
 
-### Invoices
+## Invoices
 
 | Request Method | Endpoint         | Description                         |
 | :------------- | :--------------- | :---------------------------------- |
@@ -119,7 +119,7 @@
 | `GET`          | `/invoices`      | returns list of invoices            |
 | `GET`          | `/invoices/:iid` | returns one invoice                 |
 
-### Citations
+## Citations
 
 | Request Method | Endpoint                  | Description                |
 | :------------- | :------------------------ | :------------------------- |
@@ -129,7 +129,7 @@
 | `GET`          | `/citations`              | returns list of citations  |
 | `GET`          | `/citations/:citationsid` | returns one citation       |
 
-### Rates
+## Rates
 
 | Request Method | Endpoint          | Description                        |
 | :------------- | :---------------- | :--------------------------------- |
@@ -139,7 +139,7 @@
 | `GET`          | `/rates`          | returns list of rates              |
 | `GET`          | `/rates/:ratesid` | returns one rate                   |
 
-### Turnaroundtimes
+## Turnaroundtimes
 
 | Request Method | Endpoint                 | Description                     |
 | :------------- | :----------------------- | :------------------------------ |
@@ -149,7 +149,7 @@
 | `GET`          | `/turnaroundtimes`       | returns list of turnaroundtimes |
 | `GET`          | `/turnaroundtimes/:ttid` | returns one turnaroundtime      |
 
-### Courtdatescasescustomers
+## Courtdatescasescustomers
 
 | Request Method | Endpoint       | Description                              |
 | :------------- | :------------- | :--------------------------------------- |
@@ -159,7 +159,7 @@
 | `GET`          | `/ccc`         | returns list of courtdatescasescustomers |
 | `GET`          | `/ccc/:cdccid` | returns one courtdatecasecustomer        |
 
-### CommHistory
+## CommHistory
 
 | Request Method | Endpoint             | Description                       |
 | :------------- | :------------------- | :-------------------------------- |
@@ -169,7 +169,7 @@
 | `GET`          | `/commhistory`       | returns list of commhistory items |
 | `GET`          | `/commhistory/:chid` | returns one commhistory item      |
 
-### AGShortcuts
+## AGShortcuts
 
 | Request Method | Endpoint              | Description                      |
 | :------------- | :-------------------- | :------------------------------- |
@@ -179,7 +179,7 @@
 | `GET`          | `/agshortcuts`        | returns list of agshortcut lists |
 | `GET`          | `/agshortcuts/:agsid` | returns one agshortcut list      |
 
-### MailClasses
+## MailClasses
 
 | Request Method | Endpoint             | Description                    |
 | :------------- | :------------------- | :----------------------------- |
@@ -189,7 +189,7 @@
 | `GET`          | `/mailclasses`       | returns list of mailclasses    |
 | `GET`          | `/mailclasses/:mcid` | returns one mailclass          |
 
-### PackageTypes
+## PackageTypes
 
 | Request Method | Endpoint              | Description                   |
 | :------------- | :-------------------- | :---------------------------- |
@@ -199,7 +199,7 @@
 | `GET`          | `/packagetypes`       | returns list of packagetypes  |
 | `GET`          | `/packagetypes/:ptid` | returns one packagetype       |
 
-### BrandingThemes
+## BrandingThemes
 
 | Request Method | Endpoint                | Description                    |
 | :------------- | :---------------------- | :----------------------------- |
@@ -209,7 +209,7 @@
 | `GET`          | `/brandingthemes`       | returns list of brandingthemes |
 | `GET`          | `/brandingthemes/:btid` | returns one brandingtheme      |
 
-### USC Items
+## USC Items
 
 | Request Method | Endpoint      | Description                   |
 | :------------- | :------------ | :---------------------------- |
@@ -219,7 +219,7 @@
 | `GET`          | `/usc`        | returns list of usc items     |
 | `GET`          | `/usc/:uscid` | returns one usc item          |
 
-### ExamTypes
+## ExamTypes
 
 | Request Method | Endpoint           | Description                 |
 | :------------- | :----------------- | :-------------------------- |
@@ -229,7 +229,7 @@
 | `GET`          | `/examtypes`       | returns list of examtypes   |
 | `GET`          | `/examtypes/:etid` | returns one examtype        |
 
-### Styles
+## Styles
 
 | Request Method | Endpoint       | Description                     |
 | :------------- | :------------- | :------------------------------ |

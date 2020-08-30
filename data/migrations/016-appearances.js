@@ -1,30 +1,30 @@
-exports.up = function(knex) {
-	return knex.schema.createTable('appearances', appearances => {
-		appearances.increments('appid');
+exports.up = (knex) => {
+	return knex.schema.createTable("appearances", (appearances) => {
+		appearances.increments("appid");
 
 
 		appearances
-			.integer('customersid')
+			.integer("customersid")
 			.unsigned()
 			.notNullable()
-			.references('customersid')
-			.inTable('customers')
-			.onUpdate('CASCADE')
-			.onDelete('RESTRICT');
+			.references("customersid")
+			.inTable("customers")
+			.onUpdate("CASCADE")
+			.onDelete("RESTRICT");
 
 		appearances
-			.integer('courtdatesid')
+			.integer("courtdatesid")
 			.unsigned()
 			.notNullable()
-			.references('courtdatesid')
-			.inTable('courtdates')
-			.onUpdate('CASCADE')
-			.onDelete('RESTRICT');
+			.references("courtdatesid")
+			.inTable("courtdates")
+			.onUpdate("CASCADE")
+			.onDelete("RESTRICT");
 		
-		appearances.integer('cdappid').notNullable();
+		appearances.integer("cdappid").notNullable();
 	});
 };
 
-exports.down = function(knex) {
-	return knex.schema.dropTableIfExists('appearances');
+exports.down = (knex) => {
+	return knex.schema.dropTableIfExists("appearances");
 };

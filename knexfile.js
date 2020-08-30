@@ -1,14 +1,15 @@
+/* eslint-disable linebreak-style */
 // currently stored only in heroku config var
 // see below for notes on migrations, seeds, & commands you can run in heroku console
 module.exports = {
 	development: {
-		client: 'pg',
+		client: "pg",
 		connection: process.env.DATABASE_URL,
 		migrations: {
-			directory: './data/migrations'
+			directory: "./data/migrations"
 		},
 		seeds: {
-			directory: './data/seeds'
+			directory: "./data/seeds"
 		},
 		pool: {
 			min: 2,
@@ -16,17 +17,17 @@ module.exports = {
 		}
 	},
 	production: {
-		client: 'pg',
+		client: "pg",
 		connection: process.env.DATABASE_URL,
 		pool: {
 			min: 2,
 			max: 10
 		},
 		migrations: {
-			directory: './data/migrations'
+			directory: "./data/migrations"
 		},
 		seeds: {
-			directory: './data/seeds'
+			directory: "./data/seeds"
 		}
 	}
 };

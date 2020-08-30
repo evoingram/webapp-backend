@@ -1,75 +1,87 @@
-const router = require('express').Router();
+const router = require("express").Router();
 
-const Courtdates = require('./Model.js');
-const restricted = require('../auth/restriction.js');
+const Courtdates = require("./Model.js");
+const restricted = require("../auth/restriction.js");
 
 // GET:  Describe what it does
-router.get('/', restricted, (req, res) => {
+router.get("/", restricted, (req, res) => {
 	Courtdates.find()
-		.then(courtdates => {
+		.then((courtdates) => {
 			res.status(200).json(courtdates);
 		})
-		.catch(err => res.send(err));
+		.catch((err) => res.send(err));
 });
 
 // GET:  Describe what it does
-router.get('/:courtdatesid', restricted, (req, res) => {
+router.get("/:courtdatesid", restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified courtdatesid does not exist.' });
+		res.status(404).json({ message: "The courtdate with the specified courtdatesid does not exist." });
 	} else {
 		Courtdates.findById(courtdatesid)
-			.then(courtdate => {
+			.then((courtdate) => {
 				res.status(201).json(courtdate);
 			})
-			.catch(err => {
-				res.status(500).json({ message: 'The courtdate information could not be retrieved.' });
+			.catch((err) => {
+				res.status(500).json({ 
+					message: "The courtdate information could not be retrieved.",
+					error: err 
+				});
 			});
 	}
 });
 
 // POST:  create status
-router.post('/', restricted, (req, res) => {
+router.post("/", restricted, (req, res) => {
 	const newStatus = req.body.status;
 
 	Statuses.add(newStatus)
-		.then(status => {
+		.then((status) => {
 			res.status(201).json(status);
 		})
-		.catch(err => {
-			res.status(500).json({ message: 'Failed to create new status' });
+		.catch((err) => {
+			res.status(500).json({ 
+				message: "Failed to create new status.",
+				error: err 
+			});
 		});
 });
 
 // PUT:  Describe what it does
-router.put('/:statusesid', restricted, (req, res) => {
+router.put("/:statusesid", restricted, (req, res) => {
 	const statusesid = req.params.statusesid;
 	const updatedStatus = { status: req.body.status };
 
 	Statuses.update(statusesid, updatedStatus)
-		.then(status => {
+		.then((status) => {
 			if (status) {
 				res.json(status);
 			} else {
-				res.status(404).json({ message: 'Could not find status with given id' });
+				res.status(404).json({ message: "Could not find status with given id" });
 			}
 		})
-		.catch(err => {
-			res.status(500).json({ message: 'Failed to update status' });
+		.catch((err) => {
+			res.status(500).json({ 
+				message: "Failed to update status.",
+				error: err
+			});
 		});
 });
 // DELETE:  Describe what it does
-router.delete('/:courtdatesid', restricted, (req, res) => {
+router.delete("/:courtdatesid", restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
-		res.status(404).json({ message: 'The courtdate with the specified ID does not exist.' });
+		res.status(404).json({ message: "The courtdate with the specified ID does not exist." });
 	}
 	Courtdates.remove(courtdatesid)
-		.then(courtdate => {
+		.then((courtdate) => {
 			res.json(courtdate);
 		})
-		.catch(err => {
-			res.status(500).json({ message: 'The courtdate could not be removed' });
+		.catch((err) => {
+			res.status(500).json({ 
+				message: "The courtdate could not be removed.",
+				error: err
+			});
 		});
 });
 

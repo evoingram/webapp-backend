@@ -1,12 +1,13 @@
-exports.up = function(knex) {
-	return knex.schema.createTable('examtypes', examtypes => {
-		examtypes.increments('eid');
+/* eslint-disable linebreak-style */
+exports.up = (knex) => {
+	return knex.schema.createTable("examtypes", (examtypes) => {
+		examtypes.increments("eid");
 
-		examtypes.string('examination').notNullable();
-		examtypes.string('ecode').notNullable();
+		examtypes.string("examination").notNullable();
+		examtypes.string("ecode").notNullable();
 	});
 };
 
-exports.down = function(knex) {
-	return knex.schema.dropTableIfExists('examtypes');
+exports.down = (knex) => {
+	return knex.schema.dropTableIfExists("examtypes");
 };
