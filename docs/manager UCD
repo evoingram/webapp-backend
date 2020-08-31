@@ -1,0 +1,22 @@
+<mxfile host="app.diagrams.net" modified="2020-08-31T16:15:24.581Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36" etag="Rzvmj_olllINUfFj42LF" version="13.6.5" type="github">
+  <diagram id="LxQrVh70qnKafbR52zmC" name="Page-1">
+    <mxGraphModel dx="1400" dy="822" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="550" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="K2ssJcwZjlhCt-2ackFg-1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#002244;" vertex="1" parent="1">
+          <mxGeometry x="40" y="10" width="730" height="820" as="geometry" />
+        </mxCell>
+        <mxCell id="K2ssJcwZjlhCt-2ackFg-2" value="Manager" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#9933FF;" vertex="1" parent="1">
+          <mxGeometry x="795" y="70" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="K2ssJcwZjlhCt-2ackFg-3" value="Transcriber" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#3333FF;" vertex="1" parent="1">
+          <mxGeometry x="795" y="250" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="K2ssJcwZjlhCt-2ackFg-4" value="Proofer" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#00CC00;" vertex="1" parent="1">
+          <mxGeometry x="795" y="420" width="30" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
