@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2020-08-31T17:49:28.354Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36" etag="OmVL1ft5adwxZFMr4BIt" version="13.6.5" type="github">
+<mxfile host="app.diagrams.net" modified="2020-08-31T17:50:15.762Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36" etag="zmerPZhHERGZLYhop-Ay" version="13.6.5" type="github">
   <diagram id="LxQrVh70qnKafbR52zmC" name="Page-1">
-    <mxGraphModel dx="1983" dy="1165" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="550" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="2380" dy="1398" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="550" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -8,13 +8,13 @@
           <mxGeometry x="40" y="10" width="730" height="1770" as="geometry" />
         </mxCell>
         <mxCell id="K2ssJcwZjlhCt-2ackFg-2" value="Manager" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#9933FF;" vertex="1" parent="1">
-          <mxGeometry x="795" y="70" width="30" height="60" as="geometry" />
+          <mxGeometry x="1030" y="75" width="30" height="60" as="geometry" />
         </mxCell>
         <mxCell id="K2ssJcwZjlhCt-2ackFg-3" value="Transcriber" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#3333FF;" vertex="1" parent="1">
-          <mxGeometry x="795" y="250" width="30" height="60" as="geometry" />
+          <mxGeometry x="1030" y="255" width="30" height="60" as="geometry" />
         </mxCell>
         <mxCell id="K2ssJcwZjlhCt-2ackFg-4" value="Proofer" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#00CC00;" vertex="1" parent="1">
-          <mxGeometry x="795" y="420" width="30" height="60" as="geometry" />
+          <mxGeometry x="1030" y="425" width="30" height="60" as="geometry" />
         </mxCell>
         <mxCell id="K2ssJcwZjlhCt-2ackFg-7" value="" style="group;fontColor=#002244;html=1;" vertex="1" connectable="0" parent="1">
           <mxGeometry x="560" y="30" width="120" height="60" as="geometry" />
@@ -786,6 +786,9 @@
         </mxCell>
         <mxCell id="K2ssJcwZjlhCt-2ackFg-273" value="View Document or Comm History of One Job" style="text;html=1;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="K2ssJcwZjlhCt-2ackFg-271">
           <mxGeometry width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="K2ssJcwZjlhCt-2ackFg-276" value="Customer" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#FF0080;" vertex="1" parent="1">
+          <mxGeometry x="1030" y="560" width="30" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
