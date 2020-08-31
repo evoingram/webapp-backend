@@ -47,7 +47,7 @@ Back end deployed to `Heroku` and built using:
 ## Documentation
 
 ### [DB SCHEMA](https://dbdesigner.page.link/gbEtfTr1XjgwDa2C7)   |   [BASE URL](https://transcript-webapp.herokuapp.com/api)   |   [PRODUCT VISION](https://aquoco-my.sharepoint.com/:w:/g/personal/evoingram_aquoco_onmicrosoft_com/ES9-HPl3otdAjjtMrqpWIrkBMTrLyRDvxVEtYGkOMWLDUQ?e=fXTfhK)   |   [ENDPOINTS](https://github.com/evoingram/webapp-backend/blob/master/docs/endpoints.md)   |   [FRONT END](https://github.com/evoingram/webapp-frontend/) (still in planning stages)
-### [POSTMAN DOCUMENTATION](https://documenter.getpostman.com/view/6401823/SzRxWAvu?version=latest)   |   [SAMPLE RESPONSE](sample-response.json)   |   [CUSTOMER USE CASE DIAGRAM](https://github.com/evoingram/webapp-backend/blob/master/docs/use%20case.jpg)
+### [POSTMAN DOCUMENTATION](https://documenter.getpostman.com/view/6401823/SzRxWAvu?version=latest)   |   [SAMPLE RESPONSE](sample-response.json)   |   [CUSTOMER USE CASE DIAGRAM](https://github.com/evoingram/webapp-backend/blob/master/docs/use%20case.jpg)   |   [MANAGER USE CASE DIAGRAM](https://github.com/evoingram/webapp-backend/blob/master/docs/manager%20UCD.jpg)
 
 - Postman Docs were last published on 04/08/2020
 - Postman docs contain examples of all get, post, and put endpoint body submissions AND responses.
