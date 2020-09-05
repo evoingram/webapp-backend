@@ -26,6 +26,7 @@ Back end deployed to `Heroku` and built using:
 - [Knex](https://github.com/knex/knex):  a query builder for PostgreSQL, MySQL and SQLite3, designed to be flexible, portable, and fun to use.
 - [Express](https://github.com/expressjs/express):  a fast, unopinionated, minimalist web framework for Node.
 - [bcrypt](https://github.com/pyca/bcrypt/):  modern(-ish) password hashing for your software and your servers.
+- [PostgreSQL](http://postgresql.org/):  open-source relational database supporting both SQL & JSON querying.
 
 ## Available Scripts 
 
@@ -50,5 +51,7 @@ Back end deployed to `Heroku` and built using:
 ### [POSTMAN DOCUMENTATION](https://documenter.getpostman.com/view/6401823/SzRxWAvu?version=latest)   |   [SAMPLE RESPONSE](sample-response.json)
 ### [CUSTOMER USE CASE DIAGRAM](https://github.com/evoingram/webapp-backend/blob/master/docs/use%20case.jpg)   |   [MANAGER USE CASE DIAGRAM](https://github.com/evoingram/webapp-backend/blob/master/docs/manager%20UCD.jpg)
 
-- Postman Docs were last published on 04/08/2020
+### See also [a Java version](https://github.com/evoingram/webapp-javabe) of this API.
+
+- Postman Docs were last published on 04/08/2020.
 - Postman docs contain examples of all get, post, and put endpoint body submissions AND responses.
