@@ -51,7 +51,7 @@ Back end deployed to `Heroku` and built using:
 ### [POSTMAN DOCUMENTATION](https://documenter.getpostman.com/view/6401823/SzRxWAvu?version=latest)   |   [SAMPLE RESPONSE](sample-response.json)
 ### [CUSTOMER USE CASE DIAGRAM](https://github.com/evoingram/webapp-backend/blob/master/docs/use%20case.jpg)   |   [MANAGER USE CASE DIAGRAM](https://github.com/evoingram/webapp-backend/blob/master/docs/manager%20UCD.jpg)
 
-### See also [a Java version](https://github.com/evoingram/webapp-javabe) of this API.
+### See also [a Java version](https://github.com/evoingram/webapp-javabe) of this API in progress.
 
 - Postman Docs were last published on 04/08/2020.
 - Postman docs contain examples of all get, post, and put endpoint body submissions AND responses.
