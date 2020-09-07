@@ -15,7 +15,8 @@ This is the back end for the online port of my company's VB database, which is u
 - Live solo project
 - RESTful API with auth services for transcript production system
 - 126 endpoints
-- CourtListener, Xero, PayPal, & Office API support, tested and documented via Postman
+- CourtListener, Xero, PayPal, Wunderlist, & Office API support
+- Tested and documented via Postman
 
 ## Tech Stack
 
@@ -25,6 +26,7 @@ Back end deployed to `Heroku` and built using:
 - [Knex](https://github.com/knex/knex):  a query builder for PostgreSQL, MySQL and SQLite3, designed to be flexible, portable, and fun to use.
 - [Express](https://github.com/expressjs/express):  a fast, unopinionated, minimalist web framework for Node.
 - [bcrypt](https://github.com/pyca/bcrypt/):  modern(-ish) password hashing for your software and your servers.
+- [PostgreSQL](http://postgresql.org/):  open-source relational database supporting both SQL & JSON querying.
 
 ## Available Scripts 
 
@@ -37,6 +39,7 @@ Back end deployed to `Heroku` and built using:
 - [Office](https://docs.microsoft.com/en-us/previous-versions/office/office-365-api/):  document creation, formatting, and management.
 - [PayPal](https://developer.paypal.com/home/):  payment processing and management.
 - [Wunderlist](https://developer.wunderlist.com/):  to-do list management.
+- [Xero](https://developer.xero.com/) business accounting software online.
    
 ## Testing
 
@@ -46,6 +49,9 @@ Back end deployed to `Heroku` and built using:
 
 ### [DB SCHEMA](https://dbdesigner.page.link/gbEtfTr1XjgwDa2C7)   |   [BASE URL](https://transcript-webapp.herokuapp.com/api)   |   [PRODUCT VISION](https://aquoco-my.sharepoint.com/:w:/g/personal/evoingram_aquoco_onmicrosoft_com/ES9-HPl3otdAjjtMrqpWIrkBMTrLyRDvxVEtYGkOMWLDUQ?e=fXTfhK)   |   [ENDPOINTS](https://github.com/evoingram/webapp-backend/blob/master/docs/endpoints.md)   |   [FRONT END](https://github.com/evoingram/webapp-frontend/) (still in planning stages)
 ### [POSTMAN DOCUMENTATION](https://documenter.getpostman.com/view/6401823/SzRxWAvu?version=latest)   |   [SAMPLE RESPONSE](sample-response.json)
+### [CUSTOMER USE CASE DIAGRAM](https://github.com/evoingram/webapp-backend/blob/master/docs/use%20case.jpg)   |   [MANAGER USE CASE DIAGRAM](https://github.com/evoingram/webapp-backend/blob/master/docs/manager%20UCD.jpg)
 
-- Postman Docs were last published on 04/08/2020
+### See also [a Java version](https://github.com/evoingram/webapp-javabe) of this API.
+
+- Postman Docs were last published on 04/08/2020.
 - Postman docs contain examples of all get, post, and put endpoint body submissions AND responses.
