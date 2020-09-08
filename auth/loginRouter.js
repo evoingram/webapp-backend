@@ -15,20 +15,20 @@ router.post("/", (req, res) => {
 	Customers.findBy({ email })
 		.first()
 		.then((customer) => {
-				if (customer) {
-					if (bcrypt.compareSync(password, customer.password)) {
-						const token = Token.getJwt(customer.email);
-						res.status(200).json({
-							email: customer.email,
-							customersid: customer.customersid,
-							company: customer.company,
-							token
-						});
-					} else {
-						res.status(401).json({
-							message: `invalid credentials from loginRouter:  ${customer.email} ${customer.password} ${password} ${customer.company} ${bcrypt.compareSync(password, customer.password)}`
-						});
-					}
+			if (customer) {
+				if (bcrypt.compareSync(password, customer.password)) {
+					const token = Token.getJwt(customer.email);
+					res.status(200).json({
+						email: customer.email,
+						customersid: customer.customersid,
+						company: customer.company,
+						token
+					});
+				} else {
+					res.status(401).json({
+						message: `invalid credentials from loginRouter:  ${customer.email} ${customer.password} ${password} ${customer.company} ${bcrypt.compareSync(password, customer.password)}`
+					});
+				}
 			}
 		})
 		.catch((error) => {
