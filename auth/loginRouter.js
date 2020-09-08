@@ -26,7 +26,7 @@ router.post("/", (req, res) => {
 					});
 				} else {
 					res.status(401).json({
-						message: `invalid credentials from loginRouter:  ${customer.email} ${customer.password} ${password} ${customer.company} ${bcrypt.compareSync(password, customer.password)}`
+						message: `invalid credentials from loginRouter:  ${customer.email}`
 					});
 				}
 			}

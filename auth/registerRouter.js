@@ -32,7 +32,7 @@ router.post("/", (req, res) => {
 			})
 			.catch((error) => {
 				res.status(500).json({
-					message: `invalid credentials from registerRouter ${customer.password} ${hash} ${customer.email} ${bcrypt.compareSync(password, customer.password)}`,
+					message: `invalid credentials from registerRouter:  ${customer.email}`,
 					error: error
 				});
 			});
