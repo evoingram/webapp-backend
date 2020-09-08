@@ -227,9 +227,9 @@ function findInvoicesById(courtdatesid) {
 			"payments.remitdate",
 			"payments.iid"
 		)
-		.innerJoin("invoices", "invoices.iid", "courtdates.iid")
+		.innerJoin("invoices", "courtdates.iid", "invoices.iid")
 		.innerJoin("customers", "invoices.customersid", "customers.customersid")
-		.innerJoin("payments", "payments.iid", "invoices.iid")
+		.innerJoin("payments", "invoices.iid", "payments.iid")
 		.where("courtdates.courtdatesid", courtdatesid);
 }
 
@@ -490,6 +490,7 @@ function findByIdMain(courtdatesid) {
 			"courtdates.duedate",
 			"courtdates.filed",
 			"courtdates.hearingtitle",
+			"courtdates.iid",
 			"courtdates.judgename",
 			"courtdates.judgetitle",
 			"courtdates.factoringcost",
@@ -664,7 +665,7 @@ function findByIdMain(courtdatesid) {
 		.innerJoin("brandingthemes", "brandingthemes.btid", "courtdates.btid")
 		.innerJoin("cases", "cases.casesid", "courtdatescasescustomers.casesid")
 		.innerJoin("agshortcuts", "agshortcuts.courtdatesid", "courtdates.courtdatesid")
-		.innerJoin("invoices", "invoices.iid", "courtdates.iid")
+		.innerJoin("invoices", "courtdates.iid", "invoices.iid")
 		.innerJoin("customers", "appearances.customersid", "customers.customersid")
 		.innerJoin("expenses", "expenses.courtdatesid", "courtdates.courtdatesid")
 		.innerJoin("payments", "payments.iid", "invoices.iid")
