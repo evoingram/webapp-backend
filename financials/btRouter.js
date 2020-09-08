@@ -7,7 +7,7 @@ const restrictedC = require("../auth/restrictionC.js");
 const restrictedM = require("../auth/restrictionM.js");
 
 // GET:  gets all brandingthemes
-router.get("/", restrictedM, (req, res) => {
+router.get("/", restricted, (req, res) => {
 	BrandingThemes.find()
 		.then((brandingtheme) => {
 			res.status(200).json(brandingtheme);
@@ -34,7 +34,7 @@ router.get("/:btid", restricted, (req, res) => {
 });
 
 // POST:  create brandingtheme
-router.post("/", restrictedM, (req, res) => {
+router.post("/", restricted, (req, res) => {
 	const newBrandingTheme = req.body;
 
 	BrandingThemes.add(newBrandingTheme)
@@ -47,7 +47,7 @@ router.post("/", restrictedM, (req, res) => {
 });
 
 // PUT:  update brandingtheme
-router.put("/:btid", restrictedM, (req, res) => {
+router.put("/:btid", restricted, (req, res) => {
 	const btid = req.params.btid;
 	const updatedBrandingTheme = req.body;
 
@@ -64,7 +64,7 @@ router.put("/:btid", restrictedM, (req, res) => {
 		});
 });
 // DELETE:  delete brandingtheme
-router.delete("/:btid", restrictedM, (req, res) => {
+router.delete("/:btid", restricted, (req, res) => {
 	const btid = req.params.btid;
 	if (!btid) {
 		res.status(404).json({ message: "The brandingtheme with the specified ID does not exist." });

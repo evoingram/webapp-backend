@@ -7,7 +7,7 @@ const restrictedC = require("../../auth/restrictionC.js");
 const restrictedM = require("../../auth/restrictionM.js");
 
 // GET:  get all citationhyperlinks citations
-router.get("/", restrictedM, (req, res) => {
+router.get("/", restricted, (req, res) => {
 	CitationHyperlinks.find()
 		.then((citationhyperlinks) => {
 			res.status(200).json(citationhyperlinks);
@@ -37,7 +37,7 @@ router.get("/:chid", restricted, (req, res) => {
 });
 
 // POST:  create a citationhyperlinks citation
-router.post("/", restrictedC, (req, res) => {
+router.post("/", restricted, (req, res) => {
 	const newUSCCodeItem = req.body;
 
 	CitationHyperlinks.add(newUSCCodeItem)
@@ -50,7 +50,7 @@ router.post("/", restrictedC, (req, res) => {
 });
 
 // PUT:  update a citationhyperlinks citation
-router.put("/:chid", restrictedC, (req, res) => {
+router.put("/:chid", restricted, (req, res) => {
 	const chid = req.params.chid;
 	const updatedUSCCodeItem = req.body;
 
@@ -69,7 +69,7 @@ router.put("/:chid", restrictedC, (req, res) => {
 		});
 });
 // DELETE:  delete a citationhyperlinks citation
-router.delete("/:chid", restrictedM, (req, res) => {
+router.delete("/:chid", restricted, (req, res) => {
 	const chid = req.params.chid;
 	if (!chid) {
 		res.status(404).json({

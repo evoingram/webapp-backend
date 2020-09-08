@@ -7,7 +7,7 @@ const restrictedC = require("../../auth/restrictionC.js");
 const restrictedM = require("../../auth/restrictionM.js");
 
 // GET:  get all tasks
-router.get("/", restrictedC, (req, res) => {
+router.get("/", restricted, (req, res) => {
 	Tasks.find()
 		.then((task) => {
 			res.status(200).json(task);
@@ -32,7 +32,7 @@ router.get("/:tid", restricted, (req, res) => {
 });
 
 // POST:  create task
-router.post("/", restrictedM, (req, res) => {
+router.post("/", restricted, (req, res) => {
 	const newTask = req.body;
 
 	Tasks.add(newTask)
@@ -45,7 +45,7 @@ router.post("/", restrictedM, (req, res) => {
 });
 
 // PUT:  update task
-router.put("/:tid", restrictedM, (req, res) => {
+router.put("/:tid", restricted, (req, res) => {
 	const tid = req.params.tid;
 	const updatedTask = req.body;
 
@@ -62,7 +62,7 @@ router.put("/:tid", restrictedM, (req, res) => {
 		});
 });
 // DELETE:  delete task
-router.delete("/:tid", restrictedM, (req, res) => {
+router.delete("/:tid", restricted, (req, res) => {
 	const tid = req.params.tid;
 	if (!tid) {
 		res.status(404).json({ message: `The task with the specified tid ${tid} does not exist.` });

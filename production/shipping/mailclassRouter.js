@@ -7,7 +7,7 @@ const restrictedC = require("../../auth/restrictionC.js");
 const restrictedM = require("../../auth/restrictionM.js");
 
 // GET:  get all mailclasses
-router.get("/", restrictedC, (req, res) => {
+router.get("/", restricted, (req, res) => {
 	MailClass.find()
 		.then((mailclasses) => {
 			res.status(200).json(mailclasses);
@@ -34,7 +34,7 @@ router.get("/:mcid", restricted, (req, res) => {
 });
 
 // POST:  create a mailclass
-router.post("/", restrictedM, (req, res) => {
+router.post("/", restricted, (req, res) => {
 	const newMailClass = req.body;
 
 	MailClass.add(newMailClass)
@@ -47,7 +47,7 @@ router.post("/", restrictedM, (req, res) => {
 });
 
 // PUT:  update a mailclass
-router.put("/:mcid", restrictedM, (req, res) => {
+router.put("/:mcid", restricted, (req, res) => {
 	const mcid = req.params.mcid;
 	const updatedMailClass = req.body;
 
@@ -64,7 +64,7 @@ router.put("/:mcid", restrictedM, (req, res) => {
 		});
 });
 // DELETE:  delete a mailclass
-router.delete("/:mcid", restrictedM, (req, res) => {
+router.delete("/:mcid", restricted, (req, res) => {
 	const mcid = req.params.mcid;
 	if (!mcid) {
 		res.status(404).json({ message: `The mailclass with the specified ID ${mcid} does not exist.` });

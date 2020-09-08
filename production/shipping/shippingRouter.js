@@ -7,7 +7,7 @@ const restrictedC = require("../../auth/restrictionC.js");
 const restrictedM = require("../../auth/restrictionM.js");
 
 // GET:  get all packages shipped
-router.get("/", restrictedM, (req, res) => {
+router.get("/", restricted, (req, res) => {
 	ShippingOptions.find()
 		.then((shippingoptions) => {
 			res.status(200).json(shippingoptions);
@@ -32,7 +32,7 @@ router.get("/:soid", restricted, (req, res) => {
 });
 
 // POST:  create a shipped package record
-router.post("/", restrictedM, (req, res) => {
+router.post("/", restricted, (req, res) => {
 	const newShippingOptions = req.body;
 
 	ShippingOptions.add(newShippingOptions)
@@ -45,7 +45,7 @@ router.post("/", restrictedM, (req, res) => {
 });
 
 // PUT:  update a shipped package record
-router.put("/:soid", restrictedM, (req, res) => {
+router.put("/:soid", restricted, (req, res) => {
 	const soid = req.params.soid;
 	const updatedShippingOptions = req.body;
 
@@ -62,7 +62,7 @@ router.put("/:soid", restrictedM, (req, res) => {
 		});
 });
 // DELETE:  delete a shipped package record
-router.delete("/:soid", restrictedM, (req, res) => {
+router.delete("/:soid", restricted, (req, res) => {
 	const soid = req.params.soid;
 	if (!soid) {
 		res.status(404).json({ message: `The shippingitem with the specified ID ${soid} does not exist.` });

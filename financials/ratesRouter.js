@@ -7,7 +7,7 @@ const restrictedC = require("../auth/restrictionC.js");
 const restrictedM = require("../auth/restrictionM.js");
 
 // GET:  get all rates
-router.get("/", restrictedM, (req, res) => {
+router.get("/", restricted, (req, res) => {
 	Rates.find()
 		.then((rates) => {
 			res.status(200).json(rates);
@@ -32,7 +32,7 @@ router.get("/:ratesid", restricted, (req, res) => {
 });
 
 // POST:  create rate
-router.post("/", restrictedM, (req, res) => {
+router.post("/", restricted, (req, res) => {
 	const newRate = req.body;
 
 	Rates.add(newRate)
@@ -45,7 +45,7 @@ router.post("/", restrictedM, (req, res) => {
 });
 
 // PUT:  update a rate
-router.put("/:ratesid", restrictedM, (req, res) => {
+router.put("/:ratesid", restricted, (req, res) => {
 	const ratesid = req.params.ratesid;
 	const updatedRate = req.body;
 
@@ -62,7 +62,7 @@ router.put("/:ratesid", restrictedM, (req, res) => {
 		});
 });
 // DELETE:  delete a rate
-router.delete("/:ratesid", restrictedM, (req, res) => {
+router.delete("/:ratesid", restricted, (req, res) => {
 	const ratesid = req.params.ratesid;
 	if (!ratesid) {
 		res.status(404).json({ message: `The rate with the specified ID ${ratesid} does not exist.` });
