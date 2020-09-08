@@ -74,39 +74,29 @@ router.get("/:courtdatesid", restricted, (req, res) => {
 																													res.status(200).json({
 																														general: {
 																															courtdatesid:
-																								courtdate[0]
-																									.courtdatesid,
+																								courtdate[0].courtdatesid,
 																															turnaround:
-																								courtdate[0]
-																									.turnaroundtime,
+																								courtdate[0].turnaroundtime,
 																															audiolength:
-																								courtdate[0]
-																									.audiolength,
+																								courtdate[0].audiolength,
 																															duedate:
 																								courtdate[0].duedate,
 																															filed: courtdate[0].filed,
 																															hearingdetails: {
 																																location:
-																									courtdate[0]
-																										.location,
+																									courtdate[0].location,
 																																hearingdate:
-																									courtdate[0]
-																										.hearingdate,
+																									courtdate[0].hearingdate,
 																																starttime:
-																									courtdate[0]
-																										.hearingstarttime,
+																									courtdate[0].hearingstarttime,
 																																endtime:
-																									courtdate[0]
-																										.hearingendtime,
+																									courtdate[0].hearingendtime,
 																																hearingtitle:
-																									courtdate[0]
-																										.hearingtitle,
+																									courtdate[0].hearingtitle,
 																																judgename:
-																									courtdate[0]
-																										.judgename,
+																									courtdate[0].judgename,
 																																judgetitle:
-																									courtdate[0]
-																										.judgetitle
+																									courtdate[0].judgetitle
 																															}
 																														},
 																														financial: {

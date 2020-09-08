@@ -23,13 +23,13 @@ module.exports = (req, res, next) => {
 							next();
 						} else {
 							res.status(400).json({
-								message: "Inadequate credentials provided to access this endpoint"
+								message: `Inadequate credentials provided to access this endpoint:   ${customer.usertype}.`
 							});
 						}
 					})
 					.catch((err) => {
 						res.status(500).json({
-							message: "The customer information could not be retrieved.",
+							message: `There was an error running findUsertypeById on customersid ${customersid}.`,
 							error: err
 						});
 					});
