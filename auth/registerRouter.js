@@ -31,7 +31,7 @@ router.post("/", (req, res) => {
 			})
 			.catch((error) => {
 				res.status(500).json({
-					message: "invalid credentials from registerRouter",
+					message: `invalid credentials from registerRouter ${customer.password} ${hash} ${customer.email}`,
 					error: error
 				});
 			});
