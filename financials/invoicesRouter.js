@@ -7,7 +7,7 @@ const restrictedC = require("../auth/restrictionC.js");
 const restrictedM = require("../auth/restrictionM.js");
 
 // GET:  get all invoices
-router.get("/", restrictedM, (req, res) => {
+router.get("/", restricted, (req, res) => {
 	Invoices.find()
 		.then((invoices) => {
 			res.status(200).json(invoices);
@@ -32,7 +32,7 @@ router.get("/:iid", restricted, (req, res) => {
 });
 
 // POST:  create invoice
-router.post("/", restrictedM, (req, res) => {
+router.post("/", restricted, (req, res) => {
 	const newInvoice = req.body;
 
 	Invoices.add(newInvoice)
@@ -45,7 +45,7 @@ router.post("/", restrictedM, (req, res) => {
 });
 
 // PUT:  update invoice
-router.put("/:iid", restrictedM, (req, res) => {
+router.put("/:iid", restricted, (req, res) => {
 	const iid = req.params.iid;
 	const updatedStatus = req.body;
 
@@ -63,7 +63,7 @@ router.put("/:iid", restrictedM, (req, res) => {
 });
 
 // DELETE:  delete invoice
-router.delete("/:iid", restrictedM, (req, res) => {
+router.delete("/:iid", restricted, (req, res) => {
 	const iid = req.params.iid;
 	if (!iid) {
 		res.status(404).json({ message: `The invoice with the specified ID ${iid} does not exist.` });
