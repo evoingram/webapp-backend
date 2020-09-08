@@ -59,7 +59,6 @@ function remove(courtdatesid) {
 function findExpensesById(courtdatesid) {
 	return db("courtdates")
 		.select(
-			"courtdates.courtdatesid",
 			"expenses.eid",
 			"expenses.vendor",
 			"expenses.date",
@@ -73,7 +72,6 @@ function findExpensesById(courtdatesid) {
 function findPaymentsById(courtdatesid) {
 	return db("courtdates")
 		.select(
-			"courtdates.courtdatesid",
 			"courtdates.iid",
 			"payments.pid",
 			"payments.amount AS pamount",
@@ -100,7 +98,6 @@ function getShippingById(courtdatesid) {
 function findAppsById(courtdatesid) {
 	return db("courtdates")
 		.select(
-			"courtdates.courtdatesid",
 			"appearances.appid",
 			"appearances.cdappid",
 			"appearances.customersid",
@@ -128,7 +125,6 @@ function findAppsById(courtdatesid) {
 function findCitationsById(courtdatesid) {
 	return db("courtdates")
 		.select(
-			"courtdates.courtdatesid",
 			"citations.citationsid",
 			"citations.uscid",
 			"citations.citlinksid",
@@ -140,14 +136,13 @@ function findCitationsById(courtdatesid) {
 			"citationhyperlinks.webaddress"
 		)
 		.innerJoin("citations", "courtdates.courtdatesid", "citations.courtdatesid")
-		.innerJoin("citationhyperlinks", "citations.citlinksid", "citationhyperlinks.chid");
+		.innerJoin("citationhyperlinks", "citations.citlinksid", "citationhyperlinks.chid")
+		.where("courtdates.courtdatesid", courtdatesid);
 }
 function findTasksById(courtdatesid) {
 	return db("courtdates")
 		.select(
-			"courtdates.courtdatesid",
 			"tasks.tid",
-			"tasks.courtdatesid",
 			"tasks.title",
 			"tasks.priority",
 			"tasks.status",
@@ -165,7 +160,6 @@ function findTasksById(courtdatesid) {
 function findCommHistoryById(courtdatesid) {
 	return db("courtdates")
 		.select(
-			"courtdates.courtdatesid",
 			"customers.customersid",
 			"customers.factoring",
 			"customers.company",
@@ -194,7 +188,6 @@ function findCommHistoryById(courtdatesid) {
 function findInvoicesById(courtdatesid) {
 	return db("courtdates")
 		.select(
-			"courtdates.courtdatesid",
 			"invoices.invoiceno",
 			"invoices.iid",
 			"invoices.btid",
@@ -230,7 +223,7 @@ function findInvoicesById(courtdatesid) {
 		.innerJoin("invoices", "courtdates.iid", "invoices.iid")
 		.innerJoin("customers", "invoices.customersid", "customers.customersid")
 		.innerJoin("payments", "invoices.iid", "payments.iid")
-		.where("courtdates.courtdatesid", courtdatesid);
+		.where("courtdates.courtdatesid", Number(courtdatesid));
 }
 
 function findMCsById(courtdatesid) {
