@@ -7,7 +7,7 @@ const restrictedC = require("../../auth/restrictionC.js");
 const restrictedM = require("../../auth/restrictionM.js");
 
 // GET:  get all examtypes
-router.get("/", restrictedC, (req, res) => {
+router.get("/", restricted, (req, res) => {
 	ExamTypes.find()
 		.then((examtypes) => {
 			res.status(200).json(examtypes);
@@ -16,7 +16,7 @@ router.get("/", restrictedC, (req, res) => {
 });
 
 // GET:  get an examtype
-router.get("/:eid", restrictedC, (req, res) => {
+router.get("/:eid", restricted, (req, res) => {
 	const eid = req.params.eid;
 	if (!eid) {
 		res.status(404).json({ message: `The examtype with the specified eid ${eid} does not exist.` });
@@ -32,7 +32,7 @@ router.get("/:eid", restrictedC, (req, res) => {
 });
 
 // POST:  create an examtype
-router.post("/", restrictedM, (req, res) => {
+router.post("/", restricted, (req, res) => {
 	const newExamType = req.body;
 
 	ExamTypes.add(newExamType)
@@ -45,7 +45,7 @@ router.post("/", restrictedM, (req, res) => {
 });
 
 // PUT:  update an examtype
-router.put("/:eid", restrictedM, (req, res) => {
+router.put("/:eid", restricted, (req, res) => {
 	const eid = req.params.eid;
 	const updatedExamType = req.body;
 
@@ -62,7 +62,7 @@ router.put("/:eid", restrictedM, (req, res) => {
 		});
 });
 // DELETE:  delete an examtype
-router.delete("/:eid", restrictedM, (req, res) => {
+router.delete("/:eid", restricted, (req, res) => {
 	const eid = req.params.eid;
 	if (!eid) {
 		res.status(404).json({ message: `The examtype with the specified ID ${eid} does not exist.` });

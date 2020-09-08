@@ -7,7 +7,7 @@ const restrictedC = require("../auth/restrictionC.js");
 const restrictedM = require("../auth/restrictionM.js");
 
 // GET:  get all expenses
-router.get("/", restrictedM, (req, res) => {
+router.get("/", restricted, (req, res) => {
 	Expenses.find()
 		.then((expenses) => {
 			res.status(200).json(expenses);
@@ -16,7 +16,7 @@ router.get("/", restrictedM, (req, res) => {
 });
 
 // GET:  get one expense
-router.get("/:eid", restrictedM, (req, res) => {
+router.get("/:eid", restricted, (req, res) => {
 	const eid = req.params.eid;
 	if (!eid) {
 		res.status(404).json({ message: `The expense with the specified eid ${eid} does not exist.` });
@@ -35,7 +35,7 @@ router.get("/:eid", restrictedM, (req, res) => {
 });
 
 // POST:  create expense
-router.post("/", restrictedM, (req, res) => {
+router.post("/", restricted, (req, res) => {
 	const newExpense = req.body;
 
 	Expenses.add(newExpense)
@@ -48,7 +48,7 @@ router.post("/", restrictedM, (req, res) => {
 });
 
 // PUT:  update expense
-router.put("/:eid", restrictedM, (req, res) => {
+router.put("/:eid", restricted, (req, res) => {
 	const eid = req.params.eid;
 	const updatedExpense = req.body;
 	Expenses.update(eid, updatedExpense)
@@ -64,7 +64,7 @@ router.put("/:eid", restrictedM, (req, res) => {
 		});
 });
 // DELETE:  delete expense
-router.delete("/:eid", restrictedM, (req, res) => {
+router.delete("/:eid", restricted, (req, res) => {
 	const eid = req.params.eid;
 	if (!eid) {
 		res.status(404).json({ message: `The expense with the specified ID ${eid} does not exist.` });

@@ -7,7 +7,7 @@ const restrictedC = require("../../auth/restrictionC.js");
 const restrictedM = require("../../auth/restrictionM.js");
 
 // GET: get all agshortcut lists
-router.get("/", restrictedC, (req, res) => {
+router.get("/", restricted, (req, res) => {
 	AGShortcuts.find()
 		.then((agshortcuts) => {
 			res.status(200).json(agshortcuts);
@@ -16,7 +16,7 @@ router.get("/", restrictedC, (req, res) => {
 });
 
 // GET:  get one agshortcuts list
-router.get("/:agsid", restrictedC, (req, res) => {
+router.get("/:agsid", restricted, (req, res) => {
 	const agsid = req.params.agsid;
 	if (!agsid) {
 		res.status(404).json({
@@ -37,7 +37,7 @@ router.get("/:agsid", restrictedC, (req, res) => {
 });
 
 // POST:  create an agshortcuts list
-router.post("/", restrictedC, (req, res) => {
+router.post("/", restricted, (req, res) => {
 	const newAGShortcut = req.body;
 
 	AGShortcuts.add(newAGShortcut)
@@ -50,7 +50,7 @@ router.post("/", restrictedC, (req, res) => {
 });
 
 // PUT:  update an agshortcuts list
-router.put("/:agsid", restrictedC, (req, res) => {
+router.put("/:agsid", restricted, (req, res) => {
 	const agsid = req.params.agsid;
 	const updatedAGShortcut = req.body;
 
@@ -67,7 +67,7 @@ router.put("/:agsid", restrictedC, (req, res) => {
 		});
 });
 // DELETE:  delete an agshortcuts list
-router.delete("/:agsid", restrictedM, (req, res) => {
+router.delete("/:agsid", restricted, (req, res) => {
 	const agsid = req.params.agsid;
 	if (!agsid) {
 		res.status(404).json({

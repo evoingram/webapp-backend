@@ -7,7 +7,7 @@ const restrictedC = require("../../auth/restrictionC.js");
 const restrictedM = require("../../auth/restrictionM.js");
 
 // GET:  get all styles
-router.get("/", restrictedC, (req, res) => {
+router.get("/", restricted, (req, res) => {
 	Styles.find()
 		.then((styles) => {
 			res.status(200).json(styles);
@@ -16,7 +16,7 @@ router.get("/", restrictedC, (req, res) => {
 });
 
 // GET:  get one style
-router.get("/:sid", restrictedC, (req, res) => {
+router.get("/:sid", restricted, (req, res) => {
 	const sid = req.params.sid;
 	if (!sid) {
 		res.status(404).json({ message: `The style with the specified sid ${sid} does not exist.` });
@@ -32,7 +32,7 @@ router.get("/:sid", restrictedC, (req, res) => {
 });
 
 // POST:  create a style
-router.post("/", restrictedC, (req, res) => {
+router.post("/", restricted, (req, res) => {
 	const newStyle = req.body;
 
 	Styles.add(newStyle)
@@ -45,7 +45,7 @@ router.post("/", restrictedC, (req, res) => {
 });
 
 // PUT:  update a style
-router.put("/:sid", restrictedC, (req, res) => {
+router.put("/:sid", restricted, (req, res) => {
 	const sid = req.params.sid;
 	const updatedStyle = req.body;
 
@@ -62,7 +62,7 @@ router.put("/:sid", restrictedC, (req, res) => {
 		});
 });
 // DELETE:  delete a style
-router.delete("/:sid", restrictedM, (req, res) => {
+router.delete("/:sid", restricted, (req, res) => {
 	const sid = req.params.sid;
 	if (!sid) {
 		res.status(404).json({ message: `The style with the specified ID ${sid} does not exist.` });
