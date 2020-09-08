@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
 
 		jwt.verify(token, secret, (err, decodedToken) => {
 			if (err) {
-				res.status(401).json({ message: `"invalid credentials from restriction. ${token} ${secret} ${decodedToken}` });
+				res.status(401).json({ message: `"invalid credentials from restriction. token="${token}" decoded="${decodedToken}"`, error: err });
 			} else {
 				req.decodedJwt = decodedToken;
 				next();
