@@ -470,7 +470,7 @@ router.put("/:courtdatesid", restricted, (req, res) => {
 });
 
 // GET:  returns apps for one job/courtdate
-router.get("/:courtdatesid/apps", restricted, (req, res) => {
+router.get("/:courtdatesid" + "/apps", restricted, (req, res) => {
 	const courtdatesid = req.params.courtdatesid;
 	if (!courtdatesid) {
 		res.status(404).json({
