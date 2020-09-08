@@ -16,7 +16,7 @@ router.post("/", (req, res) => {
 		.first()
 		.then((customer) => {
 			if (customer) {
-				if (bcrypt.compareSync(password, customer.password)) {
+				if (bcrypt.compareSync(customer.password, password)) {
 					const token = Token.getJwt(customer.email);
 					res.status(200).json({
 						email: customer.email,
