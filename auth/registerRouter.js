@@ -11,12 +11,13 @@ const { validateCustomer } = require("../customers/customersHelpers.js");
 
 router.post("/", (req, res) => {
 	let customer = req.body;
+	let password = req.body.password;
 
 	// validates username/password
 	const validateResult = validateCustomer(customer);
 
 	if (validateResult.isSuccessful === true) {
-		const hash = bcrypt.hashSync(customer.password, 10);
+		const hash = bcrypt.hashSync(password, 10);
 		customer.password = hash;
 
 		const token = Token.getJwt(customer.email);
@@ -31,7 +32,7 @@ router.post("/", (req, res) => {
 			})
 			.catch((error) => {
 				res.status(500).json({
-					message: `invalid credentials from registerRouter ${customer.password} ${hash} ${customer.email}`,
+					message: `invalid credentials from registerRouter:  ${customer.email}`,
 					error: error
 				});
 			});
