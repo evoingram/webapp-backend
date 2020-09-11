@@ -6,7 +6,7 @@ exports.seed = (knex) => {
 		.then(() => {
 			return knex("users").insert([
 				{
-					usersid: 1,
+					userid: 1,
 					username: "admin",
 					password: "eyJwYXNzd29yZCI6InBhc3N3b3JkIn0",
 					primaryemail: "inquiries@aquoco.co",
@@ -25,7 +25,7 @@ exports.seed = (knex) => {
 					factoring: true
 				},
 				{
-					usersid: 2,
+					userid: 2,
 					username: "evoingram4",
 					password: "eyJwYXNzd29yZCI6InBhc3N3b3JkIn0",
 					primaryemail: "evoingram4@aquoco.onmicrosoft.com",
@@ -44,7 +44,7 @@ exports.seed = (knex) => {
 					factoring: true
 				},
 				{
-					usersid: 3,
+					userid: 3,
 					username: "customer",
 					password: "eyJwYXNzd29yZCI6InBhc3N3b3JkIn0",
 					primaryemail: "customer@aquoco.onmicrosoft.com",
@@ -63,7 +63,7 @@ exports.seed = (knex) => {
 					factoring: false
 				},
 				{
-					usersid: 4,
+					userid: 4,
 					username: "evoingram2",
 					password: "eyJwYXNzd29yZCI6InBhc3N3b3JkIn0",
 					primaryemail: "evoingram2@aquoco.onmicrosoft.com",
@@ -82,7 +82,7 @@ exports.seed = (knex) => {
 					factoring: true
 				},
 				{
-					usersid: 5,
+					userid: 5,
 					username: "customer3",
 					password: "eyJwYXNzd29yZCI6InBhc3N3b3JkIn0",
 					primaryemail: "customer3@aquoco.onmicrosoft.com",
